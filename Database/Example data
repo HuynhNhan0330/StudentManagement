@@ -1,0 +1,6 @@
+INSERT INTO LOAIDIEM (MaLoaiDiem, TenLoaiDiem)
+VALUES
+    ('LD0001', 'Quá Trình'),
+    ('LD0002', 'Giữa Kỳ'),
+    ('LD0003', 'Thực Hành'),
+    ('LD0004', 'Cuối Kỳ')
