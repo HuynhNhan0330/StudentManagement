@@ -1,10 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>html</title>
+    <title>LoaiDiem List</title>
 </head>
 <body>
-    a
+<h1>LoaiDiem</h1>
+
+<ul id="loaiDiemList"></ul>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+    // Lấy dữ liệu từ API
+
+    $.ajax({
+        url: '/api-admin-loaidiem',
+        type: 'GET',
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function (result) {
+            const loaiDiemList = document.getElementById('loaiDiemList');
+            result.forEach(loaiDiem => {
+                const li = document.createElement('li');
+                li.textContent = `ID: ${loaiDiem.maLoaiDiem}, Name: ${loaiDiem.tenLoaiDiem}`;
+                loaiDiemList.appendChild(li);
+            });
+        },
+        error: function (error) {
+            console.error('Error Ne`:', error)
+        }
+    });
+
+</script>
 </body>
 </html>

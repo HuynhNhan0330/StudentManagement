@@ -38,6 +38,34 @@ public class LoaiDiemDAO implements ILoaiDiemDAO {
     }
 
     @Override
+    public String findMaxMaLoaiDiem() {
+        EntityManagerFactory entityManagerFactory = null;
+        EntityManager entityManager = null;
+        try {
+            entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
+            entityManager = entityManagerFactory.createEntityManager();
+
+            TypedQuery<String> query = entityManager.createQuery("SELECT MAX(ld.maLoaiDiem) FROM LoaiDiem ld", String.class);
+            String maxMaLoaiDiem  = query.getSingleResult();
+
+            return maxMaLoaiDiem ;
+        } catch (Exception e1) {
+            return null;
+        } finally {
+            try {
+                if (entityManagerFactory != null) {
+                    entityManagerFactory.close();
+                }
+                if (entityManager != null) {
+                    entityManager.close();
+                }
+            } catch (Exception e2) {
+                return null;
+            }
+        }
+    }
+
+    @Override
     public LoaiDiem findOne(String maLoaiDiem) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;

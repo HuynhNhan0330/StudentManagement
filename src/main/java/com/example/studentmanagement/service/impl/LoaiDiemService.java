@@ -4,6 +4,7 @@ import com.example.studentmanagement.dao.ILoaiDiemDAO;
 import com.example.studentmanagement.dao.impl.LoaiDiemDAO;
 import com.example.studentmanagement.model.LoaiDiem;
 import com.example.studentmanagement.service.ILoaiDiemService;
+import com.example.studentmanagement.utils.Helper;
 
 import java.util.List;
 
@@ -27,8 +28,10 @@ public class LoaiDiemService implements ILoaiDiemService {
 
     @Override
     public LoaiDiem save(LoaiDiem loaiDiem) {
-        String newMaLoaiDiem = loaiDiemDAO.save(loaiDiem);
-        return loaiDiemDAO.findOne(newMaLoaiDiem);
+        String newMaLoaiDiem = Helper.generateNewMa(loaiDiemDAO.findMaxMaLoaiDiem(), "LD");
+        loaiDiem.setMaLoaiDiem(newMaLoaiDiem);
+        String currentMaLoaiDiem = loaiDiemDAO.save(loaiDiem);
+        return loaiDiemDAO.findOne(currentMaLoaiDiem);
     }
 
     @Override
