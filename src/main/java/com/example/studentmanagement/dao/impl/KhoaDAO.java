@@ -50,7 +50,7 @@ public class KhoaDAO implements IKhoaDAO {
             TypedQuery<String> query = entityManager.createQuery("SELECT MAX(kh.maKhoa) FROM Khoa kh", String.class);
             String maxMaKhoa  = query.getSingleResult();
 
-            return maxMaKhoa ;
+            return maxMaKhoa;
         } catch (Exception e1) {
             return null;
         } finally {
