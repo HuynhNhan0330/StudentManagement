@@ -1,7 +1,7 @@
 package com.example.studentmanagement.dao.impl;
 
-import com.example.studentmanagement.dao.ILoaiDiemDAO;
-import com.example.studentmanagement.model.LoaiDiem;
+import com.example.studentmanagement.dao.IKhoaDAO;
+import com.example.studentmanagement.model.Khoa;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -9,20 +9,20 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class LoaiDiemDAO implements ILoaiDiemDAO {
+public class KhoaDAO implements IKhoaDAO {
 
     @Override
-    public List<LoaiDiem> findAll() {
+    public List<Khoa> findAll() {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
             entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
             entityManager = entityManagerFactory.createEntityManager();
 
-            TypedQuery<LoaiDiem> query = entityManager.createQuery("SELECT ld FROM LoaiDiem ld", LoaiDiem.class);
-            List<LoaiDiem> loaiDiemList = query.getResultList();
+            TypedQuery<Khoa> query = entityManager.createQuery("SELECT kh FROM Khoa kh", Khoa.class);
+            List<Khoa> khoaList = query.getResultList();
 
-            return loaiDiemList;
+            return khoaList;
         } catch (Exception e1) {
             return null;
         } finally {
@@ -40,17 +40,17 @@ public class LoaiDiemDAO implements ILoaiDiemDAO {
     }
 
     @Override
-    public String findMaxMaLoaiDiem() {
+    public String findMaxMaKhoa() {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
             entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
             entityManager = entityManagerFactory.createEntityManager();
 
-            TypedQuery<String> query = entityManager.createQuery("SELECT MAX(ld.maLoaiDiem) FROM LoaiDiem ld", String.class);
-            String maxMaLoaiDiem  = query.getSingleResult();
+            TypedQuery<String> query = entityManager.createQuery("SELECT MAX(kh.maKhoa) FROM Khoa kh", String.class);
+            String maxMaKhoa  = query.getSingleResult();
 
-            return maxMaLoaiDiem ;
+            return maxMaKhoa ;
         } catch (Exception e1) {
             return null;
         } finally {
@@ -68,16 +68,16 @@ public class LoaiDiemDAO implements ILoaiDiemDAO {
     }
 
     @Override
-    public LoaiDiem findOne(String maLoaiDiem) {
+    public Khoa findOne(String maKhoa) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
             entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
             entityManager = entityManagerFactory.createEntityManager();
 
-            LoaiDiem ld = entityManager.find(LoaiDiem.class, maLoaiDiem);
+            Khoa kh = entityManager.find(Khoa.class, maKhoa);
 
-            return ld;
+            return kh;
         } catch (Exception e1) {
             System.out.println(e1.getMessage());
             return null;
@@ -97,7 +97,7 @@ public class LoaiDiemDAO implements ILoaiDiemDAO {
     }
 
     @Override
-    public String save(LoaiDiem loaiDiem) {
+    public String save(Khoa khoa) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
@@ -106,14 +106,14 @@ public class LoaiDiemDAO implements ILoaiDiemDAO {
 
             entityManager.getTransaction().begin();
 
-            LoaiDiem ld = new LoaiDiem();
-            ld.setMaLoaiDiem(loaiDiem.getMaLoaiDiem());
-            ld.setTenLoaiDiem(loaiDiem.getTenLoaiDiem());
+            Khoa kh = new Khoa();
+            kh.setMaKhoa(khoa.getMaKhoa());
+            kh.setTenKhoa(khoa.getTenKhoa());
 
-            entityManager.persist(ld);
+            entityManager.persist(kh);
             entityManager.getTransaction().commit();
 
-            return loaiDiem.getMaLoaiDiem();
+            return khoa.getMaKhoa();
         } catch (Exception e1) {
             System.out.println(e1.getMessage());
             return null;
@@ -133,7 +133,7 @@ public class LoaiDiemDAO implements ILoaiDiemDAO {
     }
 
     @Override
-    public void update(LoaiDiem loaiDiem) {
+    public void update(Khoa khoa) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
@@ -142,10 +142,10 @@ public class LoaiDiemDAO implements ILoaiDiemDAO {
 
             entityManager.getTransaction().begin();
 
-            LoaiDiem ld = entityManager.find(LoaiDiem.class, loaiDiem.getMaLoaiDiem());
-            ld.setTenLoaiDiem(loaiDiem.getTenLoaiDiem());
+            Khoa kh = entityManager.find(Khoa.class, khoa.getMaKhoa());
+            kh.setTenKhoa(khoa.getTenKhoa());
 
-            entityManager.merge(ld);
+            entityManager.merge(kh);
             entityManager.getTransaction().commit();
         } catch (Exception e1) {
             System.out.println(e1.getMessage());
@@ -164,7 +164,7 @@ public class LoaiDiemDAO implements ILoaiDiemDAO {
     }
 
     @Override
-    public void delete(String maLoaiDiem) {
+    public void delete(String maKhoa) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
@@ -173,9 +173,9 @@ public class LoaiDiemDAO implements ILoaiDiemDAO {
 
             entityManager.getTransaction().begin();
 
-            LoaiDiem ld = entityManager.find(LoaiDiem.class, maLoaiDiem);
+            Khoa kh = entityManager.find(Khoa.class, maKhoa);
 
-            entityManager.remove(ld);
+            entityManager.remove(kh);
             entityManager.getTransaction().commit();
         } catch (Exception e1) {
             System.out.println(e1.getMessage());

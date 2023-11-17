@@ -1,8 +1,8 @@
 package com.example.studentmanagement.api;
 
-import com.example.studentmanagement.model.LoaiDiem;
-import com.example.studentmanagement.service.ILoaiDiemService;
-import com.example.studentmanagement.service.impl.LoaiDiemService;
+import com.example.studentmanagement.model.Khoa;
+import com.example.studentmanagement.service.IKhoaService;
+import com.example.studentmanagement.service.impl.KhoaService;
 import com.example.studentmanagement.utils.HttpUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
@@ -14,13 +14,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = { "/api-admin-loaidiem" })
-public class LoaiDiemAPI extends HttpServlet {
+@WebServlet(urlPatterns = { "/api-admin-khoa" })
+public class KhoaAPI extends HttpServlet {
 
-    private ILoaiDiemService loaiDiemService;
+    private IKhoaService khoaService;
 
-    public LoaiDiemAPI() {
-        loaiDiemService = new LoaiDiemService();
+    public KhoaAPI() {
+        khoaService = new KhoaService();
     }
 
     @Override
@@ -33,11 +33,11 @@ public class LoaiDiemAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // get list object
-        List<LoaiDiem> listLoaiDiem = loaiDiemService.findAll();
+        List<Khoa> listKhoa = khoaService.findAll();
 
         // convert list model to json for response
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(resp.getOutputStream(), listLoaiDiem);
+        mapper.writeValue(resp.getOutputStream(), listKhoa);
         return;
     }
 
@@ -51,14 +51,14 @@ public class LoaiDiemAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // binding json to string-json, mapping data with model.class
-        LoaiDiem loaiDiemNew = HttpUtil.of(req.getReader()).toModel(LoaiDiem.class);
+        Khoa khoaNew = HttpUtil.of(req.getReader()).toModel(Khoa.class);
 
         // create new data point in database
-        loaiDiemNew = loaiDiemService.save(loaiDiemNew);
+        khoaNew = khoaService.save(khoaNew);
 
         // convert model to json for response
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(resp.getOutputStream(), loaiDiemNew);
+        mapper.writeValue(resp.getOutputStream(), khoaNew);
         return;
     }
 
@@ -72,14 +72,14 @@ public class LoaiDiemAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // binding json to string-json, mapping data with model.class
-        LoaiDiem loaidiemUpdate = HttpUtil.of(req.getReader()).toModel(LoaiDiem.class);
+        Khoa khoaUpdate = HttpUtil.of(req.getReader()).toModel(Khoa.class);
 
         // update new data point in database
-        loaidiemUpdate = loaiDiemService.update(loaidiemUpdate);
+        khoaUpdate = khoaService.update(khoaUpdate);
 
         // convert model to json for response
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(resp.getOutputStream(), loaidiemUpdate);
+        mapper.writeValue(resp.getOutputStream(), khoaUpdate);
         return;
     }
 
@@ -93,10 +93,10 @@ public class LoaiDiemAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // binding data json to string-json, mapping data with model class
-        LoaiDiem loaiDiemDelete = HttpUtil.of(req.getReader()).toModel(LoaiDiem.class);
+        Khoa khoaDelete = HttpUtil.of(req.getReader()).toModel(Khoa.class);
 
         // delete target data point in database
-        loaiDiemService.delete(loaiDiemDelete.getMaLoaiDiem());
+        khoaService.delete(khoaDelete.getMaKhoa());
 
         // convert model to json for response
         ObjectMapper mapper = new ObjectMapper();
