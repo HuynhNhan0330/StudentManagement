@@ -87,7 +87,7 @@
 
 * [Phạm Nguyễn](https://github.com/kazei1211) - 21522394
     * Vai trò: UI/UX designer, frontend developer
-    * 
+
 * [Trần Quang Huy]() - 21522169
     * Vai trò: UI/UX designer, frontend developer
       
