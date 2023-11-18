@@ -1,28 +1,25 @@
 package com.example.studentmanagement.dao.impl;
 
-import com.example.studentmanagement.dao.INganhDAO;
-import com.example.studentmanagement.model.Nganh;
+import com.example.studentmanagement.dao.ISinhVienDAO;
+import com.example.studentmanagement.model.SinhVien;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import java.util.List;
 
-public class NganhDAO implements INganhDAO {
+public class SinhVienDAO implements ISinhVienDAO {
 
     @Override
-    public List<Nganh> findAll() {
+    public List<SinhVien> findAll() {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
             entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
             entityManager = entityManagerFactory.createEntityManager();
 
-            TypedQuery<Nganh> query = entityManager.createQuery("SELECT ng FROM Nganh ng", Nganh.class);
-            List<Nganh> nganhList = query.getResultList();
+            TypedQuery<SinhVien> query = entityManager.createQuery("SELECT sv FROM SinhVien sv", SinhVien.class);
+            List<SinhVien> sinhVienList = query.getResultList();
 
-            return nganhList;
+            return sinhVienList;
         } catch (Exception e1) {
             return null;
         } finally {
@@ -40,17 +37,24 @@ public class NganhDAO implements INganhDAO {
     }
 
     @Override
-    public String findMaxMaNganh() {
+    public String findMaxMaSinhVien() {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
             entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
             entityManager = entityManagerFactory.createEntityManager();
 
-            TypedQuery<String> query = entityManager.createQuery("SELECT MAX(ng.maNganh) FROM Nganh ng", String.class);
-            String maxMaNganh  = query.getSingleResult();
+            TypedQuery<String> query = entityManager.createQuery("SELECT MAX(sv.maSV) FROM SinhVien sv", String.class);
 
-            return maxMaNganh;
+            String maxMaSinhVien  = null;
+            try {
+                maxMaSinhVien = query.getSingleResult();
+                // Xử lý kết quả trả về khi có Sinh Viên trong cơ sở dữ liệu
+            } catch (NoResultException e) {
+                // Xử lý khi không có Sinh Viên trong cơ sở dữ liệu
+            }
+
+            return maxMaSinhVien;
         } catch (Exception e1) {
             return null;
         } finally {
@@ -68,16 +72,16 @@ public class NganhDAO implements INganhDAO {
     }
 
     @Override
-    public Nganh findOne(String maNganh) {
+    public SinhVien findOne(String maSinhVien) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
             entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
             entityManager = entityManagerFactory.createEntityManager();
 
-            Nganh ng = entityManager.find(Nganh.class, maNganh);
+            SinhVien sv = entityManager.find(SinhVien.class, maSinhVien);
 
-            return ng;
+            return sv;
         } catch (Exception e1) {
             System.out.println(e1.getMessage());
             return null;
@@ -97,7 +101,7 @@ public class NganhDAO implements INganhDAO {
     }
 
     @Override
-    public String save(Nganh nganh) {
+    public String save(SinhVien sinhVien) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
@@ -106,15 +110,18 @@ public class NganhDAO implements INganhDAO {
 
             entityManager.getTransaction().begin();
 
-            Nganh ng = new Nganh();
-            ng.setMaNganh(nganh.getMaNganh());
-            ng.setTenNganh(nganh.getTenNganh());
-            ng.setKhoa(nganh.getKhoa());
+            SinhVien sv = new SinhVien();
+            sv.setMaSV(sinhVien.getMaSV());
+            sv.setTenSV(sinhVien.getTenSV());
+            sv.setNgaySinh(sinhVien.getNgaySinh());
+            sv.setGioiTinh(sinhVien.getGioiTinh());
+            sv.setNamNhapHoc(sinhVien.getNamNhapHoc());
+//            sv.setNganh(sinhVien.getNganh());
 
-            entityManager.persist(ng);
+            entityManager.persist(sv);
             entityManager.getTransaction().commit();
 
-            return nganh.getMaNganh();
+            return sinhVien.getMaSV();
         } catch (Exception e1) {
             System.out.println(e1.getMessage());
             return null;
@@ -134,7 +141,7 @@ public class NganhDAO implements INganhDAO {
     }
 
     @Override
-    public void update(Nganh nganh) {
+    public void update(SinhVien sinhVien) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
@@ -143,11 +150,14 @@ public class NganhDAO implements INganhDAO {
 
             entityManager.getTransaction().begin();
 
-            Nganh ng = entityManager.find(Nganh.class, nganh.getMaNganh());
-            ng.setTenNganh(nganh.getTenNganh());
-            ng.setKhoa(nganh.getKhoa());
+            SinhVien sv = entityManager.find(SinhVien.class, sinhVien.getMaSV());
+            sv.setTenSV(sinhVien.getTenSV());
+            sv.setNgaySinh(sinhVien.getNgaySinh());
+            sv.setGioiTinh(sinhVien.getGioiTinh());
+            sv.setNamNhapHoc(sinhVien.getNamNhapHoc());
+//            sv.setNganh(sinhVien.getNganh());
 
-            entityManager.merge(ng);
+            entityManager.merge(sv);
             entityManager.getTransaction().commit();
         } catch (Exception e1) {
             System.out.println(e1.getMessage());
@@ -166,7 +176,7 @@ public class NganhDAO implements INganhDAO {
     }
 
     @Override
-    public void delete(String maNganh) {
+    public void delete(String maSinhVien) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
@@ -175,9 +185,9 @@ public class NganhDAO implements INganhDAO {
 
             entityManager.getTransaction().begin();
 
-            Nganh ng = entityManager.find(Nganh.class, maNganh);
+            SinhVien sv = entityManager.find(SinhVien.class, maSinhVien);
 
-            entityManager.remove(ng);
+            entityManager.remove(sv);
             entityManager.getTransaction().commit();
         } catch (Exception e1) {
             System.out.println(e1.getMessage());

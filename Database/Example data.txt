@@ -1,0 +1,32 @@
+INSERT INTO LOAIDIEM (MaLoaiDiem, TenLoaiDiem)
+VALUES
+    ('LD0001', 'Quá Trình'),
+    ('LD0002', 'Giữa Kỳ'),
+    ('LD0003', 'Thực Hành'),
+    ('LD0004', 'Cuối Kỳ')
+
+INSERT INTO KHOA (MaKhoa, TenKhoa)
+VALUES 
+    ('KH0001', 'Khoa học máy tính'),
+    ('KH0002', 'Công nghệ phần mềm'),
+    ('KH0003', 'Kỹ thuật máy tính'),
+    ('KH0004', 'Hệ thống thông tin'),
+    ('KH0005', 'Mạng máy tính và truyền thông'),
+    ('KH0006', 'Khoa học và Kỹ thuật Thông tin')
+    
+INSERT INTO NGANH (MaNganh, TenNganh, MaKhoa)
+VALUES 
+    ('NG0001', 'Khoa học máy tính', 'KH0001'),
+    ('NG0002', 'Kỹ thuật phần mềm', 'KH0002'),
+    ('NG0003', 'Kỹ thuật máy tính', 'KH0003'),
+    ('NG0004', 'Hệ thống thông tin', 'KH0004'),
+    ('NG0005', 'Thương mại điện tử', 'KH0004'),
+    ('NG0006', 'Mạng máy tính và truyền thông dữ liệu', 'KH0005'),
+    ('NG0007', 'An toàn thông tin', 'KH0005'),
+    ('NG0008', 'Công nghệ thông tin', 'KH0006'),
+    ('NG0009', 'Khoa học dữ liệu', 'KH0006')
+
+INSERT INTO SINHVIEN (MaSV, TenSV, NgaySinh, GioiTinh, MaNganh, NamNhapHoc)
+VALUES
+    ('SV0001', 'Huỳnh Mai Cao Nhân', '20/10/2003', 'Nam', 'NG0002', 2021),
+    ('SV0002', 'Ngô Phương Nam', '2/10/2003', 'Nam', 'NG0002', 2021)

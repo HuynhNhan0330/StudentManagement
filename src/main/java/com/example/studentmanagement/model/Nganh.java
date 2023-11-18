@@ -1,9 +1,14 @@
 package com.example.studentmanagement.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name="NGANH")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "maNganh")
 public class Nganh {
     @Id
     @Column(name="MaNganh")
@@ -12,8 +17,9 @@ public class Nganh {
     @Column(name="TenNganh")
     private String tenNganh;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "MaKhoa", referencedColumnName = "MaKhoa", foreignKey = @ForeignKey(name = "FK_NGANH_KHOA"))
+    @JsonBackReference
     private Khoa khoa;
 
     public Nganh() {

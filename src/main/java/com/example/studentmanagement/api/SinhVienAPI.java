@@ -1,9 +1,9 @@
 package com.example.studentmanagement.api;
 
-import com.example.studentmanagement.dto.NganhDTO;
-import com.example.studentmanagement.model.Nganh;
-import com.example.studentmanagement.service.INganhService;
-import com.example.studentmanagement.service.impl.NganhService;
+import com.example.studentmanagement.dto.SinhVienDTO;
+import com.example.studentmanagement.model.SinhVien;
+import com.example.studentmanagement.service.ISinhVienService;
+import com.example.studentmanagement.service.impl.SinhVienService;
 import com.example.studentmanagement.utils.HttpUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
@@ -15,13 +15,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = { "/api-admin-nganh" })
-public class NganhAPI extends HttpServlet {
+@WebServlet(urlPatterns = { "/api-admin-sinhvien" })
+public class SinhVienAPI extends HttpServlet {
 
-    private INganhService nganhService;
+    private ISinhVienService sinhVienService;
 
-    public NganhAPI() {
-        nganhService = new NganhService();
+    public SinhVienAPI() {
+        sinhVienService = new SinhVienService();
     }
 
     @Override
@@ -34,11 +34,11 @@ public class NganhAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // get list object
-        List<Nganh> listNganh = nganhService.findAll();
+        List<SinhVien> listSinhVien = sinhVienService.findAll();
 
         // convert list model to json for response
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(resp.getOutputStream(), listNganh);
+        mapper.writeValue(resp.getOutputStream(), listSinhVien);
         return;
     }
 
@@ -52,14 +52,14 @@ public class NganhAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // binding json to string-json, mapping data with model.class
-        NganhDTO nganhDTONew = HttpUtil.of(req.getReader()).toModel(NganhDTO.class);
+        SinhVienDTO sinhVienDTONew = HttpUtil.of(req.getReader()).toModel(SinhVienDTO.class);
 
         // create new data point in database
-        Nganh nganhNew = nganhService.save(nganhDTONew);
+        SinhVien sinhVienNew = sinhVienService.save(sinhVienDTONew);
 
         // convert model to json for response
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(resp.getOutputStream(), nganhNew);
+        mapper.writeValue(resp.getOutputStream(), sinhVienNew);
         return;
     }
 
@@ -73,14 +73,14 @@ public class NganhAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // binding json to string-json, mapping data with model.class
-        NganhDTO nganhDTOUpdate = HttpUtil.of(req.getReader()).toModel(NganhDTO.class);
+        SinhVienDTO sinhVienDTOUpdate = HttpUtil.of(req.getReader()).toModel(SinhVienDTO.class);
 
         // update new data point in database
-        Nganh nganhUpdate = nganhService.update(nganhDTOUpdate);
+        SinhVien sinhVienUpdate = sinhVienService.update(sinhVienDTOUpdate);
 
         // convert model to json for response
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(resp.getOutputStream(), nganhUpdate);
+        mapper.writeValue(resp.getOutputStream(), sinhVienUpdate);
         return;
     }
 
@@ -94,10 +94,10 @@ public class NganhAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // binding data json to string-json, mapping data with model class
-        NganhDTO nganhDelete = HttpUtil.of(req.getReader()).toModel(NganhDTO.class);
+        SinhVienDTO sinhVienDelete = HttpUtil.of(req.getReader()).toModel(SinhVienDTO.class);
 
         // delete target data point in database
-        nganhService.delete(nganhDelete.getMaNganh());
+        sinhVienService.delete(sinhVienDelete.getMaSV());
 
         // convert model to json for response
         ObjectMapper mapper = new ObjectMapper();
