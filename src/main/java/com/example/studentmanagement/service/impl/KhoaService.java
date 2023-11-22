@@ -2,7 +2,7 @@ package com.example.studentmanagement.service.impl;
 
 import com.example.studentmanagement.dao.IKhoaDAO;
 import com.example.studentmanagement.dao.impl.KhoaDAO;
-import com.example.studentmanagement.model.Khoa;
+import com.example.studentmanagement.model.KhoaModel;
 import com.example.studentmanagement.service.IKhoaService;
 import com.example.studentmanagement.utils.Helper;
 
@@ -17,27 +17,27 @@ public class KhoaService implements IKhoaService {
     }
 
     @Override
-    public List<Khoa> findAll() {
+    public List<KhoaModel> findAll() {
         return khoaDAO.findAll();
     }
 
     @Override
-    public Khoa findOne(String maKhoa) {
+    public KhoaModel findOne(String maKhoa) {
         return khoaDAO.findOne(maKhoa);
     }
 
     @Override
-    public Khoa save(Khoa khoa) {
+    public KhoaModel save(KhoaModel khoaModel) {
         String newMaKhoa = Helper.generateNewMa(khoaDAO.findMaxMaKhoa(), "KH");
-        khoa.setMaKhoa(newMaKhoa);
-        String currentMaKhoa = khoaDAO.save(khoa);
+        khoaModel.setMaKhoa(newMaKhoa);
+        String currentMaKhoa = khoaDAO.save(khoaModel);
         return khoaDAO.findOne(currentMaKhoa);
     }
 
     @Override
-    public Khoa update(Khoa khoa) {
-        khoaDAO.update(khoa);
-        return khoaDAO.findOne(khoa.getMaKhoa());
+    public KhoaModel update(KhoaModel khoaModel) {
+        khoaDAO.update(khoaModel);
+        return khoaDAO.findOne(khoaModel.getMaKhoa());
     }
 
     @Override

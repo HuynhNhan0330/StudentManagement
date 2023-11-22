@@ -1,19 +1,19 @@
 package com.example.studentmanagement.service;
 
 
-import com.example.studentmanagement.model.Khoa;
+import com.example.studentmanagement.model.KhoaModel;
 
 import java.util.List;
 
 public interface IKhoaService {
 
-    List<Khoa> findAll();
+    List<KhoaModel> findAll();
 
-    Khoa findOne(String maKhoa);
+    KhoaModel findOne(String maKhoa);
 
-    Khoa save(Khoa khoa);
+    KhoaModel save(KhoaModel khoaModel);
 
-    Khoa update(Khoa khoa);
+    KhoaModel update(KhoaModel khoaModel);
 
     void delete(String maKhoa);
 }

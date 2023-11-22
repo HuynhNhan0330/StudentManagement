@@ -1,19 +1,19 @@
 package com.example.studentmanagement.dao;
 
-import com.example.studentmanagement.model.Khoa;
+import com.example.studentmanagement.model.KhoaModel;
 
 import java.util.List;
 
 public interface IKhoaDAO {
-    List<Khoa> findAll();
+    List<KhoaModel> findAll();
 
     String findMaxMaKhoa();
 
-    Khoa findOne(String maKhoa);
+    KhoaModel findOne(String maKhoa);
 
-    String save(Khoa khoa);
+    String save(KhoaModel khoaModel);
 
-    void update(Khoa khoa);
+    void update(KhoaModel khoaModel);
 
     void delete(String maKhoa);
 }

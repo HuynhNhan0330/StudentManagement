@@ -29,7 +29,7 @@ public class SinhVien {
     public SinhVien() {
     }
 
-    public SinhVien(String maSV, String tenSV, String ngaySinh, String gioiTinh, int namNhapHoc, Nganh nganh) {
+    public SinhVien(String maSV, String tenSV, String ngaySinh, String gioiTinh, int namNhapHoc) {
         this.maSV = maSV;
         this.tenSV = tenSV;
         this.ngaySinh = ngaySinh;

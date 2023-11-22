@@ -1,7 +1,7 @@
 package com.example.studentmanagement.dao.impl;
 
 import com.example.studentmanagement.dao.INganhDAO;
-import com.example.studentmanagement.model.Nganh;
+import com.example.studentmanagement.model.NganhModel;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -12,15 +12,15 @@ import java.util.List;
 public class NganhDAO implements INganhDAO {
 
     @Override
-    public List<Nganh> findAll() {
+    public List<NganhModel> findAll() {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
             entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
             entityManager = entityManagerFactory.createEntityManager();
 
-            TypedQuery<Nganh> query = entityManager.createQuery("SELECT ng FROM Nganh ng", Nganh.class);
-            List<Nganh> nganhList = query.getResultList();
+            TypedQuery<NganhModel> query = entityManager.createQuery("SELECT ng FROM NganhModel ng", NganhModel.class);
+            List<NganhModel> nganhList = query.getResultList();
 
             return nganhList;
         } catch (Exception e1) {
@@ -47,7 +47,7 @@ public class NganhDAO implements INganhDAO {
             entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
             entityManager = entityManagerFactory.createEntityManager();
 
-            TypedQuery<String> query = entityManager.createQuery("SELECT MAX(ng.maNganh) FROM Nganh ng", String.class);
+            TypedQuery<String> query = entityManager.createQuery("SELECT MAX(ng.maNganh) FROM NganhModel ng", String.class);
             String maxMaNganh  = query.getSingleResult();
 
             return maxMaNganh;
@@ -68,14 +68,14 @@ public class NganhDAO implements INganhDAO {
     }
 
     @Override
-    public Nganh findOne(String maNganh) {
+    public NganhModel findOne(String maNganh) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
             entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
             entityManager = entityManagerFactory.createEntityManager();
 
-            Nganh ng = entityManager.find(Nganh.class, maNganh);
+            NganhModel ng = entityManager.find(NganhModel.class, maNganh);
 
             return ng;
         } catch (Exception e1) {
@@ -97,7 +97,7 @@ public class NganhDAO implements INganhDAO {
     }
 
     @Override
-    public String save(Nganh nganh) {
+    public String save(NganhModel nganhModel) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
@@ -106,15 +106,15 @@ public class NganhDAO implements INganhDAO {
 
             entityManager.getTransaction().begin();
 
-            Nganh ng = new Nganh();
-            ng.setMaNganh(nganh.getMaNganh());
-            ng.setTenNganh(nganh.getTenNganh());
-            ng.setKhoa(nganh.getKhoa());
+            NganhModel ng = new NganhModel();
+            ng.setMaNganh(nganhModel.getMaNganh());
+            ng.setTenNganh(nganhModel.getTenNganh());
+            ng.setMaKhoa(nganhModel.getMaKhoa());
 
             entityManager.persist(ng);
             entityManager.getTransaction().commit();
 
-            return nganh.getMaNganh();
+            return nganhModel.getMaNganh();
         } catch (Exception e1) {
             System.out.println(e1.getMessage());
             return null;
@@ -134,7 +134,7 @@ public class NganhDAO implements INganhDAO {
     }
 
     @Override
-    public void update(Nganh nganh) {
+    public void update(NganhModel nganhModel) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
@@ -143,9 +143,9 @@ public class NganhDAO implements INganhDAO {
 
             entityManager.getTransaction().begin();
 
-            Nganh ng = entityManager.find(Nganh.class, nganh.getMaNganh());
-            ng.setTenNganh(nganh.getTenNganh());
-            ng.setKhoa(nganh.getKhoa());
+            NganhModel ng = entityManager.find(NganhModel.class, nganhModel.getMaNganh());
+            ng.setTenNganh(nganhModel.getTenNganh());
+            ng.setMaKhoa(nganhModel.getMaKhoa());
 
             entityManager.merge(ng);
             entityManager.getTransaction().commit();
@@ -175,7 +175,7 @@ public class NganhDAO implements INganhDAO {
 
             entityManager.getTransaction().begin();
 
-            Nganh ng = entityManager.find(Nganh.class, maNganh);
+            NganhModel ng = entityManager.find(NganhModel.class, maNganh);
 
             entityManager.remove(ng);
             entityManager.getTransaction().commit();

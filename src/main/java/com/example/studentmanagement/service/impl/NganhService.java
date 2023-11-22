@@ -2,8 +2,7 @@ package com.example.studentmanagement.service.impl;
 
 import com.example.studentmanagement.dao.INganhDAO;
 import com.example.studentmanagement.dao.impl.NganhDAO;
-import com.example.studentmanagement.dto.NganhDTO;
-import com.example.studentmanagement.model.Nganh;
+import com.example.studentmanagement.model.NganhModel;
 import com.example.studentmanagement.service.IKhoaService;
 import com.example.studentmanagement.service.INganhService;
 import com.example.studentmanagement.utils.Helper;
@@ -21,34 +20,27 @@ public class NganhService implements INganhService {
     }
 
     @Override
-    public List<Nganh> findAll() {
+    public List<NganhModel> findAll() {
         return nganhDAO.findAll();
     }
 
     @Override
-    public Nganh findOne(String maNganh) {
+    public NganhModel findOne(String maNganh) {
         return nganhDAO.findOne(maNganh);
     }
 
     @Override
-    public Nganh save(NganhDTO nganhDTO) {
+    public NganhModel save(NganhModel nganhModel) {
         String newMaNganh = Helper.generateNewMa(nganhDAO.findMaxMaNganh(), "NG");
-        Nganh nganh = new Nganh();
-        nganh.setMaNganh(newMaNganh);
-        nganh.setTenNganh(nganhDTO.getTenNganh());
-        nganh.setKhoa(khoaService.findOne(nganhDTO.getMaKhoa()));
-        String currentMaNganh = nganhDAO.save(nganh);
-        return nganhDAO.findOne(currentMaNganh);
+        nganhModel.setMaNganh(newMaNganh);
+        nganhDAO.save(nganhModel);
+        return nganhDAO.findOne(newMaNganh);
     }
 
     @Override
-    public Nganh update(NganhDTO nganhDTO) {
-        Nganh nganh = new Nganh();
-        nganh.setMaNganh(nganhDTO.getMaNganh());
-        nganh.setTenNganh(nganhDTO.getTenNganh());
-        nganh.setKhoa(khoaService.findOne(nganhDTO.getMaKhoa()));
-        nganhDAO.update(nganh);
-        return nganhDAO.findOne(nganh.getMaNganh());
+    public NganhModel update(NganhModel nganhModel) {
+        nganhDAO.update(nganhModel);
+        return nganhDAO.findOne(nganhModel.getMaNganh());
     }
 
     @Override

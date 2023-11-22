@@ -1,6 +1,6 @@
 package com.example.studentmanagement.api;
 
-import com.example.studentmanagement.model.Khoa;
+import com.example.studentmanagement.model.KhoaModel;
 import com.example.studentmanagement.service.IKhoaService;
 import com.example.studentmanagement.service.impl.KhoaService;
 import com.example.studentmanagement.utils.HttpUtil;
@@ -33,7 +33,7 @@ public class KhoaAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // get list object
-        List<Khoa> listKhoa = khoaService.findAll();
+        List<KhoaModel> listKhoa = khoaService.findAll();
 
         // convert list model to json for response
         ObjectMapper mapper = new ObjectMapper();
@@ -51,7 +51,7 @@ public class KhoaAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // binding json to string-json, mapping data with model.class
-        Khoa khoaNew = HttpUtil.of(req.getReader()).toModel(Khoa.class);
+        KhoaModel khoaNew = HttpUtil.of(req.getReader()).toModel(KhoaModel.class);
 
         // create new data point in database
         khoaNew = khoaService.save(khoaNew);
@@ -72,7 +72,7 @@ public class KhoaAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // binding json to string-json, mapping data with model.class
-        Khoa khoaUpdate = HttpUtil.of(req.getReader()).toModel(Khoa.class);
+        KhoaModel khoaUpdate = HttpUtil.of(req.getReader()).toModel(KhoaModel.class);
 
         // update new data point in database
         khoaUpdate = khoaService.update(khoaUpdate);
@@ -93,7 +93,7 @@ public class KhoaAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // binding data json to string-json, mapping data with model class
-        Khoa khoaDelete = HttpUtil.of(req.getReader()).toModel(Khoa.class);
+        KhoaModel khoaDelete = HttpUtil.of(req.getReader()).toModel(KhoaModel.class);
 
         // delete target data point in database
         khoaService.delete(khoaDelete.getMaKhoa());

@@ -8,8 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="NGANH")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "maNganh")
-public class Nganh {
+public class NganhModel {
     @Id
     @Column(name="MaNganh")
     private String maNganh;
@@ -17,18 +16,16 @@ public class Nganh {
     @Column(name="TenNganh")
     private String tenNganh;
 
-    @ManyToOne()
-    @JoinColumn(name = "MaKhoa", referencedColumnName = "MaKhoa", foreignKey = @ForeignKey(name = "FK_NGANH_KHOA"))
-    @JsonBackReference
-    private Khoa khoa;
+    @Column(name="MaKhoa")
+    private String maKhoa;
 
-    public Nganh() {
+    public NganhModel() {
     }
 
-    public Nganh(String maNganh, String tenNganh, Khoa khoa) {
+    public NganhModel(String maNganh, String tenNganh, String maKhoa) {
         this.maNganh = maNganh;
         this.tenNganh = tenNganh;
-        this.khoa = khoa;
+        this.maKhoa = maKhoa;
     }
 
     public String getMaNganh() {
@@ -47,11 +44,11 @@ public class Nganh {
         this.tenNganh = tenNganh;
     }
 
-    public Khoa getKhoa() {
-        return khoa;
+    public String getMaKhoa() {
+        return maKhoa;
     }
 
-    public void setKhoa(Khoa khoa) {
-        this.khoa = khoa;
+    public void setMaKhoa(String maKhoa) {
+        this.maKhoa = maKhoa;
     }
 }

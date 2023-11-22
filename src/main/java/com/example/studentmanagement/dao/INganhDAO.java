@@ -1,19 +1,19 @@
 package com.example.studentmanagement.dao;
 
-import com.example.studentmanagement.model.Nganh;
+import com.example.studentmanagement.model.NganhModel;
 
 import java.util.List;
 
 public interface INganhDAO {
-    List<Nganh> findAll();
+    List<NganhModel> findAll();
 
     String findMaxMaNganh();
 
-    Nganh findOne(String maNganh);
+    NganhModel findOne(String maNganh);
 
-    String save(Nganh nganh);
+    String save(NganhModel nganhModel);
 
-    void update(Nganh nganh);
+    void update(NganhModel nganhModel);
 
     void delete(String maNganh);
 }

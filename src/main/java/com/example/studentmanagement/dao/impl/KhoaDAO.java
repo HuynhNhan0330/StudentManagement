@@ -1,7 +1,7 @@
 package com.example.studentmanagement.dao.impl;
 
 import com.example.studentmanagement.dao.IKhoaDAO;
-import com.example.studentmanagement.model.Khoa;
+import com.example.studentmanagement.model.KhoaModel;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -12,15 +12,15 @@ import java.util.List;
 public class KhoaDAO implements IKhoaDAO {
 
     @Override
-    public List<Khoa> findAll() {
+    public List<KhoaModel> findAll() {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
             entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
             entityManager = entityManagerFactory.createEntityManager();
 
-            TypedQuery<Khoa> query = entityManager.createQuery("SELECT kh FROM Khoa kh", Khoa.class);
-            List<Khoa> khoaList = query.getResultList();
+            TypedQuery<KhoaModel> query = entityManager.createQuery("SELECT kh FROM KhoaModel kh", KhoaModel.class);
+            List<KhoaModel> khoaList = query.getResultList();
 
             return khoaList;
         } catch (Exception e1) {
@@ -47,7 +47,7 @@ public class KhoaDAO implements IKhoaDAO {
             entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
             entityManager = entityManagerFactory.createEntityManager();
 
-            TypedQuery<String> query = entityManager.createQuery("SELECT MAX(kh.maKhoa) FROM Khoa kh", String.class);
+            TypedQuery<String> query = entityManager.createQuery("SELECT MAX(kh.maKhoa) FROM KhoaModel kh", String.class);
             String maxMaKhoa  = query.getSingleResult();
 
             return maxMaKhoa;
@@ -68,14 +68,14 @@ public class KhoaDAO implements IKhoaDAO {
     }
 
     @Override
-    public Khoa findOne(String maKhoa) {
+    public KhoaModel findOne(String maKhoa) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
             entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
             entityManager = entityManagerFactory.createEntityManager();
 
-            Khoa kh = entityManager.find(Khoa.class, maKhoa);
+            KhoaModel kh = entityManager.find(KhoaModel.class, maKhoa);
 
             return kh;
         } catch (Exception e1) {
@@ -97,7 +97,7 @@ public class KhoaDAO implements IKhoaDAO {
     }
 
     @Override
-    public String save(Khoa khoa) {
+    public String save(KhoaModel khoaModel) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
@@ -106,14 +106,14 @@ public class KhoaDAO implements IKhoaDAO {
 
             entityManager.getTransaction().begin();
 
-            Khoa kh = new Khoa();
-            kh.setMaKhoa(khoa.getMaKhoa());
-            kh.setTenKhoa(khoa.getTenKhoa());
+            KhoaModel kh = new KhoaModel();
+            kh.setMaKhoa(khoaModel.getMaKhoa());
+            kh.setTenKhoa(khoaModel.getTenKhoa());
 
             entityManager.persist(kh);
             entityManager.getTransaction().commit();
 
-            return khoa.getMaKhoa();
+            return khoaModel.getMaKhoa();
         } catch (Exception e1) {
             System.out.println(e1.getMessage());
             return null;
@@ -133,7 +133,7 @@ public class KhoaDAO implements IKhoaDAO {
     }
 
     @Override
-    public void update(Khoa khoa) {
+    public void update(KhoaModel khoaModel) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
@@ -142,8 +142,8 @@ public class KhoaDAO implements IKhoaDAO {
 
             entityManager.getTransaction().begin();
 
-            Khoa kh = entityManager.find(Khoa.class, khoa.getMaKhoa());
-            kh.setTenKhoa(khoa.getTenKhoa());
+            KhoaModel kh = entityManager.find(KhoaModel.class, khoaModel.getMaKhoa());
+            kh.setTenKhoa(khoaModel.getTenKhoa());
 
             entityManager.merge(kh);
             entityManager.getTransaction().commit();
@@ -173,7 +173,7 @@ public class KhoaDAO implements IKhoaDAO {
 
             entityManager.getTransaction().begin();
 
-            Khoa kh = entityManager.find(Khoa.class, maKhoa);
+            KhoaModel kh = entityManager.find(KhoaModel.class, maKhoa);
 
             entityManager.remove(kh);
             entityManager.getTransaction().commit();

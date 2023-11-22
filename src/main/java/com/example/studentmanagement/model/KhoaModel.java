@@ -1,16 +1,17 @@
 package com.example.studentmanagement.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="KHOA")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "maKhoa")
-public class Khoa {
+public class KhoaModel {
     @Id
     @Column(name="MaKhoa")
     private String maKhoa;
@@ -18,14 +19,10 @@ public class Khoa {
     @Column(name="TenKhoa")
     private String tenKhoa;
 
-    @OneToMany(mappedBy = "khoa", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JsonManagedReference
-    private List<Nganh> nganhs;
-
-    public Khoa() {
+    public KhoaModel() {
     }
 
-    public Khoa(String maKhoa, String tenKhoa) {
+    public KhoaModel(String maKhoa, String tenKhoa) {
         this.maKhoa = maKhoa;
         this.tenKhoa = tenKhoa;
     }
@@ -44,13 +41,5 @@ public class Khoa {
 
     public void setTenKhoa(String tenKhoa) {
         this.tenKhoa = tenKhoa;
-    }
-
-    public List<Nganh> getNganhs() {
-        return nganhs;
-    }
-
-    public void setNganhs(List<Nganh> nganhs) {
-        this.nganhs = nganhs;
     }
 }
