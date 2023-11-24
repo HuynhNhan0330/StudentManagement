@@ -1,9 +1,8 @@
-INSERT INTO LOAIDIEM (MaLoaiDiem, TenLoaiDiem)
+INSERT INTO LOAIDIEM (MaLoaiDiem, TenLoaiDiem, TiLe)
 VALUES
-    ('LD0001', 'Quá Trình'),
-    ('LD0002', 'Giữa Kỳ'),
-    ('LD0003', 'Thực Hành'),
-    ('LD0004', 'Cuối Kỳ')
+    ('LD0001', 'Quá Trình', 20),
+    ('LD0002', 'Giữa Kỳ', 30),
+    ('LD0003', 'Cuối Kỳ', 50)
 
 INSERT INTO KHOA (MaKhoa, TenKhoa)
 VALUES 
