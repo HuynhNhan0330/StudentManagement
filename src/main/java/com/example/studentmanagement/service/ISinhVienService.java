@@ -1,19 +1,19 @@
 package com.example.studentmanagement.service;
 
 import com.example.studentmanagement.dto.SinhVienDTO;
-import com.example.studentmanagement.model.SinhVien;
+import com.example.studentmanagement.model.SinhVienModel;
 
 import java.util.List;
 
 public interface ISinhVienService {
 
-    List<SinhVien> findAll();
+    List<SinhVienModel> findAll();
 
-    SinhVien findOne(String maSinhVien);
+    SinhVienModel findOne(String maSinhVien);
 
-    SinhVien save(SinhVienDTO sinhVienDTO);
+    SinhVienModel save(SinhVienModel sinhVienModel);
 
-    SinhVien update(SinhVienDTO sinhVienDTO);
+    SinhVienModel update(SinhVienModel sinhVienModel);
 
     void delete(String maSinhVien);
 }

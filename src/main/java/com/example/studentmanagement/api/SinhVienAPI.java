@@ -1,7 +1,6 @@
 package com.example.studentmanagement.api;
 
-import com.example.studentmanagement.dto.SinhVienDTO;
-import com.example.studentmanagement.model.SinhVien;
+import com.example.studentmanagement.model.SinhVienModel;
 import com.example.studentmanagement.service.ISinhVienService;
 import com.example.studentmanagement.service.impl.SinhVienService;
 import com.example.studentmanagement.utils.HttpUtil;
@@ -34,7 +33,7 @@ public class SinhVienAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // get list object
-        List<SinhVien> listSinhVien = sinhVienService.findAll();
+        List<SinhVienModel> listSinhVien = sinhVienService.findAll();
 
         // convert list model to json for response
         ObjectMapper mapper = new ObjectMapper();
@@ -52,14 +51,14 @@ public class SinhVienAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // binding json to string-json, mapping data with model.class
-        SinhVienDTO sinhVienDTONew = HttpUtil.of(req.getReader()).toModel(SinhVienDTO.class);
+        SinhVienModel sinhVienModelNew = HttpUtil.of(req.getReader()).toModel(SinhVienModel.class);
 
         // create new data point in database
-        SinhVien sinhVienNew = sinhVienService.save(sinhVienDTONew);
+        sinhVienModelNew = sinhVienService.save(sinhVienModelNew);
 
         // convert model to json for response
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(resp.getOutputStream(), sinhVienNew);
+        mapper.writeValue(resp.getOutputStream(), sinhVienModelNew);
         return;
     }
 
@@ -73,14 +72,14 @@ public class SinhVienAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // binding json to string-json, mapping data with model.class
-        SinhVienDTO sinhVienDTOUpdate = HttpUtil.of(req.getReader()).toModel(SinhVienDTO.class);
+        SinhVienModel sinhVienModelUpdate = HttpUtil.of(req.getReader()).toModel(SinhVienModel.class);
 
         // update new data point in database
-        SinhVien sinhVienUpdate = sinhVienService.update(sinhVienDTOUpdate);
+        sinhVienModelUpdate = sinhVienService.update(sinhVienModelUpdate);
 
         // convert model to json for response
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(resp.getOutputStream(), sinhVienUpdate);
+        mapper.writeValue(resp.getOutputStream(), sinhVienModelUpdate);
         return;
     }
 
@@ -94,7 +93,7 @@ public class SinhVienAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // binding data json to string-json, mapping data with model class
-        SinhVienDTO sinhVienDelete = HttpUtil.of(req.getReader()).toModel(SinhVienDTO.class);
+        SinhVienModel sinhVienDelete = HttpUtil.of(req.getReader()).toModel(SinhVienModel.class);
 
         // delete target data point in database
         sinhVienService.delete(sinhVienDelete.getMaSV());

@@ -1,11 +1,10 @@
 package com.example.studentmanagement.model;
 
 import javax.persistence.*;
-import java.sql.Date;
 
 @Entity
 @Table(name = "SINHVIEN")
-public class SinhVien {
+public class SinhVienModel {
     @Id
     @Column(name = "MaSV")
     private String maSV;
@@ -22,20 +21,19 @@ public class SinhVien {
     @Column(name = "NamNhapHoc")
     private int namNhapHoc;
 
-//    @ManyToOne
-//    @JoinColumn(name = "MaNganh", referencedColumnName = "MaNganh", foreignKey = @ForeignKey(name = "FK_SINHVIEN_NGANH"))
-//    private Nganh nganh;
+    @Column(name="MaNganh")
+    private String maNganh;
 
-    public SinhVien() {
+    public SinhVienModel() {
     }
 
-    public SinhVien(String maSV, String tenSV, String ngaySinh, String gioiTinh, int namNhapHoc) {
+    public SinhVienModel(String maSV, String tenSV, String ngaySinh, String gioiTinh, int namNhapHoc, String maNganh) {
         this.maSV = maSV;
         this.tenSV = tenSV;
         this.ngaySinh = ngaySinh;
         this.gioiTinh = gioiTinh;
         this.namNhapHoc = namNhapHoc;
-//        this.nganh = nganh;
+        this.maNganh = maNganh;
     }
 
     public String getMaSV() {
@@ -70,19 +68,19 @@ public class SinhVien {
         this.gioiTinh = gioiTinh;
     }
 
-//    public Nganh getNganh() {
-//        return nganh;
-//    }
-//
-//    public void setNganh(Nganh nganh) {
-//        this.nganh = nganh;
-//    }
-
     public int getNamNhapHoc() {
         return namNhapHoc;
     }
 
     public void setNamNhapHoc(int namNhapHoc) {
         this.namNhapHoc = namNhapHoc;
+    }
+
+    public String getMaNganh() {
+        return maNganh;
+    }
+
+    public void setMaNganh(String maNganh) {
+        this.maNganh = maNganh;
     }
 }

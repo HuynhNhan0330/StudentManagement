@@ -1,20 +1,20 @@
 package com.example.studentmanagement.dao;
 
-import com.example.studentmanagement.model.SinhVien;
+import com.example.studentmanagement.model.SinhVienModel;
 
 import java.util.List;
 
 public interface ISinhVienDAO {
 
-    List<SinhVien> findAll();
+    List<SinhVienModel> findAll();
 
     String findMaxMaSinhVien();
 
-    SinhVien findOne(String maSinhVien);
+    SinhVienModel findOne(String maSinhVien);
 
-    String save(SinhVien sinhVien);
+    String save(SinhVienModel sinhVienModel);
 
-    void update(SinhVien sinhVien);
+    void update(SinhVienModel sinhVienModel);
 
     void delete(String maSinhVien);
 }

@@ -3,7 +3,7 @@ package com.example.studentmanagement.service.impl;
 import com.example.studentmanagement.dao.ISinhVienDAO;
 import com.example.studentmanagement.dao.impl.SinhVienDAO;
 import com.example.studentmanagement.dto.SinhVienDTO;
-import com.example.studentmanagement.model.SinhVien;
+import com.example.studentmanagement.model.SinhVienModel;
 import com.example.studentmanagement.service.ISinhVienService;
 import com.example.studentmanagement.utils.Helper;
 
@@ -18,39 +18,27 @@ public class SinhVienService implements ISinhVienService {
     }
 
     @Override
-    public List<SinhVien> findAll() {
+    public List<SinhVienModel> findAll() {
         return sinhVienDAO.findAll();
     }
 
     @Override
-    public SinhVien findOne(String maSinhVien) {
+    public SinhVienModel findOne(String maSinhVien) {
         return sinhVienDAO.findOne(maSinhVien);
     }
 
     @Override
-    public SinhVien save(SinhVienDTO sinhVienDTO) {
-        SinhVien sinhVien = new SinhVien();
-        String x = sinhVienDAO.findMaxMaSinhVien();
-        String newMaSinhVien = Helper.generateNewMa(x, "SV");
-        sinhVien.setMaSV(newMaSinhVien);
-        sinhVien.setTenSV(sinhVienDTO.getTenSV());
-        sinhVien.setNgaySinh(sinhVienDTO.getNgaySinh());
-        sinhVien.setGioiTinh(sinhVienDTO.getGioiTinh());
-        sinhVien.setNamNhapHoc(sinhVienDTO.getNamNhapHoc());
-        String currentMaSinhVien = sinhVienDAO.save(sinhVien);
-        return sinhVienDAO.findOne(currentMaSinhVien);
+    public SinhVienModel save(SinhVienModel sinhVienModel) {
+        String newMaSinhVien = Helper.generateNewMa(sinhVienDAO.findMaxMaSinhVien(), "SV");
+        sinhVienModel.setMaSV(newMaSinhVien);
+        sinhVienDAO.save(sinhVienModel);
+        return sinhVienDAO.findOne(newMaSinhVien);
     }
 
     @Override
-    public SinhVien update(SinhVienDTO sinhVienDTO) {
-        SinhVien sinhVien = new SinhVien();
-        sinhVien.setMaSV(sinhVienDTO.getMaSV());
-        sinhVien.setTenSV(sinhVienDTO.getTenSV());
-        sinhVien.setNgaySinh(sinhVienDTO.getNgaySinh());
-        sinhVien.setGioiTinh(sinhVienDTO.getGioiTinh());
-        sinhVien.setNamNhapHoc(sinhVienDTO.getNamNhapHoc());
-        String currentMaSinhVien = sinhVienDAO.save(sinhVien);
-        return sinhVienDAO.findOne(currentMaSinhVien);
+    public SinhVienModel update(SinhVienModel sinhVienModel) {
+        sinhVienDAO.update(sinhVienModel);
+        return sinhVienDAO.findOne(sinhVienModel.getMaSV());
     }
 
     @Override
