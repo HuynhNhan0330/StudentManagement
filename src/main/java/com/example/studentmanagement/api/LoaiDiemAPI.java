@@ -1,6 +1,6 @@
 package com.example.studentmanagement.api;
 
-import com.example.studentmanagement.model.LoaiDiem;
+import com.example.studentmanagement.model.LoaiDiemModel;
 import com.example.studentmanagement.service.ILoaiDiemService;
 import com.example.studentmanagement.service.impl.LoaiDiemService;
 import com.example.studentmanagement.utils.HttpUtil;
@@ -33,7 +33,7 @@ public class LoaiDiemAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // get list object
-        List<LoaiDiem> listLoaiDiem = loaiDiemService.findAll();
+        List<LoaiDiemModel> listLoaiDiem = loaiDiemService.findAll();
 
         // convert list model to json for response
         ObjectMapper mapper = new ObjectMapper();
@@ -51,7 +51,7 @@ public class LoaiDiemAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // binding json to string-json, mapping data with model.class
-        LoaiDiem loaiDiemNew = HttpUtil.of(req.getReader()).toModel(LoaiDiem.class);
+        LoaiDiemModel loaiDiemNew = HttpUtil.of(req.getReader()).toModel(LoaiDiemModel.class);
 
         // create new data point in database
         loaiDiemNew = loaiDiemService.save(loaiDiemNew);
@@ -72,7 +72,7 @@ public class LoaiDiemAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // binding json to string-json, mapping data with model.class
-        LoaiDiem loaidiemUpdate = HttpUtil.of(req.getReader()).toModel(LoaiDiem.class);
+        LoaiDiemModel loaidiemUpdate = HttpUtil.of(req.getReader()).toModel(LoaiDiemModel.class);
 
         // update new data point in database
         loaidiemUpdate = loaiDiemService.update(loaidiemUpdate);
@@ -93,7 +93,7 @@ public class LoaiDiemAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // binding data json to string-json, mapping data with model class
-        LoaiDiem loaiDiemDelete = HttpUtil.of(req.getReader()).toModel(LoaiDiem.class);
+        LoaiDiemModel loaiDiemDelete = HttpUtil.of(req.getReader()).toModel(LoaiDiemModel.class);
 
         // delete target data point in database
         loaiDiemService.delete(loaiDiemDelete.getMaLoaiDiem());

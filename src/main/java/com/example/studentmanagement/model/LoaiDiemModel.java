@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="LOAIDIEM")
-public class LoaiDiem {
+public class LoaiDiemModel {
     @Id
     @Column(name="MaLoaiDiem")
     private String maLoaiDiem;
@@ -12,12 +12,16 @@ public class LoaiDiem {
     @Column(name="TenLoaiDiem")
     private String tenLoaiDiem;
 
-    public LoaiDiem() {
+    @Column(name="TiLe")
+    private int tiLe;
+
+    public LoaiDiemModel() {
     }
 
-    public LoaiDiem(String maLoaiDiem, String tenLoaiDiem) {
+    public LoaiDiemModel(String maLoaiDiem, String tenLoaiDiem, int tiLe) {
         this.maLoaiDiem = maLoaiDiem;
         this.tenLoaiDiem = tenLoaiDiem;
+        this.tiLe = tiLe;
     }
 
     public String getMaLoaiDiem() {
@@ -34,5 +38,13 @@ public class LoaiDiem {
 
     public void setTenLoaiDiem(String tenLoaiDiem) {
         this.tenLoaiDiem = tenLoaiDiem;
+    }
+
+    public int getTiLe() {
+        return tiLe;
+    }
+
+    public void setTiLe(int tiLe) {
+        this.tiLe = tiLe;
     }
 }

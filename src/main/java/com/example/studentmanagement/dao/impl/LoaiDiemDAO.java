@@ -1,7 +1,7 @@
 package com.example.studentmanagement.dao.impl;
 
 import com.example.studentmanagement.dao.ILoaiDiemDAO;
-import com.example.studentmanagement.model.LoaiDiem;
+import com.example.studentmanagement.model.LoaiDiemModel;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -12,15 +12,15 @@ import java.util.List;
 public class LoaiDiemDAO implements ILoaiDiemDAO {
 
     @Override
-    public List<LoaiDiem> findAll() {
+    public List<LoaiDiemModel> findAll() {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
             entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
             entityManager = entityManagerFactory.createEntityManager();
 
-            TypedQuery<LoaiDiem> query = entityManager.createQuery("SELECT ld FROM LoaiDiem ld", LoaiDiem.class);
-            List<LoaiDiem> loaiDiemList = query.getResultList();
+            TypedQuery<LoaiDiemModel> query = entityManager.createQuery("SELECT ld FROM LoaiDiemModel ld", LoaiDiemModel.class);
+            List<LoaiDiemModel> loaiDiemList = query.getResultList();
 
             return loaiDiemList;
         } catch (Exception e1) {
@@ -47,7 +47,7 @@ public class LoaiDiemDAO implements ILoaiDiemDAO {
             entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
             entityManager = entityManagerFactory.createEntityManager();
 
-            TypedQuery<String> query = entityManager.createQuery("SELECT MAX(ld.maLoaiDiem) FROM LoaiDiem ld", String.class);
+            TypedQuery<String> query = entityManager.createQuery("SELECT MAX(ld.maLoaiDiem) FROM LoaiDiemModel ld", String.class);
             String maxMaLoaiDiem  = query.getSingleResult();
 
             return maxMaLoaiDiem;
@@ -68,14 +68,14 @@ public class LoaiDiemDAO implements ILoaiDiemDAO {
     }
 
     @Override
-    public LoaiDiem findOne(String maLoaiDiem) {
+    public LoaiDiemModel findOne(String maLoaiDiem) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
             entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
             entityManager = entityManagerFactory.createEntityManager();
 
-            LoaiDiem ld = entityManager.find(LoaiDiem.class, maLoaiDiem);
+            LoaiDiemModel ld = entityManager.find(LoaiDiemModel.class, maLoaiDiem);
 
             return ld;
         } catch (Exception e1) {
@@ -97,7 +97,7 @@ public class LoaiDiemDAO implements ILoaiDiemDAO {
     }
 
     @Override
-    public String save(LoaiDiem loaiDiem) {
+    public String save(LoaiDiemModel loaiDiem) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
@@ -106,9 +106,10 @@ public class LoaiDiemDAO implements ILoaiDiemDAO {
 
             entityManager.getTransaction().begin();
 
-            LoaiDiem ld = new LoaiDiem();
+            LoaiDiemModel ld = new LoaiDiemModel();
             ld.setMaLoaiDiem(loaiDiem.getMaLoaiDiem());
             ld.setTenLoaiDiem(loaiDiem.getTenLoaiDiem());
+            ld.setTiLe(loaiDiem.getTiLe());
 
             entityManager.persist(ld);
             entityManager.getTransaction().commit();
@@ -133,7 +134,7 @@ public class LoaiDiemDAO implements ILoaiDiemDAO {
     }
 
     @Override
-    public void update(LoaiDiem loaiDiem) {
+    public void update(LoaiDiemModel loaiDiem) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
@@ -142,8 +143,9 @@ public class LoaiDiemDAO implements ILoaiDiemDAO {
 
             entityManager.getTransaction().begin();
 
-            LoaiDiem ld = entityManager.find(LoaiDiem.class, loaiDiem.getMaLoaiDiem());
+            LoaiDiemModel ld = entityManager.find(LoaiDiemModel.class, loaiDiem.getMaLoaiDiem());
             ld.setTenLoaiDiem(loaiDiem.getTenLoaiDiem());
+            ld.setTiLe(loaiDiem.getTiLe());
 
             entityManager.merge(ld);
             entityManager.getTransaction().commit();
@@ -173,7 +175,7 @@ public class LoaiDiemDAO implements ILoaiDiemDAO {
 
             entityManager.getTransaction().begin();
 
-            LoaiDiem ld = entityManager.find(LoaiDiem.class, maLoaiDiem);
+            LoaiDiemModel ld = entityManager.find(LoaiDiemModel.class, maLoaiDiem);
 
             entityManager.remove(ld);
             entityManager.getTransaction().commit();

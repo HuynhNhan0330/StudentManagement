@@ -2,7 +2,7 @@ package com.example.studentmanagement.service.impl;
 
 import com.example.studentmanagement.dao.ILoaiDiemDAO;
 import com.example.studentmanagement.dao.impl.LoaiDiemDAO;
-import com.example.studentmanagement.model.LoaiDiem;
+import com.example.studentmanagement.model.LoaiDiemModel;
 import com.example.studentmanagement.service.ILoaiDiemService;
 import com.example.studentmanagement.utils.Helper;
 
@@ -17,17 +17,17 @@ public class LoaiDiemService implements ILoaiDiemService {
     }
 
     @Override
-    public List<LoaiDiem> findAll() {
+    public List<LoaiDiemModel> findAll() {
         return loaiDiemDAO.findAll();
     }
 
     @Override
-    public LoaiDiem findOne(String maLoaiDiem) {
+    public LoaiDiemModel findOne(String maLoaiDiem) {
         return loaiDiemDAO.findOne(maLoaiDiem);
     }
 
     @Override
-    public LoaiDiem save(LoaiDiem loaiDiem) {
+    public LoaiDiemModel save(LoaiDiemModel loaiDiem) {
         String newMaLoaiDiem = Helper.generateNewMa(loaiDiemDAO.findMaxMaLoaiDiem(), "LD");
         loaiDiem.setMaLoaiDiem(newMaLoaiDiem);
         String currentMaLoaiDiem = loaiDiemDAO.save(loaiDiem);
@@ -35,7 +35,7 @@ public class LoaiDiemService implements ILoaiDiemService {
     }
 
     @Override
-    public LoaiDiem update(LoaiDiem loaiDiem) {
+    public LoaiDiemModel update(LoaiDiemModel loaiDiem) {
         loaiDiemDAO.update(loaiDiem);
         return loaiDiemDAO.findOne(loaiDiem.getMaLoaiDiem());
     }

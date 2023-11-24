@@ -1,6 +1,6 @@
 package com.example.studentmanagement.jpa;
 
-import com.example.studentmanagement.model.LoaiDiem;
+import com.example.studentmanagement.model.LoaiDiemModel;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,13 +15,13 @@ public class JpaExample {
         entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
     }
 
-    public List<LoaiDiem> getLoaiDiemList() {
+    public List<LoaiDiemModel> getLoaiDiemList() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        TypedQuery<LoaiDiem> query = entityManager.createQuery("SELECT ld FROM LoaiDiem ld", LoaiDiem.class);
-        List<LoaiDiem> loaiDiemList = query.getResultList();
+        TypedQuery<LoaiDiemModel> query = entityManager.createQuery("SELECT ld FROM LoaiDiemModel ld", LoaiDiemModel.class);
+        List<LoaiDiemModel> loaiDiemList = query.getResultList();
 
-        for (LoaiDiem loaiDiem : loaiDiemList) {
+        for (LoaiDiemModel loaiDiem : loaiDiemList) {
             // Thực hiện thao tác với dữ liệu
             System.out.println("MaLoaiDiem: " + loaiDiem.getMaLoaiDiem() + ", TenLoaiDiem: " + loaiDiem.getTenLoaiDiem());
         }

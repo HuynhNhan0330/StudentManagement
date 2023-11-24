@@ -1,19 +1,19 @@
 package com.example.studentmanagement.dao;
 
-import com.example.studentmanagement.model.LoaiDiem;
+import com.example.studentmanagement.model.LoaiDiemModel;
 
 import java.util.List;
 
 public interface ILoaiDiemDAO {
-    List<LoaiDiem> findAll();
+    List<LoaiDiemModel> findAll();
 
     String findMaxMaLoaiDiem();
 
-    LoaiDiem findOne(String maLoaiDiem);
+    LoaiDiemModel findOne(String maLoaiDiem);
 
-    String save(LoaiDiem loaiDiem);
+    String save(LoaiDiemModel loaiDiem);
 
-    void update(LoaiDiem loaiDiem);
+    void update(LoaiDiemModel loaiDiem);
 
     void delete(String maLoaiDiem);
 }

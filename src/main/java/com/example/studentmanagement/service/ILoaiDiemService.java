@@ -1,18 +1,18 @@
 package com.example.studentmanagement.service;
 
-import com.example.studentmanagement.model.LoaiDiem;
+import com.example.studentmanagement.model.LoaiDiemModel;
 
 import java.util.List;
 
 public interface ILoaiDiemService {
 
-    List<LoaiDiem> findAll();
+    List<LoaiDiemModel> findAll();
 
-    LoaiDiem findOne(String maLoaiDiem);
+    LoaiDiemModel findOne(String maLoaiDiem);
 
-    LoaiDiem save(LoaiDiem loaiDiem);
+    LoaiDiemModel save(LoaiDiemModel loaiDiem);
 
-    LoaiDiem update(LoaiDiem loaiDiem);
+    LoaiDiemModel update(LoaiDiemModel loaiDiem);
 
     void delete(String maLoaiDiem);
 }
