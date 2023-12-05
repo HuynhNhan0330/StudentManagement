@@ -1,7 +1,7 @@
 package com.example.studentmanagement.service.impl;
 
-import com.example.studentmanagement.dao.ILoaiDiemDAO;
-import com.example.studentmanagement.dao.impl.LoaiDiemDAO;
+import com.example.studentmanagement.jpa.ILoaiDiemJPA;
+import com.example.studentmanagement.jpa.impl.LoaiDiemJPA;
 import com.example.studentmanagement.model.LoaiDiemModel;
 import com.example.studentmanagement.service.ILoaiDiemService;
 import com.example.studentmanagement.utils.Helper;
@@ -10,38 +10,38 @@ import java.util.List;
 
 public class LoaiDiemService implements ILoaiDiemService {
 
-    private ILoaiDiemDAO loaiDiemDAO;
+    private ILoaiDiemJPA loaiDiemJPA;
 
     public LoaiDiemService() {
-        loaiDiemDAO = new LoaiDiemDAO();
+        loaiDiemJPA = new LoaiDiemJPA();
     }
 
     @Override
     public List<LoaiDiemModel> findAll() {
-        return loaiDiemDAO.findAll();
+        return loaiDiemJPA.findAll();
     }
 
     @Override
     public LoaiDiemModel findOne(String maLoaiDiem) {
-        return loaiDiemDAO.findOne(maLoaiDiem);
+        return loaiDiemJPA.findOne(maLoaiDiem);
     }
 
     @Override
     public LoaiDiemModel save(LoaiDiemModel loaiDiem) {
-        String newMaLoaiDiem = Helper.generateNewMa(loaiDiemDAO.findMaxMaLoaiDiem(), "LD");
+        String newMaLoaiDiem = Helper.generateNewMa(loaiDiemJPA.findMaxMaLoaiDiem(), "LD");
         loaiDiem.setMaLoaiDiem(newMaLoaiDiem);
-        String currentMaLoaiDiem = loaiDiemDAO.save(loaiDiem);
-        return loaiDiemDAO.findOne(currentMaLoaiDiem);
+        String currentMaLoaiDiem = loaiDiemJPA.save(loaiDiem);
+        return loaiDiemJPA.findOne(currentMaLoaiDiem);
     }
 
     @Override
     public LoaiDiemModel update(LoaiDiemModel loaiDiem) {
-        loaiDiemDAO.update(loaiDiem);
-        return loaiDiemDAO.findOne(loaiDiem.getMaLoaiDiem());
+        loaiDiemJPA.update(loaiDiem);
+        return loaiDiemJPA.findOne(loaiDiem.getMaLoaiDiem());
     }
 
     @Override
     public void delete(String maLoaiDiem) {
-        loaiDiemDAO.delete(maLoaiDiem);
+        loaiDiemJPA.delete(maLoaiDiem);
     }
 }

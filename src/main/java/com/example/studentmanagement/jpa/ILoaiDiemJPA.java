@@ -1,10 +1,10 @@
-package com.example.studentmanagement.dao;
+package com.example.studentmanagement.jpa;
 
 import com.example.studentmanagement.model.LoaiDiemModel;
 
 import java.util.List;
 
-public interface ILoaiDiemDAO {
+public interface ILoaiDiemJPA {
     List<LoaiDiemModel> findAll();
 
     String findMaxMaLoaiDiem();

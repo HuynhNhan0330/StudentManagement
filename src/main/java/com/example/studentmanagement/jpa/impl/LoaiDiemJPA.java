@@ -1,25 +1,28 @@
-package com.example.studentmanagement.dao.impl;
+package com.example.studentmanagement.jpa.impl;
 
-import com.example.studentmanagement.dao.ISinhVienDAO;
-import com.example.studentmanagement.model.SinhVienModel;
+import com.example.studentmanagement.jpa.ILoaiDiemJPA;
+import com.example.studentmanagement.model.LoaiDiemModel;
 
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class SinhVienDAO implements ISinhVienDAO {
+public class LoaiDiemJPA implements ILoaiDiemJPA {
 
     @Override
-    public List<SinhVienModel> findAll() {
+    public List<LoaiDiemModel> findAll() {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
             entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
             entityManager = entityManagerFactory.createEntityManager();
 
-            TypedQuery<SinhVienModel> query = entityManager.createQuery("SELECT sv FROM SinhVienModel sv", SinhVienModel.class);
-            List<SinhVienModel> sinhVienList = query.getResultList();
+            TypedQuery<LoaiDiemModel> query = entityManager.createQuery("SELECT ld FROM LoaiDiemModel ld", LoaiDiemModel.class);
+            List<LoaiDiemModel> loaiDiemList = query.getResultList();
 
-            return sinhVienList;
+            return loaiDiemList;
         } catch (Exception e1) {
             return null;
         } finally {
@@ -37,24 +40,17 @@ public class SinhVienDAO implements ISinhVienDAO {
     }
 
     @Override
-    public String findMaxMaSinhVien() {
+    public String findMaxMaLoaiDiem() {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
             entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
             entityManager = entityManagerFactory.createEntityManager();
 
-            TypedQuery<String> query = entityManager.createQuery("SELECT MAX(sv.maSV) FROM SinhVienModel sv", String.class);
+            TypedQuery<String> query = entityManager.createQuery("SELECT MAX(ld.maLoaiDiem) FROM LoaiDiemModel ld", String.class);
+            String maxMaLoaiDiem  = query.getSingleResult();
 
-            String maxMaSinhVien  = null;
-            try {
-                maxMaSinhVien = query.getSingleResult();
-                // Xử lý kết quả trả về khi có Sinh Viên trong cơ sở dữ liệu
-            } catch (NoResultException e) {
-                // Xử lý khi không có Sinh Viên trong cơ sở dữ liệu
-            }
-
-            return maxMaSinhVien;
+            return maxMaLoaiDiem;
         } catch (Exception e1) {
             return null;
         } finally {
@@ -72,16 +68,16 @@ public class SinhVienDAO implements ISinhVienDAO {
     }
 
     @Override
-    public SinhVienModel findOne(String maSinhVien) {
+    public LoaiDiemModel findOne(String maLoaiDiem) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
             entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
             entityManager = entityManagerFactory.createEntityManager();
 
-            SinhVienModel sv = entityManager.find(SinhVienModel.class, maSinhVien);
+            LoaiDiemModel ld = entityManager.find(LoaiDiemModel.class, maLoaiDiem);
 
-            return sv;
+            return ld;
         } catch (Exception e1) {
             System.out.println(e1.getMessage());
             return null;
@@ -101,7 +97,7 @@ public class SinhVienDAO implements ISinhVienDAO {
     }
 
     @Override
-    public String save(SinhVienModel sinhVienModel) {
+    public String save(LoaiDiemModel loaiDiem) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
@@ -110,18 +106,15 @@ public class SinhVienDAO implements ISinhVienDAO {
 
             entityManager.getTransaction().begin();
 
-            SinhVienModel sv = new SinhVienModel();
-            sv.setMaSV(sinhVienModel.getMaSV());
-            sv.setTenSV(sinhVienModel.getTenSV());
-            sv.setNgaySinh(sinhVienModel.getNgaySinh());
-            sv.setGioiTinh(sinhVienModel.getGioiTinh());
-            sv.setNamNhapHoc(sinhVienModel.getNamNhapHoc());
-            sv.setMaNganh(sinhVienModel.getMaNganh());
+            LoaiDiemModel ld = new LoaiDiemModel();
+            ld.setMaLoaiDiem(loaiDiem.getMaLoaiDiem());
+            ld.setTenLoaiDiem(loaiDiem.getTenLoaiDiem());
+            ld.setTiLe(loaiDiem.getTiLe());
 
-            entityManager.persist(sv);
+            entityManager.persist(ld);
             entityManager.getTransaction().commit();
 
-            return sinhVienModel.getMaSV();
+            return loaiDiem.getMaLoaiDiem();
         } catch (Exception e1) {
             System.out.println(e1.getMessage());
             return null;
@@ -141,7 +134,7 @@ public class SinhVienDAO implements ISinhVienDAO {
     }
 
     @Override
-    public void update(SinhVienModel sinhVienModel) {
+    public void update(LoaiDiemModel loaiDiem) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
@@ -150,14 +143,11 @@ public class SinhVienDAO implements ISinhVienDAO {
 
             entityManager.getTransaction().begin();
 
-            SinhVienModel sv = entityManager.find(SinhVienModel.class, sinhVienModel.getMaSV());
-            sv.setTenSV(sinhVienModel.getTenSV());
-            sv.setNgaySinh(sinhVienModel.getNgaySinh());
-            sv.setGioiTinh(sinhVienModel.getGioiTinh());
-            sv.setNamNhapHoc(sinhVienModel.getNamNhapHoc());
-            sv.setMaNganh(sinhVienModel.getMaNganh());
+            LoaiDiemModel ld = entityManager.find(LoaiDiemModel.class, loaiDiem.getMaLoaiDiem());
+            ld.setTenLoaiDiem(loaiDiem.getTenLoaiDiem());
+            ld.setTiLe(loaiDiem.getTiLe());
 
-            entityManager.merge(sv);
+            entityManager.merge(ld);
             entityManager.getTransaction().commit();
         } catch (Exception e1) {
             System.out.println(e1.getMessage());
@@ -176,7 +166,7 @@ public class SinhVienDAO implements ISinhVienDAO {
     }
 
     @Override
-    public void delete(String maSinhVien) {
+    public void delete(String maLoaiDiem) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
@@ -185,9 +175,9 @@ public class SinhVienDAO implements ISinhVienDAO {
 
             entityManager.getTransaction().begin();
 
-            SinhVienModel sv = entityManager.find(SinhVienModel.class, maSinhVien);
+            LoaiDiemModel ld = entityManager.find(LoaiDiemModel.class, maLoaiDiem);
 
-            entityManager.remove(sv);
+            entityManager.remove(ld);
             entityManager.getTransaction().commit();
         } catch (Exception e1) {
             System.out.println(e1.getMessage());

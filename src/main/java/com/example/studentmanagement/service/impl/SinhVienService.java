@@ -1,8 +1,7 @@
 package com.example.studentmanagement.service.impl;
 
-import com.example.studentmanagement.dao.ISinhVienDAO;
-import com.example.studentmanagement.dao.impl.SinhVienDAO;
-import com.example.studentmanagement.dto.SinhVienDTO;
+import com.example.studentmanagement.jpa.ISinhVienJPA;
+import com.example.studentmanagement.jpa.impl.SinhVienJPA;
 import com.example.studentmanagement.model.SinhVienModel;
 import com.example.studentmanagement.service.ISinhVienService;
 import com.example.studentmanagement.utils.Helper;
@@ -11,38 +10,38 @@ import java.util.List;
 
 public class SinhVienService implements ISinhVienService {
 
-    private ISinhVienDAO sinhVienDAO;
+    private ISinhVienJPA sinhVienJPA;
 
     public SinhVienService() {
-        sinhVienDAO = new SinhVienDAO();
+        sinhVienJPA = new SinhVienJPA();
     }
 
     @Override
     public List<SinhVienModel> findAll() {
-        return sinhVienDAO.findAll();
+        return sinhVienJPA.findAll();
     }
 
     @Override
     public SinhVienModel findOne(String maSinhVien) {
-        return sinhVienDAO.findOne(maSinhVien);
+        return sinhVienJPA.findOne(maSinhVien);
     }
 
     @Override
     public SinhVienModel save(SinhVienModel sinhVienModel) {
-        String newMaSinhVien = Helper.generateNewMa(sinhVienDAO.findMaxMaSinhVien(), "SV");
+        String newMaSinhVien = Helper.generateNewMa(sinhVienJPA.findMaxMaSinhVien(), "SV");
         sinhVienModel.setMaSV(newMaSinhVien);
-        sinhVienDAO.save(sinhVienModel);
-        return sinhVienDAO.findOne(newMaSinhVien);
+        sinhVienJPA.save(sinhVienModel);
+        return sinhVienJPA.findOne(newMaSinhVien);
     }
 
     @Override
     public SinhVienModel update(SinhVienModel sinhVienModel) {
-        sinhVienDAO.update(sinhVienModel);
-        return sinhVienDAO.findOne(sinhVienModel.getMaSV());
+        sinhVienJPA.update(sinhVienModel);
+        return sinhVienJPA.findOne(sinhVienModel.getMaSV());
     }
 
     @Override
     public void delete(String maSinhVien) {
-        sinhVienDAO.delete(maSinhVien);
+        sinhVienJPA.delete(maSinhVien);
     }
 }

@@ -1,10 +1,10 @@
-package com.example.studentmanagement.dao;
+package com.example.studentmanagement.jpa;
 
 import com.example.studentmanagement.model.KhoaModel;
 
 import java.util.List;
 
-public interface IKhoaDAO {
+public interface IKhoaJPA {
     List<KhoaModel> findAll();
 
     String findMaxMaKhoa();

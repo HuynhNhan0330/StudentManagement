@@ -1,6 +1,6 @@
-package com.example.studentmanagement.dao.impl;
+package com.example.studentmanagement.jpa.impl;
 
-import com.example.studentmanagement.dao.IKhoaDAO;
+import com.example.studentmanagement.jpa.IKhoaJPA;
 import com.example.studentmanagement.model.KhoaModel;
 
 import javax.persistence.EntityManager;
@@ -9,7 +9,7 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class KhoaDAO implements IKhoaDAO {
+public class KhoaJPA implements IKhoaJPA {
 
     @Override
     public List<KhoaModel> findAll() {

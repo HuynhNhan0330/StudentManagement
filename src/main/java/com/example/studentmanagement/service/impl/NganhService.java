@@ -1,7 +1,7 @@
 package com.example.studentmanagement.service.impl;
 
-import com.example.studentmanagement.dao.INganhDAO;
-import com.example.studentmanagement.dao.impl.NganhDAO;
+import com.example.studentmanagement.jpa.INganhJPA;
+import com.example.studentmanagement.jpa.impl.NganhJPA;
 import com.example.studentmanagement.model.NganhModel;
 import com.example.studentmanagement.service.IKhoaService;
 import com.example.studentmanagement.service.INganhService;
@@ -11,40 +11,40 @@ import java.util.List;
 
 public class NganhService implements INganhService {
 
-    private INganhDAO nganhDAO;
+    private INganhJPA nganhJPA;
     private IKhoaService khoaService;
 
     public NganhService() {
-        nganhDAO = new NganhDAO();
+        nganhJPA = new NganhJPA();
         khoaService = new KhoaService();
     }
 
     @Override
     public List<NganhModel> findAll() {
-        return nganhDAO.findAll();
+        return nganhJPA.findAll();
     }
 
     @Override
     public NganhModel findOne(String maNganh) {
-        return nganhDAO.findOne(maNganh);
+        return nganhJPA.findOne(maNganh);
     }
 
     @Override
     public NganhModel save(NganhModel nganhModel) {
-        String newMaNganh = Helper.generateNewMa(nganhDAO.findMaxMaNganh(), "NG");
+        String newMaNganh = Helper.generateNewMa(nganhJPA.findMaxMaNganh(), "NG");
         nganhModel.setMaNganh(newMaNganh);
-        nganhDAO.save(nganhModel);
-        return nganhDAO.findOne(newMaNganh);
+        nganhJPA.save(nganhModel);
+        return nganhJPA.findOne(newMaNganh);
     }
 
     @Override
     public NganhModel update(NganhModel nganhModel) {
-        nganhDAO.update(nganhModel);
-        return nganhDAO.findOne(nganhModel.getMaNganh());
+        nganhJPA.update(nganhModel);
+        return nganhJPA.findOne(nganhModel.getMaNganh());
     }
 
     @Override
     public void delete(String maNganh) {
-        nganhDAO.delete(maNganh);
+        nganhJPA.delete(maNganh);
     }
 }

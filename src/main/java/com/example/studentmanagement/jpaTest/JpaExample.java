@@ -1,4 +1,4 @@
-package com.example.studentmanagement.jpa;
+package com.example.studentmanagement.jpaTest;
 
 import com.example.studentmanagement.model.LoaiDiemModel;
 

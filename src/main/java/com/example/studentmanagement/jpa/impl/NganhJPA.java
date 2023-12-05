@@ -1,7 +1,7 @@
-package com.example.studentmanagement.dao.impl;
+package com.example.studentmanagement.jpa.impl;
 
-import com.example.studentmanagement.dao.ILoaiDiemDAO;
-import com.example.studentmanagement.model.LoaiDiemModel;
+import com.example.studentmanagement.jpa.INganhJPA;
+import com.example.studentmanagement.model.NganhModel;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -9,20 +9,20 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class LoaiDiemDAO implements ILoaiDiemDAO {
+public class NganhJPA implements INganhJPA {
 
     @Override
-    public List<LoaiDiemModel> findAll() {
+    public List<NganhModel> findAll() {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
             entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
             entityManager = entityManagerFactory.createEntityManager();
 
-            TypedQuery<LoaiDiemModel> query = entityManager.createQuery("SELECT ld FROM LoaiDiemModel ld", LoaiDiemModel.class);
-            List<LoaiDiemModel> loaiDiemList = query.getResultList();
+            TypedQuery<NganhModel> query = entityManager.createQuery("SELECT ng FROM NganhModel ng", NganhModel.class);
+            List<NganhModel> nganhList = query.getResultList();
 
-            return loaiDiemList;
+            return nganhList;
         } catch (Exception e1) {
             return null;
         } finally {
@@ -40,17 +40,17 @@ public class LoaiDiemDAO implements ILoaiDiemDAO {
     }
 
     @Override
-    public String findMaxMaLoaiDiem() {
+    public String findMaxMaNganh() {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
             entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
             entityManager = entityManagerFactory.createEntityManager();
 
-            TypedQuery<String> query = entityManager.createQuery("SELECT MAX(ld.maLoaiDiem) FROM LoaiDiemModel ld", String.class);
-            String maxMaLoaiDiem  = query.getSingleResult();
+            TypedQuery<String> query = entityManager.createQuery("SELECT MAX(ng.maNganh) FROM NganhModel ng", String.class);
+            String maxMaNganh  = query.getSingleResult();
 
-            return maxMaLoaiDiem;
+            return maxMaNganh;
         } catch (Exception e1) {
             return null;
         } finally {
@@ -68,16 +68,16 @@ public class LoaiDiemDAO implements ILoaiDiemDAO {
     }
 
     @Override
-    public LoaiDiemModel findOne(String maLoaiDiem) {
+    public NganhModel findOne(String maNganh) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
             entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
             entityManager = entityManagerFactory.createEntityManager();
 
-            LoaiDiemModel ld = entityManager.find(LoaiDiemModel.class, maLoaiDiem);
+            NganhModel ng = entityManager.find(NganhModel.class, maNganh);
 
-            return ld;
+            return ng;
         } catch (Exception e1) {
             System.out.println(e1.getMessage());
             return null;
@@ -97,7 +97,7 @@ public class LoaiDiemDAO implements ILoaiDiemDAO {
     }
 
     @Override
-    public String save(LoaiDiemModel loaiDiem) {
+    public String save(NganhModel nganhModel) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
@@ -106,15 +106,15 @@ public class LoaiDiemDAO implements ILoaiDiemDAO {
 
             entityManager.getTransaction().begin();
 
-            LoaiDiemModel ld = new LoaiDiemModel();
-            ld.setMaLoaiDiem(loaiDiem.getMaLoaiDiem());
-            ld.setTenLoaiDiem(loaiDiem.getTenLoaiDiem());
-            ld.setTiLe(loaiDiem.getTiLe());
+            NganhModel ng = new NganhModel();
+            ng.setMaNganh(nganhModel.getMaNganh());
+            ng.setTenNganh(nganhModel.getTenNganh());
+            ng.setMaKhoa(nganhModel.getMaKhoa());
 
-            entityManager.persist(ld);
+            entityManager.persist(ng);
             entityManager.getTransaction().commit();
 
-            return loaiDiem.getMaLoaiDiem();
+            return nganhModel.getMaNganh();
         } catch (Exception e1) {
             System.out.println(e1.getMessage());
             return null;
@@ -134,7 +134,7 @@ public class LoaiDiemDAO implements ILoaiDiemDAO {
     }
 
     @Override
-    public void update(LoaiDiemModel loaiDiem) {
+    public void update(NganhModel nganhModel) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
@@ -143,11 +143,11 @@ public class LoaiDiemDAO implements ILoaiDiemDAO {
 
             entityManager.getTransaction().begin();
 
-            LoaiDiemModel ld = entityManager.find(LoaiDiemModel.class, loaiDiem.getMaLoaiDiem());
-            ld.setTenLoaiDiem(loaiDiem.getTenLoaiDiem());
-            ld.setTiLe(loaiDiem.getTiLe());
+            NganhModel ng = entityManager.find(NganhModel.class, nganhModel.getMaNganh());
+            ng.setTenNganh(nganhModel.getTenNganh());
+            ng.setMaKhoa(nganhModel.getMaKhoa());
 
-            entityManager.merge(ld);
+            entityManager.merge(ng);
             entityManager.getTransaction().commit();
         } catch (Exception e1) {
             System.out.println(e1.getMessage());
@@ -166,7 +166,7 @@ public class LoaiDiemDAO implements ILoaiDiemDAO {
     }
 
     @Override
-    public void delete(String maLoaiDiem) {
+    public void delete(String maNganh) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
@@ -175,9 +175,9 @@ public class LoaiDiemDAO implements ILoaiDiemDAO {
 
             entityManager.getTransaction().begin();
 
-            LoaiDiemModel ld = entityManager.find(LoaiDiemModel.class, maLoaiDiem);
+            NganhModel ng = entityManager.find(NganhModel.class, maNganh);
 
-            entityManager.remove(ld);
+            entityManager.remove(ng);
             entityManager.getTransaction().commit();
         } catch (Exception e1) {
             System.out.println(e1.getMessage());

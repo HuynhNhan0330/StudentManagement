@@ -1,7 +1,7 @@
 package com.example.studentmanagement.service.impl;
 
-import com.example.studentmanagement.dao.IKhoaDAO;
-import com.example.studentmanagement.dao.impl.KhoaDAO;
+import com.example.studentmanagement.jpa.IKhoaJPA;
+import com.example.studentmanagement.jpa.impl.KhoaJPA;
 import com.example.studentmanagement.model.KhoaModel;
 import com.example.studentmanagement.service.IKhoaService;
 import com.example.studentmanagement.utils.Helper;
@@ -10,38 +10,38 @@ import java.util.List;
 
 public class KhoaService implements IKhoaService {
 
-    private IKhoaDAO khoaDAO;
+    private IKhoaJPA khoaJPA;
 
     public KhoaService() {
-        khoaDAO = new KhoaDAO();
+        khoaJPA = new KhoaJPA();
     }
 
     @Override
     public List<KhoaModel> findAll() {
-        return khoaDAO.findAll();
+        return khoaJPA.findAll();
     }
 
     @Override
     public KhoaModel findOne(String maKhoa) {
-        return khoaDAO.findOne(maKhoa);
+        return khoaJPA.findOne(maKhoa);
     }
 
     @Override
     public KhoaModel save(KhoaModel khoaModel) {
-        String newMaKhoa = Helper.generateNewMa(khoaDAO.findMaxMaKhoa(), "KH");
+        String newMaKhoa = Helper.generateNewMa(khoaJPA.findMaxMaKhoa(), "KH");
         khoaModel.setMaKhoa(newMaKhoa);
-        String currentMaKhoa = khoaDAO.save(khoaModel);
-        return khoaDAO.findOne(currentMaKhoa);
+        String currentMaKhoa = khoaJPA.save(khoaModel);
+        return khoaJPA.findOne(currentMaKhoa);
     }
 
     @Override
     public KhoaModel update(KhoaModel khoaModel) {
-        khoaDAO.update(khoaModel);
-        return khoaDAO.findOne(khoaModel.getMaKhoa());
+        khoaJPA.update(khoaModel);
+        return khoaJPA.findOne(khoaModel.getMaKhoa());
     }
 
     @Override
     public void delete(String maKhoa) {
-        khoaDAO.delete(maKhoa);
+        khoaJPA.delete(maKhoa);
     }
 }

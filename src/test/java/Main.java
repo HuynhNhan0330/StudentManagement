@@ -1,9 +1,9 @@
-import com.example.studentmanagement.dao.impl.LoaiDiemDAO;
+import com.example.studentmanagement.jpa.impl.LoaiDiemJPA;
 
 public class Main {
 
     public static void main(String[] args) {
-        LoaiDiemDAO ldDAO = new LoaiDiemDAO();
+        LoaiDiemJPA ldDAO = new LoaiDiemJPA();
 
         System.out.println(ldDAO.findMaxMaLoaiDiem());
     }

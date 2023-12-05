@@ -1,10 +1,10 @@
-package com.example.studentmanagement.dao;
+package com.example.studentmanagement.jpa;
 
 import com.example.studentmanagement.model.SinhVienModel;
 
 import java.util.List;
 
-public interface ISinhVienDAO {
+public interface ISinhVienJPA {
 
     List<SinhVienModel> findAll();
 
