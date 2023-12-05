@@ -5,7 +5,7 @@ import com.sun.istack.NotNull;
 public class Helper {
 
     public static String generateNewMa(String oldMa, String key) {
-        if (oldMa == null) {
+        if (oldMa == null || oldMa.trim().isEmpty()) {
             return key + "0001";
         }
 
