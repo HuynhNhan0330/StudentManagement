@@ -1,11 +1,8 @@
 package com.example.studentmanagement.api;
 
-import com.example.studentmanagement.model.GiaoVienModel;
-import com.example.studentmanagement.model.MonHocModel;
-import com.example.studentmanagement.service.IGiaoVienService;
-import com.example.studentmanagement.service.IMonHocService;
-import com.example.studentmanagement.service.impl.GiaoVienService;
-import com.example.studentmanagement.service.impl.MonHocService;
+import com.example.studentmanagement.model.LopHocModel;
+import com.example.studentmanagement.service.ILopHocService;
+import com.example.studentmanagement.service.impl.LopHocService;
 import com.example.studentmanagement.utils.HttpUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
@@ -17,13 +14,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = { "/api-admin-monhoc" })
-public class MonHocAPI extends HttpServlet {
+@WebServlet(urlPatterns = { "/api-admin-lophoc" })
+public class LopHocAPI extends HttpServlet {
 
-    private IMonHocService monHocService;
+    private ILopHocService lopHocService;
 
-    public MonHocAPI() {
-        monHocService = new MonHocService();
+    public LopHocAPI() {
+        lopHocService = new LopHocService();
     }
 
     @Override
@@ -36,11 +33,11 @@ public class MonHocAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // get list object
-        List<MonHocModel> listMonHoc = monHocService.findAll();
+        List<LopHocModel> listLopHoc = lopHocService.findAll();
 
         // convert list model to json for response
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(resp.getOutputStream(), listMonHoc);
+        mapper.writeValue(resp.getOutputStream(), listLopHoc);
         return;
     }
 
@@ -54,14 +51,14 @@ public class MonHocAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // binding json to string-json, mapping data with model.class
-        MonHocModel monHocNew = HttpUtil.of(req.getReader()).toModel(MonHocModel.class);
+        LopHocModel lopHocNew = HttpUtil.of(req.getReader()).toModel(LopHocModel.class);
 
         // create new data point in database
-        monHocNew = monHocService.save(monHocNew);
+        lopHocNew = lopHocService.save(lopHocNew);
 
         // convert model to json for response
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(resp.getOutputStream(), monHocNew);
+        mapper.writeValue(resp.getOutputStream(), lopHocNew);
         return;
     }
 
@@ -75,14 +72,14 @@ public class MonHocAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // binding json to string-json, mapping data with model.class
-        MonHocModel monHocUpdate = HttpUtil.of(req.getReader()).toModel(MonHocModel.class);
+        LopHocModel lopHocUpdate = HttpUtil.of(req.getReader()).toModel(LopHocModel.class);
 
         // update new data point in database
-        monHocUpdate = monHocService.update(monHocUpdate);
+        lopHocUpdate = lopHocService.update(lopHocUpdate);
 
         // convert model to json for response
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(resp.getOutputStream(), monHocUpdate);
+        mapper.writeValue(resp.getOutputStream(), lopHocUpdate);
         return;
     }
 
@@ -96,10 +93,10 @@ public class MonHocAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // binding data json to string-json, mapping data with model class
-        MonHocModel monHocDelete = HttpUtil.of(req.getReader()).toModel(MonHocModel.class);
+        LopHocModel lopHocDelete = HttpUtil.of(req.getReader()).toModel(LopHocModel.class);
 
         // delete target data point in database
-        monHocService.delete(monHocDelete.getMaMH());
+        lopHocService.delete(lopHocDelete.getMaLop());
 
         // convert model to json for response
         ObjectMapper mapper = new ObjectMapper();

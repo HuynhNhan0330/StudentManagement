@@ -1,6 +1,5 @@
 package com.example.studentmanagement.jpa;
 
-import com.example.studentmanagement.model.LoaiDiemModel;
 import com.example.studentmanagement.model.MonHocModel;
 
 import java.util.List;

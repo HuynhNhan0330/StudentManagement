@@ -34,11 +34,11 @@ public class GiaoVienAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // get list object
-        List<GiaoVienModel> listKhoa = giaoVienService.findAll();
+        List<GiaoVienModel> listGiaoVien = giaoVienService.findAll();
 
         // convert list model to json for response
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(resp.getOutputStream(), listKhoa);
+        mapper.writeValue(resp.getOutputStream(), listGiaoVien);
         return;
     }
 
