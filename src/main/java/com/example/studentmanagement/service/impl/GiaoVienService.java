@@ -30,8 +30,8 @@ public class GiaoVienService implements IGiaoVienService {
     public GiaoVienModel save(GiaoVienModel giaoVienModel) {
         String newMaGV = Helper.generateNewMa(giaoVienJPA.findMaxMaGiaoVien(), "GV");
         giaoVienModel.setMaGV(newMaGV);
-        String currentMaKhoa = giaoVienJPA.save(giaoVienModel);
-        return giaoVienJPA.findOne(currentMaKhoa);
+        String currentMaGiaoVien = giaoVienJPA.save(giaoVienModel);
+        return giaoVienJPA.findOne(currentMaGiaoVien);
     }
 
     @Override
