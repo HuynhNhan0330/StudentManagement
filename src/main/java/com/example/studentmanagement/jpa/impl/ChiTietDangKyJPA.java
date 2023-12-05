@@ -85,6 +85,8 @@ public class ChiTietDangKyJPA implements IChiTietDangKyJPA {
             entityManager.getTransaction().begin();
 
             ChiTietDangKyModel ctdk = new ChiTietDangKyModel();
+            ctdk.setMaSV(chiTietDangKyModel.getMaSV());
+            ctdk.setMaLop(chiTietDangKyModel.getMaLop());
             ctdk.setKyHoc(chiTietDangKyModel.getKyHoc());
 
             entityManager.persist(ctdk);
@@ -125,8 +127,6 @@ public class ChiTietDangKyJPA implements IChiTietDangKyJPA {
             query.setParameter("maLop", chiTietDangKyModel.getMaLop());
             ChiTietDangKyModel ctdk = query.getSingleResult();
 
-            ctdk.setMaSV(chiTietDangKyModel.getMaSV());
-            ctdk.setMaLop(chiTietDangKyModel.getMaLop());
             ctdk.setKyHoc(chiTietDangKyModel.getKyHoc());
 
             entityManager.merge(ctdk);
