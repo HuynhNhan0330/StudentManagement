@@ -2,14 +2,12 @@ import React, { useState } from 'react';
 import { Space, Button, Input, Card } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import CreateLecturerModal from '../../../components/Admin/Modal/CreateLecturerModal';
-import SendNotiLecturerModal from '../../../components/Admin/Modal/SendNotiLecturerModal';
 import ShowLecturerDrawer from '../../../components/Admin/Drawer/ShowLecturerDrawer';
 import LecturerTable from '../../../components/Admin/Table/LecturerTable';
 
 const { Search } = Input;
 
 const Lecturer = () => {
-    const [isOpen, setIsOpen] = useState(false);
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
     const [isDetailDrawerOpen, setIsDetailDrawerOpen] = useState(false);
     const [selectedStudent, setSelectedStudent] = useState(null);
@@ -21,14 +19,6 @@ const Lecturer = () => {
 
     const showCreateModal = () => {
         setIsCreateModalOpen(true);
-    };
-
-    const handleNotificationModalOk = () => {
-        setIsOpen(false);
-    };
-
-    const handleNotificationModalCancel = () => {
-        setIsOpen(false);
     };
 
     const handleCreateModalOk = () => {
@@ -69,11 +59,6 @@ const Lecturer = () => {
                 </Space>
                 <LecturerTable handleDetail={handleDetail} />
             </Card>
-            <SendNotiLecturerModal
-                open={isOpen}
-                onOk={handleNotificationModalOk}
-                onCancel={handleNotificationModalCancel}
-            />
             <CreateLecturerModal
                 open={isCreateModalOpen}
                 onOk={handleCreateModalOk}

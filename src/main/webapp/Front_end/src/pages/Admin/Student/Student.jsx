@@ -2,14 +2,12 @@ import React, { useState } from 'react';
 import { Space, Button, Input, Card } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import CreateStudentModal from '../../../components/Admin/Modal/CreateStudentModal';
-import SendNotiStudentModal from '../../../components/Admin/Modal/SendNotiStudentModal';
 import ShowStudentDrawer from '../../../components/Admin/Drawer/ShowStudentDrawer';
 import StudentTable from '../../../components/Admin/Table/StudentTable';
 
 const { Search } = Input;
 
 const Student = () => {
-    const [isOpen, setIsOpen] = useState(false);
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
     const [isDetailDrawerOpen, setIsDetailDrawerOpen] = useState(false);
     const [selectedStudent, setSelectedStudent] = useState(null);
@@ -21,14 +19,6 @@ const Student = () => {
 
     const showCreateModal = () => {
         setIsCreateModalOpen(true);
-    };
-
-    const handleNotificationModalOk = () => {
-        setIsOpen(false);
-    };
-
-    const handleNotificationModalCancel = () => {
-        setIsOpen(false);
     };
 
     const handleCreateModalOk = () => {
@@ -65,11 +55,6 @@ const Student = () => {
                 </Space>
                 <StudentTable handleDetail={handleDetail} />
             </Card>
-            <SendNotiStudentModal
-                open={isOpen}
-                onOk={handleNotificationModalOk}
-                onCancel={handleNotificationModalCancel}
-            />
             <CreateStudentModal
                 open={isCreateModalOpen}
                 onOk={handleCreateModalOk}
