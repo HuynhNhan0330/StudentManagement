@@ -12,9 +12,9 @@ function LecturerTable({ handleDetail }) {
                 },
 
                 {
-                    title: 'Mssv',
-                    dataIndex: 'mssv',
-                    key: 'mssv',
+                    title: 'MsGV',
+                    dataIndex: 'msgv',
+                    key: 'msgv',
                 },
                 {
                     title: 'Name',
@@ -67,7 +67,7 @@ function LecturerTable({ handleDetail }) {
                 {
                     key: '1',
                     stt: 1,
-                    mssv: 'SV001',
+                    msgv: 'GV001',
                     name: 'John Brown',
                     ngaySinh: '01/01/1990',
                     email: 'john@example.com',
@@ -77,7 +77,7 @@ function LecturerTable({ handleDetail }) {
                 {
                     key: '2',
                     stt: 2,
-                    mssv: 'SV002',
+                    msgv: 'GV002',
                     name: 'Jim Green',
                     ngaySinh: '02/02/1991',
                     email: 'jim@example.com',
@@ -87,7 +87,7 @@ function LecturerTable({ handleDetail }) {
                 {
                     key: '3',
                     stt: 3,
-                    mssv: 'SV003',
+                    msgv: 'GV003',
                     name: 'Joe Black',
                     ngaySinh: '03/03/1992',
                     email: 'joe@example.com',

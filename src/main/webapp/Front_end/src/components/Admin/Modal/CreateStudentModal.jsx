@@ -14,19 +14,19 @@ function CreateStudentModal({ open, onOk, onCancel }) {
                 <Form.Item label="Ngày sinh">
                     <Input />
                 </Form.Item>
-                <Form.Item label="Email">
+                <Form.Item label="Giới tính">
                     <Input />
                 </Form.Item>
-                <Form.Item label="Số điện thoại">
+                <Form.Item label="Khoa">
                     <Input />
                 </Form.Item>
-                <Form.Item label="Khóa">
+                <Form.Item label="Tên ngành">
                     <Input />
                 </Form.Item>
-                <Form.Item label="Lớp">
+                <Form.Item label="Năm nhập học">
                     <Input />
                 </Form.Item>
-                <Form.Item label="Faculty">
+                <Form.Item label="Số tín đã học">
                     <Input />
                 </Form.Item>
             </Form>

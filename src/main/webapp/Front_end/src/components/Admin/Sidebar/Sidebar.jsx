@@ -12,6 +12,7 @@ const Sidebar = () => {
                 { to: '/', icon: 'fas fa-home', text: 'Home' },
                 { to: '/major_faculty', icon: 'fas fa-school', text: 'Major - Faculty' },
                 { to: '/class', icon: 'fas fa-house-user', text: 'Class' },
+                { to: '/subject', icon: 'fas fa-shapes', text: 'Subject' },
                 { to: '/student', icon: 'fas fa-user-graduate', text: 'Student' },
                 { to: '/lecturer', icon: 'fas fa-user-tie', text: 'Lecturer' },
             ],
