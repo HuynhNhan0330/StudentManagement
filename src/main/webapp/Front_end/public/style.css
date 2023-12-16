@@ -1,0 +1,35 @@
+:root {
+  --background-color: #f0f2f5;
+  --header-color: #ffffff;
+
+  --container-color: #e4e6eb;
+
+  --hover-color: #e4e6e9;
+  --sub-text-color: rgba(175, 177, 182, 255); /*chữ chia sẻ, thanh scroll*/
+  --shadow-color: black;
+  --text-color: black;
+  --note-tag-color: #39393a;
+
+  --facebook-color: rgba(8, 102, 255, 255);
+  --nav-size: 80px;
+}
+
+[data-theme="dark"] {
+  --background-color: #282c34;
+
+  --header-color: #242526;
+
+  --container-color: rgba(58, 59, 60, 255);
+  --hover-color: rgba(78, 79, 80, 255);
+  --sub-text-color: rgba(175, 177, 182, 255); /*chữ chia sẻ, thanh scroll*/
+  --shadow-color: white;
+  --text-color: white;
+  --note-tag-color: #c8c8c8;
+  --facebook-color: rgba(8, 102, 255, 255);
+  --nav-size: 80px;
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
