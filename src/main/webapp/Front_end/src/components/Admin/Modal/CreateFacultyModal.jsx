@@ -1,9 +1,9 @@
 import React from 'react';
 import { Modal, Form, Input } from 'antd';
 
-function CreateMajorModal({ open, onOk, onCancel }) {
+function CreateFacultyModal({ open, onOk, onCancel }) {
     return (
-        <Modal title="Create New Major" open={open} onOk={onOk} onCancel={onCancel}>
+        <Modal title="Create New Faculty" open={open} onOk={onOk} onCancel={onCancel}>
             <Form>
                 <Form.Item label="Name" name="name" rules={[{ required: true }]}>
                     <Input />
@@ -16,4 +16,4 @@ function CreateMajorModal({ open, onOk, onCancel }) {
     );
 }
 
-export default CreateMajorModal;
+export default CreateFacultyModal;

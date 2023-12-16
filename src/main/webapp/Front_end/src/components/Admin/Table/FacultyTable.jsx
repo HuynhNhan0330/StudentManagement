@@ -34,8 +34,8 @@ function FacultyTable() {
     return (
         <Table
             dataSource={[
-                { stt: 1, name: 'Khoa A', id: 'Description' },
-                { stt: 2, name: 'Khoa B', id: 'Description 1' },
+                { stt: 1, name: 'Khoa A', id: '11111' },
+                { stt: 2, name: 'Khoa B', id: '21' },
             ]}
             columns={facultyColumns}
         />
