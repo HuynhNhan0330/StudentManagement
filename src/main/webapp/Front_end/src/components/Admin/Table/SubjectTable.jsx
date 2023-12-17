@@ -5,12 +5,12 @@ const SubjectTable = ({ showDrawer }) => {
         <Table
             columns={[
                 {
-                    title: 'Subject id',
+                    title: 'Mã môn học',
                     dataIndex: 'subject_id',
                     key: 'subject_id',
                 },
                 {
-                    title: 'Name',
+                    title: 'Tên môn học',
                     dataIndex: 'name',
                     key: 'name',
                 },
