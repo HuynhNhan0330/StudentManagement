@@ -12,10 +12,8 @@
             <property name="hibernate.format_sql" value="true"/>
             <!-- Cấu hình nhà cung cấp JPA -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServer2012Dialect"/>
-
 <!--            &lt;!&ndash; Cấu hình quản lý đối tượng &ndash;&gt;-->
             <property name = "javax.persistence.schema-generation.database.action" value = "create" />
-
         </properties>
     </persistence-unit>
 </persistence>
