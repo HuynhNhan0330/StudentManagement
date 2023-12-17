@@ -34,11 +34,11 @@ const MajorFaculty = () => {
 
     return (
         <div style={{ display: 'flex', gap: '16px' }}>
-            <Card title="Major" style={{ flex: 1, width: '50%' }}>
+            <Card title="Ngành" style={{ flex: 1, width: '50%' }}>
                 <div style={{ display: 'flex', gap: '8px' }}>
                     <div>
                         <Button type="primary" onClick={showModalMajor}>
-                            Create
+                            Thêm mới
                         </Button>
                     </div>
                 </div>
@@ -46,10 +46,10 @@ const MajorFaculty = () => {
             </Card>
             <CreateMajorModal open={isModalOpenMajor} onOk={handleOkMajor} onCancel={handleCancelMajor} />
 
-            <Card title="Faculty" style={{ flex: 1, width: '50%' }}>
+            <Card title="Khoa" style={{ flex: 1, width: '50%' }}>
                 <div style={{ marginTop: '8px' }}>
                     <Button type="primary" onClick={showModalFaculty}>
-                        Create
+                        Thêm mới
                     </Button>
                 </div>
                 <FacultyTable />

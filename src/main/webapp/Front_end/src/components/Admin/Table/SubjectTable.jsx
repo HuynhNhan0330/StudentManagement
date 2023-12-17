@@ -21,18 +21,18 @@ const SubjectTable = ({ showDrawer }) => {
                     key: 'soTinchi',
                 },
                 {
-                    title: 'Action',
+                    title: '',
                     key: 'action',
                     render: (_, record) => (
                         <Space size="middle">
                             <Button type="primary" onClick={() => console.log('Edit')}>
-                                Edit
+                                Sửa
                             </Button>
                             <Button danger variant="contained" type="primary" onClick={() => console.log('Delete')}>
-                                Delete
+                                Xóa
                             </Button>
                             <Button type="dashed" onClick={() => showDrawer(record)}>
-                                Detail
+                                Chi tiết
                             </Button>
                         </Space>
                     ),

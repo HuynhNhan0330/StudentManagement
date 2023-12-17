@@ -17,7 +17,7 @@ function StudentTable({ handleDetail }) {
                     key: 'mssv',
                 },
                 {
-                    title: 'Name',
+                    title: 'Tên',
                     dataIndex: 'name',
                     key: 'name',
                 },
@@ -52,22 +52,24 @@ function StudentTable({ handleDetail }) {
                     key: 'soTin',
                 },
                 {
-                    title: 'Action',
+                    title: '',
                     key: 'action',
                     render: (_, record) => (
                         <Space size="small">
                             <Button variant="contained" type="primary">
-                                Edit
+                                Sửa
                             </Button>
                             <Button danger variant="contained" type="primary">
-                                Delete
+                                Xóa
                             </Button>
                             <Button variant="contained" onClick={() => handleDetail(record)}>
-                                Detail
+                                Chi tiết
                             </Button>
+                            {/*
                             <Button variant="contained" type="link">
                                 Reset
-                            </Button>
+                            </Button>*/}
+                            
                         </Space>
                     ),
                 },
