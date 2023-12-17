@@ -9,7 +9,7 @@ function MajorTable() {
             key: 'stt',
         },
         {
-            title: 'Name',
+            title: 'Tên',
             dataIndex: 'name',
             key: 'name',
         },
@@ -19,7 +19,7 @@ function MajorTable() {
             key: 'id',
         },
         {
-            title: 'Action',
+            title: '',
             key: 'action',
             render: (text, record) => (
                 <Space size="middle">

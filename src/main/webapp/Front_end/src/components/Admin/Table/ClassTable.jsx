@@ -4,50 +4,50 @@ import { Table, Button, Space } from 'antd';
 function ClassTable({ showDrawer }) {
     const columns = [
         {
-            title: 'Class id',
+            title: 'Mã lớp',
             dataIndex: 'class_id',
             key: 'class_id',
         },
         {
-            title: 'Class Name',
+            title: 'Tên lớp',
             dataIndex: 'name',
             key: 'name',
-            render: (text) => <a>{text}</a>,
+            //render: (text) => <a>{text}</a>,
         },
         {
-            title: 'Room',
-            dataIndex: 'room',
-            key: 'room',
+            title: 'Mã giảng viên',
+            dataIndex: 'LecturerId',
+            key: 'LecturerId',
         },
 
         {
-            title: 'Program',
-            dataIndex: 'program',
-            key: 'program',
+            title: 'Tên giảng viên',
+            dataIndex: 'LecturerName',
+            key: 'LecturerName',
         },
         {
-            title: 'Class Type',
-            dataIndex: 'class_type',
-            key: 'class_type',
+            title: 'Thời gian',
+            dataIndex: 'Time',
+            key: 'Time',
         },
         {
-            title: 'Subject_ID',
+            title: 'Mã môn học',
             dataIndex: 'subject_id',
             key: 'subject_id',
         },
         {
-            title: 'Action',
+            title: '',
             key: 'action',
             render: (_, record) => (
                 <Space size="middle">
                     <Button variant="contained" type="primary">
-                        Edit
+                        Sửa
                     </Button>
                     <Button danger variant="contained" type="primary">
-                        Delete
+                        Xóa
                     </Button>
                     <Button default variant="contained" onClick={() => showDrawer(record)}>
-                        Details
+                        Chi tiết
                     </Button>
                 </Space>
             ),
@@ -60,19 +60,19 @@ function ClassTable({ showDrawer }) {
                 {
                     key: '1',
                     class_id: '1',
-                    name: 'Hoa hoc',
-                    room: '101',
-                    program: 'John Doe',
-                    class_type: '30',
+                    name: 'Lop 11.1',
+                    LecturerId: '101',
+                    LecturerName: 'John Doe',
+                    Time: 'Thứ 6 - Tiết 1,2,3,4',
                     subject_id: '90',
                 },
                 {
                     key: '2',
                     class_id: '2',
-                    name: 'Vat Ly',
-                    room: '102',
-                    program: 'Jane Smith',
-                    class_type: '25',
+                    name: '122.2',
+                    LecturerId: '102',
+                    LecturerName: 'Jane Smith',
+                    Time: 'Thứ 7 - Tiết 5,6,7,8',
                     subject_id: '120',
                 },
             ]}

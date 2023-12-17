@@ -3,9 +3,9 @@ import { Modal, Form, Input } from 'antd';
 
 function CreateLecturerModal({ open, onOk, onCancel }) {
     return (
-        <Modal title="Tạo sinh viên" open={open} onOk={onOk} onCancel={onCancel}>
+        <Modal title="Tạo giảng viên" open={open} onOk={onOk} onCancel={onCancel}>
             <Form>
-                <Form.Item label="MSSV">
+                <Form.Item label="MSGV">
                     <Input />
                 </Form.Item>
                 <Form.Item label="Tên">
@@ -20,7 +20,7 @@ function CreateLecturerModal({ open, onOk, onCancel }) {
                 <Form.Item label="Số điện thoại">
                     <Input />
                 </Form.Item>
-                <Form.Item label="Faculty">
+                <Form.Item label="Khoa">
                     <Input />
                 </Form.Item>
             </Form>

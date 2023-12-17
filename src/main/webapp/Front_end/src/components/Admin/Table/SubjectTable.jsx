@@ -5,12 +5,12 @@ const SubjectTable = ({ showDrawer }) => {
         <Table
             columns={[
                 {
-                    title: 'Subject id',
+                    title: 'Mã môn học',
                     dataIndex: 'subject_id',
                     key: 'subject_id',
                 },
                 {
-                    title: 'Name',
+                    title: 'Tên môn học',
                     dataIndex: 'name',
                     key: 'name',
                 },
@@ -21,18 +21,18 @@ const SubjectTable = ({ showDrawer }) => {
                     key: 'soTinchi',
                 },
                 {
-                    title: 'Action',
+                    title: '',
                     key: 'action',
                     render: (_, record) => (
                         <Space size="middle">
                             <Button type="primary" onClick={() => console.log('Edit')}>
-                                Edit
+                                Sửa
                             </Button>
                             <Button danger variant="contained" type="primary" onClick={() => console.log('Delete')}>
-                                Delete
+                                Xóa
                             </Button>
                             <Button type="dashed" onClick={() => showDrawer(record)}>
-                                Detail
+                                Chi tiết
                             </Button>
                         </Space>
                     ),

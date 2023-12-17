@@ -3,9 +3,9 @@ import { Modal, Form, Input } from 'antd';
 
 function CreateFacultyModal({ open, onOk, onCancel }) {
     return (
-        <Modal title="Create New Faculty" open={open} onOk={onOk} onCancel={onCancel}>
+        <Modal title="Tạo khoa mới" open={open} onOk={onOk} onCancel={onCancel}>
             <Form>
-                <Form.Item label="Name" name="name" rules={[{ required: true }]}>
+                <Form.Item label="Tên khoa" name="name" rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
                 <Form.Item label="Id" name="id" rules={[{ required: true }]}>

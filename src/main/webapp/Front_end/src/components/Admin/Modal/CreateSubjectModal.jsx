@@ -3,13 +3,13 @@ import { Modal, Form, Input } from 'antd';
 const CreateSubjectModal = ({ open, onCancel, onOk }) => {
     const createForm = (
         <Form>
-            <Form.Item label="Name" name="name">
+            <Form.Item label="Tên môn học" name="name">
                 <Input />
             </Form.Item>
-            <Form.Item label="Predicate Subject" name="predicate_subject">
+            <Form.Item label="Mã môn học" name="id">
                 <Input />
             </Form.Item>
-            <Form.Item label="Previos Subject" name="previos_subject">
+            <Form.Item label="Số tín chỉ" name="tinChi">
                 <Input />
             </Form.Item>
         </Form>
