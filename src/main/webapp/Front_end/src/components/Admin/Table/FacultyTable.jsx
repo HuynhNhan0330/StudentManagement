@@ -4,7 +4,7 @@ import { Table, Button, Space } from 'antd';
 function FacultyTable() {
     const facultyColumns = [
         {
-            title: 'Stt',
+            title: 'STT',
             dataIndex: 'stt',
             key: 'stt',
         },
@@ -23,9 +23,9 @@ function FacultyTable() {
             key: 'action',
             render: (text, record) => (
                 <Space size="middle">
-                    <Button type="primary">Edit</Button>
+                    <Button type="primary">Sửa</Button>
                     <Button type="primary" danger>
-                        Delete
+                        Xóa
                     </Button>
                 </Space>
             ),

@@ -41,15 +41,15 @@ const SubjectTable = ({ showDrawer }) => {
             dataSource={[
                 {
                     key: '1',
-                    subject_id: 'Subject1',
-                    name: 'Hoa hoc',
-                    soTinchi: '1',
+                    subject_id: 'SE347',
+                    name: 'Công nghệ Web',
+                    soTinchi: '2',
                 },
                 {
                     key: '2',
-                    subject_id: 'SUbject2',
-                    name: 'Vat Ly',
-                    soTinchi: '4',
+                    subject_id: 'SE34z',
+                    name: 'Mon Z',
+                    soTinchi: '3',
                 },
             ]}
             rowSelection={{

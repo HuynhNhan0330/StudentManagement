@@ -63,12 +63,7 @@ function Home() {
     return (
         <div>
             <div>
-                <Row gutter={[16, 16]}>
-                    {renderDashboardCard('Total', 100000, <ShoppingCartOutlined />, 'green')}
-                    {renderDashboardCard('Revenue', 50000, <DollarCircleOutlined />, 'blue')}
-                    {renderDashboardCard('Items Sold', 200, <ShoppingOutlined />, 'orange')}
-                    {renderDashboardCard('Customers', 50, <UserOutlined />, 'purple')}
-                </Row>
+                
             </div>
             <div className="pt-5">
                 <Row gutter={[16, 16]}>

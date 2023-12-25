@@ -1,47 +1,100 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import './Sidebar.scss';
-import '@fortawesome/free-solid-svg-icons';
-import SidebarSection from '../../Common/SidebarSection/SidebarSction';
+import { useEffect, useRef, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import './SideBar.scss';
+import 'boxicons/css/boxicons.min.css';
+
+const sidebarNavItems = [
+    {
+        display: 'Home',
+        icon: <i className='bx bx-home'></i>,
+        to: '/',
+        section: ''
+    },
+    {
+        display: 'Ngành khoa',
+        icon: <i className='bx bx-bell'></i>,
+        to: '/major_faculty',
+        section: 'major_faculty'
+    },
+    {
+        display: 'Sinh viên',
+        icon: <i className='bx bx-user'></i>,
+        to: '/student',
+        section: 'student'
+    },
+    {
+        display: 'Giảng viên',
+        icon: <i class='bx bx-group'></i>,
+        to: '/lecturer',
+        section: 'lecturer'
+    },
+    {
+        display: 'Lớp',
+        icon: <i class='bx bx-door-open'></i>,
+        to: '/class',
+        section: 'class'
+    },
+    {
+        display: 'Môn học',
+        icon: <i className='bx bx-book'></i>,
+        to: '/subject',
+        section: 'subject'
+    },
+    
+]
 
 const Sidebar = () => {
-    const sections = [
-        {
-            label: 'Quản lý chung',
-            items: [
-                { to: '/', icon: 'fas fa-home', text: 'Home' },
-                { to: '/major_faculty', icon: 'fas fa-school', text: 'Ngành - Khoa' },
-                { to: '/class', icon: 'fas fa-house-user', text: 'Lớp' },
-                { to: '/subject', icon: 'fas fa-shapes', text: 'Môn học' },
-                { to: '/student', icon: 'fas fa-user-graduate', text: 'Học sinh' },
-                { to: '/lecturer', icon: 'fas fa-user-tie', text: 'Giảng viên' },
-            ],
-        },
-        {
-            label: 'Khác',
-            items: [{ to: '/login', icon: 'fas fa-arrow-right', text: 'Đăng xuất' }],
-        },
-    ];
+    const [activeIndex, setActiveIndex] = useState(0);
+    const [stepHeight, setStepHeight] = useState(0);
+    const sidebarRef = useRef();
+    const indicatorRef = useRef();
+    const location = useLocation();
 
-    return (
-        <nav className="navbar navbar-light navbar-vertical navbar-expand-xl">
-            <div className="d-flex align-items-center">
-                <NavLink to="/" className="navbar-brand">
-                    <div className="d-flex align-items-center py-3">
-                        <span className="font-sans-serif">ADMIN</span>
-                    </div>
-                </NavLink>
-            </div>
+    useEffect(() => {
+        setTimeout(() => {
+            const sidebarItem = sidebarRef.current.querySelector('.sidebar__menu__item');
+            indicatorRef.current.style.height = `${sidebarItem.clientHeight}px`;
+            setStepHeight(sidebarItem.clientHeight);
+        }, 50);
+    }, []);
 
-            <div className="navbar-vertical-content scrollbar">
-                <ul className="navbar-nav flex-column mb-3">
-                    {sections.map((section, index) => (
-                        <SidebarSection key={index} section={section} />
-                    ))}
-                </ul>
+    // change active index
+    useEffect(() => {
+        const curPath = window.location.pathname.split('/')[1];
+        const activeItem = sidebarNavItems.findIndex(item => item.section === curPath);
+        setActiveIndex(curPath.length === 0 ? 0 : activeItem);
+    }, [location]);
+
+    return <nav className="navbar navbar-light navbar-vertical navbar-expand-xl">
+        <div className='sidebar'>
+            <div className="sidebar__logo">
+                Admin
             </div>
-        </nav>
-    );
+            <div ref={sidebarRef} className="sidebar__menu">
+                <div
+                    ref={indicatorRef}
+                    className="sidebar__menu__indicator"
+                    style={{
+                        transform: `translateX(-50%) translateY(${activeIndex * stepHeight}px)`
+                    }}
+                ></div>
+                {
+                    sidebarNavItems.map((item, index) => (
+                        <Link to={item.to} key={index} style={{ textDecoration: 'none' }}>
+                            <div className={`sidebar__menu__item ${activeIndex === index ? 'active' : ''}`}>
+                                <div className="sidebar__menu__item__icon">
+                                    {item.icon}
+                                </div>
+                                <div className="sidebar__menu__item__text">
+                                    {item.display}
+                                </div>
+                            </div>
+                        </Link>
+                    ))
+                }
+            </div>
+        </div>
+    </nav>;
 };
 
 export default Sidebar;
