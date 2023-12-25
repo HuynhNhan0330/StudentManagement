@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './SideBar.scss';
 import 'boxicons/css/boxicons.min.css';
 
@@ -12,7 +13,7 @@ const sidebarNavItems = [
     },
     {
         display: 'Ngành khoa',
-        icon: <i className='bx bx-bell'></i>,
+        icon: <FontAwesomeIcon icon="fa-solid fa-school" />,
         to: '/major_faculty',
         section: 'major_faculty'
     },

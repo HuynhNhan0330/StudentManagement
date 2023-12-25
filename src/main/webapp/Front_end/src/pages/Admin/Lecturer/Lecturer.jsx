@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Space, Button, Input, Card } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
-import CreateLecturerModal from '../../../components/Admin/Modal/CreateLecturerModal';
+import CreateLecturerModal from '../../../components/Admin/Modal/Create/CreateLecturerModal';
 import ShowLecturerDrawer from '../../../components/Admin/Drawer/ShowLecturerDrawer';
 import LecturerTable from '../../../components/Admin/Table/LecturerTable';
 
