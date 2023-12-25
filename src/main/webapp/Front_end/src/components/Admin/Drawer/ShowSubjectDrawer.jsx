@@ -3,7 +3,7 @@ import { Drawer, List } from 'antd';
 const ShowSubjectDrawer = ({ open, onClose, classesData, selectedSubject }) => {
     return (
         <Drawer
-            title={`Danh sách lớp học của môn ${selectedSubject?.name}`}
+            title={`Thông tin về môn ${selectedSubject?.name}`}
             placement="right"
             onClose={onClose}
             open={open}

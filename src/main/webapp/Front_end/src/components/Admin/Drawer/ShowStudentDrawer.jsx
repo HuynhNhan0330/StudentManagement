@@ -10,7 +10,7 @@ function ShowStudentDrawer({ open, onClose, selectedStudent }) {
                         <strong>MSSV:</strong> {selectedStudent.mssv}
                     </p>
                     <p>
-                        <strong>Name:</strong> {selectedStudent.name}
+                        <strong>Tên:</strong> {selectedStudent.name}
                     </p>
                 </div>
             )}

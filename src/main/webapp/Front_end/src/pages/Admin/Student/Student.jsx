@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Space, Button, Input, Card } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
-import CreateStudentModal from '../../../components/Admin/Modal/CreateStudentModal';
+import CreateStudentModal from '../../../components/Admin/Modal/Create/CreateStudentModal';
 import ShowStudentDrawer from '../../../components/Admin/Drawer/ShowStudentDrawer';
 import StudentTable from '../../../components/Admin/Table/StudentTable';
 

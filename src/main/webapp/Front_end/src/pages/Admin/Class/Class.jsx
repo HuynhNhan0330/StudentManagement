@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Space, Button, Input, Card } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import ClassTable from '../../../components/Admin/Table/ClassTable';
-import CreateClassModal from '../../../components/Admin/Modal/CreateClassModal';
+import CreateClassModal from '../../../components/Admin/Modal/Create/CreateClassModal';
 import ShowClassDrawer from '../../../components/Admin/Drawer/ShowClassDrawer';
 
 const { Search } = Input;

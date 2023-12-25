@@ -1,7 +1,14 @@
 import React from 'react';
-import { Modal, Form, Input } from 'antd';
+import { Modal, Form, Input, DatePicker, Select } from 'antd';
+
 
 function CreateStudentModal({ open, onOk, onCancel }) {
+    const handleChange = (value) => {
+        console.log(`selected ${value}`);
+      };
+    const onChange = (date, dateString) => {
+        console.log(date, dateString);
+      };
     return (
         <Modal title="Tạo sinh viên" open={open} onOk={onOk} onCancel={onCancel}>
             <Form>
@@ -12,10 +19,26 @@ function CreateStudentModal({ open, onOk, onCancel }) {
                     <Input />
                 </Form.Item>
                 <Form.Item label="Ngày sinh">
-                    <Input />
+                <DatePicker onChange={onChange} style={{
+                        width: 400,
+                    }} />
                 </Form.Item>
                 <Form.Item label="Giới tính">
-                    <Input />
+                <Select
+                    defaultValue=""
+                    style={{
+                        width: 400,
+                    }}
+                    onChange={handleChange}
+                    options={[
+                        {
+                        value: 'Nam',
+                        label: 'Nam',
+                        },
+                        {
+                        value: 'Nu',
+                        label: 'Nữ',
+                        }, ]} />
                 </Form.Item>
                 <Form.Item label="Khoa">
                     <Input />

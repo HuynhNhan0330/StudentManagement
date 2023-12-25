@@ -4,7 +4,7 @@ import { Table, Button, Space } from 'antd';
 function MajorTable() {
     const MajorColumns = [
         {
-            title: 'Stt',
+            title: 'STT',
             dataIndex: 'stt',
             key: 'stt',
         },
@@ -23,9 +23,9 @@ function MajorTable() {
             key: 'action',
             render: (text, record) => (
                 <Space size="middle">
-                    <Button type="primary">Edit</Button>
+                    <Button type="primary">Sửa</Button>
                     <Button type="primary" danger>
-                        Delete
+                        Xóa
                     </Button>
                 </Space>
             ),
@@ -34,8 +34,8 @@ function MajorTable() {
     return (
         <Table
             dataSource={[
-                { stt: 1, name: 'Khoa hoc may tinh', id: '696969' },
-                { stt: 2, name: 'Phan mem', id: '11111' },
+                { stt: 1, name: 'Khoa học máy tính', id: '22222' },
+                { stt: 2, name: 'Công nghệ phần mềm', id: '11111' },
             ]}
             columns={MajorColumns}
         />

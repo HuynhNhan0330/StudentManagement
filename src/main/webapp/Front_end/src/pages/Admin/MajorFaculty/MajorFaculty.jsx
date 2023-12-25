@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Card, Button } from 'antd';
 import MajorTable from '../../../components/Admin/Table/MajorTable';
 import FacultyTable from '../../../components/Admin/Table/FacultyTable';
-import CreateMajorModal from '../../../components/Admin/Modal/CreateMajorModal';
-import CreateFacultyModal from '../../../components/Admin/Modal/CreateFacultyModal';
+import CreateMajorModal from '../../../components/Admin/Modal/Create/CreateMajorModal';
+import CreateFacultyModal from '../../../components/Admin/Modal/Create/CreateFacultyModal';
 const MajorFaculty = () => {
     const [isModalOpenMajor, setIsModalOpenMajor] = useState(false);
 

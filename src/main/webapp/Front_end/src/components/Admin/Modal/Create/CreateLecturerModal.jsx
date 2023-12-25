@@ -1,7 +1,10 @@
 import React from 'react';
-import { Modal, Form, Input } from 'antd';
+import { Modal, Form, Input, DatePicker } from 'antd';
 
 function CreateLecturerModal({ open, onOk, onCancel }) {
+    const onChange = (date, dateString) => {
+        console.log(date, dateString);
+      };
     return (
         <Modal title="Tạo giảng viên" open={open} onOk={onOk} onCancel={onCancel}>
             <Form>
@@ -12,7 +15,9 @@ function CreateLecturerModal({ open, onOk, onCancel }) {
                     <Input />
                 </Form.Item>
                 <Form.Item label="Ngày sinh">
-                    <Input />
+                <DatePicker onChange={onChange} style={{
+                        width: 390,
+                    }} />
                 </Form.Item>
                 <Form.Item label="Email">
                     <Input />

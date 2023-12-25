@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { Space, Button, Input, Card } from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
-import CreateSubjectModal from '../../../components/Admin/Modal/CreateSubjectModal';
-import ShowSubjectDrawer from '../../../components/Admin/Drawer/ShowSubjectDrawer';
-import SubjectTable from '../../../components/Admin/Table/SubjectTable';
 
+import EditSubjectModal from '../../../components/Admin/Modal/Edit/EditSubjectModal'
+import CreateSubjectModal from '../../../components/Admin/Modal/Create/CreateSubjectModal';
+import SubjectTable from '../../../components/Admin/Table/SubjectTable';
+import './Subject.scss'
 const { Search } = Input;
 
 const Subject = () => {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
-    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
     const [selectedSubject, setSelectedSubject] = useState(null);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
 
     const showCreateModal = () => {
         setIsCreateModalOpen(true);
@@ -28,13 +30,23 @@ const Subject = () => {
         showCreateModal();
     };
 
-    const showDrawer = (subject) => {
-        setSelectedSubject(subject);
-        setIsDrawerOpen(true);
+    
+
+    const showEditModal = (record) => {
+        setSelectedSubject(record);
+        setIsEditModalOpen(true);
     };
 
-    const onCloseDrawer = () => {
-        setIsDrawerOpen(false);
+    const handleEditModalCancel = () => {
+        setIsEditModalOpen(false);
+    };
+
+    const handleEditModalOk = () => {
+        setIsEditModalOpen(false);
+    };
+
+    const handleEdit = () => {
+        showEditModal();
     };
 
     const classesData = [
@@ -50,30 +62,29 @@ const Subject = () => {
                 <div>
                     <h5>Quản lý môn học</h5>
                 </div>
-                <Space style={{ marginBottom: 16 }}>
+                <Space className='search_subject'>
                     <Search
-                        placeholder="Search..."
+                        placeholder="Tìm kiếm..."
                         onSearch={(value) => console.log(value)}
                         style={{ width: 200 }}
-                        prefix={<SearchOutlined />}
                     />
 
                     <Button type="primary" onClick={handleCreate}>
                         Thêm mới
                     </Button>
                 </Space>
-                <SubjectTable showDrawer={showDrawer} />
+                <SubjectTable showEdit={handleEdit} />
             </Card>
             <CreateSubjectModal
                 open={isCreateModalOpen}
                 onCancel={handleCreateModalCancel}
                 onOk={handleCreateModalOk}
             />
-            <ShowSubjectDrawer
-                open={isDrawerOpen}
-                onClose={onCloseDrawer}
-                classesData={classesData}
-                selectedSubject={selectedSubject}
+            <EditSubjectModal
+                    open={isEditModalOpen}
+                    onCancel={handleEditModalCancel}
+                    onOk={handleEditModalOk}
+                    selectedSubject={selectedSubject}
             />
         </div>
     );

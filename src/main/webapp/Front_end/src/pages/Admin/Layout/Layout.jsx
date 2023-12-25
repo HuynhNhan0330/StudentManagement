@@ -3,10 +3,13 @@ import Header from '../../../components/Admin/Header/Header';
 import Sidebar from '../../../components/Admin/Sidebar/Sidebar';
 import { ConfigProvider } from 'antd';
 
+
+
+
 function Layout({ children }) {
     return (
         <div className="container-fluid">
-            <Sidebar />
+            <Sidebar/>
             <div className="content">
                 <Header />
                 <div>
@@ -21,11 +24,17 @@ function Layout({ children }) {
                             }}
                         >
                             {children}
+                            
                         </ConfigProvider>
                     </div>
                 </div>
             </div>
+            
         </div>
+      
+      
+      
+
     );
 }
 

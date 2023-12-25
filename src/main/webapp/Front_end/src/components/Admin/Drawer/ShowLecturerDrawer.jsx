@@ -7,10 +7,10 @@ function ShowlecturerDrawer({ open, onClose, selectedStudent }) {
             {selectedStudent && (
                 <div>
                     <p>
-                        <strong>MSSV:</strong> {selectedStudent.mssv}
+                        <strong>MSGV:</strong> {selectedStudent.mssv}
                     </p>
                     <p>
-                        <strong>Name:</strong> {selectedStudent.name}
+                        <strong>Tên:</strong> {selectedStudent.name}
                     </p>
                 </div>
             )}

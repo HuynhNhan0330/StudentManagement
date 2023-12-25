@@ -7,16 +7,16 @@ function ShowClassDrawer({ selectedClass, onClose, open }) {
             {selectedClass && (
                 <div>
                     <p>
-                        <strong>Name:</strong> {selectedClass.name}
+                        <strong>Tên lớp:</strong> {selectedClass.name}
                     </p>
                     <p>
-                        <strong>Teacher:</strong> {selectedClass.teacher}
+                        <strong>Giảng viên:</strong> {selectedClass.teacher}
                     </p>
                     <p>
-                        <strong>Size:</strong> {selectedClass.size}
+                        <strong>Sĩ số:</strong> {selectedClass.size}
                     </p>
                     <Table
-                        columns={[{ title: 'List Student', dataIndex: 'student', key: 'student' }]}
+                        columns={[{ title: 'Danh sách học sinh', dataIndex: 'student', key: 'student' }]}
                         dataSource={selectedClass.students}
                         pagination={false}
                     />
