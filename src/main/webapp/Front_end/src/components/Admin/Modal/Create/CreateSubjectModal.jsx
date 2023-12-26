@@ -1,5 +1,5 @@
 import { Modal, Form, Input } from 'antd';
-
+import './sCss/LocalModal.scss'
 const CreateSubjectModal = ({ open, onCancel, onOk }) => {
     const createForm = (
         <Form>
@@ -13,7 +13,7 @@ const CreateSubjectModal = ({ open, onCancel, onOk }) => {
     );
 
     return (
-        <Modal title="Thêm mới môn học" open={open} onOk={onOk} onCancel={onCancel}>
+        <Modal title="Thêm mới môn học" open={open} onOk={onOk} onCancel={onCancel} okButtonProps={{className : 'SubjectOkButton'}} cancelButtonProps={{className : 'SubjectCancelButton'}}>
             {createForm}
         </Modal>
     );

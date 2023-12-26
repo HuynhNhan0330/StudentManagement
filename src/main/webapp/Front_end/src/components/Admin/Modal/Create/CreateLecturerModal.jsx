@@ -6,7 +6,7 @@ function CreateLecturerModal({ open, onOk, onCancel }) {
         console.log(date, dateString);
       };
     return (
-        <Modal title="Tạo giảng viên" open={open} onOk={onOk} onCancel={onCancel}>
+        <Modal title="Tạo giảng viên" open={open} onOk={onOk} onCancel={onCancel} okButtonProps={{className : 'SubjectOkButton'}} cancelButtonProps={{className : 'SubjectCancelButton'}}>
             <Form>
                 <Form.Item label="Tên">
                     <Input />

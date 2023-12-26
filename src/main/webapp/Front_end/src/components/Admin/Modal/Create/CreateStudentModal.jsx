@@ -10,7 +10,7 @@ function CreateStudentModal({ open, onOk, onCancel }) {
         console.log(date, dateString);
       };
     return (
-        <Modal title="Tạo sinh viên" open={open} onOk={onOk} onCancel={onCancel}>
+        <Modal title="Tạo sinh viên" open={open} onOk={onOk} onCancel={onCancel} okButtonProps={{className : 'SubjectOkButton'}} cancelButtonProps={{className : 'SubjectCancelButton'}}>
             <Form>
                 <Form.Item label="Tên">
                     <Input />
