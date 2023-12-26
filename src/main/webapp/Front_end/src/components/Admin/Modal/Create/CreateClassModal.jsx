@@ -8,9 +8,9 @@ function CreateClassModal({ open, onOk, onCancel }) {
                 <Form.Item label="Tên" name="name" rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item label="Mã lớp" name="id" rules={[{ required: true }]}>
+                {/*<Form.Item label="Mã lớp" name="id" rules={[{ required: true }]}>
                     <Input />
-                </Form.Item>
+    </Form.Item>*/}
                 <Form.Item label="Mã giảng viên" name="MSGV" rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>

@@ -8,9 +8,6 @@ function CreateLecturerModal({ open, onOk, onCancel }) {
     return (
         <Modal title="Tạo giảng viên" open={open} onOk={onOk} onCancel={onCancel}>
             <Form>
-                <Form.Item label="MSGV">
-                    <Input />
-                </Form.Item>
                 <Form.Item label="Tên">
                     <Input />
                 </Form.Item>

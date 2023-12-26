@@ -8,9 +8,6 @@ function CreateFacultyModal({ open, onOk, onCancel }) {
                 <Form.Item label="Tên khoa" name="name" rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item label="Id" name="id" rules={[{ required: true }]}>
-                    <Input />
-                </Form.Item>
             </Form>
         </Modal>
     );
