@@ -3,10 +3,10 @@ import { Modal, Form, Input } from 'antd';
 const EditSubjectModal = ({ open, onCancel, onOk, selectedSubject}) => {
     const createForm = (
         <Form>
-            <Form.Item label="Tên môn học" name="name">
+            <Form.Item label="Tên môn học" name="tenMH">
                 <Input />
             </Form.Item>
-            <Form.Item label="Số tín chỉ" name="tinChi">
+            <Form.Item label="Số tín chỉ" name="soTinChi">
                 <Input />
             </Form.Item>
         </Form>

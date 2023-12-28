@@ -40,6 +40,7 @@ public class MonHocAPI extends HttpServlet {
 
         // convert list model to json for response
         ObjectMapper mapper = new ObjectMapper();
+        resp.setStatus(HttpServletResponse.SC_OK);
         mapper.writeValue(resp.getOutputStream(), listMonHoc);
         return;
     }
@@ -61,7 +62,15 @@ public class MonHocAPI extends HttpServlet {
 
         // convert model to json for response
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(resp.getOutputStream(), monHocNew);
+
+        if (monHocNew == null) {
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        }
+        else {
+            resp.setStatus(HttpServletResponse.SC_OK);
+            mapper.writeValue(resp.getOutputStream(), monHocNew);
+        }
+
         return;
     }
 

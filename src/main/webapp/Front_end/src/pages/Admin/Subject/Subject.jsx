@@ -4,6 +4,7 @@ import { Space, Button, Input, Card } from 'antd';
 import EditSubjectModal from '../../../components/Admin/Modal/Edit/EditSubjectModal'
 import CreateSubjectModal from '../../../components/Admin/Modal/Create/CreateSubjectModal';
 import SubjectTable from '../../../components/Admin/Table/SubjectTable';
+import { handleCreateSubject } from '../../../controller/SubjectController';
 import './Subject.scss'
 const { Search } = Input;
 
@@ -18,8 +19,8 @@ const Subject = () => {
         setIsCreateModalOpen(true);
     };
 
-    const handleCreateModalOk = () => {
-        setIsCreateModalOpen(false);
+    const handleCreateModalOk = (values) => {
+        handleCreateSubject(values)
     };
 
     const handleCreateModalCancel = () => {
@@ -29,8 +30,6 @@ const Subject = () => {
     const handleCreate = () => {
         showCreateModal();
     };
-
-    
 
     const showEditModal = (record) => {
         setSelectedSubject(record);
@@ -49,13 +48,6 @@ const Subject = () => {
         showEditModal();
     };
 
-    const classesData = [
-        {
-            key: '1',
-            class_name: 'Class A',
-        },
-    ];
-
     return (
         <div>
             <Card>
@@ -70,7 +62,7 @@ const Subject = () => {
                     />
 
                     <Button type="primary" onClick={handleCreate}>
-                        Thêm mới
+                        Thêm môn học
                     </Button>
                 </Space>
                 <SubjectTable showEdit={handleEdit} />

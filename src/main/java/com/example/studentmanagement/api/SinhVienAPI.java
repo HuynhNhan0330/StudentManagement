@@ -37,6 +37,7 @@ public class SinhVienAPI extends HttpServlet {
 
         // convert list model to json for response
         ObjectMapper mapper = new ObjectMapper();
+        resp.setStatus(HttpServletResponse.SC_OK);
         mapper.writeValue(resp.getOutputStream(), listSinhVien);
         return;
     }

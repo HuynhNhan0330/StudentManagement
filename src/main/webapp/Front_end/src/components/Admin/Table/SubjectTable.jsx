@@ -1,70 +1,92 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import { Space, Button, Table } from 'antd';
+import { handleGetSubjects } from '../../../controller/SubjectController';
 
+const Delete = () => {
 
-    
-    const SubjectTable = ({ showEdit }) => {
+};
 
-        const Delete = () =>{
-        
-        };
-        return (
-            <>
-                <Table
-                    columns={[
-                        {
-                            title: 'Mã môn học',
-                            dataIndex: 'subject_id',
-                            key: 'subject_id',
-                        },
-                        {
-                            title: 'Tên môn học',
-                            dataIndex: 'name',
-                            key: 'name',
-                        },
+const SubjectTable = ({ showEdit }) => {
+    const [data, setData] = useState();
+    const [loading, setLoading] = useState(false);
+    const [tableParams, setTableParams] = useState({
+        pagination: {
+            current: 1,
+            pageSize: 5,
+        },
+    });
 
-                        {
-                            title: 'Số tín chỉ',
-                            dataIndex: 'soTinchi',
-                            key: 'soTinchi',
-                        },
-                        {
-                            title: '',
-                            key: 'action',
-                            render: (_, record) => (
-                                <Space size="middle">
-                                    <Button type="primary" onClick={()=>showEdit(record)}>
-                                        Sửa
-                                    </Button>
-                                    <Button danger variant="contained" type="primary" onClick={() => Delete()}>
-                                        Xóa
-                                    </Button>
+    const columns = [
+        {
+            title: 'Mã môn học',
+            dataIndex: 'maMH',
+        },
+        {
+            title: 'Tên môn học',
+            dataIndex: 'tenMH',
+        },
 
-                                </Space>
-                            ),
-                        },
-                    ]}
-                    dataSource={[
-                        {
-                            key: '1',
-                            subject_id: 'SE347',
-                            name: 'Công nghệ Web',
-                            soTinchi: '2',
-                        },
-                        {
-                            key: '2',
-                            subject_id: 'SE34z',
-                            name: 'Mon Z',
-                            soTinchi: '3',
-                        },
-                    ]}
-                    rowSelection={{
-                        type: 'checkbox',
-                    }}
-                />
-            </>
-        );
-        
+        {
+            title: 'Số tín chỉ',
+            dataIndex: 'soTinChi',
+        },
+        {
+            title: 'Thao tác',
+            key: 'action',
+            render: (_, record) => (
+                <Space size="middle">
+                    <Button type="primary" onClick={() => Delete()}>
+                        Sửa
+                    </Button>
+                    <Button danger variant="contained" type="primary" onClick={() => Delete()}>
+                        Xóa
+                    </Button>
+                </Space>
+            ),
+        },
+    ]
+
+    const fetchData = () => {
+        setLoading(true);
+        handleGetSubjects().then((results) => {
+            setData(results);
+            setLoading(false);
+            setTableParams({
+                ...tableParams,
+                pagination: {
+                    ...tableParams.pagination,
+                    total: results.length,
+                },
+            });
+        });
     };
 
-    export default SubjectTable;
+    useEffect(() => {
+        fetchData();
+    }, [JSON.stringify(tableParams)]);
+
+    const handleTableChange = (pagination, filters, sorter) => {
+        setTableParams({
+            pagination,
+            filters,
+            ...sorter,
+        });
+
+        // `dataSource` is useless since `pageSize` changed
+        if (pagination.pageSize !== tableParams.pagination?.pageSize) {
+            setData([]);
+        }
+    };
+
+    return (
+        <Table
+            columns={columns}
+            dataSource={data}
+            loading={loading}
+            onChange={handleTableChange}
+            pagination={tableParams.pagination}
+        />
+    );
+};
+
+export default SubjectTable;
