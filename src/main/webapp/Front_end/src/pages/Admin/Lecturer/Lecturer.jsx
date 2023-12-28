@@ -4,13 +4,14 @@ import { SearchOutlined } from '@ant-design/icons';
 import CreateLecturerModal from '../../../components/Admin/Modal/Create/CreateLecturerModal';
 import ShowLecturerDrawer from '../../../components/Admin/Drawer/ShowLecturerDrawer';
 import LecturerTable from '../../../components/Admin/Table/LecturerTable';
-
+import EditLecturerModal from '../../../components/Admin/Modal/Edit/EditLecturerModal';
 const { Search } = Input;
 
 const Lecturer = () => {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
     const [isDetailDrawerOpen, setIsDetailDrawerOpen] = useState(false);
     const [selectedStudent, setSelectedStudent] = useState(null);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
     const handleDetail = (record) => {
         setSelectedStudent(record);
@@ -35,7 +36,21 @@ const Lecturer = () => {
     const closeDrawer = () => {
         setIsDetailDrawerOpen(false);
     };
+    const showEditModal = (record) => {
+        setIsEditModalOpen(true);
+    };
 
+    const handleEditModalCancel = () => {
+        setIsEditModalOpen(false);
+    };
+
+    const handleEditModalOk = () => {
+        setIsEditModalOpen(false);
+    };
+
+    const handleEdit = () => {
+        showEditModal();
+    };
     return (
         <div>
             <Card>
@@ -57,7 +72,7 @@ const Lecturer = () => {
                         Thêm mới
                     </Button>
                 </Space>
-                <LecturerTable handleDetail={handleDetail} />
+                <LecturerTable handleDetail={handleDetail} showEdit={handleEdit}/>
             </Card>
             <CreateLecturerModal
                 open={isCreateModalOpen}
@@ -65,6 +80,10 @@ const Lecturer = () => {
                 onCancel={handleCreateModalCancel}
             />
             <ShowLecturerDrawer onClose={closeDrawer} open={isDetailDrawerOpen} selectedStudent={selectedStudent} />
+            <EditLecturerModal 
+                open={isEditModalOpen}
+                    onCancel={handleEditModalCancel}
+                    onOk={handleEditModalOk}/>
         </div>
     );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table, Space, Button } from 'antd';
 
-function StudentTable({ handleDetail }) {
+function StudentTable({ handleDetail, showEdit }) {
     return (
         <Table
             columns={[
@@ -56,7 +56,7 @@ function StudentTable({ handleDetail }) {
                     key: 'action',
                     render: (_, record) => (
                         <Space size="small">
-                            <Button variant="contained" type="primary">
+                            <Button variant="contained" type="primary" onClick={()=>showEdit(record)}>
                                 Sửa
                             </Button>
                             <Button danger variant="contained" type="primary">

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table, Button, Space } from 'antd';
 
-function ClassTable({ showDrawer }) {
+const ClassTable = ({ showDrawer, showEdit }) =>{
     const columns = [
         {
             title: 'Mã lớp',
@@ -40,7 +40,7 @@ function ClassTable({ showDrawer }) {
             key: 'action',
             render: (_, record) => (
                 <Space size="middle">
-                    <Button variant="contained" type="primary">
+                    <Button variant="contained" type="primary" onClick={()=>showEdit(record)}>
                         Sửa
                     </Button>
                     <Button danger variant="contained" type="primary">

@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal, Form, Input, DatePicker, Select } from 'antd';
 
 
-function CreateStudentModal({ open, onOk, onCancel }) {
+function EditStudentModal({ open, onOk, onCancel }) {
     const handleChange = (value) => {
         console.log(`selected ${value}`);
       };
@@ -10,7 +10,7 @@ function CreateStudentModal({ open, onOk, onCancel }) {
         console.log(date, dateString);
       };
     return (
-        <Modal title="Tạo sinh viên" open={open} onOk={onOk} onCancel={onCancel} okButtonProps={{className : 'SubjectOkButton'}} cancelButtonProps={{className : 'SubjectCancelButton'}}>
+        <Modal title="Sửa thông tin sinh viên" open={open} onOk={onOk} onCancel={onCancel} okButtonProps={{className : 'SubjectOkButton'}} cancelButtonProps={{className : 'SubjectCancelButton'}}>
             <Form>
                 <Form.Item label="Tên">
                     <Input />
@@ -18,8 +18,8 @@ function CreateStudentModal({ open, onOk, onCancel }) {
                 <Form.Item label="Ngày sinh">
                 <DatePicker onChange={onChange} style={{
                         width: 400,
-                    }}
-                    placeholder='' />
+                    }} 
+                    placeholder=''/>
                 </Form.Item>
                 <Form.Item label="Giới tính">
                 <Select
@@ -55,4 +55,4 @@ function CreateStudentModal({ open, onOk, onCancel }) {
     );
 }
 
-export default CreateStudentModal;
+export default EditStudentModal;

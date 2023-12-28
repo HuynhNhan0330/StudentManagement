@@ -4,13 +4,14 @@ import { SearchOutlined } from '@ant-design/icons';
 import CreateStudentModal from '../../../components/Admin/Modal/Create/CreateStudentModal';
 import ShowStudentDrawer from '../../../components/Admin/Drawer/ShowStudentDrawer';
 import StudentTable from '../../../components/Admin/Table/StudentTable';
-
+import EditStudentModal from '../../../components/Admin/Modal/Edit/EditStudentModal'
 const { Search } = Input;
 
 const Student = () => {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
     const [isDetailDrawerOpen, setIsDetailDrawerOpen] = useState(false);
     const [selectedStudent, setSelectedStudent] = useState(null);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
     const handleDetail = (record) => {
         setSelectedStudent(record);
@@ -35,7 +36,21 @@ const Student = () => {
     const closeDrawer = () => {
         setIsDetailDrawerOpen(false);
     };
+    const showEditModal = (record) => {
+        setIsEditModalOpen(true);
+    };
 
+    const handleEditModalCancel = () => {
+        setIsEditModalOpen(false);
+    };
+
+    const handleEditModalOk = () => {
+        setIsEditModalOpen(false);
+    };
+
+    const handleEdit = () => {
+        showEditModal();
+    };
     return (
         <div>
             <Card>
@@ -53,7 +68,7 @@ const Student = () => {
                         Thêm mới
                     </Button>
                 </Space>
-                <StudentTable handleDetail={handleDetail} />
+                <StudentTable showEdit={handleEdit} handleDetail={handleDetail} />
             </Card>
             <CreateStudentModal
                 open={isCreateModalOpen}
@@ -61,6 +76,11 @@ const Student = () => {
                 onCancel={handleCreateModalCancel}
             />
             <ShowStudentDrawer onClose={closeDrawer} open={isDetailDrawerOpen} selectedStudent={selectedStudent} />
+            <EditStudentModal open={isEditModalOpen}
+                    onCancel={handleEditModalCancel}
+                    onOk={handleEditModalOk}
+                    
+    />
         </div>
     );
 };

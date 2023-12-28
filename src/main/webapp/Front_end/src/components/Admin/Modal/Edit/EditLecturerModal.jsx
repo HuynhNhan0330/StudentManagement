@@ -1,21 +1,20 @@
 import React from 'react';
 import { Modal, Form, Input, DatePicker } from 'antd';
 
-function CreateLecturerModal({ open, onOk, onCancel }) {
+function EditLecturerModal({ open, onOk, onCancel }) {
     const onChange = (date, dateString) => {
         console.log(date, dateString);
       };
     return (
-        <Modal title="Tạo giảng viên" open={open} onOk={onOk} onCancel={onCancel} okButtonProps={{className : 'SubjectOkButton'}} cancelButtonProps={{className : 'SubjectCancelButton'}}>
+        <Modal title="Sửa thông tin giảng viên" open={open} onOk={onOk} onCancel={onCancel} okButtonProps={{className : 'SubjectOkButton'}} cancelButtonProps={{className : 'SubjectCancelButton'}}>
             <Form>
                 <Form.Item label="Tên">
                     <Input />
                 </Form.Item>
                 <Form.Item label="Ngày sinh">
-                <DatePicker onChange={onChange} style={{
-                        width: 390,
-                    }}
-                    placeholder='' />
+                <DatePicker onChange={onChange}
+                    placeholder=''
+                    style={{ width: 390, }} />
                 </Form.Item>
                 <Form.Item label="Email">
                     <Input />
@@ -31,4 +30,4 @@ function CreateLecturerModal({ open, onOk, onCancel }) {
     );
 }
 
-export default CreateLecturerModal;
+export default EditLecturerModal;

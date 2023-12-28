@@ -4,13 +4,14 @@ import { SearchOutlined } from '@ant-design/icons';
 import ClassTable from '../../../components/Admin/Table/ClassTable';
 import CreateClassModal from '../../../components/Admin/Modal/Create/CreateClassModal';
 import ShowClassDrawer from '../../../components/Admin/Drawer/ShowClassDrawer';
-
+import EditClassModal from '../../../components/Admin/Modal/Edit/EditClassModal';
 const { Search } = Input;
 
 const Class = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const [selectedClass, setSelectedClass] = useState(null);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
     const showModal = () => {
         setIsModalOpen(true);
@@ -33,6 +34,21 @@ const Class = () => {
         setIsDrawerOpen(false);
     };
 
+    const showEditModal = (record) => {
+        setIsEditModalOpen(true);
+    };
+
+    const handleEditModalCancel = () => {
+        setIsEditModalOpen(false);
+    };
+
+    const handleEditModalOk = () => {
+        setIsEditModalOpen(false);
+    };
+    const handleEdit = () => {
+        showEditModal();
+    };
+
     return (
         <div>
             <Card>
@@ -51,10 +67,15 @@ const Class = () => {
                         Thêm mới
                     </Button>
                 </Space>
-                <ClassTable showDrawer={showDrawer} />
+                <ClassTable showDrawer={showDrawer} showEdit={handleEdit}/>
             </Card>
             <CreateClassModal open={isModalOpen} onOk={handleOk} onCancel={handleCancel} />
             <ShowClassDrawer open={isDrawerOpen} onClose={closeDrawer} selectedClass={selectedClass} />
+            <EditClassModal
+                    open={isEditModalOpen}
+                    onCancel={handleEditModalCancel}
+                    onOk={handleEditModalOk}
+            />
         </div>
     );
 };
