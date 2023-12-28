@@ -1,9 +1,31 @@
 import React from 'react';
-import { Drawer, Table } from 'antd';
+import { Button, Drawer, Flex, Table } from 'antd';
+import InputScore from '../InputScore/InputScore';
 
 function ShowClassDrawer({ selectedClass, onClose, open }) {
+    const columns = [{
+        title: 'STT',
+        dataIndex: 'stt',
+        key: 'stt',
+    },
+
+    {
+        title: 'Mssv',
+        dataIndex: 'mssv',
+        key: 'mssv',
+    },
+    {
+        title: 'Tên',
+        dataIndex: 'name',
+        key: 'name',
+    },
+    {
+        title: 'Ngày Sinh',
+        dataIndex: 'ngaySinh',
+        key: 'ngaySinh',
+    }, ];
     return (
-        <Drawer title="Thông tin môn lớp học" width={720} onClose={onClose} open={open}>
+        <Drawer title="Thông tin môn lớp học" width={800} onClose={onClose} open={open}>
             {selectedClass && (
                 <div>
                     <p>
@@ -15,11 +37,14 @@ function ShowClassDrawer({ selectedClass, onClose, open }) {
                     <p>
                         <strong>Sĩ số:</strong> {selectedClass.size}
                     </p>
-                    <Table
-                        columns={[{ title: 'Danh sách học sinh', dataIndex: 'student', key: 'student' }]}
-                        dataSource={selectedClass.students}
-                        pagination={false}
-                    />
+                    {/*<Table
+                        columns={columns}
+                        dataSource={[]}
+                        pagination={true}
+            />
+            */}
+                    <InputScore></InputScore>
+                       
                 </div>
             )}
         </Drawer>
