@@ -108,10 +108,16 @@ public class MonHocAPI extends HttpServlet {
         MonHocModel monHocDelete = HttpUtil.of(req.getReader()).toModel(MonHocModel.class);
 
         // delete target data point in database
-        monHocService.delete(monHocDelete.getMaMH());
+        Boolean isDelete = monHocService.delete(monHocDelete.getMaMH());
 
         // convert model to json for response
         ObjectMapper mapper = new ObjectMapper();
+
+        if (isDelete)
+            resp.setStatus(HttpServletResponse.SC_OK);
+        else
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+
         mapper.writeValue(resp.getOutputStream(), "{}");
         return;
     }

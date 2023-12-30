@@ -15,5 +15,5 @@ public interface IMonHocJPA {
 
     void update(MonHocModel monHocModel);
 
-    void delete(String maMH);
+    Boolean delete(String maMH);
 }

@@ -41,7 +41,7 @@ public class MonHocService implements IMonHocService {
     }
 
     @Override
-    public void delete(String maMH) {
-        monHocJPA.delete(maMH);
+    public Boolean delete(String maMH) {
+        return monHocJPA.delete(maMH);
     }
 }

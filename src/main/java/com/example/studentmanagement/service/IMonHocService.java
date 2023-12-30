@@ -13,5 +13,5 @@ public interface IMonHocService {
 
     MonHocModel update(MonHocModel monHocModel);
 
-    void delete(String maMH);
+    Boolean delete(String maMH);
 }

@@ -1,8 +1,6 @@
 import { Modal, Form, Input, Button } from 'antd';
 
 const CreateSubjectModal = ({ open, onCancel, onOk }) => {
-    const [form] = Form.useForm();
-
     const onFinish = (values) => {
         onOk(values);
     };

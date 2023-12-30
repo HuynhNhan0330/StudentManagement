@@ -166,7 +166,7 @@ public class MonHocJPA implements IMonHocJPA {
     }
 
     @Override
-    public void delete(String maMH) {
+    public Boolean delete(String maMH) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
@@ -179,8 +179,10 @@ public class MonHocJPA implements IMonHocJPA {
 
             entityManager.remove(mh);
             entityManager.getTransaction().commit();
+            return true;
         } catch (Exception e1) {
             System.out.println(e1.getMessage());
+            return false;
         } finally {
             try {
                 if (entityManagerFactory != null) {
