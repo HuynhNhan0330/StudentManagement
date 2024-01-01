@@ -4,6 +4,7 @@ package com.example.studentmanagement.service;
 import com.example.studentmanagement.model.KhoaModel;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IKhoaService {
 
@@ -11,7 +12,7 @@ public interface IKhoaService {
 
     KhoaModel findOne(String maKhoa);
 
-    KhoaModel save(KhoaModel khoaModel);
+    Map<String, Object> save(KhoaModel khoaModel);
 
     KhoaModel update(KhoaModel khoaModel);
 

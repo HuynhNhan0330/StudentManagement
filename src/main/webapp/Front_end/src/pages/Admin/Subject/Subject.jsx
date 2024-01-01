@@ -61,15 +61,24 @@ const Subject = () => {
     };
 
     const handleCreateModalOk = (values) => {
-        handleCreateSubject(values).then((subject) => {
-            if (subject != null) {
-                // Thông báo tạo thành công
+        handleCreateSubject(values).then((resp) => {
+            if (resp.status === 200) {
+                const subject = resp.data;
+                
+                if (subject != null) {
+                    // Thông báo tạo thành công
 
-                // Cập nhật table   
-                setData([...data, subject]);
+                    // Cập nhật table   
+                    setData([...data, subject]);
+                }
+                else {
+                    // Thông báo tạo thất bại
+                    console.log("Tạo môn học thất bại");
+                }
             }
             else {
                 // Thông báo tạo thất bại
+                console.log(resp.response.data);
             }
         })
     };

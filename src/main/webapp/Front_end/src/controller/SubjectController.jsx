@@ -3,13 +3,13 @@ import axios from "axios"
 const handleCreateSubject = (subject) => {
   return axios.post('http://localhost:8080/api-admin-monhoc', subject)
     .then((response) => {
-      return response.data;
+      return response;
     })
     .catch((error) => {
       console.error('Đã xảy ra lỗi khi gửi dữ liệu:');
-      console.error(error);
+      // console.error(error);
 
-      return null;
+      return error;
     });
 };
 
@@ -30,14 +30,13 @@ const handleGetSubjects = () => {
 const handleDeleteSubjects = (subject) => {
   return axios.delete('http://localhost:8080/api-admin-monhoc', {data: subject})
   .then((response) => {
-    if (response.status === 200)
-      return true;
-    else 
-      return false;
+    return true;
   })
   .catch((error) => {
     console.error('Đã xảy ra lỗi khi gửi dữ liệu:');
     console.error(error);
+
+    return false;
   });
 }
 

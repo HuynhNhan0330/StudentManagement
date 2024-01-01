@@ -2,6 +2,7 @@ package com.example.studentmanagement.jpa.impl;
 
 import com.example.studentmanagement.jpa.IKhoaJPA;
 import com.example.studentmanagement.model.KhoaModel;
+import com.example.studentmanagement.model.MonHocModel;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -182,6 +183,41 @@ public class KhoaJPA implements IKhoaJPA {
         } catch (Exception e1) {
             System.out.println(e1.getMessage());
 
+            return false;
+        } finally {
+            try {
+                if (entityManagerFactory != null) {
+                    entityManagerFactory.close();
+                }
+                if (entityManager != null) {
+                    entityManager.close();
+                }
+            } catch (Exception e2) {
+                System.out.println(e2.getMessage());
+            }
+        }
+    }
+
+    @Override
+    public Boolean checkFacultyName(String tenKhoa) {
+        EntityManagerFactory entityManagerFactory = null;
+        EntityManager entityManager = null;
+        try {
+            entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
+            entityManager = entityManagerFactory.createEntityManager();
+
+            String jpql = "SELECT kh FROM KhoaModel kh WHERE kh.tenKhoa = :tenKhoa";
+            TypedQuery<KhoaModel> query = entityManager.createQuery(jpql, KhoaModel.class);
+            query.setParameter("tenKhoa", tenKhoa);
+
+            KhoaModel khoa = query.getSingleResult();
+
+            if (khoa == null)
+                return false;
+            else
+                return true;
+        } catch (Exception e1) {
+            System.out.println(e1.getMessage());
             return false;
         } finally {
             try {

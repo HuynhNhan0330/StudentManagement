@@ -3,13 +3,13 @@ import axios from "axios"
 const handleCreateFaculty = (faculty) => {
   return axios.post('http://localhost:8080/api-admin-khoa', faculty)
     .then((response) => {
-      return response.data;
+      return response;
     })
     .catch((error) => {
       console.error('Đã xảy ra lỗi khi gửi dữ liệu:');
       console.error(error);
 
-      return null;
+      return error;
     });
 };
 
@@ -30,14 +30,13 @@ const handleGetFaculties = () => {
 const handleDeleteFaculty = (faculty) => {
   return axios.delete('http://localhost:8080/api-admin-khoa', {data: faculty})
   .then((response) => {
-    if (response.status === 200)
-      return true;
-    else 
-      return false;
+    return true;
   })
   .catch((error) => { 
     console.error('Đã xảy ra lỗi khi gửi dữ liệu:');
     console.error(error);
+
+    return false;
   });
 }
 

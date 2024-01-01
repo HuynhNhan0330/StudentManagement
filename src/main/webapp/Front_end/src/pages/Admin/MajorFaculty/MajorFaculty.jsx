@@ -20,15 +20,24 @@ const MajorFaculty = () => {
     };
 
     const handleOkMajor = (values) => {
-        handleCreateMajor(values).then((major) => {
-            if (major != null) {
-                // Thông báo tạo thành công
+        handleCreateMajor(values).then((resp) => {
+            if (resp.status === 200) {
+                const major = resp.data;
+                
+                if (major != null) {
+                    // Thông báo tạo thành công
 
-                // Cập nhật table   
-                setDataMajor([...dataMajor, major]);
+                    // Cập nhật table   
+                    setDataMajor([...dataMajor, major]);
+                }
+                else {
+                    // Thông báo tạo thất bại
+                    console.log("Tạo ngành thất bại");
+                }
             }
             else {
                 // Thông báo tạo thất bại
+                console.log(resp.response.data);
             }
         })
     };
@@ -156,15 +165,24 @@ const MajorFaculty = () => {
     };
 
     const handleOkFaculty = (values) => {
-        handleCreateFaculty(values).then((faculty) => {
-            if (faculty != null) {
-                // Thông báo tạo thành công
+        handleCreateFaculty(values).then((resp) => {
+            if (resp.status === 200) {
+                const faculty = resp.data;
+                
+                if (faculty != null) {
+                    // Thông báo tạo thành công
 
-                // Cập nhật table   
-                setDataFaculty([...dataFaculty, faculty]);
+                    // Cập nhật table   
+                    setDataFaculty([...dataFaculty, faculty]);
+                }
+                else {
+                    // Thông báo tạo thất bại
+                    console.log("Tạo môn học thất bại");
+                }
             }
             else {
                 // Thông báo tạo thất bại
+                console.log(resp.response.data);
             }
         })
     };

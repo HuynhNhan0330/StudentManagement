@@ -16,4 +16,6 @@ public interface IKhoaJPA {
     void update(KhoaModel khoaModel);
 
     Boolean delete(String maKhoa);
+
+    Boolean checkFacultyName(String tenKhoa);
 }

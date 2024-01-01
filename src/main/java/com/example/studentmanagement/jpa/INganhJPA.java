@@ -17,4 +17,6 @@ public interface INganhJPA {
     void update(NganhModel nganhModel);
 
     Boolean delete(String maNganh);
+
+    Boolean checkMajorName(String tenNganh);
 }

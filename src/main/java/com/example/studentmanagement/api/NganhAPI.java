@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(urlPatterns = { "/api-admin-nganh" })
 public class NganhAPI extends HttpServlet {
@@ -56,13 +57,15 @@ public class NganhAPI extends HttpServlet {
         NganhModel nganhModelNew = HttpUtil.of(req.getReader()).toModel(NganhModel.class);
 
         // create new data point in database
-        NganhDTO nganhNew = nganhService.save(nganhModelNew);
+        Map<String, Object> results = nganhService.save(nganhModelNew);
+        NganhDTO nganhNew = (NganhDTO) results.get("nganh");
 
         // convert model to json for response
         ObjectMapper mapper = new ObjectMapper();
 
         if (nganhNew == null) {
             resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            mapper.writeValue(resp.getOutputStream(), results.get("thongBao"));
         }
         else {
             resp.setStatus(HttpServletResponse.SC_OK);

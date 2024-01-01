@@ -202,4 +202,38 @@ public class NganhJPA implements INganhJPA {
             }
         }
     }
+
+    @Override
+    public Boolean checkMajorName(String tenNganh) {
+        EntityManagerFactory entityManagerFactory = null;
+        EntityManager entityManager = null;
+        try {
+            entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
+            entityManager = entityManagerFactory.createEntityManager();
+
+            String jpql = "SELECT new com.example.studentmanagement.dto.NganhDTO(ng.maNganh, ng.tenNganh, ng.maKhoa, kh.tenKhoa) FROM NganhModel ng JOIN KhoaModel kh ON ng.maKhoa = kh.maKhoa WHERE ng.tenNganh = :tenNganh";
+            TypedQuery<NganhDTO> query = entityManager.createQuery(jpql, NganhDTO.class);
+            query.setParameter("tenNganh", tenNganh);
+            NganhDTO nganh = query.getSingleResult();
+
+            if (nganh == null)
+                return false;
+            else
+                return true;
+        } catch (Exception e1) {
+            System.out.println(e1.getMessage());
+            return false;
+        } finally {
+            try {
+                if (entityManagerFactory != null) {
+                    entityManagerFactory.close();
+                }
+                if (entityManager != null) {
+                    entityManager.close();
+                }
+            } catch (Exception e2) {
+                System.out.println(e2.getMessage());
+            }
+        }
+    }
 }

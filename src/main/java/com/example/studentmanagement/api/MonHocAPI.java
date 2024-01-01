@@ -14,8 +14,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import java.io.Console;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(urlPatterns = { "/api-admin-monhoc" })
 public class MonHocAPI extends HttpServlet {
@@ -58,13 +60,16 @@ public class MonHocAPI extends HttpServlet {
         MonHocModel monHocNew = HttpUtil.of(req.getReader()).toModel(MonHocModel.class);
 
         // create new data point in database
-        monHocNew = monHocService.save(monHocNew);
+        Map<String, Object> results = monHocService.save(monHocNew);
+
+        monHocNew = (MonHocModel) results.get("monHoc");
 
         // convert model to json for response
         ObjectMapper mapper = new ObjectMapper();
 
         if (monHocNew == null) {
             resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            mapper.writeValue(resp.getOutputStream(), results.get("thongBao"));
         }
         else {
             resp.setStatus(HttpServletResponse.SC_OK);

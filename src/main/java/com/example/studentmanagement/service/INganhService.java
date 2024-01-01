@@ -4,6 +4,7 @@ import com.example.studentmanagement.dto.NganhDTO;
 import com.example.studentmanagement.model.NganhModel;
 
 import java.util.List;
+import java.util.Map;
 
 public interface INganhService {
 
@@ -11,7 +12,7 @@ public interface INganhService {
 
     NganhDTO findOne(String maNganh);
 
-    NganhDTO save(NganhModel nganhModel);
+    Map<String, Object> save(NganhModel nganhModel);
 
     NganhDTO update(NganhModel nganhModel);
 

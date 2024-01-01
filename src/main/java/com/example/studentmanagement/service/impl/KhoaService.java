@@ -6,7 +6,9 @@ import com.example.studentmanagement.model.KhoaModel;
 import com.example.studentmanagement.service.IKhoaService;
 import com.example.studentmanagement.utils.Helper;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class KhoaService implements IKhoaService {
 
@@ -27,11 +29,26 @@ public class KhoaService implements IKhoaService {
     }
 
     @Override
-    public KhoaModel save(KhoaModel khoaModel) {
-        String newMaKhoa = Helper.generateNewMa(khoaJPA.findMaxMaKhoa(), "KH");
-        khoaModel.setMaKhoa(newMaKhoa);
-        String currentMaKhoa = khoaJPA.save(khoaModel);
-        return khoaJPA.findOne(currentMaKhoa);
+    public Map<String, Object> save(KhoaModel khoaModel) {
+        // Kiểm tra tên khoa
+        Boolean isCheckFacultyName = khoaJPA.checkFacultyName(khoaModel.getTenKhoa());
+
+        if (isCheckFacultyName) {
+            return new HashMap<>(){{
+                put("khoa", null);
+                put("thongBao", "Tên khoa trùng");
+            }};
+        }
+        else {
+            String newMaKhoa = Helper.generateNewMa(khoaJPA.findMaxMaKhoa(), "KH");
+            khoaModel.setMaKhoa(newMaKhoa);
+            String currentMaKhoa = khoaJPA.save(khoaModel);
+
+            return new HashMap<>(){{
+                put("khoa", khoaJPA.findOne(currentMaKhoa));
+                put("thongBao", "Tạo khoa thành công");
+            }};
+        }
     }
 
     @Override

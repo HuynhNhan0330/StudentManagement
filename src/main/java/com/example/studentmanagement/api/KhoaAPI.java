@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(urlPatterns = { "/api-admin-khoa" })
 public class KhoaAPI extends HttpServlet {
@@ -55,13 +56,15 @@ public class KhoaAPI extends HttpServlet {
         KhoaModel khoaNew = HttpUtil.of(req.getReader()).toModel(KhoaModel.class);
 
         // create new data point in database
-        khoaNew = khoaService.save(khoaNew);
+        Map<String, Object> results = khoaService.save(khoaNew);
+        khoaNew = (KhoaModel) results.get("khoa");
 
         // convert model to json for response
         ObjectMapper mapper = new ObjectMapper();
 
         if (khoaNew == null) {
             resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            mapper.writeValue(resp.getOutputStream(), results.get("thongBao"));
         }
         else {
             resp.setStatus(HttpServletResponse.SC_OK);

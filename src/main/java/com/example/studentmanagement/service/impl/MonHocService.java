@@ -6,7 +6,10 @@ import com.example.studentmanagement.model.MonHocModel;
 import com.example.studentmanagement.service.IMonHocService;
 import com.example.studentmanagement.utils.Helper;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public class MonHocService implements IMonHocService {
 
@@ -27,11 +30,25 @@ public class MonHocService implements IMonHocService {
     }
 
     @Override
-    public MonHocModel save(MonHocModel monHocModel) {
-        String newMaMH = Helper.generateNewMa(monHocJPA.findMaxMaMonHoc(), "MH");
-        monHocModel.setMaMH(newMaMH);
-        String currentMaMonHoc = monHocJPA.save(monHocModel);
-        return monHocJPA.findOne(currentMaMonHoc);
+    public Map<String, Object> save(MonHocModel monHocModel) {
+        // Kiểm tra tên môn học
+        Boolean isCheckSubjectName = monHocJPA.checkSubjectName(monHocModel.getTenMH());
+
+        if (isCheckSubjectName) {
+            return new HashMap<>(){{
+                put("monHoc", null);
+                put("thongBao", "Tên môn học trùng");
+            }};
+        }
+        else {
+            String newMaMH = Helper.generateNewMa(monHocJPA.findMaxMaMonHoc(), "MH");
+            monHocModel.setMaMH(newMaMH);
+            String currentMaMonHoc = monHocJPA.save(monHocModel);
+            return new HashMap<>(){{
+                put("monHoc", monHocJPA.findOne(currentMaMonHoc));
+                put("thongBao", "Tạo môn học thành công");
+            }};
+        }
     }
 
     @Override

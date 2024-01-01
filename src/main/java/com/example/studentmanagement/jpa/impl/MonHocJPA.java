@@ -196,4 +196,39 @@ public class MonHocJPA implements IMonHocJPA {
             }
         }
     }
+
+    @Override
+    public Boolean checkSubjectName(String tenMH) {
+        EntityManagerFactory entityManagerFactory = null;
+        EntityManager entityManager = null;
+        try {
+            entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
+            entityManager = entityManagerFactory.createEntityManager();
+
+            String jpql = "SELECT mh FROM MonHocModel mh WHERE mh.tenMH = :tenMH";
+            TypedQuery<MonHocModel> query = entityManager.createQuery(jpql, MonHocModel.class);
+            query.setParameter("tenMH", tenMH);
+
+            MonHocModel monHoc = query.getSingleResult();
+
+            if (monHoc == null)
+                return false;
+            else
+                return true;
+        } catch (Exception e1) {
+            System.out.println(e1.getMessage());
+            return false;
+        } finally {
+            try {
+                if (entityManagerFactory != null) {
+                    entityManagerFactory.close();
+                }
+                if (entityManager != null) {
+                    entityManager.close();
+                }
+            } catch (Exception e2) {
+                System.out.println(e2.getMessage());
+            }
+        }
+    }
 }

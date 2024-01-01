@@ -8,7 +8,9 @@ import com.example.studentmanagement.service.IKhoaService;
 import com.example.studentmanagement.service.INganhService;
 import com.example.studentmanagement.utils.Helper;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class NganhService implements INganhService {
 
@@ -31,11 +33,26 @@ public class NganhService implements INganhService {
     }
 
     @Override
-    public NganhDTO save(NganhModel nganhModel) {
-        String newMaNganh = Helper.generateNewMa(nganhJPA.findMaxMaNganh(), "NG");
-        nganhModel.setMaNganh(newMaNganh);
-        nganhJPA.save(nganhModel);
-        return nganhJPA.findOne(newMaNganh);
+    public Map<String, Object> save(NganhModel nganhModel) {
+        // Kiểm tra tên ngành
+        Boolean isCheckMajorName = nganhJPA.checkMajorName(nganhModel.getTenNganh());
+
+        if (isCheckMajorName) {
+            return new HashMap<>(){{
+                put("nganh", null);
+                put("thongBao", "Tên ngành trùng");
+            }};
+        }
+        else {
+            String newMaNganh = Helper.generateNewMa(nganhJPA.findMaxMaNganh(), "NG");
+            nganhModel.setMaNganh(newMaNganh);
+            nganhJPA.save(nganhModel);
+
+            return new HashMap<>(){{
+                put("nganh", nganhJPA.findOne(newMaNganh));
+                put("thongBao", "Tạo ngành thành công");
+            }};
+        }
     }
 
     @Override
