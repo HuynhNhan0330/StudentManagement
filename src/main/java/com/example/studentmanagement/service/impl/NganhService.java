@@ -1,5 +1,6 @@
 package com.example.studentmanagement.service.impl;
 
+import com.example.studentmanagement.dto.NganhDTO;
 import com.example.studentmanagement.jpa.INganhJPA;
 import com.example.studentmanagement.jpa.impl.NganhJPA;
 import com.example.studentmanagement.model.NganhModel;
@@ -20,17 +21,17 @@ public class NganhService implements INganhService {
     }
 
     @Override
-    public List<NganhModel> findAll() {
+    public List<NganhDTO> findAll() {
         return nganhJPA.findAll();
     }
 
     @Override
-    public NganhModel findOne(String maNganh) {
+    public NganhDTO findOne(String maNganh) {
         return nganhJPA.findOne(maNganh);
     }
 
     @Override
-    public NganhModel save(NganhModel nganhModel) {
+    public NganhDTO save(NganhModel nganhModel) {
         String newMaNganh = Helper.generateNewMa(nganhJPA.findMaxMaNganh(), "NG");
         nganhModel.setMaNganh(newMaNganh);
         nganhJPA.save(nganhModel);
@@ -38,13 +39,13 @@ public class NganhService implements INganhService {
     }
 
     @Override
-    public NganhModel update(NganhModel nganhModel) {
+    public NganhDTO update(NganhModel nganhModel) {
         nganhJPA.update(nganhModel);
         return nganhJPA.findOne(nganhModel.getMaNganh());
     }
 
     @Override
-    public void delete(String maNganh) {
-        nganhJPA.delete(maNganh);
+    public Boolean delete(String maNganh) {
+        return nganhJPA.delete(maNganh);
     }
 }

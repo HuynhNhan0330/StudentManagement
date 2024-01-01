@@ -37,6 +37,7 @@ public class KhoaAPI extends HttpServlet {
 
         // convert list model to json for response
         ObjectMapper mapper = new ObjectMapper();
+        resp.setStatus(HttpServletResponse.SC_OK);
         mapper.writeValue(resp.getOutputStream(), listKhoa);
         return;
     }
@@ -58,7 +59,14 @@ public class KhoaAPI extends HttpServlet {
 
         // convert model to json for response
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(resp.getOutputStream(), khoaNew);
+
+        if (khoaNew == null) {
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        }
+        else {
+            resp.setStatus(HttpServletResponse.SC_OK);
+            mapper.writeValue(resp.getOutputStream(), khoaNew);
+        }
         return;
     }
 
@@ -96,10 +104,16 @@ public class KhoaAPI extends HttpServlet {
         KhoaModel khoaDelete = HttpUtil.of(req.getReader()).toModel(KhoaModel.class);
 
         // delete target data point in database
-        khoaService.delete(khoaDelete.getMaKhoa());
+        Boolean isDelete = khoaService.delete(khoaDelete.getMaKhoa());
 
         // convert model to json for response
         ObjectMapper mapper = new ObjectMapper();
+
+        if (isDelete)
+            resp.setStatus(HttpServletResponse.SC_OK);
+        else
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+
         mapper.writeValue(resp.getOutputStream(), "{}");
         return;
     }

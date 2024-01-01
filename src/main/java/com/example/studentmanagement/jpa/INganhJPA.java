@@ -1,19 +1,20 @@
 package com.example.studentmanagement.jpa;
 
+import com.example.studentmanagement.dto.NganhDTO;
 import com.example.studentmanagement.model.NganhModel;
 
 import java.util.List;
 
 public interface INganhJPA {
-    List<NganhModel> findAll();
+    List<NganhDTO> findAll();
 
     String findMaxMaNganh();
 
-    NganhModel findOne(String maNganh);
+    NganhDTO findOne(String maNganh);
 
     String save(NganhModel nganhModel);
 
     void update(NganhModel nganhModel);
 
-    void delete(String maNganh);
+    Boolean delete(String maNganh);
 }

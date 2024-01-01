@@ -6,13 +6,16 @@ public class NganhDTO {
     private String tenNganh;
     private String maKhoa;
 
+    private String tenKhoa;
+
     public NganhDTO() {
     }
 
-    public NganhDTO(String maNganh, String tenNganh, String maKhoa) {
+    public NganhDTO(String maNganh, String tenNganh, String maKhoa, String tenKhoa) {
         this.maNganh = maNganh;
         this.tenNganh = tenNganh;
         this.maKhoa = maKhoa;
+        this.tenKhoa = tenKhoa;
     }
 
     public String getMaNganh() {
@@ -37,5 +40,13 @@ public class NganhDTO {
 
     public void setMaKhoa(String maKhoa) {
         this.maKhoa = maKhoa;
+    }
+
+    public String getTenKhoa() {
+        return tenKhoa;
+    }
+
+    public void setTenKhoa(String tenKhoa) {
+        this.tenKhoa = tenKhoa;
     }
 }

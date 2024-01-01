@@ -1,18 +1,19 @@
 package com.example.studentmanagement.service;
 
+import com.example.studentmanagement.dto.NganhDTO;
 import com.example.studentmanagement.model.NganhModel;
 
 import java.util.List;
 
 public interface INganhService {
 
-    List<NganhModel> findAll();
+    List<NganhDTO> findAll();
 
-    NganhModel findOne(String maNganh);
+    NganhDTO findOne(String maNganh);
 
-    NganhModel save(NganhModel nganhModel);
+    NganhDTO save(NganhModel nganhModel);
 
-    NganhModel update(NganhModel nganhModel);
+    NganhDTO update(NganhModel nganhModel);
 
-    void delete(String maNganh);
+    Boolean delete(String maNganh);
 }

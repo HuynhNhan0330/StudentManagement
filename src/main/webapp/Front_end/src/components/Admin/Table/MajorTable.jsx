@@ -1,43 +1,42 @@
 import React from 'react';
-import { Table, Button, Space } from 'antd';
+import { Table } from 'antd';
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 
-function MajorTable() {
-    const MajorColumns = [
+function MajorTable({ data, loading, handleTableChange, handleEdit, handleDelete }) {
+    const columns = [
         {
-            title: 'STT',
-            dataIndex: 'stt',
-            key: 'stt',
+            title: 'Mã ngành',
+            dataIndex: 'maNganh',
         },
         {
-            title: 'Tên',
-            dataIndex: 'name',
-            key: 'name',
+            title: 'Tên ngành',
+            dataIndex: 'tenNganh',
+        },
+
+        {
+            title: 'Thuộc Khoa',
+            dataIndex: 'tenKhoa',
         },
         {
-            title: 'Id',
-            dataIndex: 'id',
-            key: 'id',
-        },
-        {
-            title: '',
+            title: 'Thao tác',
             key: 'action',
-            render: (text, record) => (
-                <Space size="middle">
-                    <Button type="primary">Sửa</Button>
-                    <Button type="primary" danger>
-                        Xóa
-                    </Button>
-                </Space>
-            ),
-        },
-    ];
+            render: (record) => (
+                <>
+                    <EditOutlined onClick={() => {handleEdit(record); }}/>
+                    <DeleteOutlined style = {{ color: "red", marginLeft: 12 }}
+                                    onClick = {() => { handleDelete(record); }}
+                    />
+                </>
+            )
+        }
+    ]
+
     return (
         <Table
-            dataSource={[
-                { stt: 1, name: 'Khoa học máy tính', id: '22222' },
-                { stt: 2, name: 'Công nghệ phần mềm', id: '11111' },
-            ]}
-            columns={MajorColumns}
+            columns={ columns }
+            dataSource={ data }
+            loading={ loading }
+            onChange={ handleTableChange }
         />
     );
 }

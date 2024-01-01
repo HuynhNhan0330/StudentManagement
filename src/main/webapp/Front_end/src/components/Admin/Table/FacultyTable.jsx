@@ -1,43 +1,36 @@
 import React from 'react';
-import { Table, Button, Space } from 'antd';
+import { Table } from 'antd';
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 
-function FacultyTable() {
-    const facultyColumns = [
+function FacultyTable({ data, loading, handleTableChange, handleEdit, handleDelete }) {
+    const columns = [
         {
-            title: 'STT',
-            dataIndex: 'stt',
-            key: 'stt',
+            title: 'Mã khoa',
+            dataIndex: 'maKhoa',
         },
         {
-            title: 'Tên',
-            dataIndex: 'name',
-            key: 'name',
+            title: 'Tên khoa',
+            dataIndex: 'tenKhoa',
         },
         {
-            title: 'Id',
-            dataIndex: 'id',
-            key: 'id',
-        },
-        {
-            title: '',
+            title: 'Thao tác',
             key: 'action',
-            render: (text, record) => (
-                <Space size="middle">
-                    <Button type="primary">Sửa</Button>
-                    <Button type="primary" danger>
-                        Xóa
-                    </Button>
-                </Space>
-            ),
-        },
+            render: (record) => (
+                <>
+                    <EditOutlined onClick={() => {handleEdit(record); }}/>
+                    <DeleteOutlined style = {{ color: "red", marginLeft: 12 }}
+                                    onClick = {() => { handleDelete(record); }}
+                    />
+                </>
+            )
+        }
     ];
     return (
         <Table
-            dataSource={[
-                { stt: 1, name: 'Khoa A', id: '11111' },
-                { stt: 2, name: 'Khoa B', id: '21' },
-            ]}
-            columns={facultyColumns}
+            columns={ columns }
+            dataSource={ data }
+            loading={ loading }
+            onChange={ handleTableChange }
         />
     );
 }

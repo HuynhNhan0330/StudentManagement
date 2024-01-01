@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import { Table } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 
@@ -27,8 +26,8 @@ const SubjectTable = ({ data, loading, handleTableChange, handleEdit, handleDele
                                     onClick = {() => { handleDelete(record); }}
                     />
                 </>
-            ),
-        },
+            )
+        }
     ]
 
     return (

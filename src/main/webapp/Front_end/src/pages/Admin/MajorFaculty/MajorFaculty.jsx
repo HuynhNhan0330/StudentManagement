@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
-import { Card, Button } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Card, Button, Modal } from 'antd';
 import MajorTable from '../../../components/Admin/Table/MajorTable';
 import FacultyTable from '../../../components/Admin/Table/FacultyTable';
 import CreateMajorModal from '../../../components/Admin/Modal/Create/CreateMajorModal';
 import CreateFacultyModal from '../../../components/Admin/Modal/Create/CreateFacultyModal';
+import { handleCreateFaculty, handleGetFaculties, handleDeleteFaculty } from '../../../controller/FacultyController';
+import { handleGetMajors, handleCreateMajor, handleDeleteMajor } from '../../../controller/MajorController';
 const MajorFaculty = () => {
+
+    // create major
     const [isModalOpenMajor, setIsModalOpenMajor] = useState(false);
 
     const showModalMajor = () => {
@@ -15,9 +19,132 @@ const MajorFaculty = () => {
         setIsModalOpenMajor(false);
     };
 
-    const handleOkMajor = () => {
-        setIsModalOpenMajor(false);
+    const handleOkMajor = (values) => {
+        handleCreateMajor(values).then((major) => {
+            if (major != null) {
+                // Thông báo tạo thành công
+
+                // Cập nhật table   
+                setDataMajor([...dataMajor, major]);
+            }
+            else {
+                // Thông báo tạo thất bại
+            }
+        })
     };
+
+    // end
+
+    // table major
+    const [dataMajor, setDataMajor] = useState([]);
+    const [loadingMajor, setLoadingMajor] = useState(false);
+    const [tableParamsMajor, setTableParamsMajor] = useState({
+        pagination: {
+        current: 1,
+        pageSize: 10,
+        },
+    });
+
+    const fetchDataMajor = () => {
+        setLoadingMajor(true);
+        handleGetMajors().then((results) => {
+            setDataMajor(results);
+            setLoadingMajor(false);
+            setTableParamsMajor({
+                ...tableParamsMajor,
+                pagination: {
+                ...tableParamsMajor.pagination,
+                total: results.length,
+                },
+            });
+        });
+    };
+
+    useEffect(() => {
+        fetchDataMajor();
+    }, [JSON.stringify(tableParamsMajor)]);
+
+    const handleTableMajorChange = (pagination, filters, sorter) => {
+        setTableParamsMajor({
+            pagination,
+            filters,
+            ...sorter,
+        });
+
+        // `dataSource` is useless since `pageSize` changed
+        if (pagination.pageSize !== tableParamsMajor.pagination?.pageSize) {
+            setDataMajor([]);
+        }
+    };
+
+    // end
+
+    // delete major
+    const handleDeleteMajorModal = (record) => {
+        Modal.confirm({
+            title: "Xác nhận xoá?",
+            okText: "Có",
+            cancelText: "Huỷ",
+            onOk: () => {
+                handleDeleteMajor(record).then((result) => {
+                    if (result) {
+                        setDataMajor((pre) => {
+                            return pre.filter((major) => major.maNganh !== record.maNganh);
+                        });
+                    }
+                })
+            }
+        })
+    };
+    
+    // end
+
+    
+    // table faculty
+    const [dataFaculty, setDataFaculty] = useState([]);
+    const [loadingFaculty, setLoadingFaculty] = useState(false);
+    const [tableParamsFaculty, setTableParamsFaculty] = useState({
+        pagination: {
+        current: 1,
+        pageSize: 10,
+        },
+    });
+
+    const fetchDataFaculty = () => {
+        setLoadingFaculty(true);
+        handleGetFaculties().then((results) => {
+            setDataFaculty(results);
+            setLoadingFaculty(false);
+            setTableParamsFaculty({
+                ...tableParamsFaculty,
+                pagination: {
+                ...tableParamsFaculty.pagination,
+                total: results.length,
+                },
+            });
+        });
+    };
+
+    useEffect(() => {
+        fetchDataFaculty();
+    }, [JSON.stringify(tableParamsFaculty)]);
+
+    const handleTableFacultyChange = (pagination, filters, sorter) => {
+        setTableParamsFaculty({
+            pagination,
+            filters,
+            ...sorter,
+        });
+
+        // `dataSource` is useless since `pageSize` changed
+        if (pagination.pageSize !== tableParamsFaculty.pagination?.pageSize) {
+            setDataFaculty([]);
+        }
+    };
+
+    // end
+
+    // create faculty
 
     const [isModalOpenFaculty, setIsModalOpenFaculty] = useState(false);
     const showModalFaculty = () => {
@@ -28,9 +155,41 @@ const MajorFaculty = () => {
         setIsModalOpenFaculty(false);
     };
 
-    const handleOkFaculty = () => {
-        setIsModalOpenFaculty(false);
+    const handleOkFaculty = (values) => {
+        handleCreateFaculty(values).then((faculty) => {
+            if (faculty != null) {
+                // Thông báo tạo thành công
+
+                // Cập nhật table   
+                setDataFaculty([...dataFaculty, faculty]);
+            }
+            else {
+                // Thông báo tạo thất bại
+            }
+        })
     };
+
+    // end
+
+    // delete faculty
+    const handleDeleteFacultyModal = (record) => {
+        Modal.confirm({
+            title: "Xác nhận xoá?",
+            okText: "Có",
+            cancelText: "Huỷ",
+            onOk: () => {
+                handleDeleteFaculty(record).then((result) => {
+                    if (result) {
+                        setDataFaculty((pre) => {
+                            return pre.filter((faculty) => faculty.maKhoa !== record.maKhoa);
+                        });
+                    }
+                })
+            }
+        })
+    };
+    
+    // end
 
     return (
         <div style={{ display: 'flex', gap: '16px' }}>
@@ -42,9 +201,16 @@ const MajorFaculty = () => {
                         </Button>
                     </div>
                 </div>
-                <MajorTable />
+                <MajorTable data = { dataMajor }
+                            loading ={ loadingMajor }
+                            onChange ={ handleTableMajorChange }
+                            handleDelete= { handleDeleteMajorModal }
+                />
             </Card>
-            <CreateMajorModal open={isModalOpenMajor} onOk={handleOkMajor} onCancel={handleCancelMajor} />
+            <CreateMajorModal open={isModalOpenMajor}
+                              onOk={handleOkMajor}
+                              onCancel={handleCancelMajor}
+                              faculties={dataFaculty} />
 
             <Card title="Khoa" style={{ flex: 1, width: '50%' }}>
                 <div style={{ marginTop: '8px' }}>
@@ -52,9 +218,15 @@ const MajorFaculty = () => {
                         Thêm mới
                     </Button>
                 </div>
-                <FacultyTable />
+                <FacultyTable data = { dataFaculty }
+                              loading ={ loadingFaculty }
+                              onChange ={ handleTableFacultyChange }
+                              handleDelete= { handleDeleteFacultyModal }
+                />
             </Card>
-            <CreateFacultyModal open={isModalOpenFaculty} onOk={handleOkFaculty} onCancel={handleCancelFaculty} />
+            <CreateFacultyModal open={isModalOpenFaculty} 
+                                onOk={handleOkFaculty} 
+                                onCancel={handleCancelFaculty} />
         </div>
     );
 };

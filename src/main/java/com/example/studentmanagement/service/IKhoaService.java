@@ -15,5 +15,5 @@ public interface IKhoaService {
 
     KhoaModel update(KhoaModel khoaModel);
 
-    void delete(String maKhoa);
+    Boolean delete(String maKhoa);
 }

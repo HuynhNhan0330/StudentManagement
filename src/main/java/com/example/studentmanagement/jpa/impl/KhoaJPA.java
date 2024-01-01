@@ -164,7 +164,7 @@ public class KhoaJPA implements IKhoaJPA {
     }
 
     @Override
-    public void delete(String maKhoa) {
+    public Boolean delete(String maKhoa) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
@@ -177,8 +177,12 @@ public class KhoaJPA implements IKhoaJPA {
 
             entityManager.remove(kh);
             entityManager.getTransaction().commit();
+
+            return true;
         } catch (Exception e1) {
             System.out.println(e1.getMessage());
+
+            return false;
         } finally {
             try {
                 if (entityManagerFactory != null) {

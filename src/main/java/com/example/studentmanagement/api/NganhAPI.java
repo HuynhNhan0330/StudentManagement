@@ -34,10 +34,11 @@ public class NganhAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // get list object
-        List<NganhModel> listNganh = nganhService.findAll();
+        List<NganhDTO> listNganh = nganhService.findAll();
 
         // convert list model to json for response
         ObjectMapper mapper = new ObjectMapper();
+        resp.setStatus(HttpServletResponse.SC_OK);
         mapper.writeValue(resp.getOutputStream(), listNganh);
         return;
     }
@@ -55,11 +56,18 @@ public class NganhAPI extends HttpServlet {
         NganhModel nganhModelNew = HttpUtil.of(req.getReader()).toModel(NganhModel.class);
 
         // create new data point in database
-        NganhModel nganhNew = nganhService.save(nganhModelNew);
+        NganhDTO nganhNew = nganhService.save(nganhModelNew);
 
         // convert model to json for response
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(resp.getOutputStream(), nganhNew);
+
+        if (nganhNew == null) {
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        }
+        else {
+            resp.setStatus(HttpServletResponse.SC_OK);
+            mapper.writeValue(resp.getOutputStream(), nganhNew);
+        }
         return;
     }
 
@@ -76,7 +84,7 @@ public class NganhAPI extends HttpServlet {
         NganhModel nganhModelUpdate = HttpUtil.of(req.getReader()).toModel(NganhModel.class);
 
         // update new data point in database
-        NganhModel nganhUpdate = nganhService.update(nganhModelUpdate);
+        NganhDTO nganhUpdate = nganhService.update(nganhModelUpdate);
 
         // convert model to json for response
         ObjectMapper mapper = new ObjectMapper();
@@ -94,10 +102,15 @@ public class NganhAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // binding data json to string-json, mapping data with model class
-        NganhModel nganhDelete = HttpUtil.of(req.getReader()).toModel(NganhModel.class);
+        NganhDTO nganhDelete = HttpUtil.of(req.getReader()).toModel(NganhDTO.class);
 
         // delete target data point in database
-        nganhService.delete(nganhDelete.getMaNganh());
+        Boolean isDelete = nganhService.delete(nganhDelete.getMaNganh());
+
+        if (isDelete)
+            resp.setStatus(HttpServletResponse.SC_OK);
+        else
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 
         // convert model to json for response
         ObjectMapper mapper = new ObjectMapper();

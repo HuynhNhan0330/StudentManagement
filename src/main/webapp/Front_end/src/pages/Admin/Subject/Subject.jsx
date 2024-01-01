@@ -102,6 +102,7 @@ const Subject = () => {
     };
 
     const handleEdit = (record) => {
+        console.log(record);
         showEditModal({...record});
     };
     // end edit
@@ -153,12 +154,13 @@ const Subject = () => {
                 onCancel={handleCreateModalCancel}
                 onOk={handleCreateModalOk}
             />
+            
             <EditSubjectModal
                     open={isEditModalOpen}
                     onCancel={handleEditModalCancel}
                     onOk={handleEditModalOk}
                     selectedSubject={selectedSubject}
-                    setSelectedSubject = {setSelectedSubject}
+                    setSelectedSubject={setSelectedSubject}
             />
         </div>
     );

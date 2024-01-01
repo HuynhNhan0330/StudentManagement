@@ -1,5 +1,6 @@
 package com.example.studentmanagement.jpa.impl;
 
+import com.example.studentmanagement.dto.NganhDTO;
 import com.example.studentmanagement.jpa.INganhJPA;
 import com.example.studentmanagement.model.NganhModel;
 
@@ -12,15 +13,15 @@ import java.util.List;
 public class NganhJPA implements INganhJPA {
 
     @Override
-    public List<NganhModel> findAll() {
+    public List<NganhDTO> findAll() {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
             entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
             entityManager = entityManagerFactory.createEntityManager();
 
-            TypedQuery<NganhModel> query = entityManager.createQuery("SELECT ng FROM NganhModel ng", NganhModel.class);
-            List<NganhModel> nganhList = query.getResultList();
+            TypedQuery<NganhDTO> query = entityManager.createQuery("SELECT new com.example.studentmanagement.dto.NganhDTO(ng.maNganh, ng.tenNganh, ng.maKhoa, kh.tenKhoa) FROM NganhModel ng, KhoaModel kh WHERE ng.maKhoa = kh.maKhoa", NganhDTO.class);
+            List<NganhDTO> nganhList = query.getResultList();
 
             return nganhList;
         } catch (Exception e1) {
@@ -68,14 +69,17 @@ public class NganhJPA implements INganhJPA {
     }
 
     @Override
-    public NganhModel findOne(String maNganh) {
+    public NganhDTO findOne(String maNganh) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
             entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
             entityManager = entityManagerFactory.createEntityManager();
 
-            NganhModel ng = entityManager.find(NganhModel.class, maNganh);
+            String jpql = "SELECT new com.example.studentmanagement.dto.NganhDTO(ng.maNganh, ng.tenNganh, ng.maKhoa, kh.tenKhoa) FROM NganhModel ng JOIN KhoaModel kh ON ng.maKhoa = kh.maKhoa WHERE ng.maNganh = :maNganh";
+            TypedQuery<NganhDTO> query = entityManager.createQuery(jpql, NganhDTO.class);
+            query.setParameter("maNganh", maNganh);
+            NganhDTO ng = query.getSingleResult();
 
             return ng;
         } catch (Exception e1) {
@@ -166,7 +170,7 @@ public class NganhJPA implements INganhJPA {
     }
 
     @Override
-    public void delete(String maNganh) {
+    public Boolean delete(String maNganh) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
@@ -179,8 +183,12 @@ public class NganhJPA implements INganhJPA {
 
             entityManager.remove(ng);
             entityManager.getTransaction().commit();
+
+            return true;
         } catch (Exception e1) {
             System.out.println(e1.getMessage());
+
+            return false;
         } finally {
             try {
                 if (entityManagerFactory != null) {

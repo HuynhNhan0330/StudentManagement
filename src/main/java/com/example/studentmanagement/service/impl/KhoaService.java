@@ -41,7 +41,7 @@ public class KhoaService implements IKhoaService {
     }
 
     @Override
-    public void delete(String maKhoa) {
-        khoaJPA.delete(maKhoa);
+    public Boolean delete(String maKhoa) {
+        return khoaJPA.delete(maKhoa);
     }
 }
