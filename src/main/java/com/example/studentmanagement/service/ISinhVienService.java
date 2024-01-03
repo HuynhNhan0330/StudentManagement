@@ -16,5 +16,5 @@ public interface ISinhVienService {
 
     SinhVienDTO update(SinhVienDTO sinhVienDTO);
 
-    Boolean delete(String maSinhVien);
+    Boolean delete(SinhVienDTO sinhVienDTO);
 }

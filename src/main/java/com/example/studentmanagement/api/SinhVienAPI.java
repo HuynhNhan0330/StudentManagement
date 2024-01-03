@@ -107,10 +107,10 @@ public class SinhVienAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // binding data json to string-json, mapping data with model class
-        SinhVienModel sinhVienDelete = HttpUtil.of(req.getReader()).toModel(SinhVienModel.class);
+        SinhVienDTO sinhVienDelete = HttpUtil.of(req.getReader()).toModel(SinhVienDTO.class);
 
         // delete target data point in database
-        Boolean isDelete = sinhVienService.delete(sinhVienDelete.getMaSV());
+        Boolean isDelete = sinhVienService.delete(sinhVienDelete);
 
         if (isDelete)
             resp.setStatus(HttpServletResponse.SC_OK);

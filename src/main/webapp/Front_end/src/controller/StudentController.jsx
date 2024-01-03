@@ -1,7 +1,7 @@
 import axios from "axios"
 
-const handleCreateLecturer = (lecturer) => {
-  return axios.post('http://localhost:8080/api-admin-sinhvien', lecturer)
+const handleCreateStudent = (student) => {
+  return axios.post('http://localhost:8080/api-admin-sinhvien', student)
     .then((response) => {
       return response;
     })
@@ -13,7 +13,7 @@ const handleCreateLecturer = (lecturer) => {
     });
 };
 
-const handleGetLecturers = () => {
+const handleGetStudents = () => {
   return axios.get('http://localhost:8080/api-admin-sinhvien')
   .then((response) => {
     console.log('Dữ liệu đã được gửi thành công!');
@@ -27,8 +27,8 @@ const handleGetLecturers = () => {
   });
 }
 
-const handleDeleteLecturer = (lecturer) => {
-  return axios.delete('http://localhost:8080/api-admin-sinhvien', {data: lecturer})
+const handleDeleteStudent = (student) => {
+  return axios.delete('http://localhost:8080/api-admin-sinhvien', {data: student})
   .then((response) => {
     return true;
   })
@@ -41,7 +41,7 @@ const handleDeleteLecturer = (lecturer) => {
 }
 
 export  {
-    handleCreateLecturer,
-    handleGetLecturers,
-    handleDeleteLecturer
+    handleCreateStudent,
+    handleGetStudents,
+    handleDeleteStudent
 }

@@ -25,7 +25,7 @@ function LecturerTable({ data, loading, handleTableChange, handleEdit, handleDel
             dataIndex: 'phone',
         },
         {
-            title: 'Tên khoa',
+            title: 'Khoa',
             dataIndex: 'tenKhoa',
         },
         {

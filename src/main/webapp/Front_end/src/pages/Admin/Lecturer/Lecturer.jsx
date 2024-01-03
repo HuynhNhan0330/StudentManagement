@@ -5,7 +5,7 @@ import CreateLecturerModal from '../../../components/Admin/Modal/Create/CreateLe
 import LecturerTable from '../../../components/Admin/Table/LecturerTable';
 import { handleCreateLecturer, handleDeleteLecturer, handleGetLecturers } from '../../../controller/LecturerController';
 import { handleGetFaculties } from '../../../controller/FacultyController';
-import { isValidEmail, isValidPhoneNumber } from '../../../utils/Helepr';
+import { isValidEmail, isValidPhoneNumber } from '../../../utils/Helper';
 
 const { Search } = Input;
 

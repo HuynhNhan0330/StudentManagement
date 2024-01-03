@@ -119,6 +119,7 @@ public class SinhVienJPA implements ISinhVienJPA {
             sv.setGioiTinh(sinhVienDTO.getGioiTinh());
             sv.setNamNhapHoc(sinhVienDTO.getNamNhapHoc());
             sv.setMaNganh(sinhVienDTO.getMaNganh());
+            sv.setMaTK(sinhVienDTO.getMaTK());
 
             entityManager.persist(sv);
             entityManager.getTransaction().commit();
@@ -156,6 +157,7 @@ public class SinhVienJPA implements ISinhVienJPA {
             sv.setGioiTinh(sinhVienDTO.getGioiTinh());
             sv.setNamNhapHoc(sinhVienDTO.getNamNhapHoc());
             sv.setMaNganh(sinhVienDTO.getMaNganh());
+            sv.setMaTK(sinhVienDTO.getMaTK());
 
             entityManager.merge(sv);
             entityManager.getTransaction().commit();

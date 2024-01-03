@@ -84,7 +84,9 @@ public class SinhVienService implements ISinhVienService {
     }
 
     @Override
-    public Boolean delete(String maSinhVien) {
-        return sinhVienJPA.delete(maSinhVien);
+    public Boolean delete(SinhVienDTO sinhVienDTO) {
+        // Xoá giáo viên
+        // Xoá tài khoản
+        return sinhVienJPA.delete(sinhVienDTO.getMaSV()) && taiKhoanJPA.delete(sinhVienDTO.getMaTK());
     }
 }

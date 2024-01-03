@@ -1,120 +1,61 @@
 import React from 'react';
 import { Table, Space, Button } from 'antd';
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 
-function StudentTable({ handleDetail }) {
+function StudentTable({ data, loading, handleTableChange, handleEdit, handleDelete, handleDetail }) {
+    const columns = [
+        {
+            title: 'Mã sinh viên',
+            dataIndex: 'maSV',
+        },
+        {
+            title: 'Tên sinh viên',
+            dataIndex: 'maTK',
+        },
+        {
+            title: 'Giới tính',
+            dataIndex: 'gioiTinh',
+        },
+        {
+            title: 'Ngày sinh',
+            dataIndex: 'ngaySinh',
+        },
+        {
+            title: 'Email',
+            dataIndex: 'email',
+        },
+        {
+            title: 'Số điện thoại',
+            dataIndex: 'phone',
+        },
+        {
+            title: 'Ngành',
+            dataIndex: 'tenNganh',
+        },
+        {
+            title: 'Năm nhập học',
+            dataIndex: 'namNhapHoc',
+        },
+        {
+            title: 'Thao tác',
+            key: 'action',
+            render: (record) => (
+                <>
+                    <EditOutlined onClick={() => {handleEdit(record); }}/>
+                    <DeleteOutlined style = {{ color: "red", marginLeft: 12 }}
+                                    onClick = {() => { handleDelete(record); }}
+                    />
+                </>
+            )
+        }
+    ]
+    
     return (
         <Table
-            columns={[
-                {
-                    title: 'STT',
-                    dataIndex: 'stt',
-                    key: 'stt',
-                },
-
-                {
-                    title: 'Mssv',
-                    dataIndex: 'mssv',
-                    key: 'mssv',
-                },
-                {
-                    title: 'Tên',
-                    dataIndex: 'name',
-                    key: 'name',
-                },
-                {
-                    title: 'Ngày Sinh',
-                    dataIndex: 'ngaySinh',
-                    key: 'ngaySinh',
-                },
-                {
-                    title: 'Giới tính ',
-                    dataIndex: 'gioiTinh',
-                    key: 'gioiTinh',
-                },
-                {
-                    title: 'Khoa',
-                    dataIndex: 'khoa',
-                    key: 'khoa',
-                },
-                {
-                    title: 'Tên ngành',
-                    dataIndex: 'tenNganh',
-                    key: 'tenNganh',
-                },
-                {
-                    title: 'Năm nhập học ',
-                    dataIndex: 'namNhaphoc',
-                    key: 'namNhaphoc',
-                },
-                {
-                    title: 'Số tín đã học',
-                    dataIndex: 'soTin',
-                    key: 'soTin',
-                },
-                {
-                    title: '',
-                    key: 'action',
-                    render: (_, record) => (
-                        <Space size="small">
-                            <Button variant="contained" type="primary">
-                                Sửa
-                            </Button>
-                            <Button danger variant="contained" type="primary">
-                                Xóa
-                            </Button>
-                            <Button variant="contained" onClick={() => handleDetail(record)}>
-                                Chi tiết
-                            </Button>
-                            {/*
-                            <Button variant="contained" type="link">
-                                Reset
-                            </Button>*/}
-                            
-                        </Space>
-                    ),
-                },
-            ]}
-            dataSource={[
-                {
-                    key: '1',
-                    stt: 1,
-                    mssv: 'SV001',
-                    name: 'Trần Văn A',
-                    ngaySinh: '01/01/2003',
-                    gioiTinh: 'Nam',
-                    khoa: 'Công nghệ phần mềm',
-                    tenNganh: 'Công nghệ phần mềm',
-                    namNhaphoc: '2023',
-                    soTin: '10',
-                },
-                {
-                    key: '2',
-                    stt: 2,
-                    mssv: 'SV002',
-                    name: 'John Brown',
-                    ngaySinh: '01/01/2000',
-                    gioiTinh: 'Nam',
-                    khoa: 'Khoa X',
-                    tenNganh: 'X',
-                    namNhaphoc: '2017',
-                    soTin: '100',
-                },
-                {
-                    key: '3',
-                    stt: 3,
-                    mssv: 'SV003',
-                    name: 'John Whites',
-                    ngaySinh: '01/01/2001',
-                    gioiTinh: 'Nữ',
-                    khoa: 'Khoa Y',
-                    tenNganh: 'Y',
-                    namNhaphoc: '2021',
-                    soTin: '100',
-                },
-            ]}
-            rowSelection={{
-                type: 'checkbox',
-            }}
+            columns={ columns }
+            dataSource={ data }
+            loading={ loading }
+            onChange={ handleTableChange }
         />
     );
 }
