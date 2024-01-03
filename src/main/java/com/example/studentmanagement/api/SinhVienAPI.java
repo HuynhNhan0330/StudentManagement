@@ -1,5 +1,6 @@
 package com.example.studentmanagement.api;
 
+import com.example.studentmanagement.dto.SinhVienDTO;
 import com.example.studentmanagement.model.SinhVienModel;
 import com.example.studentmanagement.service.ISinhVienService;
 import com.example.studentmanagement.service.impl.SinhVienService;
@@ -13,6 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(urlPatterns = { "/api-admin-sinhvien" })
 public class SinhVienAPI extends HttpServlet {
@@ -33,7 +35,7 @@ public class SinhVienAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // get list object
-        List<SinhVienModel> listSinhVien = sinhVienService.findAll();
+        List<SinhVienDTO> listSinhVien = sinhVienService.findAll();
 
         // convert list model to json for response
         ObjectMapper mapper = new ObjectMapper();
@@ -52,14 +54,25 @@ public class SinhVienAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // binding json to string-json, mapping data with model.class
-        SinhVienModel sinhVienModelNew = HttpUtil.of(req.getReader()).toModel(SinhVienModel.class);
+        SinhVienDTO sinhVienNew = HttpUtil.of(req.getReader()).toModel(SinhVienDTO.class);
 
         // create new data point in database
-        sinhVienModelNew = sinhVienService.save(sinhVienModelNew);
+        Map<String, Object> results = sinhVienService.save(sinhVienNew);
+
+        sinhVienNew = (SinhVienDTO) results.get("sinhVien");
 
         // convert model to json for response
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(resp.getOutputStream(), sinhVienModelNew);
+
+        if (sinhVienNew == null) {
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            mapper.writeValue(resp.getOutputStream(), results.get("thongBao"));
+        }
+        else {
+            resp.setStatus(HttpServletResponse.SC_OK);
+            mapper.writeValue(resp.getOutputStream(), sinhVienNew);
+        }
+
         return;
     }
 
@@ -73,7 +86,7 @@ public class SinhVienAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // binding json to string-json, mapping data with model.class
-        SinhVienModel sinhVienModelUpdate = HttpUtil.of(req.getReader()).toModel(SinhVienModel.class);
+        SinhVienDTO sinhVienModelUpdate = HttpUtil.of(req.getReader()).toModel(SinhVienDTO.class);
 
         // update new data point in database
         sinhVienModelUpdate = sinhVienService.update(sinhVienModelUpdate);
@@ -97,7 +110,12 @@ public class SinhVienAPI extends HttpServlet {
         SinhVienModel sinhVienDelete = HttpUtil.of(req.getReader()).toModel(SinhVienModel.class);
 
         // delete target data point in database
-        sinhVienService.delete(sinhVienDelete.getMaSV());
+        Boolean isDelete = sinhVienService.delete(sinhVienDelete.getMaSV());
+
+        if (isDelete)
+            resp.setStatus(HttpServletResponse.SC_OK);
+        else
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 
         // convert model to json for response
         ObjectMapper mapper = new ObjectMapper();

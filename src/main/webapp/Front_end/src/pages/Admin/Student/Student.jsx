@@ -8,7 +8,6 @@ import StudentTable from '../../../components/Admin/Table/StudentTable';
 const { Search } = Input;
 
 const Student = () => {
-    const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
     const [isDetailDrawerOpen, setIsDetailDrawerOpen] = useState(false);
     const [selectedStudent, setSelectedStudent] = useState(null);
 
@@ -16,6 +15,9 @@ const Student = () => {
         setSelectedStudent(record);
         setIsDetailDrawerOpen(true);
     };
+
+    // Create
+    const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
     const showCreateModal = () => {
         setIsCreateModalOpen(true);
@@ -32,6 +34,9 @@ const Student = () => {
     const handleCreate = () => {
         showCreateModal();
     };
+
+    // end
+
     const closeDrawer = () => {
         setIsDetailDrawerOpen(false);
     };
