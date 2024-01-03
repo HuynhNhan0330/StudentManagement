@@ -39,6 +39,7 @@ public class GiaoVienAPI extends HttpServlet {
 
         // convert list model to json for response
         ObjectMapper mapper = new ObjectMapper();
+        resp.setStatus(HttpServletResponse.SC_OK);
         mapper.writeValue(resp.getOutputStream(), listGiaoVien);
         return;
     }
@@ -60,7 +61,14 @@ public class GiaoVienAPI extends HttpServlet {
 
         // convert model to json for response
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(resp.getOutputStream(), giaoVienNew);
+
+        if (giaoVienNew == null) {
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        }
+        else {
+            resp.setStatus(HttpServletResponse.SC_OK);
+            mapper.writeValue(resp.getOutputStream(), giaoVienNew);
+        }
         return;
     }
 
