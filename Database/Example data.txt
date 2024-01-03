@@ -25,11 +25,6 @@ VALUES
     ('NG0008', 'Công nghệ thông tin', 'KH0006'),
     ('NG0009', 'Khoa học dữ liệu', 'KH0006')
 
-INSERT INTO SINHVIEN (MaSV, TenSV, NgaySinh, GioiTinh, MaNganh, NamNhapHoc)
-VALUES
-    ('SV0001', 'Huỳnh Mai Cao Nhân', '20/10/2003', 'Nam', 'NG0002', 2021),
-    ('SV0002', 'Ngô Phương Nam', '2/10/2003', 'Nam', 'NG0002', 2021)
-
 INSERT INTO MONHOC (MaMH, tenMH, soTinChi)
 VALUES
   ('MH0001', 'Anh văn 1', 4),

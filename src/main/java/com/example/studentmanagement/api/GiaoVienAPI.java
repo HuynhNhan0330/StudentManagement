@@ -1,5 +1,6 @@
 package com.example.studentmanagement.api;
 
+import com.example.studentmanagement.dto.GiaoVienDTO;
 import com.example.studentmanagement.model.GiaoVienModel;
 import com.example.studentmanagement.model.KhoaModel;
 import com.example.studentmanagement.service.IGiaoVienService;
@@ -34,7 +35,7 @@ public class GiaoVienAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // get list object
-        List<GiaoVienModel> listGiaoVien = giaoVienService.findAll();
+        List<GiaoVienDTO> listGiaoVien = giaoVienService.findAll();
 
         // convert list model to json for response
         ObjectMapper mapper = new ObjectMapper();
@@ -52,7 +53,7 @@ public class GiaoVienAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // binding json to string-json, mapping data with model.class
-        GiaoVienModel giaoVienNew = HttpUtil.of(req.getReader()).toModel(GiaoVienModel.class);
+        GiaoVienDTO giaoVienNew = HttpUtil.of(req.getReader()).toModel(GiaoVienDTO.class);
 
         // create new data point in database
         giaoVienNew = giaoVienService.save(giaoVienNew);
@@ -73,7 +74,7 @@ public class GiaoVienAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // binding json to string-json, mapping data with model.class
-        GiaoVienModel giaoVienUpdate = HttpUtil.of(req.getReader()).toModel(GiaoVienModel.class);
+        GiaoVienDTO giaoVienUpdate = HttpUtil.of(req.getReader()).toModel(GiaoVienDTO.class);
 
         // update new data point in database
         giaoVienUpdate = giaoVienService.update(giaoVienUpdate);

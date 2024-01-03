@@ -1,18 +1,19 @@
 package com.example.studentmanagement.service;
 
+import com.example.studentmanagement.dto.GiaoVienDTO;
 import com.example.studentmanagement.model.GiaoVienModel;
 
 import java.util.List;
 
 public interface IGiaoVienService {
 
-    List<GiaoVienModel> findAll();
+    List<GiaoVienDTO> findAll();
 
-    GiaoVienModel findOne(String maGV);
+    GiaoVienDTO findOne(String maGV);
 
-    GiaoVienModel save(GiaoVienModel giaoVienModel);
+    GiaoVienDTO save(GiaoVienDTO giaoVienDTO);
 
-    GiaoVienModel update(GiaoVienModel giaoVienModel);
+    GiaoVienDTO update(GiaoVienDTO giaoVienDTO);
 
     void delete(String maGV);
 }

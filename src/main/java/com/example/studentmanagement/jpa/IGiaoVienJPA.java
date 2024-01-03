@@ -1,19 +1,20 @@
 package com.example.studentmanagement.jpa;
 
+import com.example.studentmanagement.dto.GiaoVienDTO;
 import com.example.studentmanagement.model.GiaoVienModel;
 
 import java.util.List;
 
 public interface IGiaoVienJPA {
-    List<GiaoVienModel> findAll();
+    List<GiaoVienDTO> findAll();
 
     String findMaxMaGiaoVien();
 
-    GiaoVienModel findOne(String maGV);
+    GiaoVienDTO findOne(String maGV);
 
-    String save(GiaoVienModel giaoVienModel);
+    String save(GiaoVienDTO giaoVienDTO);
 
-    void update(GiaoVienModel giaoVienModel);
+    void update(GiaoVienDTO giaoVienDTO);
 
     void delete(String maGV);
 }

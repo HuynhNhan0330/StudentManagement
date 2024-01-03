@@ -12,19 +12,27 @@ public class GiaoVienModel {
     @Column(name="MaGV")
     private String maGV;
 
-    @Column(name="TenGV")
-    private String tenGV;
-
     @Column(name="MaKhoa")
     private String maKhoa;
+
+    @Column(name="MaTK")
+    private String maTK;
 
     public GiaoVienModel() {
     }
 
-    public GiaoVienModel(String maGV, String tenGV, String maKhoa) {
+    public GiaoVienModel(String maGV, String maKhoa, String maTK) {
         this.maGV = maGV;
-        this.tenGV = tenGV;
         this.maKhoa = maKhoa;
+        this.maTK = maTK;
+    }
+
+    public String getMaTK() {
+        return maTK;
+    }
+
+    public void setMaTK(String maTK) {
+        this.maTK = maTK;
     }
 
     public String getMaGV() {
@@ -33,14 +41,6 @@ public class GiaoVienModel {
 
     public void setMaGV(String maGV) {
         this.maGV = maGV;
-    }
-
-    public String getTenGV() {
-        return tenGV;
-    }
-
-    public void setTenGV(String tenGV) {
-        this.tenGV = tenGV;
     }
 
     public String getMaKhoa() {

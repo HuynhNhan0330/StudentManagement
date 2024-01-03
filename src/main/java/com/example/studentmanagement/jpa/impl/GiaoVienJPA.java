@@ -1,5 +1,7 @@
 package com.example.studentmanagement.jpa.impl;
 
+import com.example.studentmanagement.dto.GiaoVienDTO;
+import com.example.studentmanagement.dto.NganhDTO;
 import com.example.studentmanagement.jpa.IGiaoVienJPA;
 import com.example.studentmanagement.model.GiaoVienModel;
 
@@ -11,15 +13,15 @@ import java.util.List;
 
 public class GiaoVienJPA implements IGiaoVienJPA {
     @Override
-    public List<GiaoVienModel> findAll() {
+    public List<GiaoVienDTO> findAll() {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
             entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
             entityManager = entityManagerFactory.createEntityManager();
 
-            TypedQuery<GiaoVienModel> query = entityManager.createQuery("SELECT gv FROM GiaoVienModel gv", GiaoVienModel.class);
-            List<GiaoVienModel> giaoVienList = query.getResultList();
+            TypedQuery<GiaoVienDTO> query = entityManager.createQuery("SELECT new com.example.studentmanagement.dto.GiaoVienDTO(gv.maGV, gv.maKhoa, kh.tenKhoa, gv.maTK, tk.tenTK, tk.ngaySinh, tk.email, tk.phone, tk.role) FROM GiaoVienModel gv JOIN TaiKhoanModel tk ON gv.maTK = tk.maTK JOIN KhoaModel kh ON gv.maKhoa = kh.maKhoa", GiaoVienDTO.class);
+            List<GiaoVienDTO> giaoVienList = query.getResultList();
 
             return giaoVienList;
         } catch (Exception e1) {
@@ -67,14 +69,17 @@ public class GiaoVienJPA implements IGiaoVienJPA {
     }
 
     @Override
-    public GiaoVienModel findOne(String maGV) {
+    public GiaoVienDTO findOne(String maGV) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
             entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
             entityManager = entityManagerFactory.createEntityManager();
 
-            GiaoVienModel gv = entityManager.find(GiaoVienModel.class, maGV);
+            String jpql = "SELECT new com.example.studentmanagement.dto.GiaoVienDTO(gv.maGV, gv.maKhoa, kh.tenKhoa, gv.maTK, tk.tenTK, tk.ngaySinh, tk.email, tk.phone, tk.role) FROM GiaoVienModel gv JOIN TaiKhoanModel tk ON gv.maTK = tk.maTK JOIN KhoaModel kh ON gv.maKhoa = kh.maKhoa WHERE gv.maGV = :maGV";
+            TypedQuery<GiaoVienDTO> query = entityManager.createQuery(jpql, GiaoVienDTO.class);
+            query.setParameter("maGV", maGV);
+            GiaoVienDTO gv = query.getSingleResult();
 
             return gv;
         } catch (Exception e1) {
@@ -96,7 +101,7 @@ public class GiaoVienJPA implements IGiaoVienJPA {
     }
 
     @Override
-    public String save(GiaoVienModel giaoVienModel) {
+    public String save(GiaoVienDTO giaoVienDTO) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
@@ -106,14 +111,14 @@ public class GiaoVienJPA implements IGiaoVienJPA {
             entityManager.getTransaction().begin();
 
             GiaoVienModel gv = new GiaoVienModel();
-            gv.setMaGV(giaoVienModel.getMaGV());
-            gv.setTenGV(giaoVienModel.getTenGV());
-            gv.setMaKhoa(giaoVienModel.getMaKhoa());
+            gv.setMaGV(giaoVienDTO.getMaGV());
+            gv.setMaKhoa(giaoVienDTO.getMaKhoa());
+            gv.setMaTK(giaoVienDTO.getMaTK());
 
             entityManager.persist(gv);
             entityManager.getTransaction().commit();
 
-            return giaoVienModel.getMaGV();
+            return giaoVienDTO.getMaGV();
         } catch (Exception e1) {
             System.out.println(e1.getMessage());
             return null;
@@ -133,7 +138,7 @@ public class GiaoVienJPA implements IGiaoVienJPA {
     }
 
     @Override
-    public void update(GiaoVienModel giaoVienModel) {
+    public void update(GiaoVienDTO giaoVienDTO) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
@@ -142,9 +147,8 @@ public class GiaoVienJPA implements IGiaoVienJPA {
 
             entityManager.getTransaction().begin();
 
-            GiaoVienModel gv = entityManager.find(GiaoVienModel.class, giaoVienModel.getMaGV());
-            gv.setTenGV(giaoVienModel.getTenGV());
-            gv.setMaKhoa(giaoVienModel.getMaKhoa());
+            GiaoVienModel gv = entityManager.find(GiaoVienModel.class, giaoVienDTO.getMaGV());
+            gv.setMaKhoa(giaoVienDTO.getMaKhoa());
 
             entityManager.merge(gv);
             entityManager.getTransaction().commit();
