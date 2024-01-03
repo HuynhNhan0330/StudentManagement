@@ -1,5 +1,6 @@
 package com.example.studentmanagement.jpa.impl;
 
+import com.example.studentmanagement.dto.NganhDTO;
 import com.example.studentmanagement.jpa.ITaiKhoanJPA;
 import com.example.studentmanagement.model.NganhModel;
 import com.example.studentmanagement.model.TaiKhoanModel;
@@ -114,7 +115,7 @@ public class TaiKhoanJPA implements ITaiKhoanJPA {
     }
 
     @Override
-    public Boolean delete(String maNganh) {
+    public Boolean delete(String maTK) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
@@ -123,15 +124,83 @@ public class TaiKhoanJPA implements ITaiKhoanJPA {
 
             entityManager.getTransaction().begin();
 
-            NganhModel ng = entityManager.find(NganhModel.class, maNganh);
+            TaiKhoanModel tk = entityManager.find(TaiKhoanModel.class, maTK);
 
-            entityManager.remove(ng);
+            entityManager.remove(tk);
             entityManager.getTransaction().commit();
 
             return true;
         } catch (Exception e1) {
             System.out.println(e1.getMessage());
 
+            return false;
+        } finally {
+            try {
+                if (entityManagerFactory != null) {
+                    entityManagerFactory.close();
+                }
+                if (entityManager != null) {
+                    entityManager.close();
+                }
+            } catch (Exception e2) {
+                System.out.println(e2.getMessage());
+            }
+        }
+    }
+
+    @Override
+    public Boolean checkEmail(String email) {
+        EntityManagerFactory entityManagerFactory = null;
+        EntityManager entityManager = null;
+        try {
+            entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
+            entityManager = entityManagerFactory.createEntityManager();
+
+            String jpql = "SELECT tk FROM TaiKhoanModel tk WHERE tk.email = :email";
+            TypedQuery<TaiKhoanModel> query = entityManager.createQuery(jpql, TaiKhoanModel.class);
+            query.setParameter("email", email);
+            TaiKhoanModel tk = query.getSingleResult();
+
+            if (tk == null)
+                return false;
+            else
+                return true;
+        } catch (Exception e1) {
+            System.out.println(e1.getMessage());
+            return false;
+        } finally {
+            try {
+                if (entityManagerFactory != null) {
+                    entityManagerFactory.close();
+                }
+                if (entityManager != null) {
+                    entityManager.close();
+                }
+            } catch (Exception e2) {
+                System.out.println(e2.getMessage());
+            }
+        }
+    }
+
+    @Override
+    public Boolean checkPhone(String phone) {
+        EntityManagerFactory entityManagerFactory = null;
+        EntityManager entityManager = null;
+        try {
+            entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
+            entityManager = entityManagerFactory.createEntityManager();
+
+            String jpql = "SELECT tk FROM TaiKhoanModel tk WHERE tk.phone = :phone";
+            TypedQuery<TaiKhoanModel> query = entityManager.createQuery(jpql, TaiKhoanModel.class);
+            query.setParameter("phone", phone);
+            TaiKhoanModel tk = query.getSingleResult();
+
+            if (tk == null)
+                return false;
+            else
+                return true;
+        } catch (Exception e1) {
+            System.out.println(e1.getMessage());
             return false;
         } finally {
             try {

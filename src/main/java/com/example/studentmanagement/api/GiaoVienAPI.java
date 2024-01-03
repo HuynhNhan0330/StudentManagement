@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(urlPatterns = { "/api-admin-giaovien" })
 public class GiaoVienAPI extends HttpServlet {
@@ -57,13 +58,16 @@ public class GiaoVienAPI extends HttpServlet {
         GiaoVienDTO giaoVienNew = HttpUtil.of(req.getReader()).toModel(GiaoVienDTO.class);
 
         // create new data point in database
-        giaoVienNew = giaoVienService.save(giaoVienNew);
+        Map<String, Object> results = giaoVienService.save(giaoVienNew);
+
+        giaoVienNew = (GiaoVienDTO) results.get("giaoVien");
 
         // convert model to json for response
         ObjectMapper mapper = new ObjectMapper();
 
         if (giaoVienNew == null) {
             resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            mapper.writeValue(resp.getOutputStream(), results.get("thongBao"));
         }
         else {
             resp.setStatus(HttpServletResponse.SC_OK);
@@ -103,10 +107,15 @@ public class GiaoVienAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // binding data json to string-json, mapping data with model class
-        GiaoVienModel giaoVienDelete = HttpUtil.of(req.getReader()).toModel(GiaoVienModel.class);
+        GiaoVienDTO giaoVienDelete = HttpUtil.of(req.getReader()).toModel(GiaoVienDTO.class);
 
         // delete target data point in database
-        giaoVienService.delete(giaoVienDelete.getMaGV());
+        Boolean isDelete = giaoVienService.delete(giaoVienDelete);
+
+        if (isDelete)
+            resp.setStatus(HttpServletResponse.SC_OK);
+        else
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 
         // convert model to json for response
         ObjectMapper mapper = new ObjectMapper();

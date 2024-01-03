@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Space, Button, Input, Card } from 'antd';
+import { Space, Button, Input, Card, Modal } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import CreateLecturerModal from '../../../components/Admin/Modal/Create/CreateLecturerModal';
 import LecturerTable from '../../../components/Admin/Table/LecturerTable';
-import { handleCreateLecturer, handleGetLecturers } from '../../../controller/LecturerController';
+import { handleCreateLecturer, handleDeleteLecturer, handleGetLecturers } from '../../../controller/LecturerController';
 import { handleGetFaculties } from '../../../controller/FacultyController';
+import { isValidEmail, isValidPhoneNumber } from '../../../utils/Helepr';
 
 const { Search } = Input;
 
@@ -15,8 +16,8 @@ const Lecturer = () => {
     const [loading, setLoading] = useState(false);
     const [tableParams, setTableParams] = useState({
         pagination: {
-        current: 1,
-        pageSize: 10,
+            current: 1,
+            pageSize: 10,
         },
     });
 
@@ -28,8 +29,8 @@ const Lecturer = () => {
             setTableParams({
                 ...tableParams,
                 pagination: {
-                ...tableParams.pagination,
-                total: results.length,
+                    ...tableParams.pagination,
+                    total: results.length,
                 },
             });
         });
@@ -73,26 +74,32 @@ const Lecturer = () => {
     };
 
     const handleCreateModalOk = (values) => {
-        handleCreateLecturer(values).then((resp) => {
-            if (resp.status === 200) {
-                const lecturer = resp.data;
-                
-                if (lecturer != null) {
-                    // Thông báo tạo thành công
+        if (!isValidEmail(values.email)) {
+            console.log("Email không hợp lệ");
+        } else if (!isValidPhoneNumber(values.phone)) {
+            console.log("Số điện thoại không hợp lệ");
+        } else {
+            handleCreateLecturer(values).then((resp) => {
+                if (resp.status === 200) {
+                    const lecturer = resp.data;
 
-                    // Cập nhật table   
-                    setData([...data, lecturer]);
+                    if (lecturer != null) {
+                        // Thông báo tạo thành công
+
+                        // Cập nhật table   
+                        setData([...data, lecturer]);
+                    }
+                    else {
+                        // Thông báo tạo thất bại
+                        console.log("Tạo giảng viên thất bại");
+                    }
                 }
                 else {
                     // Thông báo tạo thất bại
-                    console.log("Tạo giảng viên thất bại");
+                    console.log(resp.response.data);
                 }
-            }
-            else {
-                // Thông báo tạo thất bại
-                console.log(resp.response.data);
-            }
-        })
+            })
+        }
     };
 
     const handleCreateModalCancel = () => {
@@ -101,6 +108,25 @@ const Lecturer = () => {
 
     const handleCreate = () => {
         showCreateModal();
+    };
+    // end
+
+    // delete
+    const handleDelete = (record) => {
+        Modal.confirm({
+            title: "Xác nhận xoá?",
+            okText: "Có",
+            cancelText: "Huỷ",
+            onOk: () => {
+                handleDeleteLecturer(record).then((result) => {
+                    if (result) {
+                        setData((pre) => {
+                            return pre.filter((lecturer) => lecturer.maGV !== record.maGV);
+                        });
+                    }
+                })
+            }
+        })
     };
     // end
 
@@ -121,10 +147,10 @@ const Lecturer = () => {
                         Thêm mới
                     </Button>
                 </Space>
-                <LecturerTable data = { data }
-                               loading ={ loading }
-                               onChange ={ handleTableChange }
-                            //    handleDelete= { handleDelete }
+                <LecturerTable data={data}
+                    loading={loading}
+                    onChange={handleTableChange}
+                    handleDelete={handleDelete}
                 />
             </Card>
             <CreateLecturerModal

@@ -10,7 +10,9 @@ import com.example.studentmanagement.model.TaiKhoanModel;
 import com.example.studentmanagement.service.IGiaoVienService;
 import com.example.studentmanagement.utils.Helper;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GiaoVienService implements IGiaoVienService {
 
@@ -33,8 +35,24 @@ public class GiaoVienService implements IGiaoVienService {
     }
 
     @Override
-    public GiaoVienDTO save(GiaoVienDTO giaoVienDTO) {
-        // Kiểm tra email, phone
+    public Map<String, Object> save(GiaoVienDTO giaoVienDTO) {
+        // Kiểm tra email
+        Boolean isCheckEmail = taiKhoanJPA.checkEmail(giaoVienDTO.getEmail());
+        if (isCheckEmail) {
+            return new HashMap<>(){{
+                put("giaoVien", null);
+                put("thongBao", "Email đã tồn tại");
+            }};
+        }
+
+        // Kiểm tra số điện thoại
+        Boolean isCheckPhone = taiKhoanJPA.checkPhone(giaoVienDTO.getPhone());
+        if (isCheckPhone) {
+            return new HashMap<>(){{
+                put("giaoVien", null);
+                put("thongBao", "Số điện thoại đã tồn tại");
+            }};
+        }
 
         // Lưu tài khoản
         String newMaTK = Helper.generateNewMa(taiKhoanJPA.findMaxMaTaiKhoan(), "TK");
@@ -53,7 +71,11 @@ public class GiaoVienService implements IGiaoVienService {
         String newMaGV = Helper.generateNewMa(giaoVienJPA.findMaxMaGiaoVien(), "GV");
         giaoVienDTO.setMaGV(newMaGV);
         String currentMaGiaoVien = giaoVienJPA.save(giaoVienDTO);
-        return giaoVienJPA.findOne(currentMaGiaoVien);
+
+        return new HashMap<>(){{
+            put("giaoVien", giaoVienJPA.findOne(currentMaGiaoVien));
+            put("thongBao", "Tạo giáo viên thành công");
+        }};
     }
 
     @Override
@@ -63,7 +85,9 @@ public class GiaoVienService implements IGiaoVienService {
     }
 
     @Override
-    public void delete(String maGV) {
-        giaoVienJPA.delete(maGV);
+    public Boolean delete(GiaoVienDTO giaoVienDTO) {
+        // Xoá giáo viên
+        // Xoá tài khoản
+        return giaoVienJPA.delete(giaoVienDTO.getMaGV()) && taiKhoanJPA.delete(giaoVienDTO.getMaTK());
     }
 }

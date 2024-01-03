@@ -10,4 +10,7 @@ public interface ITaiKhoanJPA {
     void update(TaiKhoanModel taiKhoanModel);
 
     Boolean delete(String maTK);
+
+    Boolean checkEmail(String email);
+    Boolean checkPhone(String phone);
 }

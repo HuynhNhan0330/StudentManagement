@@ -169,7 +169,7 @@ public class GiaoVienJPA implements IGiaoVienJPA {
     }
 
     @Override
-    public void delete(String maGV) {
+    public Boolean delete(String maGV) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
@@ -182,8 +182,12 @@ public class GiaoVienJPA implements IGiaoVienJPA {
 
             entityManager.remove(gv);
             entityManager.getTransaction().commit();
+
+            return true;
         } catch (Exception e1) {
             System.out.println(e1.getMessage());
+
+            return false;
         } finally {
             try {
                 if (entityManagerFactory != null) {

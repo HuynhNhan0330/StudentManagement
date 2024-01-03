@@ -16,5 +16,5 @@ public interface IGiaoVienJPA {
 
     void update(GiaoVienDTO giaoVienDTO);
 
-    void delete(String maGV);
+    Boolean delete(String maGV);
 }

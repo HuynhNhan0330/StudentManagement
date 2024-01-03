@@ -4,6 +4,7 @@ import com.example.studentmanagement.dto.GiaoVienDTO;
 import com.example.studentmanagement.model.GiaoVienModel;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IGiaoVienService {
 
@@ -11,9 +12,9 @@ public interface IGiaoVienService {
 
     GiaoVienDTO findOne(String maGV);
 
-    GiaoVienDTO save(GiaoVienDTO giaoVienDTO);
+    Map<String, Object> save(GiaoVienDTO giaoVienDTO);
 
     GiaoVienDTO update(GiaoVienDTO giaoVienDTO);
 
-    void delete(String maGV);
+    Boolean delete(GiaoVienDTO giaoVienDTO);
 }
