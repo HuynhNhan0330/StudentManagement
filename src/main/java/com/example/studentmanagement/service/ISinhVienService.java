@@ -4,16 +4,17 @@ import com.example.studentmanagement.dto.SinhVienDTO;
 import com.example.studentmanagement.model.SinhVienModel;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ISinhVienService {
 
-    List<SinhVienModel> findAll();
+    List<SinhVienDTO> findAll();
 
-    SinhVienModel findOne(String maSinhVien);
+    SinhVienDTO findOne(String maSinhVien);
 
-    SinhVienModel save(SinhVienModel sinhVienModel);
+    Map<String, Object> save(SinhVienDTO sinhVienDTO);
 
-    SinhVienModel update(SinhVienModel sinhVienModel);
+    SinhVienDTO update(SinhVienDTO sinhVienDTO);
 
-    void delete(String maSinhVien);
+    Boolean delete(String maSinhVien);
 }

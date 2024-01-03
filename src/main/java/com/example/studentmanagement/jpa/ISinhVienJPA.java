@@ -1,20 +1,21 @@
 package com.example.studentmanagement.jpa;
 
+import com.example.studentmanagement.dto.SinhVienDTO;
 import com.example.studentmanagement.model.SinhVienModel;
 
 import java.util.List;
 
 public interface ISinhVienJPA {
 
-    List<SinhVienModel> findAll();
+    List<SinhVienDTO> findAll();
 
     String findMaxMaSinhVien();
 
-    SinhVienModel findOne(String maSinhVien);
+    SinhVienDTO findOne(String maSinhVien);
 
-    String save(SinhVienModel sinhVienModel);
+    String save(SinhVienDTO sinhVienDTO);
 
-    void update(SinhVienModel sinhVienModel);
+    void update(SinhVienDTO sinhVienDTO);
 
-    void delete(String maSinhVien);
+    Boolean delete(String maSinhVien);
 }

@@ -47,6 +47,7 @@ CREATE TABLE SINHVIEN (
     GioiTinh TEXT,
     MaNganh TEXT NOT NULL,
     MaTK TEXT NOT NULL,
+    NamNhapHoc INTEGER,
     FOREIGN KEY (MaNganh) REFERENCES NGANH(MaNganh)
 );
 

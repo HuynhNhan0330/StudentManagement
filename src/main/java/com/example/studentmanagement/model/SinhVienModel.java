@@ -9,12 +9,6 @@ public class SinhVienModel {
     @Column(name = "MaSV")
     private String maSV;
 
-    @Column(name = "TenSV")
-    private String tenSV;
-
-    @Column(name = "NgaySinh")
-    private String ngaySinh;
-
     @Column(name = "GioiTinh")
     private String gioiTinh;
 
@@ -24,16 +18,18 @@ public class SinhVienModel {
     @Column(name="MaNganh")
     private String maNganh;
 
+    @Column(name="MaTK")
+    private String maTK;
+
     public SinhVienModel() {
     }
 
-    public SinhVienModel(String maSV, String tenSV, String ngaySinh, String gioiTinh, int namNhapHoc, String maNganh) {
+    public SinhVienModel(String maSV, String gioiTinh, int namNhapHoc, String maNganh, String maTK) {
         this.maSV = maSV;
-        this.tenSV = tenSV;
-        this.ngaySinh = ngaySinh;
         this.gioiTinh = gioiTinh;
         this.namNhapHoc = namNhapHoc;
         this.maNganh = maNganh;
+        this.maTK = maTK;
     }
 
     public String getMaSV() {
@@ -42,22 +38,6 @@ public class SinhVienModel {
 
     public void setMaSV(String maSV) {
         this.maSV = maSV;
-    }
-
-    public String getTenSV() {
-        return tenSV;
-    }
-
-    public void setTenSV(String tenSV) {
-        this.tenSV = tenSV;
-    }
-
-    public String getNgaySinh() {
-        return ngaySinh;
-    }
-
-    public void setNgaySinh(String ngaySinh) {
-        this.ngaySinh = ngaySinh;
     }
 
     public String getGioiTinh() {
@@ -82,5 +62,13 @@ public class SinhVienModel {
 
     public void setMaNganh(String maNganh) {
         this.maNganh = maNganh;
+    }
+
+    public String getMaTK() {
+        return maTK;
+    }
+
+    public void setMaTK(String maTK) {
+        this.maTK = maTK;
     }
 }
