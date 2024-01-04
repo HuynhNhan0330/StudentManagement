@@ -3,9 +3,6 @@ import Header from '../../../components/Admin/Header/Header';
 import Sidebar from '../../../components/Admin/Sidebar/Sidebar';
 import { ConfigProvider } from 'antd';
 
-
-
-
 function Layout({ children }) {
     return (
         <div className="container-fluid">
@@ -31,10 +28,6 @@ function Layout({ children }) {
             </div>
             
         </div>
-      
-      
-      
-
     );
 }
 

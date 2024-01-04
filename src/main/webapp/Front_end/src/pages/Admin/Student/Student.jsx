@@ -32,6 +32,10 @@ const Student = () => {
     const fetchData = () => {
         setLoading(true);
         handleGetStudents().then((results) => {
+            if (results == null) {
+                results = [];
+            }
+
             setData(results);
             setLoading(false);
             setTableParams({
@@ -68,6 +72,10 @@ const Student = () => {
 
     const fetchDataMajor = () => {
         handleGetMajors().then((results) => {
+            if (results == null) {
+                results = [];
+            }   
+
             setDataMajor(results);
         });
     };

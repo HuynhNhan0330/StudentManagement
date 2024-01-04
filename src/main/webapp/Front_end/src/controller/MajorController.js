@@ -1,7 +1,9 @@
 import axios from "axios"
 
-const handleCreateFaculty = (faculty) => {
-  return axios.post('http://localhost:8080/api-admin-khoa', faculty)
+import { baseUrlAPI } from "../utils/Helper";
+
+const handleCreateMajor = (major) => {
+  return axios.post(baseUrlAPI + '/api-admin-nganh', major)
     .then((response) => {
       return response;
     })
@@ -13,8 +15,8 @@ const handleCreateFaculty = (faculty) => {
     });
 };
 
-const handleGetFaculties = () => {
-  return axios.get('http://localhost:8080/api-admin-khoa')
+const handleGetMajors = () => {
+  return axios.get(baseUrlAPI + '/api-admin-nganh')
   .then((response) => {
     console.log('Dữ liệu đã được gửi thành công!');
     console.log(response.data);
@@ -27,8 +29,8 @@ const handleGetFaculties = () => {
   });
 }
 
-const handleDeleteFaculty = (faculty) => {
-  return axios.delete('http://localhost:8080/api-admin-khoa', {data: faculty})
+const handleDeleteMajor = (major) => {
+  return axios.delete(baseUrlAPI + '/api-admin-nganh', {data: major})
   .then((response) => {
     return true;
   })
@@ -41,7 +43,7 @@ const handleDeleteFaculty = (faculty) => {
 }
 
 export  {
-    handleCreateFaculty,
-    handleGetFaculties,
-    handleDeleteFaculty
+    handleCreateMajor,
+    handleGetMajors,
+    handleDeleteMajor
 }

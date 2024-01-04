@@ -1,7 +1,8 @@
 import axios from "axios"
+import { baseUrlAPI } from "../utils/Helper";
 
 const handleCreateSubject = (subject) => {
-  return axios.post('http://localhost:8080/api-admin-monhoc', subject)
+  return axios.post(baseUrlAPI + '/api-admin-monhoc', subject)
     .then((response) => {
       return response;
     })
@@ -14,7 +15,7 @@ const handleCreateSubject = (subject) => {
 };
 
 const handleGetSubjects = () => {
-  return axios.get('http://localhost:8080/api-admin-monhoc')
+  return axios.get(baseUrlAPI + '/api-admin-monhoc')
   .then((response) => {
     console.log('Dữ liệu đã được gửi thành công!');
     console.log(response.data);
@@ -28,7 +29,7 @@ const handleGetSubjects = () => {
 }
 
 const handleDeleteSubjects = (subject) => {
-  return axios.delete('http://localhost:8080/api-admin-monhoc', {data: subject})
+  return axios.delete(baseUrlAPI + '/api-admin-monhoc', {data: subject})
   .then((response) => {
     return true;
   })

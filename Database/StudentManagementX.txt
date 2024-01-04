@@ -22,6 +22,7 @@ CREATE TABLE TAIKHOAN (
     NgaySinh TEXT,
     Email TEXT,
     Phone TEXT,
+    Password TEXT,
     Role TEXT NOT NULL
 );
 

@@ -1,20 +1,21 @@
 import axios from "axios"
+import { baseUrlAPI } from "../utils/Helper";
 
-const handleCreateLecturer = (lecturer) => {
-  return axios.post('http://localhost:8080/api-admin-giaovien', lecturer)
+const handleCreateFaculty = (faculty) => {
+  return axios.post(baseUrlAPI + '/api-admin-khoa', faculty)
     .then((response) => {
       return response;
     })
     .catch((error) => {
       console.error('Đã xảy ra lỗi khi gửi dữ liệu:');
-      // console.error(error);
+      console.error(error);
 
       return error;
     });
 };
 
-const handleGetLecturers = () => {
-  return axios.get('http://localhost:8080/api-admin-giaovien')
+const handleGetFaculties = () => {
+  return axios.get(baseUrlAPI + '/api-admin-khoa')
   .then((response) => {
     console.log('Dữ liệu đã được gửi thành công!');
     console.log(response.data);
@@ -27,12 +28,12 @@ const handleGetLecturers = () => {
   });
 }
 
-const handleDeleteLecturer = (lecturer) => {
-  return axios.delete('http://localhost:8080/api-admin-giaovien', {data: lecturer})
+const handleDeleteFaculty = (faculty) => {
+  return axios.delete(baseUrlAPI + '/api-admin-khoa', {data: faculty})
   .then((response) => {
     return true;
   })
-  .catch((error) => {
+  .catch((error) => { 
     console.error('Đã xảy ra lỗi khi gửi dữ liệu:');
     console.error(error);
 
@@ -41,7 +42,7 @@ const handleDeleteLecturer = (lecturer) => {
 }
 
 export  {
-    handleCreateLecturer,
-    handleGetLecturers,
-    handleDeleteLecturer
+    handleCreateFaculty,
+    handleGetFaculties,
+    handleDeleteFaculty
 }

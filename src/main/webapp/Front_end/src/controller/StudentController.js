@@ -1,7 +1,8 @@
 import axios from "axios"
+import { baseUrlAPI } from "../utils/Helper";
 
 const handleCreateStudent = (student) => {
-  return axios.post('http://localhost:8080/api-admin-sinhvien', student)
+  return axios.post(baseUrlAPI + '/api-admin-sinhvien', student)
     .then((response) => {
       return response;
     })
@@ -14,7 +15,7 @@ const handleCreateStudent = (student) => {
 };
 
 const handleGetStudents = () => {
-  return axios.get('http://localhost:8080/api-admin-sinhvien')
+  return axios.get(baseUrlAPI + '/api-admin-sinhvien')
   .then((response) => {
     console.log('Dữ liệu đã được gửi thành công!');
     console.log(response.data);
@@ -28,7 +29,7 @@ const handleGetStudents = () => {
 }
 
 const handleDeleteStudent = (student) => {
-  return axios.delete('http://localhost:8080/api-admin-sinhvien', {data: student})
+  return axios.delete(baseUrlAPI + '/api-admin-sinhvien', {data: student})
   .then((response) => {
     return true;
   })

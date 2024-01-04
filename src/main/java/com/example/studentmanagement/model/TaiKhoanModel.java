@@ -24,16 +24,28 @@ public class TaiKhoanModel {
     @Column(name="Role")
     private String role;
 
+    @Column(name="Password")
+    private String password;
+
     public TaiKhoanModel() {
     }
 
-    public TaiKhoanModel(String maTK, String tenTK, String ngaySinh, String email, String phone, String role) {
+    public TaiKhoanModel(String maTK, String tenTK, String ngaySinh, String email, String phone, String role, String password) {
         this.maTK = maTK;
         this.tenTK = tenTK;
         this.ngaySinh = ngaySinh;
         this.email = email;
         this.phone = phone;
         this.role = role;
+        this.password = password;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getMaTK() {

@@ -57,6 +57,10 @@ const MajorFaculty = () => {
     const fetchDataMajor = () => {
         setLoadingMajor(true);
         handleGetMajors().then((results) => {
+            if (results == null) {
+                results = [];
+            }   
+
             setDataMajor(results);
             setLoadingMajor(false);
             setTableParamsMajor({
@@ -122,6 +126,10 @@ const MajorFaculty = () => {
     const fetchDataFaculty = () => {
         setLoadingFaculty(true);
         handleGetFaculties().then((results) => {
+            if (results == null) {
+                results = [];
+            }   
+
             setDataFaculty(results);
             setLoadingFaculty(false);
             setTableParamsFaculty({

@@ -56,6 +56,7 @@ public class TaiKhoanJPA implements ITaiKhoanJPA {
             tk.setPhone(taiKhoanModel.getPhone());
             tk.setTenTK(taiKhoanModel.getTenTK());
             tk.setRole(taiKhoanModel.getRole());
+            tk.setPassword(taiKhoanModel.getPassword());
 
             entityManager.persist(tk);
             entityManager.getTransaction().commit();
@@ -95,6 +96,7 @@ public class TaiKhoanJPA implements ITaiKhoanJPA {
             tk.setPhone(taiKhoanModel.getPhone());
             tk.setTenTK(taiKhoanModel.getTenTK());
             tk.setRole(taiKhoanModel.getRole());
+            tk.setPassword(taiKhoanModel.getPassword());
 
             entityManager.merge(tk);
             entityManager.getTransaction().commit();

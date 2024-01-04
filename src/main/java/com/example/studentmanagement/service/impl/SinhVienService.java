@@ -64,6 +64,7 @@ public class SinhVienService implements ISinhVienService {
         taiKhoanModel.setEmail(sinhVienDTO.getEmail());
         taiKhoanModel.setPhone(sinhVienDTO.getPhone());
         taiKhoanModel.setRole("3");
+        taiKhoanModel.setPassword("1");
         taiKhoanJPA.save(taiKhoanModel);
 
         // Lưu sinh viên
@@ -73,7 +74,7 @@ public class SinhVienService implements ISinhVienService {
 
         return new HashMap<>(){{
             put("sinhVien", sinhVienJPA.findOne(newMaSinhVien));
-            put("thongBao", "Tạo giáo viên thành công");
+            put("thongBao", "Tạo sinh viên thành công");
         }};
     }
 

@@ -24,6 +24,10 @@ const Lecturer = () => {
     const fetchData = () => {
         setLoading(true);
         handleGetLecturers().then((results) => {
+            if (results == null) {
+                results = [];
+            }   
+
             setData(results);
             setLoading(false);
             setTableParams({
@@ -61,6 +65,10 @@ const Lecturer = () => {
 
     const fetchDataFaculty = () => {
         handleGetFaculties().then((results) => {
+            if (results == null) {
+                results = [];
+            }   
+
             setDataFaculty(results);
         });
     };

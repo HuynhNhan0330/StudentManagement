@@ -65,6 +65,8 @@ public class GiaoVienService implements IGiaoVienService {
         taiKhoanModel.setEmail(giaoVienDTO.getEmail());
         taiKhoanModel.setPhone(giaoVienDTO.getPhone());
         taiKhoanModel.setRole("2");
+        taiKhoanModel.setPassword("1");
+
         taiKhoanJPA.save(taiKhoanModel);
 
         // Lưu giáo viên

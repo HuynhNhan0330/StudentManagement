@@ -10,7 +10,7 @@ function StudentTable({ data, loading, handleTableChange, handleEdit, handleDele
         },
         {
             title: 'Tên sinh viên',
-            dataIndex: 'maTK',
+            dataIndex: 'tenTK',
         },
         {
             title: 'Giới tính',

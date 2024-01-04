@@ -1,20 +1,21 @@
 import axios from "axios"
+import { baseUrlAPI } from "../utils/Helper";
 
-const handleCreateMajor = (major) => {
-  return axios.post('http://localhost:8080/api-admin-nganh', major)
+const handleCreateLecturer = (lecturer) => {
+  return axios.post(baseUrlAPI + '/api-admin-giaovien', lecturer)
     .then((response) => {
       return response;
     })
     .catch((error) => {
       console.error('Đã xảy ra lỗi khi gửi dữ liệu:');
-      console.error(error);
+      // console.error(error);
 
       return error;
     });
 };
 
-const handleGetMajors = () => {
-  return axios.get('http://localhost:8080/api-admin-nganh')
+const handleGetLecturers = () => {
+  return axios.get(baseUrlAPI + '/api-admin-giaovien')
   .then((response) => {
     console.log('Dữ liệu đã được gửi thành công!');
     console.log(response.data);
@@ -27,12 +28,12 @@ const handleGetMajors = () => {
   });
 }
 
-const handleDeleteMajor = (major) => {
-  return axios.delete('http://localhost:8080/api-admin-nganh', {data: major})
+const handleDeleteLecturer = (lecturer) => {
+  return axios.delete(baseUrlAPI + '/api-admin-giaovien', {data: lecturer})
   .then((response) => {
     return true;
   })
-  .catch((error) => { 
+  .catch((error) => {
     console.error('Đã xảy ra lỗi khi gửi dữ liệu:');
     console.error(error);
 
@@ -41,7 +42,7 @@ const handleDeleteMajor = (major) => {
 }
 
 export  {
-    handleCreateMajor,
-    handleGetMajors,
-    handleDeleteMajor
+    handleCreateLecturer,
+    handleGetLecturers,
+    handleDeleteLecturer
 }

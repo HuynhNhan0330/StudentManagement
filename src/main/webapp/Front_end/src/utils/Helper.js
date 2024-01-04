@@ -9,7 +9,10 @@ const isValidPhoneNumber = (phoneNumber) => {
     return phoneRegex.test(phoneNumber);
 };
 
+const baseUrlAPI = "http://localhost:8080"
+
 export  {
     isValidEmail,
-    isValidPhoneNumber
+    isValidPhoneNumber,
+    baseUrlAPI
 }

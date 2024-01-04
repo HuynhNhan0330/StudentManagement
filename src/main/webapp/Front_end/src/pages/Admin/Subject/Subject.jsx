@@ -22,6 +22,10 @@ const Subject = () => {
     const fetchData = () => {
         setLoading(true);
         handleGetSubjects().then((results) => {
+            if (results == null) {
+                results = [];
+            }         
+
             setData(results);
             setLoading(false);
             setTableParams({
