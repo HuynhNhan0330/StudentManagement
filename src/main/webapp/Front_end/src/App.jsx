@@ -1,6 +1,7 @@
 import Layout from './pages/Admin/Layout/Layout';
+import AppLayout from './components/User/Layout/AppLayout' 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { privateRoutes, publicRoutes } from './routes/AppRoutes';
+import { privateRoutes, publicRoutes, studentRoutes } from './routes/AppRoutes';
 import { Fragment } from 'react';
 function App() {
     return (
@@ -10,6 +11,26 @@ function App() {
                     {publicRoutes.map((route, index) => {
                         const Page = route.component;
                         let _Layout = Layout;
+                        if (route.layout) {
+                            _Layout = route.layout;
+                        } else if (route.layout === null) {
+                            _Layout = Fragment;
+                        }
+                        return (
+                            <Route
+                                key={index}
+                                path={route.path}
+                                element={
+                                    <_Layout>
+                                        <Page />
+                                    </_Layout>
+                                }
+                            />
+                        );
+                    })}
+                    {studentRoutes.map((route, index) => {
+                        const Page = route.component;
+                        let _Layout = AppLayout;
                         if (route.layout) {
                             _Layout = route.layout;
                         } else if (route.layout === null) {

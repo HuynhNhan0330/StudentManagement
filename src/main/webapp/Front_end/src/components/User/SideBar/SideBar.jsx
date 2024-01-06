@@ -1,47 +1,28 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './SideBar.scss';
 import 'boxicons/css/boxicons.min.css';
-
+import { studentPaths } from '../../../routes/AppRoutes';
 const sidebarNavItems = [
     {
         display: 'Home',
         icon: <i className='bx bx-home'></i>,
-        to: '/',
-        section: ''
+        to: studentPaths.home,
+        section: 'user-home'
     },
     {
-        display: 'Ngành khoa',
-        icon: <FontAwesomeIcon icon="fa-solid fa-school" />,
-        to: '/major_faculty',
-        section: 'major_faculty'
+        display: 'Schedule',
+        icon: <i className='bx bx-calendar'></i>,
+        to: studentPaths.schedule,
+        section: 'student-schedule'
     },
     {
-        display: 'Sinh viên',
+        display: 'User',
         icon: <i className='bx bx-user'></i>,
-        to: '/student',
-        section: 'student'
+        to: studentPaths.user_infor,
+        section: 'student-user-info'
     },
-    {
-        display: 'Giảng viên',
-        icon: <i class='bx bx-group'></i>,
-        to: '/lecturer',
-        section: 'lecturer'
-    },
-    {
-        display: 'Lớp',
-        icon: <i class='bx bx-door-open'></i>,
-        to: '/class',
-        section: 'class'
-    },
-    {
-        display: 'Môn học',
-        icon: <i className='bx bx-book'></i>,
-        to: '/subject',
-        section: 'subject'
-    },
-    
+
 ]
 
 const Sidebar = () => {
@@ -68,8 +49,8 @@ const Sidebar = () => {
 
     return <nav className="navbar navbar-light navbar-vertical navbar-expand-xl">
         <div className='sidebar'>
-            <div className="sidebar__logo">
-                Admin
+            <div className="sidebar__logo_user">
+
             </div>
             <div ref={sidebarRef} className="sidebar__menu">
                 <div

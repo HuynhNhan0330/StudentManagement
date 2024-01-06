@@ -5,6 +5,8 @@ import Login from '../pages/Admin/Login/Login';
 import Class from '../pages/Admin/Class/Class';
 import MajorFaculty from '../pages/Admin/MajorFaculty/MajorFaculty';
 import Subject from '../pages/Admin/Subject/Subject';
+
+import Schedule from '../pages/User/Student/Schedule/Schedule';
 const publicRoutes = [
     { path: '/', component: Home },
     { path: '/student', component: Student },
@@ -14,9 +16,27 @@ const publicRoutes = [
     { path: '/major_faculty', component: MajorFaculty },
 ];
 
+
+const studentPaths =
+{
+    
+    home: '/student-home',
+    
+    user_infor: '/student-info',
+    schedule: '/student-schedule',
+    
+}
+
+const studentRoutes = [
+    { path: studentPaths.home, component: Home },
+    { path: studentPaths.schedule, component: Schedule },
+
+    
+];
+
 const privateRoutes = [
     { path: '/login', component: Login, layout: null },
     // { path: '/register', component: Register, layout: null }
 ];
 
-export { publicRoutes, privateRoutes };
+export { publicRoutes, privateRoutes ,studentRoutes,studentPaths};

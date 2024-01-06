@@ -1,0 +1,41 @@
+.MainContainErSchedule {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    position: fixed;
+    margin-left: 0%;
+    margin-top: 0%;
+    overflow-y: auto;
+    width: 77%;
+    height: 80vh;
+}
+.ScheduleBoardM {
+    margin-top: 1%;
+    margin-bottom: 2%;
+    width: 95%;
+}
+////////////////
+.monday {
+    width: 200px;
+    text-align: center;
+}
+.tuesday {
+    width: 160px;
+    text-align: center;
+}
+.wednesday {
+    width: 180px;
+    text-align: center;
+}
+.thursday {
+    width: 170px;
+    text-align: center;
+}
+.friday {
+    width: 170px;
+    text-align: center;
+}
+.saturday {
+    width: 180px;
+    text-align: center;
+}
