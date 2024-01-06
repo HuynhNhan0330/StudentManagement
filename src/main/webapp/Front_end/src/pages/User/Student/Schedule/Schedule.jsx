@@ -34,7 +34,7 @@ function Schedule() {
   return (
       <>
         <div className="MainScreenSchedule">
-        <ScheduleBoard Semester={SemesterSchedule} ScheduleEvents={events}></ScheduleBoard>
+          <ScheduleBoard Semester={SemesterSchedule} ScheduleEvents={events}></ScheduleBoard>
         </div>
       </>
     );

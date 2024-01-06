@@ -1,19 +1,33 @@
 .MainContainErSchedule {
     display: flex;
-    gap: 10px;
+    gap: 0px;
     flex-wrap: wrap;
     position: fixed;
-    margin-left: 0%;
+    margin-left: 5%;
     margin-top: 0%;
     overflow-y: auto;
-    width: 77%;
+    width: 78%;
     height: 80vh;
+    background-color: white;
 }
 .ScheduleBoardM {
     margin-top: 1%;
     margin-bottom: 2%;
-    width: 95%;
+    width: 99%;
+    background-color: white;
 }
+
+//
+.fc .fc-timeGridDay-view .fc-v-event .fc-event-main, .fc .fc-timeGridWeek-view .fc-v-event .fc-event-main
+{
+    color: white;
+    pointer-events: none;
+}
+.fc .fc-timeGridDay-view .fc-timegrid-event, .fc .fc-timeGridWeek-view .fc-timegrid-event{
+    background-color: #2f88ff;
+    pointer-events: none;
+}
+
 ////////////////
 .monday {
     width: 200px;
