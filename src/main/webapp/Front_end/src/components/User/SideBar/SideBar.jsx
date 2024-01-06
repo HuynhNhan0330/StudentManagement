@@ -22,6 +22,12 @@ const sidebarNavItems = [
         to: studentPaths.user_infor,
         section: 'student-user-info'
     },
+    {
+        display: 'Score',
+        icon: <i className='bx bx-user'></i>,
+        to: studentPaths.score,
+        section: 'student-score'
+    },
 
 ]
 
@@ -37,7 +43,7 @@ const SidebarUser = () => {
             const sidebarItem = sidebarRef.current.querySelector('.sidebar_user__menu__item');
             indicatorRef.current.style.height = `${sidebarItem.clientHeight}px`;
             setStepHeight(sidebarItem.clientHeight);
-        }, 50);
+        }, 60);
     }, []);
 
     // change active index

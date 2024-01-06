@@ -6,7 +6,8 @@ import Class from '../pages/Admin/Class/Class';
 import MajorFaculty from '../pages/Admin/MajorFaculty/MajorFaculty';
 import Subject from '../pages/Admin/Subject/Subject';
 
-import Schedule from '../pages/User/Student/Schedule/Schedule';
+import Schedule from '../pages/User/Schedule/Schedule';
+import ScorePage from '../pages/User/ScorePage/ScorePage';
 const publicRoutes = [
     { path: '/', component: Home },
     { path: '/student', component: Student },
@@ -21,7 +22,7 @@ const studentPaths =
 {
     
     home: '/student-home',
-    
+    score: '/student-score',
     user_infor: '/student-info',
     schedule: '/student-schedule',
     
@@ -30,6 +31,7 @@ const studentPaths =
 const studentRoutes = [
     { path: studentPaths.home, component: Home },
     { path: studentPaths.schedule, component: Schedule },
+    { path: studentPaths.score, component: ScorePage },
 
     
 ];

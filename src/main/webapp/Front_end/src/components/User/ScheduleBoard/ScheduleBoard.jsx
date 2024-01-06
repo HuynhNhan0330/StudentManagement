@@ -70,6 +70,7 @@ function ScheduleBoard(props) {
                         dayHeaders={false}
                         allDaySlot={false}
                         height={"auto"}
+                        borderColor="black"
                     />
                 </div>
             </div>

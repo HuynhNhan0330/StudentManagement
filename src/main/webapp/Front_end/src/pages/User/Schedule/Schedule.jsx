@@ -1,4 +1,4 @@
-import ScheduleBoard from "../../../../components/User/ScheduleBoard/ScheduleBoard";
+import ScheduleBoard from "../../../components/User/ScheduleBoard/ScheduleBoard";
 import './Schedule.scss'
 
 //
