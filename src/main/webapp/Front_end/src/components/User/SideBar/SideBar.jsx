@@ -34,7 +34,7 @@ const Sidebar = () => {
 
     useEffect(() => {
         setTimeout(() => {
-            const sidebarItem = sidebarRef.current.querySelector('.sidebar__menu__item');
+            const sidebarItem = sidebarRef.current.querySelector('.sidebar_user__menu__item');
             indicatorRef.current.style.height = `${sidebarItem.clientHeight}px`;
             setStepHeight(sidebarItem.clientHeight);
         }, 50);
@@ -48,14 +48,14 @@ const Sidebar = () => {
     }, [location]);
 
     return <nav className="navbar navbar-light navbar-vertical navbar-expand-xl">
-        <div className='sidebar'>
-            <div className="sidebar__logo_user">
+        <div className='sidebar_user'>
+            <div className="sidebar_user__logo">
 
             </div>
-            <div ref={sidebarRef} className="sidebar__menu">
+            <div ref={sidebarRef} className="sidebar_user__menu">
                 <div
                     ref={indicatorRef}
-                    className="sidebar__menu__indicator"
+                    className="sidebar_user__menu__indicator"
                     style={{
                         transform: `translateX(-50%) translateY(${activeIndex * stepHeight}px)`
                     }}
@@ -63,11 +63,11 @@ const Sidebar = () => {
                 {
                     sidebarNavItems.map((item, index) => (
                         <Link to={item.to} key={index} style={{ textDecoration: 'none' }}>
-                            <div className={`sidebar__menu__item ${activeIndex === index ? 'active' : ''}`}>
-                                <div className="sidebar__menu__item__icon">
+                            <div className={`sidebar_user__menu__item ${activeIndex === index ? 'active' : ''}`}>
+                                <div className="sidebar_user__menu__item__icon">
                                     {item.icon}
                                 </div>
-                                <div className="sidebar__menu__item__text">
+                                <div className="sidebar_user__menu__item__text">
                                     {item.display}
                                 </div>
                             </div>

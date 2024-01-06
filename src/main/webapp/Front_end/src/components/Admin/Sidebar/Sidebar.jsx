@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import './SideBar.scss';
+import './Sidebar.scss';
 import 'boxicons/css/boxicons.min.css';
 
 const sidebarNavItems = [

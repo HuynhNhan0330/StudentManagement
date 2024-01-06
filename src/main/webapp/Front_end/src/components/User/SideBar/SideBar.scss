@@ -1,4 +1,4 @@
-.sidebar {
+.sidebar_user {
     position: fixed;
     top: 10%;
     left: 1%;
@@ -6,7 +6,7 @@
     width: 290px;
     background-color: #f7f9fc;
 
-    &__logo_user {
+    &__logo {
         display: grid;
         place-items: center;
         height: 120px;
