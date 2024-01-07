@@ -48,42 +48,22 @@ function DetailClass() {
     const items = [
         {
             key: '1',
-            label: 'Class Name',
+            label: 'Tên lớp',
             children: selectedSchoolClass?.id + ' - ' + selectedSchoolClass?.name,
         },
         {
             key: '2',
-            label: 'Lecturer',
+            label: 'Giảng viên',
             children: selectedSchoolClass?.lecturer?.name,
         },
         {
-            key: '4',
-            label: 'Room',
-            children: selectedSchoolClass?.roomName,
-        },
-        {
             key: '5',
-            label: 'Program',
-            children: selectedSchoolClass?.program,
-        },
-        {
-            key: '6',
-            label: 'Class type',
-            children: selectedSchoolClass?.classType,
-        },
-        {
-            key: '7',
-            label: 'SubjectID',
+            label: 'Mã môn học',
             children: selectedSchoolClass?.subject?.id,
         },
         {
-            key: '8',
-            label: 'Semester',
-            children: selectedSchoolClass?.semesterId,
-        },
-        {
-            key: '9',
-            label: 'something',
+            key: '7',
+            label: 'Ghi chú',
             children: '............................',
         },
     ];
@@ -143,12 +123,12 @@ function DetailClass() {
                         {
                             title: (
                                 <a href={adminPaths.class} className="breadcrumb-link">
-                                    Class
+                                    Lớp học
                                 </a>
                             ),
                         },
                         {
-                            title: <span className="breadcrumb-link">Detail Class</span>,
+                            title: <span className="breadcrumb-link">Chi tiết lớp học</span>,
                         },
                     ]}
                 />
@@ -169,6 +149,7 @@ function DetailClass() {
                 </Space>
                 {renderDescriptions()}
             </Card>
+            <Divider style={{ color: 'blue', fontSize: '16px' }}>Danh sách học sinh</Divider>
             <StudentListTable />
             <FloatButton
                 type='primary'

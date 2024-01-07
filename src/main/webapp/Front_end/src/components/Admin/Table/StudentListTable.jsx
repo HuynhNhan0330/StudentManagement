@@ -81,31 +81,31 @@ const StudentListTable = () => {
 
     const columns = [
         {
-            title: 'Name',
+            title: 'Họ tên',
             dataIndex: 'name',
             width: '20%',
             //editable: true,
         },
         {
-            title: 'Progress',
+            title: 'Quá trình',
             dataIndex: 'progress',
             width: '12%',
             editable: true,
         },
         {
-            title: 'Midterm',
+            title: 'Giữa kì',
             dataIndex: 'midterm',
             width: '12%',
             editable: true,
         },
         {
-            title: 'Practice',
+            title: 'Thực hành',
             dataIndex: 'practice',
             width: '12%',
             editable: true,
         },
         {
-            title: 'Final',
+            title: 'Cuối kì',
             dataIndex: 'final',
             width: '12%',
             editable: true,
@@ -117,7 +117,7 @@ const StudentListTable = () => {
             editable: true,
         },
         {
-            title: 'Action',
+            title: 'Thao tác',
             dataIndex: 'Action',
             render: (_, record) => {
                 const editable = isEditing(record);
