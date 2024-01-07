@@ -50,12 +50,15 @@ function ScoreBoard(props) {
             key: 'status',
         }
     ];
-    const data = props.StudentScoreData;
+    let data = [];
+    data = props.StudentScoreData;
     return (
         <div className='ScoreBoardContainer'>
             <Table
                 columns={columns}
-
+                pagination={{
+                    position: ['none', 'none'],
+                  }}
                 dataSource={data}
             />
         </div>

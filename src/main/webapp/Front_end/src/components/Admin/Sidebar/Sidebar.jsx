@@ -3,43 +3,43 @@ import { Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Sidebar.scss';
 import 'boxicons/css/boxicons.min.css';
-
+import { adminPaths } from '../../../routes/AppRoutes';
 const sidebarNavItems = [
     {
         display: 'Home',
         icon: <i className='bx bx-home'></i>,
-        to: '/',
-        section: ''
+        to: adminPaths.home,
+        section: 'admin'
     },
     {
         display: 'Ngành khoa',
         icon: <FontAwesomeIcon icon="fa-solid fa-school" />,
-        to: '/major_faculty',
-        section: 'major_faculty'
+        to: adminPaths.major_faculty,
+        section: 'admin_major_faculty'
     },
     {
         display: 'Sinh viên',
         icon: <i className='bx bx-user'></i>,
-        to: '/student',
-        section: 'student'
+        to: adminPaths.student,
+        section: 'admin_student'
     },
     {
         display: 'Giảng viên',
         icon: <i class='bx bx-group'></i>,
-        to: '/lecturer',
-        section: 'lecturer'
+        to: adminPaths.lecturer,
+        section: 'admin_lecturer'
     },
     {
         display: 'Lớp',
         icon: <i class='bx bx-door-open'></i>,
-        to: '/class',
-        section: 'class'
+        to: adminPaths.class,
+        section: 'admin_class'
     },
     {
         display: 'Môn học',
         icon: <i className='bx bx-book'></i>,
-        to: '/subject',
-        section: 'subject'
+        to: adminPaths.subject,
+        section: 'admin_subject'
     },
     
 ]

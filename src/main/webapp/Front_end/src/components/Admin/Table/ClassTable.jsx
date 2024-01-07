@@ -1,6 +1,7 @@
 import React from 'react';
 import { Table, Button, Space } from 'antd';
-
+import { NavLink } from 'react-router-dom';
+import { adminPaths } from '../../../routes/AppRoutes';
 function ClassTable({ showDrawer }) {
     const columns = [
         {
@@ -46,9 +47,9 @@ function ClassTable({ showDrawer }) {
                     <Button danger variant="contained" type="primary">
                         Xóa
                     </Button>
-                    <Button default variant="contained" onClick={() => showDrawer(record)}>
-                        Chi tiết
-                    </Button>
+                    <NavLink to = { adminPaths.detatailclass +`${record.id}`}>
+                        <Button type="default">Details</Button>
+                    </NavLink>
                 </Space>
             ),
         },
