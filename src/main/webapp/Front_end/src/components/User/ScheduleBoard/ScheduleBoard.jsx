@@ -6,10 +6,6 @@ import { useState } from 'react';
 import timeGridPlugin from '@fullcalendar/timegrid'
 import Dropdown from 'react-bootstrap/Dropdown';
 
-
-
-
-
 function renderEventContent(eventInfo) {
     return (
         <>
@@ -34,8 +30,6 @@ function ScheduleBoard(props) {
     const handleSelect = (eventKey) => {
         setSelectedSemester(eventKey);
     };
-
-    
 
     return (
         <div className='MainContainErSchedule'>

@@ -1,15 +1,16 @@
 package com.example.studentmanagement.jpa;
 
+import com.example.studentmanagement.dto.LopHocDTO;
 import com.example.studentmanagement.model.LopHocModel;
 
 import java.util.List;
 
 public interface ILopHocJPA {
-    List<LopHocModel> findAll();
+    List<LopHocDTO> findAll();
 
     String findMaxMaLopHoc();
 
-    LopHocModel findOne(String maLop);
+    LopHocDTO findOne(String maLop);
 
     String save(LopHocModel lopHocModel);
 

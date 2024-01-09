@@ -1,5 +1,6 @@
 package com.example.studentmanagement.api;
 
+import com.example.studentmanagement.dto.LopHocDTO;
 import com.example.studentmanagement.model.LopHocModel;
 import com.example.studentmanagement.service.ILopHocService;
 import com.example.studentmanagement.service.impl.LopHocService;
@@ -13,6 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(urlPatterns = { "/api-admin-lophoc" })
 public class LopHocAPI extends HttpServlet {
@@ -33,10 +35,11 @@ public class LopHocAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // get list object
-        List<LopHocModel> listLopHoc = lopHocService.findAll();
+        List<LopHocDTO> listLopHoc = lopHocService.findAll();
 
         // convert list model to json for response
         ObjectMapper mapper = new ObjectMapper();
+        resp.setStatus(HttpServletResponse.SC_OK);
         mapper.writeValue(resp.getOutputStream(), listLopHoc);
         return;
     }
@@ -54,11 +57,21 @@ public class LopHocAPI extends HttpServlet {
         LopHocModel lopHocNew = HttpUtil.of(req.getReader()).toModel(LopHocModel.class);
 
         // create new data point in database
-        lopHocNew = lopHocService.save(lopHocNew);
+        Map<String, Object>  results = lopHocService.save(lopHocNew);
+        LopHocDTO lopHocDTO = (LopHocDTO) results.get("lopHoc");
 
         // convert model to json for response
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(resp.getOutputStream(), lopHocNew);
+
+        if (lopHocNew == null) {
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            mapper.writeValue(resp.getOutputStream(), results.get("thongBao"));
+        }
+        else {
+            resp.setStatus(HttpServletResponse.SC_OK);
+            mapper.writeValue(resp.getOutputStream(), lopHocDTO);
+        }
+
         return;
     }
 
@@ -75,7 +88,7 @@ public class LopHocAPI extends HttpServlet {
         LopHocModel lopHocUpdate = HttpUtil.of(req.getReader()).toModel(LopHocModel.class);
 
         // update new data point in database
-        lopHocUpdate = lopHocService.update(lopHocUpdate);
+//        lopHocUpdate = lopHocService.update(lopHocUpdate);
 
         // convert model to json for response
         ObjectMapper mapper = new ObjectMapper();

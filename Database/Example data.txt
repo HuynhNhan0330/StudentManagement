@@ -63,3 +63,16 @@ VALUES
   ('MH0034', 'Giao tiếp người máy', 4),
   ('MH0035', 'Kiểm chứng phần mềm', 4),
   ('MH0036', 'Quản lý dự án phát triển phần mềm', 4);
+
+INSERT INTO KYHOC (MaKH, TenKH, ThoiGianBatDau, ThoiGianKetThuc)
+VALUES
+  ('KH0001', 'HK1 - 2023/2024', '20/9/2023', '20/1/2024'),
+  ('KH0002', 'HK2 - 2023/2024', '20/2/2024', '20/6/2024');
+
+INSERT INTO PHONGHOC (MaPH, TenPH)
+VALUES
+  ('PH0001', 'A101'),
+  ('PH0002', 'A102'),
+  ('PH0003', 'A103'),
+  ('PH0004', 'A104'),
+  ('PH0005', 'A105');

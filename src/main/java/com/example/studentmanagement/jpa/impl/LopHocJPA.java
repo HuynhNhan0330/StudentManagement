@@ -1,5 +1,6 @@
 package com.example.studentmanagement.jpa.impl;
 
+import com.example.studentmanagement.dto.LopHocDTO;
 import com.example.studentmanagement.jpa.ILopHocJPA;
 import com.example.studentmanagement.model.LopHocModel;
 
@@ -11,15 +12,17 @@ import java.util.List;
 
 public class LopHocJPA implements ILopHocJPA {
     @Override
-    public List<LopHocModel> findAll() {
+    public List<LopHocDTO> findAll() {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
             entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
             entityManager = entityManagerFactory.createEntityManager();
 
-            TypedQuery<LopHocModel> query = entityManager.createQuery("SELECT lh FROM LopHocModel lh", LopHocModel.class);
-            List<LopHocModel> lopHocList = query.getResultList();
+            String jpql = "SELECT new com.example.studentmanagement.dto.LopHocDTO(lh.maLop, lh.tenLop, lh.maGV, tk.tenTK, lh.maMH, mh.tenMH, lh.ngayHoc, lh.thoiGianBatDau, lh.thoiGianKetThuc, lh.maKH, kh.tenKH, lh.maPH, ph.tenPH, kh.thoiGianBatDau, kh.thoiGianKetThuc) FROM LopHocModel lh JOIN PhongHocModel ph ON lh.maPH = ph.maPH JOIN KyHocModel kh ON lh.maKH = kh.maKH JOIN GiaoVienModel gv ON lh.maGV = gv.maGV JOIN MonHocModel mh ON lh.maMH = mh.maMH JOIN TaiKhoanModel tk ON gv.maTK = tk.maTK";
+            TypedQuery<LopHocDTO> query = entityManager.createQuery(jpql, LopHocDTO.class);
+
+            List<LopHocDTO> lopHocList = query.getResultList();
 
             return lopHocList;
         } catch (Exception e1) {
@@ -67,14 +70,18 @@ public class LopHocJPA implements ILopHocJPA {
     }
 
     @Override
-    public LopHocModel findOne(String maLop) {
+    public LopHocDTO findOne(String maLop) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
             entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
             entityManager = entityManagerFactory.createEntityManager();
 
-            LopHocModel lh = entityManager.find(LopHocModel.class, maLop);
+            String jpql = "SELECT new com.example.studentmanagement.dto.LopHocDTO(lh.maLop, lh.tenLop, lh.maGV, tk.tenTK, lh.maMH, mh.tenMH, lh.ngayHoc, lh.thoiGianBatDau, lh.thoiGianKetThuc, lh.maKH, kh.tenKH, lh.maPH, ph.tenPH, kh.thoiGianBatDau, kh.thoiGianKetThuc) FROM LopHocModel lh JOIN PhongHocModel ph ON lh.maPH = ph.maPH JOIN KyHocModel kh ON lh.maKH = kh.maKH JOIN GiaoVienModel gv ON lh.maGV = gv.maGV JOIN MonHocModel mh ON lh.maMH = mh.maMH JOIN TaiKhoanModel tk ON gv.maTK = tk.maTK WHERE lh.maLop = :maLop";
+            TypedQuery<LopHocDTO> query = entityManager.createQuery(jpql, LopHocDTO.class);
+            query.setParameter("maLop", maLop);
+
+            LopHocDTO lh = query.getSingleResult();
 
             return lh;
         } catch (Exception e1) {
@@ -110,7 +117,11 @@ public class LopHocJPA implements ILopHocJPA {
             lh.setTenLop(lopHocModel.getTenLop());
             lh.setMaGV(lopHocModel.getMaGV());
             lh.setMaMH(lopHocModel.getMaMH());
-            lh.setThoiGian(lopHocModel.getThoiGian());
+            lh.setMaPH(lopHocModel.getMaPH());
+            lh.setMaKH(lopHocModel.getMaKH());
+            lh.setThoiGianBatDau(lopHocModel.getThoiGianBatDau());
+            lh.setThoiGianKetThuc(lopHocModel.getThoiGianKetThuc());
+            lh.setNgayHoc(lopHocModel.getNgayHoc());
 
             entityManager.persist(lh);
             entityManager.getTransaction().commit();
@@ -148,7 +159,6 @@ public class LopHocJPA implements ILopHocJPA {
             lh.setTenLop(lopHocModel.getTenLop());
             lh.setMaGV(lopHocModel.getMaGV());
             lh.setMaMH(lopHocModel.getMaMH());
-            lh.setThoiGian(lopHocModel.getThoiGian());
 
             entityManager.merge(lh);
             entityManager.getTransaction().commit();

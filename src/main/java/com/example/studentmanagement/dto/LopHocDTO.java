@@ -1,55 +1,57 @@
-package com.example.studentmanagement.model;
+package com.example.studentmanagement.dto;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity
-@Table(name="LOPHOC")
-public class LopHocModel {
-
-    @Id
-    @Column(name="MaLop")
+public class LopHocDTO {
     private String maLop;
 
-    @Column(name="TenLop")
     private String tenLop;
 
-    @Column(name="MaGV")
     private String maGV;
 
-    @Column(name="MaMH")
+    private String tenGV;
+
     private String maMH;
 
-    @Column(name="NgayHoc")
+    private String tenMH;
+
     private String ngayHoc;
 
-    @Column(name="ThoiGianBatDau")
     private String thoiGianBatDau;
 
-    @Column(name="ThoiGianKetThuc")
     private String thoiGianKetThuc;
 
-    @Column(name="MaKH")
     private String maKH;
 
-    @Column(name="MaPH")
+    private String tenKH;
+
     private String maPH;
 
-    public LopHocModel() {
+    private String tenPH;
+
+    private String thoiGianBatDauLH;
+
+    private String thoiGianKetThucLH;
+
+    public LopHocDTO() {
     }
 
-    public LopHocModel(String maLop, String tenLop, String maGV, String maMH, String ngayHoc, String thoiGianBatDau, String thoiGianKetThuc, String maKH, String maPH) {
+    public LopHocDTO(String maLop, String tenLop, String maGV, String tenGV, String maMH, String tenMH, String ngayHoc, String thoiGianBatDau, String thoiGianKetThuc, String maKH, String tenKH, String maPH, String tenPH, String thoiGianBatDauLH, String thoiGianKetThucLH) {
         this.maLop = maLop;
         this.tenLop = tenLop;
         this.maGV = maGV;
+        this.tenGV = tenGV;
         this.maMH = maMH;
+        this.tenMH = tenMH;
         this.ngayHoc = ngayHoc;
         this.thoiGianBatDau = thoiGianBatDau;
         this.thoiGianKetThuc = thoiGianKetThuc;
         this.maKH = maKH;
+        this.tenKH = tenKH;
         this.maPH = maPH;
+        this.tenPH = tenPH;
+        this.thoiGianBatDauLH = thoiGianBatDauLH;
+        this.thoiGianKetThucLH = thoiGianKetThucLH;
     }
 
     public String getNgayHoc() {
@@ -84,12 +86,28 @@ public class LopHocModel {
         this.maGV = maGV;
     }
 
+    public String getTenGV() {
+        return tenGV;
+    }
+
+    public void setTenGV(String tenGV) {
+        this.tenGV = tenGV;
+    }
+
     public String getMaMH() {
         return maMH;
     }
 
     public void setMaMH(String maMH) {
         this.maMH = maMH;
+    }
+
+    public String getTenMH() {
+        return tenMH;
+    }
+
+    public void setTenMH(String tenMH) {
+        this.tenMH = tenMH;
     }
 
     public String getThoiGianBatDau() {
@@ -116,11 +134,43 @@ public class LopHocModel {
         this.maKH = maKH;
     }
 
+    public String getTenKH() {
+        return tenKH;
+    }
+
+    public void setTenKH(String tenKH) {
+        this.tenKH = tenKH;
+    }
+
     public String getMaPH() {
         return maPH;
     }
 
     public void setMaPH(String maPH) {
         this.maPH = maPH;
+    }
+
+    public String getTenPH() {
+        return tenPH;
+    }
+
+    public void setTenPH(String tenPH) {
+        this.tenPH = tenPH;
+    }
+
+    public String getThoiGianBatDauLH() {
+        return thoiGianBatDauLH;
+    }
+
+    public void setThoiGianBatDauLH(String thoiGianBatDauLH) {
+        this.thoiGianBatDauLH = thoiGianBatDauLH;
+    }
+
+    public String getThoiGianKetThucLH() {
+        return thoiGianKetThucLH;
+    }
+
+    public void setThoiGianKetThucLH(String thoiGianKetThucLH) {
+        this.thoiGianKetThucLH = thoiGianKetThucLH;
     }
 }

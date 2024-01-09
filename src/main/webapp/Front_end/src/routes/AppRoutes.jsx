@@ -33,20 +33,16 @@ const publicRoutes = [
 
 const studentPaths =
 {
-    
     home: '/student-home',
     score: '/student-score',
     user_infor: '/student-info',
     schedule: '/student-schedule',
-    
 }
 
 const studentRoutes = [
     { path: studentPaths.home, component: Home },
     { path: studentPaths.schedule, component: Schedule },
     { path: studentPaths.score, component: ScorePage },
-
-    
 ];
 
 const privateRoutes = [

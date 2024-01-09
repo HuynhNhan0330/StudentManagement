@@ -1,26 +1,104 @@
 import React from 'react';
-import { Modal, Form, Input } from 'antd';
+import { Modal, Form, Input, Button, TimePicker, Select } from 'antd';
+import { DateOfWeek } from '../../../../utils/Helper';
 
-function CreateClassModal({ open, onOk, onCancel }) {
+const { Option } = Select;
+
+function CreateClassModal({ open, onOk, onCancel, rooms, lecturers, subjects }) {
+    const onFinish = (values) => {
+        const newValues = {
+            'tenLop': values.tenLop,
+            'maGV': values.maGV,
+            'maMH': values.maMH,
+            'ngayHoc': values.ngayHoc,
+            'thoiGianBatDau': values.thoiGian[0].$d.getHours() + ':' + values.thoiGian[0].$d.getMinutes(),
+            'thoiGianKetThuc': values.thoiGian[1].$d.getHours() + ':' + values.thoiGian[1].$d.getMinutes(),
+            'maPH': values.maPH
+        }
+        
+        onOk(values);
+    };
+
+    const createForm = (
+        <Form onFinish={onFinish}>
+            <Form.Item label="Tên lớp học"
+                name="tenLop"
+                rules={[{ required: true, message: 'Nhập tên giảng viên' }]}
+            >
+                <Input />
+            </Form.Item>
+
+            <Form.Item
+                label="Giáo viên"
+                name="maGV"
+                rules={[{ required: true, message: 'Chọn giáo viên' }]}
+            >
+                <Select>
+                    {lecturers.map((lecturer) => (
+                        <Option key={lecturer.maGV} value={lecturer.maGV}>
+                            {lecturer.tenTK}
+                        </Option>
+                    ))}
+                </Select>
+            </Form.Item>
+
+            <Form.Item
+                label="Môn học"
+                name="maMH"
+                rules={[{ required: true, message: 'Chọn môn học' }]}
+            >
+                <Select>
+                    {subjects.map((subject) => (
+                        <Option key={subject.maMH} value={subject.maMH}>
+                            {subject.tenMH}
+                        </Option>
+                    ))}
+                </Select>
+            </Form.Item>
+
+            <Form.Item label="Ngày học" name="ngayHoc">
+                <Select allowClear>
+                    {Array.from({ length: 7 }, (_, i) => (
+                        <Option key={i} value={DateOfWeek.GetDateOfWeek(i)}>
+                            {DateOfWeek.GetDateOfWeek(i)}
+                        </Option>
+                    ))}
+                </Select>
+            </Form.Item>
+
+            <Form.Item label="Thời gian học" name="thoiGian">
+                <TimePicker.RangePicker format="HH:mm" />
+            </Form.Item>
+
+            <Form.Item
+                label="Phòng học"
+                name="maPH"
+                rules={[{ required: true, message: 'Chọn phòng học' }]}
+            >
+                <Select>
+                    {rooms.map((room) => (
+                        <Option key={room.maPH} value={room.maPH}>
+                            {room.tenPH}
+                        </Option>
+                    ))}
+                </Select>
+            </Form.Item>
+
+            <Form.Item style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <Button onClick={onCancel} style={{ marginRight: 8 }}>Huỷ</Button>
+                <Button type="primary" htmlType="submit">
+                    Tạo
+                </Button>
+            </Form.Item>
+        </Form>
+    );
+
     return (
-        <Modal title="Thêm lớp mới" open={open} onOk={onOk} onCancel={onCancel}>
-            <Form>
-                <Form.Item label="Tên" name="name" rules={[{ required: true }]}>
-                    <Input />
-                </Form.Item>
-                {/*<Form.Item label="Mã lớp" name="id" rules={[{ required: true }]}>
-                    <Input />
-    </Form.Item>*/}
-                <Form.Item label="Mã giảng viên" name="MSGV" rules={[{ required: true }]}>
-                    <Input />
-                </Form.Item>
-                <Form.Item label="Mã môn học" name="SubjectId" rules={[{ required: true }]}>
-                    <Input />
-                </Form.Item>
-                <Form.Item label="Thời gian" name="time" rules={[{ required: true }]}>
-                    <Input />
-                </Form.Item>
-            </Form>
+        <Modal title="Thêm lớp mới"
+            open={open}
+            onCancel={onCancel}
+            footer={null}>
+            {createForm}
         </Modal>
     );
 }

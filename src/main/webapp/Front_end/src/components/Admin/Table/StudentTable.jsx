@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Space, Button } from 'antd';
+import { Table } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 
 function StudentTable({ data, loading, handleTableChange, handleEdit, handleDelete, handleDetail }) {

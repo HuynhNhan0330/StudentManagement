@@ -32,7 +32,6 @@ function CreateStudentModal({ open, onOk, onCancel, majors }) {
                        name="gioiTinh"
                        rules={[{ required: true, message: 'Nhập giới tính' }]}>
                 <Select
-                    defaultValue="Nam"
                     style={{
                         width: 400,
                     }}
