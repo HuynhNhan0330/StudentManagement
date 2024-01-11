@@ -16,8 +16,22 @@ function CreateClassModal({ open, onOk, onCancel, rooms, lecturers, subjects }) 
             'maPH': values.maPH
         }
         
-        onOk(values);
+        onOk(newValues);
     };
+
+    const disabledTime = () => {
+        const hours = [];
+        
+        for (let i = 0; i < 6; i += 1) {
+          hours.push(i);
+        }
+
+        for (let i = 18; i < 24; i += 1) {
+            hours.push(i);
+          }
+
+        return { disabledHours: () => hours };
+      };
 
     const createForm = (
         <Form onFinish={onFinish}>
@@ -67,7 +81,9 @@ function CreateClassModal({ open, onOk, onCancel, rooms, lecturers, subjects }) 
             </Form.Item>
 
             <Form.Item label="Thời gian học" name="thoiGian">
-                <TimePicker.RangePicker format="HH:mm" />
+                <TimePicker.RangePicker format="HH:mm" 
+                                        disabledTime={disabledTime}
+                />
             </Form.Item>
 
             <Form.Item

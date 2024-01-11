@@ -17,4 +17,8 @@ public interface ILopHocJPA {
     void update(LopHocModel lopHocModel);
 
     void delete(String maLop);
+
+    Boolean checkRoom(LopHocModel lopHocModel);
+
+    Boolean checkTeacher(LopHocModel lopHocModel);
 }

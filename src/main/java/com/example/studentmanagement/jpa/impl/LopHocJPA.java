@@ -3,6 +3,7 @@ package com.example.studentmanagement.jpa.impl;
 import com.example.studentmanagement.dto.LopHocDTO;
 import com.example.studentmanagement.jpa.ILopHocJPA;
 import com.example.studentmanagement.model.LopHocModel;
+import com.example.studentmanagement.utils.Helper;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -204,6 +205,86 @@ public class LopHocJPA implements ILopHocJPA {
                 }
             } catch (Exception e2) {
                 System.out.println(e2.getMessage());
+            }
+        }
+    }
+
+    @Override
+    public Boolean checkRoom(LopHocModel lopHocModel) {
+        EntityManagerFactory entityManagerFactory = null;
+        EntityManager entityManager = null;
+        try {
+            entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
+            entityManager = entityManagerFactory.createEntityManager();
+
+            String jpql = "SELECT new com.example.studentmanagement.dto.LopHocDTO(lh.maLop, lh.tenLop, lh.maGV, tk.tenTK, lh.maMH, mh.tenMH, lh.ngayHoc, lh.thoiGianBatDau, lh.thoiGianKetThuc, lh.maKH, kh.tenKH, lh.maPH, ph.tenPH, kh.thoiGianBatDau, kh.thoiGianKetThuc) FROM LopHocModel lh JOIN PhongHocModel ph ON lh.maPH = ph.maPH JOIN KyHocModel kh ON lh.maKH = kh.maKH JOIN GiaoVienModel gv ON lh.maGV = gv.maGV JOIN MonHocModel mh ON lh.maMH = mh.maMH JOIN TaiKhoanModel tk ON gv.maTK = tk.maTK WHERE lh.maKH = :maKH  AND lh.maPH = :maPH AND lh.ngayHoc = :ngayHoc";
+
+            TypedQuery<LopHocDTO> query = entityManager.createQuery(jpql, LopHocDTO.class);
+            query.setParameter("ngayHoc", lopHocModel.getNgayHoc());
+            query.setParameter("maKH", lopHocModel.getMaKH());
+            query.setParameter("maPH", lopHocModel.getMaPH());
+
+            List<LopHocDTO> lopHocList = query.getResultList();
+
+            for (LopHocDTO lh: lopHocList) {
+                if (Helper.checkTimeOverlapping(lopHocModel.getThoiGianBatDau(), lopHocModel.getThoiGianKetThuc(), lh.getThoiGianBatDau(), lh.getThoiGianKetThuc())) {
+                    return false;
+                }
+            }
+
+            return true;
+        } catch (Exception e1) {
+            return false;
+        } finally {
+            try {
+                if (entityManagerFactory != null) {
+                    entityManagerFactory.close();
+                }
+                if (entityManager != null) {
+                    entityManager.close();
+                }
+            } catch (Exception e2) {
+                return null;
+            }
+        }
+    }
+
+    @Override
+    public Boolean checkTeacher(LopHocModel lopHocModel) {
+        EntityManagerFactory entityManagerFactory = null;
+        EntityManager entityManager = null;
+        try {
+            entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
+            entityManager = entityManagerFactory.createEntityManager();
+
+            String jpql = "SELECT new com.example.studentmanagement.dto.LopHocDTO(lh.maLop, lh.tenLop, lh.maGV, tk.tenTK, lh.maMH, mh.tenMH, lh.ngayHoc, lh.thoiGianBatDau, lh.thoiGianKetThuc, lh.maKH, kh.tenKH, lh.maPH, ph.tenPH, kh.thoiGianBatDau, kh.thoiGianKetThuc) FROM LopHocModel lh JOIN PhongHocModel ph ON lh.maPH = ph.maPH JOIN KyHocModel kh ON lh.maKH = kh.maKH JOIN GiaoVienModel gv ON lh.maGV = gv.maGV JOIN MonHocModel mh ON lh.maMH = mh.maMH JOIN TaiKhoanModel tk ON gv.maTK = tk.maTK WHERE lh.maKH = :maKH  AND lh.maGV = :maGV AND lh.ngayHoc = :ngayHoc";
+
+            TypedQuery<LopHocDTO> query = entityManager.createQuery(jpql, LopHocDTO.class);
+            query.setParameter("ngayHoc", lopHocModel.getNgayHoc());
+            query.setParameter("maKH", lopHocModel.getMaKH());
+            query.setParameter("maGV", lopHocModel.getMaGV());
+
+            List<LopHocDTO> lopHocList = query.getResultList();
+
+            for (LopHocDTO lh: lopHocList) {
+                if (Helper.checkTimeOverlapping(lopHocModel.getThoiGianBatDau(), lopHocModel.getThoiGianKetThuc(), lh.getThoiGianBatDau(), lh.getThoiGianKetThuc())) {
+                    return false;
+                }
+            }
+
+            return true;
+        } catch (Exception e1) {
+            return false;
+        } finally {
+            try {
+                if (entityManagerFactory != null) {
+                    entityManagerFactory.close();
+                }
+                if (entityManager != null) {
+                    entityManager.close();
+                }
+            } catch (Exception e2) {
+                return null;
             }
         }
     }

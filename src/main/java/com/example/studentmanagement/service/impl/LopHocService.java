@@ -30,14 +30,39 @@ public class LopHocService implements ILopHocService {
 
     @Override
     public Map<String, Object> save(LopHocModel lopHocModel) {
+        if (lopHocModel.getThoiGianBatDau() == lopHocModel.getThoiGianKetThuc()) {
+            return new HashMap<>(){{
+                put("lopHoc", null);
+                put("thongBao", "Thời gian bắt đầu trùng với kết thúc");
+            }};
+        }
+
         String newMaLop = Helper.generateNewMa(lopHocJPA.findMaxMaLopHoc(), "LH");
         lopHocModel.setMaLop(newMaLop);
         lopHocModel.setMaKH("KH0001");
 
-        String currentMaLop = lopHocJPA.save(lopHocModel);
-
         // Kiểm tra phòng học có trống giờ đó không
+        Boolean isCheckRoom = lopHocJPA.checkRoom(lopHocModel);
+
+        if (!isCheckRoom) {
+            return new HashMap<>(){{
+                put("lopHoc", null);
+                put("thongBao", "Phòng học này đã có người dùng vào thời gian này");
+            }};
+        }
+
         // Thời gian đó giáo viên có dạy lớp nào không
+        Boolean isCheckTeacher = lopHocJPA.checkTeacher(lopHocModel);
+
+        if (!isCheckTeacher) {
+            return new HashMap<>(){{
+                put("lopHoc", null);
+                put("thongBao", "Giáo viên đã dạy vào thời gian này");
+            }};
+        }
+
+
+        String currentMaLop = lopHocJPA.save(lopHocModel);
 
         return new HashMap<>(){{
             put("lopHoc", lopHocJPA.findOne(currentMaLop));

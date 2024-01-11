@@ -1,6 +1,8 @@
 import React from 'react';
-import { Table, Button, Space } from 'antd';
+import { Table } from 'antd';
+import { NavLink } from 'react-router-dom';
 import { EditOutlined, DeleteOutlined, EyeOutlined } from '@ant-design/icons'
+import { adminPaths } from '../../../routes/AppRoutes';
 
 function ClassTable({ data, loading, handleTableChange, handleEdit, handleDelete, showDrawer }) {
     const columns = [
@@ -36,8 +38,11 @@ function ClassTable({ data, loading, handleTableChange, handleEdit, handleDelete
                     <EditOutlined onClick={() => {handleEdit(record); }}/>
                     <DeleteOutlined style = {{ color: "red", marginLeft: 12 }}
                                     onClick = {() => { handleDelete(record); }} />
-                    <EyeOutlined style = {{ color: "blue", marginLeft: 12 }}
-                                    onClick = {() => { showDrawer(record); }}/>
+
+                    <NavLink to = { adminPaths.detatailclass +`${record.id}`}>
+                        <EyeOutlined style = {{ color: "blue", marginLeft: 12 }} />
+                    </NavLink>
+                    
                 </>
             )
         }

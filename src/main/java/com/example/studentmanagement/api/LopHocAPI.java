@@ -63,7 +63,7 @@ public class LopHocAPI extends HttpServlet {
         // convert model to json for response
         ObjectMapper mapper = new ObjectMapper();
 
-        if (lopHocNew == null) {
+        if (lopHocDTO == null) {
             resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             mapper.writeValue(resp.getOutputStream(), results.get("thongBao"));
         }
