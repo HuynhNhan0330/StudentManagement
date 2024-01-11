@@ -1,7 +1,7 @@
 import Home from '../pages/Admin/Home/Home';
 import Student from '../pages/Admin/Student/Student';
 import Lecturer from '../pages/Admin/Lecturer/Lecturer';
-import Login from '../pages/Admin/Login/Login';
+
 import Class from '../pages/Admin/Class/Class';
 import MajorFaculty from '../pages/Admin/MajorFaculty/MajorFaculty';
 import Subject from '../pages/Admin/Subject/Subject';
@@ -10,6 +10,7 @@ import DetailClass from '../pages/Admin/Class/DetailClass';
 import Schedule from '../pages/User/Schedule/Schedule';
 import ScorePage from '../pages/User/ScorePage/ScorePage';
 import UserInforPage from '../pages/User/User infor/UserInforPage'
+import LoginUser from '../pages/User/Login/LoginUser'
 const adminPaths= {
     home: '/admin',
     student: '/admin_student',
@@ -50,7 +51,7 @@ const studentRoutes = [
 ];
 
 const privateRoutes = [
-    { path: '/login', component: Login, layout: null },
+    { path: '/login', component: LoginUser, layout: null },
     // { path: '/register', component: Register, layout: null }
 ];
 
