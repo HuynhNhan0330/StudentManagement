@@ -151,16 +151,7 @@ function DetailClass() {
             </Card>
             <Divider style={{ color: 'blue', fontSize: '16px' }}>Danh sách học sinh</Divider>
             <StudentListTable />
-            <FloatButton
-                type='primary'
-                description="Add student"
-                shape="square"
-                style={{
-                    right: '2.5%',
-                    width: '150px',
-                    bottom: '1%'
-                }}
-    />
+            
         </div>
     );
 }

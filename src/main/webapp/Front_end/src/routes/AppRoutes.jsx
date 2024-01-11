@@ -9,7 +9,7 @@ import DetailClass from '../pages/Admin/Class/DetailClass';
 
 import Schedule from '../pages/User/Schedule/Schedule';
 import ScorePage from '../pages/User/ScorePage/ScorePage';
-
+import UserInforPage from '../pages/User/User infor/UserInforPage'
 const adminPaths= {
     home: '/admin',
     student: '/admin_student',
@@ -45,7 +45,7 @@ const studentRoutes = [
     { path: studentPaths.home, component: Home },
     { path: studentPaths.schedule, component: Schedule },
     { path: studentPaths.score, component: ScorePage },
-
+    {path: studentPaths.user_infor, component: UserInforPage },
     
 ];
 
