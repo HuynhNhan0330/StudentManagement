@@ -5,12 +5,6 @@ import 'boxicons/css/boxicons.min.css';
 import { studentPaths } from '../../../routes/AppRoutes';
 const sidebarNavItems = [
     {
-        display: 'Trang chủ',
-        icon: <i className='bx bx-home'></i>,
-        to: studentPaths.home,
-        section: 'user-home'
-    },
-    {
         display: 'Lịch',
         icon: <i className='bx bx-calendar'></i>,
         to: studentPaths.schedule,
@@ -20,11 +14,11 @@ const sidebarNavItems = [
         display: 'Người dùng',
         icon: <i className='bx bx-user'></i>,
         to: studentPaths.user_infor,
-        section: 'student-user-info'
+        section: 'student-info'
     },
     {
         display: 'Điểm số',
-        icon: <i className='bx bx-user'></i>,
+        icon: <i class='bx bx-clipboard'></i>,// <i class='bx bx-math'></i>
         to: studentPaths.score,
         section: 'student-score'
     },

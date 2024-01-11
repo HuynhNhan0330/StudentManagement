@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
-import { Form, Input, InputNumber, Table, Typography, Button } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Form, Input, InputNumber, Table, Typography, Button, Select, message } from 'antd';
 import './StudentListTable.scss'
+import { useParams } from 'react-router-dom';
+
+
+
 const classListData = [
     { id: 1, name: 'Student 1', progress: 80, midterm: 75, practice: 90, final: 85, GPA: 85 },
     { id: 2, name: 'Student 2', progress: 70, midterm: 80, practice: 85, final: 78, GPA: 78 },
-    { id: 3, name: 'Student 2', progress: 70, midterm: 80, practice: 85, final: 78, GPA: 78 },
-    { id: 4, name: 'Student 2', progress: 70, midterm: 80, practice: 85, final: 78, GPA: 78 },
-    { id: 5, name: 'Student 2', progress: 70, midterm: 80, practice: 85, final: 78, GPA: 78 },
 ];
+const { Option } = Select;
 
 const EditableCell = ({ editing, dataIndex, title, inputType, record, index, children, ...restProps }) => {
     const inputNode = inputType === 'number' ? <InputNumber /> : <Input />;
@@ -36,9 +38,27 @@ const EditableCell = ({ editing, dataIndex, title, inputType, record, index, chi
 };
 
 const StudentListTable = () => {
+    const [formSearch] = Form.useForm();
     const [form] = Form.useForm();
+
     const [data, setData] = useState(classListData);
     const [editingKey, setEditingKey] = useState('');
+
+
+
+
+    const { id } = useParams();
+
+     
+
+    const handleAddStudent = async (option) => {
+        
+    }
+
+    const handleDeleteStudent = async (studentId) => {
+        
+    }
+
 
     const isEditing = (record) => record.id === editingKey;
 
@@ -74,6 +94,7 @@ const StudentListTable = () => {
                 setData(newData);
                 setEditingKey('');
             }
+            console.log(data)
         } catch (errInfo) {
             console.log('Validate Failed:', errInfo);
         }
@@ -81,43 +102,43 @@ const StudentListTable = () => {
 
     const columns = [
         {
-            title: 'Họ tên',
+            title: 'Name',
             dataIndex: 'name',
-            width: '20%',
-            //editable: true,
+            width: '25%',
+            editable: true,
         },
         {
-            title: 'Quá trình',
+            title: 'Progress',
             dataIndex: 'progress',
-            width: '12%',
+            width: '10%',
             editable: true,
         },
         {
-            title: 'Giữa kì',
+            title: 'Midterm',
             dataIndex: 'midterm',
-            width: '12%',
+            width: '10%',
             editable: true,
         },
         {
-            title: 'Thực hành',
+            title: 'Practice',
             dataIndex: 'practice',
-            width: '12%',
+            width: '10%',
             editable: true,
         },
         {
-            title: 'Cuối kì',
+            title: 'Final',
             dataIndex: 'final',
-            width: '12%',
+            width: '10%',
             editable: true,
         },
         {
             title: 'GPA',
             dataIndex: 'GPA',
-            width: '12%',
+            width: '10%',
             editable: true,
         },
         {
-            title: 'Thao tác',
+            title: 'Action',
             dataIndex: 'Action',
             render: (_, record) => {
                 const editable = isEditing(record);
@@ -127,25 +148,28 @@ const StudentListTable = () => {
                             onClick={() => save(record.id)}
                             style={{
                                 marginRight: 8,
-                            }}
-                        >
+                            }}>
                             <Button type="primary">Save</Button>
                         </Typography.Link>
                         <Typography.Link
                             onClick={cancel}
                             style={{
                                 marginRight: 8,
-                            }}
-                        >
+                            }}>
                             <Button type="primary" danger>
                                 Cancel
                             </Button>
                         </Typography.Link>
                     </span>
                 ) : (
-                    <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
-                        <Button type="primary">Edit</Button>
-                    </Typography.Link>
+                    <span>
+                        <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
+                            <Button type="primary">Edit</Button>
+                        </Typography.Link>
+                        <Typography.Link disabled={editingKey !== ''} onClick={async () => { await handleDeleteStudent(record?.id) }}>
+                            <Button type="primary" danger>Delete</Button>
+                        </Typography.Link>
+                    </span>
                 );
             },
         },
@@ -169,6 +193,21 @@ const StudentListTable = () => {
 
     return (
         <div className='StudentListTableContain'>
+        <div style={{ width: '100%', display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
+            <div style={{ width: '100%', display: 'flex' }}>
+                <Form form={formSearch} component={false} layout='inline'   >
+                    <Form.Item label="Student" name="student" defaultValue="" style={{ width: '80%' }}>
+                        <Select mode="single" showSearch optionFilterProp="children" allowClear style={{ width: '100%' }}>
+                            {
+                                
+                            }
+                        </Select>
+                    </Form.Item>
+                </Form>
+                <Button onClick={() => { handleAddStudent(1) }} style={{ marginLeft: '20px' }}>
+                    Add Student
+                </Button>
+            </div>
             <Form form={form} component={false}>
                 <Table
                     components={{
@@ -183,6 +222,7 @@ const StudentListTable = () => {
                     pagination={false}
                 />
             </Form>
+        </div>
         </div>
     );
 };
