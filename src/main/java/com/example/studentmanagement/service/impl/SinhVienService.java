@@ -90,4 +90,9 @@ public class SinhVienService implements ISinhVienService {
         // Xoá tài khoản
         return sinhVienJPA.delete(sinhVienDTO.getMaSV()) && taiKhoanJPA.delete(sinhVienDTO.getMaTK());
     }
+
+    @Override
+    public SinhVienDTO findAccount(String maTK) {
+        return sinhVienJPA.findAccount(maTK);
+    }
 }

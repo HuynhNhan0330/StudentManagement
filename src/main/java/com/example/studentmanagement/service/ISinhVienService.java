@@ -17,4 +17,6 @@ public interface ISinhVienService {
     SinhVienDTO update(SinhVienDTO sinhVienDTO);
 
     Boolean delete(SinhVienDTO sinhVienDTO);
+
+    SinhVienDTO findAccount(String maTK);
 }

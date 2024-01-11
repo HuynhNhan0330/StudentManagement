@@ -1,8 +1,7 @@
 package com.example.studentmanagement.jpa.impl;
 
-import com.example.studentmanagement.dto.NganhDTO;
+import com.example.studentmanagement.dto.TaiKhoanDTO;
 import com.example.studentmanagement.jpa.ITaiKhoanJPA;
-import com.example.studentmanagement.model.NganhModel;
 import com.example.studentmanagement.model.TaiKhoanModel;
 
 import javax.persistence.EntityManager;
@@ -204,6 +203,39 @@ public class TaiKhoanJPA implements ITaiKhoanJPA {
         } catch (Exception e1) {
             System.out.println(e1.getMessage());
             return false;
+        } finally {
+            try {
+                if (entityManagerFactory != null) {
+                    entityManagerFactory.close();
+                }
+                if (entityManager != null) {
+                    entityManager.close();
+                }
+            } catch (Exception e2) {
+                System.out.println(e2.getMessage());
+            }
+        }
+    }
+
+    @Override
+    public TaiKhoanModel login(TaiKhoanDTO taiKhoanDTO) {
+        EntityManagerFactory entityManagerFactory = null;
+        EntityManager entityManager = null;
+        try {
+            entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
+            entityManager = entityManagerFactory.createEntityManager();
+
+            String jpql = "SELECT tk FROM TaiKhoanModel tk WHERE (tk.phone = :phone OR tk.email = :email) AND tk.password = :password";
+            TypedQuery<TaiKhoanModel> query = entityManager.createQuery(jpql, TaiKhoanModel.class);
+            query.setParameter("phone", taiKhoanDTO.getUsername());
+            query.setParameter("email", taiKhoanDTO.getUsername());
+            query.setParameter("password", taiKhoanDTO.getPassword());
+            TaiKhoanModel tk = query.getSingleResult();
+
+            return tk;
+        } catch (Exception e1) {
+            System.out.println(e1.getMessage());
+            return null;
         } finally {
             try {
                 if (entityManagerFactory != null) {

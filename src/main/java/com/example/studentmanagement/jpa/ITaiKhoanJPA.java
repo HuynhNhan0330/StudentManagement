@@ -1,5 +1,6 @@
 package com.example.studentmanagement.jpa;
 
+import com.example.studentmanagement.dto.TaiKhoanDTO;
 import com.example.studentmanagement.model.TaiKhoanModel;
 
 public interface ITaiKhoanJPA {
@@ -13,4 +14,6 @@ public interface ITaiKhoanJPA {
 
     Boolean checkEmail(String email);
     Boolean checkPhone(String phone);
+
+    TaiKhoanModel login(TaiKhoanDTO taiKhoanDTO);
 }

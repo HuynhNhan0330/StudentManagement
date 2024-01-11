@@ -18,4 +18,6 @@ public interface ISinhVienJPA {
     void update(SinhVienDTO sinhVienDTO);
 
     Boolean delete(String maSinhVien);
+
+    SinhVienDTO findAccount(String maTK);
 }
