@@ -1,74 +1,70 @@
 import {
     Card,
-    Table,
     Divider,
     Space,
-    Typography,
-    List,
     Breadcrumb,
     Descriptions,
-    Badge,
-    Tabs,
     Button,
     Input,
 } from 'antd';
 import { EditOutlined } from '@ant-design/icons';
 import StudentListTable from '../../../components/Admin/Table/StudentListTable';
-import { FloatButton } from 'antd';
 import 'boxicons/css/boxicons.min.css';
 
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { adminPaths } from '../../../routes/AppRoutes';
-
-const Column = Table.Column;
-const Title = Typography.Title;
+import { handleGetClassById } from '../../../controller/ClassController';
+import { handleGetScoreByClass } from '../../../controller/ScoreController';
 
 function DetailClass() {
     const [editing, setEditing] = useState(false);
 
-    
+    const [selectedSchoolClass, setSelectedSchoolClass] = useState(null);
 
-    const [selectedSchoolClass, setSelectedSchoolClass] = useState({});
-
-    let subjectId = useParams().id;
-
-    
-
-
-    const classListData = [
-        { id: 1, name: 'Student 1', progress: 80, midterm: 75, practice: 90, final: 85, GPA: 85 },
-        { id: 2, name: 'Student 2', progress: 70, midterm: 80, practice: 85, final: 78, GPA: 78 },
-        { id: 3, name: 'Student 2', progress: 70, midterm: 80, practice: 85, final: 78, GPA: 78 },
-        { id: 4, name: 'Student 2', progress: 70, midterm: 80, practice: 85, final: 78, GPA: 78 },
-        { id: 5, name: 'Student 2', progress: 70, midterm: 80, practice: 85, final: 78, GPA: 78 },
-    ];
-
+    // base
     const items = [
         {
             key: '1',
             label: 'Tên lớp',
-            children: selectedSchoolClass?.id + ' - ' + selectedSchoolClass?.name,
+            children: selectedSchoolClass?.tenLop,
         },
         {
             key: '2',
             label: 'Giảng viên',
-            children: selectedSchoolClass?.lecturer?.name,
+            children: selectedSchoolClass?.tenGV,
         },
         {
             key: '5',
-            label: 'Mã môn học',
-            children: selectedSchoolClass?.subject?.id,
-        },
-        {
-            key: '7',
-            label: 'Ghi chú',
-            children: '............................',
-        },
+            label: 'Tên môn học',
+            children: selectedSchoolClass?.tenMH,
+        }
     ];
+
+    // end
+
+    // set data class
+    let classId = useParams().id;
+
+    useEffect(() => {
+        // get api     
+        handleGetClassById(classId).then((classs) => {
+            setSelectedSchoolClass(classs);
+        });
+
+    }, [classId]);
+
+    // end
+
+    // edit class
+    
     const [editedDescriptions, setEditedDescriptions] = useState([...items]);
 
+    useEffect(() => {
+        setEditedDescriptions([...items]);
+    }, [items]);
+    
     const handleEdit = () => {
         setEditing(true);
     };
@@ -82,11 +78,6 @@ function DetailClass() {
         setEditing(false);
         setEditedDescriptions([...items]);
     };
-
-    const onChange = (key) => {
-        console.log(key);
-    };
-    
 
     const renderDescriptions = () => {
         if (editing) {
@@ -115,6 +106,29 @@ function DetailClass() {
         return <Descriptions bordered items={items} />;
     };
 
+    // table
+
+    const [data, setData] = useState([]);
+
+    const fetchData = () => {
+        console.log(classId)
+        handleGetScoreByClass(classId).then((results) => {
+            if (results == null) {
+                results = [];
+            }
+
+            setData(results);
+        });
+            
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, [classId]);
+
+
+    // end
+
     return (
         <div>
             <Card>
@@ -137,21 +151,21 @@ function DetailClass() {
                     {editing ? (
                         <>
                             <Button type="primary" onClick={handleSave}>
-                                Save
+                                Lưu
                             </Button>
-                            <Button onClick={handleCancel}>Cancel</Button>
+                            <Button onClick={handleCancel}>Huỷ</Button>
                         </>
                     ) : (
                         <Button icon={<EditOutlined />} onClick={handleEdit}>
-                            Edit
+                            Sửa
                         </Button>
                     )}
                 </Space>
                 {renderDescriptions()}
             </Card>
             <Divider style={{ color: 'blue', fontSize: '16px' }}>Danh sách học sinh</Divider>
-            <StudentListTable />
-            
+            <StudentListTable classListData = { data }/>
+
         </div>
     );
 }

@@ -35,11 +35,10 @@ function ClassTable({ data, loading, handleTableChange, handleEdit, handleDelete
             key: 'action',
             render: (record) => (
                 <>
-                    <EditOutlined onClick={() => {handleEdit(record); }}/>
-                    <DeleteOutlined style = {{ color: "red", marginLeft: 12 }}
+                    <DeleteOutlined style = {{ color: "red" }}
                                     onClick = {() => { handleDelete(record); }} />
 
-                    <NavLink to = { adminPaths.detatailclass +`${record.id}`}>
+                    <NavLink to = { adminPaths.detatailclass.replace(":id", record.maLop) }>
                         <EyeOutlined style = {{ color: "blue", marginLeft: 12 }} />
                     </NavLink>
                     

@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Form, Input, InputNumber, Table, Typography, Button, Select, message } from 'antd';
+import { Form, Input, InputNumber, Table, Typography, Button, Select } from 'antd';
 import './StudentListTable.scss'
-import { useParams } from 'react-router-dom';
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 
-
-
-const classListData = [
-    { id: 1, name: 'Student 1', progress: 80, midterm: 75, practice: 90, final: 85, GPA: 85 },
-    { id: 2, name: 'Student 2', progress: 70, midterm: 80, practice: 85, final: 78, GPA: 78 },
-];
-const { Option } = Select;
+// const classListData = [
+//     { maSV: 1, tenTK: 'Student 1', quaTrinh: 80, giuaKy: 75, cuoiKy: 90 },
+//     { maSV: 2, tenTK: 'Student 2', quaTrinh: 70, giuaKy: 80, cuoiKy: 85 },
+// ];
 
 const EditableCell = ({ editing, dataIndex, title, inputType, record, index, children, ...restProps }) => {
     const inputNode = inputType === 'number' ? <InputNumber /> : <Input />;
@@ -24,7 +21,7 @@ const EditableCell = ({ editing, dataIndex, title, inputType, record, index, chi
                     rules={[
                         {
                             required: true,
-                            message: `Please Input ${title}!`,
+                            message: `Vui lòng nhập ${title}!`,
                         },
                     ]}
                 >
@@ -37,26 +34,23 @@ const EditableCell = ({ editing, dataIndex, title, inputType, record, index, chi
     );
 };
 
-const StudentListTable = () => {
+const StudentListTable = ({ classListData }) => {
     const [formSearch] = Form.useForm();
     const [form] = Form.useForm();
 
     const [data, setData] = useState(classListData);
     const [editingKey, setEditingKey] = useState('');
 
-
-
-
-    const { id } = useParams();
-
-     
-
+    useEffect(() => {
+        setData(classListData);
+    }, [classListData]);
+    
     const handleAddStudent = async (option) => {
-        
+
     }
 
     const handleDeleteStudent = async (studentId) => {
-        
+
     }
 
 
@@ -102,44 +96,40 @@ const StudentListTable = () => {
 
     const columns = [
         {
-            title: 'Name',
-            dataIndex: 'name',
+            title: 'Mã SV',
+            dataIndex: 'maSV',
+            width: '10%',
+        },
+        {
+            title: 'Tên',
+            dataIndex: 'tenSV',
             width: '25%',
-            editable: true,
         },
         {
-            title: 'Progress',
-            dataIndex: 'progress',
+            title: 'Quá trình',
+            dataIndex: 'quaTrinh',
             width: '10%',
             editable: true,
         },
         {
-            title: 'Midterm',
-            dataIndex: 'midterm',
+            title: 'Giữa kỳ',
+            dataIndex: 'giuaKy',
             width: '10%',
             editable: true,
         },
         {
-            title: 'Practice',
-            dataIndex: 'practice',
+            title: 'Cuối kỳ',
+            dataIndex: 'cuoiKy',
             width: '10%',
             editable: true,
         },
         {
-            title: 'Final',
-            dataIndex: 'final',
+            title: 'Tổng kết',
+            render: (text, record) => (record.quaTrinh * 0.2 + record.giuaKy * 0.3 + record.cuoiKy * 0.5),
             width: '10%',
-            editable: true,
         },
         {
-            title: 'GPA',
-            dataIndex: 'GPA',
-            width: '10%',
-            editable: true,
-        },
-        {
-            title: 'Action',
-            dataIndex: 'Action',
+            title: 'Thao tác',
             render: (_, record) => {
                 const editable = isEditing(record);
                 return editable ? (
@@ -162,14 +152,12 @@ const StudentListTable = () => {
                         </Typography.Link>
                     </span>
                 ) : (
-                    <span>
-                        <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
-                            <Button type="primary">Edit</Button>
-                        </Typography.Link>
-                        <Typography.Link disabled={editingKey !== ''} onClick={async () => { await handleDeleteStudent(record?.id) }}>
-                            <Button type="primary" danger>Delete</Button>
-                        </Typography.Link>
-                    </span>
+                    <>
+                        <EditOutlined onClick={() => { edit(record); }} />
+                        <DeleteOutlined style={{ color: "red", marginLeft: 12 }}
+                            onClick={async () => { await handleDeleteStudent(record?.id) }}
+                        />
+                    </>
                 );
             },
         },
@@ -183,7 +171,6 @@ const StudentListTable = () => {
             ...col,
             onCell: (record) => ({
                 record,
-                inputType: col.dataIndex === 'progress' ? 'number' : 'text',
                 dataIndex: col.dataIndex,
                 title: col.title,
                 editing: isEditing(record),
@@ -193,36 +180,36 @@ const StudentListTable = () => {
 
     return (
         <div className='StudentListTableContain'>
-        <div style={{ width: '100%', display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
-            <div style={{ width: '100%', display: 'flex' }}>
-                <Form form={formSearch} component={false} layout='inline'   >
-                    <Form.Item label="Student" name="student" defaultValue="" style={{ width: '80%' }}>
-                        <Select mode="single" showSearch optionFilterProp="children" allowClear style={{ width: '100%' }}>
-                            {
-                                
-                            }
-                        </Select>
-                    </Form.Item>
+            <div style={{ width: '100%', display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
+                <div style={{ width: '100%', display: 'flex' }}>
+                    <Form form={formSearch} component={false} layout='inline'   >
+                        <Form.Item label="Student" name="student" defaultValue="" style={{ width: '80%' }}>
+                            <Select mode="single" showSearch optionFilterProp="children" allowClear style={{ width: '100%' }}>
+                                {
+
+                                }
+                            </Select>
+                        </Form.Item>
+                    </Form>
+                    <Button onClick={() => { handleAddStudent(1) }} style={{ marginLeft: '20px' }}>
+                        Add Student
+                    </Button>
+                </div>
+                <Form form={form} component={false}>
+                    <Table
+                        components={{
+                            body: {
+                                cell: EditableCell,
+                            },
+                        }}
+                        bordered
+                        dataSource={data}
+                        columns={mergedColumns}
+                        rowClassName="editable-row"
+                        pagination={false}
+                    />
                 </Form>
-                <Button onClick={() => { handleAddStudent(1) }} style={{ marginLeft: '20px' }}>
-                    Add Student
-                </Button>
             </div>
-            <Form form={form} component={false}>
-                <Table
-                    components={{
-                        body: {
-                            cell: EditableCell,
-                        },
-                    }}
-                    bordered
-                    dataSource={data}
-                    columns={mergedColumns}
-                    rowClassName="editable-row"
-                    pagination={false}
-                />
-            </Form>
-        </div>
         </div>
     );
 };

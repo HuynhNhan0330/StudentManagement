@@ -1,57 +1,34 @@
 import { Table, } from 'antd';
 import React from 'react';
 import './ScoreBoard.scss'
-function ScoreBoard(props) {
-
+function ScoreBoard({ data }) {
     const columns = [
         {
-            title: 'No.',
-            dataIndex: 'No_',
-            key: 'No_'
+            title: 'Mã môn học',
+            dataIndex: 'maMH',
         },
         {
-            title: 'Subject Id',
-            dataIndex: 'subject_id',
-            key: 'subject_id',
+            title: 'Tên môn học',
+            dataIndex: 'tenMH',
         },
         {
-            title: 'Subject name',
-            dataIndex: 'subject_name',
-            key: 'subject_name',
+            title: 'Quá trình',
+            dataIndex: 'quaTrinh',
         },
         {
-            title: 'Progress score',
-            dataIndex: 'progress_score',
-            key: 'progress_score',
+            title: 'Giữa kỳ',
+            dataIndex: 'giuaKy',
         },
         {
-            title: 'Midterm score',
-            dataIndex: 'midterm_score',
-            key: 'midterm_score',
+            title: 'Cuối kỳ',
+            dataIndex: 'cuoiKy',
         },
         {
-            title: 'Practice score',
-            dataIndex: 'practice_score',
-            key: 'practice_score',
+            title: 'Tổng kết',
+            render: (text, record) => (record.quaTrinh * 0.2 + record.giuaKy * 0.3 + record.cuoiKy * 0.5),
         },
-        {
-            title: 'Finalterm score',
-            dataIndex: 'finalterm_score',
-            key: 'finalterm_score',
-        },
-        {
-            title: 'Average score',
-            dataIndex: 'average_score',
-            key: 'average_score',
-        },
-        {
-            title: 'Status',
-            dataIndex: 'status',
-            key: 'status',
-        }
     ];
-    let data = [];
-    data = props.StudentScoreData;
+    
     return (
         <div className='ScoreBoardContainer'>
             <Table
