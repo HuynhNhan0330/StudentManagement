@@ -1,7 +1,7 @@
 import Home from '../pages/Admin/Home/Home';
 import Student from '../pages/Admin/Student/Student';
 import Lecturer from '../pages/Admin/Lecturer/Lecturer';
-
+import Login from '../pages/Admin/Login/Login';
 import Class from '../pages/Admin/Class/Class';
 import MajorFaculty from '../pages/Admin/MajorFaculty/MajorFaculty';
 import Subject from '../pages/Admin/Subject/Subject';
@@ -51,7 +51,7 @@ const studentRoutes = [
 ];
 
 const privateRoutes = [
-    { path: '/login', component: LoginUser, layout: null },
+    { path: '/login', component: Login, layout: null },
     // { path: '/register', component: Register, layout: null }
 ];
 

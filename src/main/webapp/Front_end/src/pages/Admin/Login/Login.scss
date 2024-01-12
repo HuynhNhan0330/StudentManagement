@@ -1,6 +1,5 @@
 .login-container {
     position: relative;
-    display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
@@ -18,5 +17,23 @@
 }
 
 .login-card {
+    position: relative;
     width: 500px;
+    float: right;
+    margin-top: 25%;
+    margin-right: 5%;
+    align-items: center;
+    background-color: #4949490e;
+}
+.loginRightPlacement{
+    position: relative;
+    background-color: #ffffff;
+    width: 570px;
+    height: 100vh;
+    float: right;
+}
+.LoginButtonMain{
+    width: 450px;
+    height: 45px;
+    background-color: #00439A;
 }
