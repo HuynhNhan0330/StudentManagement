@@ -1,5 +1,6 @@
 package com.example.studentmanagement.service;
 
+import com.example.studentmanagement.dto.LichHocDTO;
 import com.example.studentmanagement.dto.LopHocDTO;
 import com.example.studentmanagement.model.LopHocModel;
 
@@ -8,6 +9,8 @@ import java.util.Map;
 
 public interface ILopHocService {
     List<LopHocDTO> findAll();
+
+    List<LichHocDTO> findScheduleOfStudent(String maSV);
 
     LopHocDTO findOne(String maLop);
 

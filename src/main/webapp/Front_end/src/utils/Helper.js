@@ -12,13 +12,13 @@ const isValidPhoneNumber = (phoneNumber) => {
 const baseUrlAPI = "http://localhost:8080"
 
 const DateOfWeek = {
-    "Thứ 2": 0,
-    "Thứ 3": 1,
-    "Thứ 4": 2,
-    "Thứ 5": 3,
-    "Thứ 6": 4,
-    "Thứ 7": 5,
-    "Chủ Nhật": 6,
+    "Thứ 2": '1',
+    "Thứ 3": '2',
+    "Thứ 4": '3',
+    "Thứ 5": '4',
+    "Thứ 6": '5',
+    "Thứ 7": '6',
+    "Chủ Nhật": '7',
     GetDateOfWeek(date) {
         switch (date) {
             case 0: return "Chủ Nhật";
@@ -30,7 +30,8 @@ const DateOfWeek = {
             case 6: return "Thứ 7";
             default: return "Ngày không hợp lệ";
         }
-    }
+    },
+    default: 0
 }
 
 export  {

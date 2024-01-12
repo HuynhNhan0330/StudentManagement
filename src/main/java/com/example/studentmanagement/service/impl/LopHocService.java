@@ -1,5 +1,6 @@
 package com.example.studentmanagement.service.impl;
 
+import com.example.studentmanagement.dto.LichHocDTO;
 import com.example.studentmanagement.dto.LopHocDTO;
 import com.example.studentmanagement.jpa.ILopHocJPA;
 import com.example.studentmanagement.jpa.impl.LopHocJPA;
@@ -22,6 +23,9 @@ public class LopHocService implements ILopHocService {
     public List<LopHocDTO> findAll() {
         return lopHocJPA.findAll();
     }
+
+    @Override
+    public List<LichHocDTO> findScheduleOfStudent(String maSV) { return lopHocJPA.findScheduleOfStudent(maSV); }
 
     @Override
     public LopHocDTO findOne(String maLop) {

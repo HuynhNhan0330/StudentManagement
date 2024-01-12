@@ -1,5 +1,6 @@
 package com.example.studentmanagement.jpa;
 
+import com.example.studentmanagement.dto.LichHocDTO;
 import com.example.studentmanagement.dto.LopHocDTO;
 import com.example.studentmanagement.model.LopHocModel;
 
@@ -7,6 +8,8 @@ import java.util.List;
 
 public interface ILopHocJPA {
     List<LopHocDTO> findAll();
+
+    List<LichHocDTO> findScheduleOfStudent(String maSV);
 
     String findMaxMaLopHoc();
 

@@ -4,13 +4,13 @@ function ScheduleHeader() {
     return (
         <thead>
             <tr>
-                <th>Period</th>
-                <th className='monday'>Monday</th>
-                <th className='tuesday'>Tuesday</th>
-                <th className='wednesday'>Wednesday</th>
-                <th className='thursday'>Thursday</th>
-                <th className='friday'>Friday</th>
-                <th className='saturday'>Saturday</th>
+                <th>Thời gian</th>
+                <th className='monday'>Thứ 2</th>
+                <th className='tuesday'>Thứ 3</th>
+                <th className='wednesday'>Thứ 4</th>
+                <th className='thursday'>Thứ 5</th>
+                <th className='friday'>Thứ 6</th>
+                <th className='saturday'>Thứ 7</th>
             </tr>
         </thead>
     );

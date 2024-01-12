@@ -1,5 +1,6 @@
 package com.example.studentmanagement.jpa.impl;
 
+import com.example.studentmanagement.dto.LichHocDTO;
 import com.example.studentmanagement.dto.LopHocDTO;
 import com.example.studentmanagement.jpa.ILopHocJPA;
 import com.example.studentmanagement.model.LopHocModel;
@@ -26,6 +27,40 @@ public class LopHocJPA implements ILopHocJPA {
             List<LopHocDTO> lopHocList = query.getResultList();
 
             return lopHocList;
+        } catch (Exception e1) {
+            return null;
+        } finally {
+            try {
+                if (entityManagerFactory != null) {
+                    entityManagerFactory.close();
+                }
+                if (entityManager != null) {
+                    entityManager.close();
+                }
+            } catch (Exception e2) {
+                return null;
+            }
+        }
+    }
+
+    @Override
+    public List<LichHocDTO> findScheduleOfStudent(String maSV) {
+        EntityManagerFactory entityManagerFactory = null;
+        EntityManager entityManager = null;
+        try {
+            entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
+            entityManager = entityManagerFactory.createEntityManager();
+
+            String jpql = "SELECT new com.example.studentmanagement.dto.LichHocDTO(lh.tenLop, lh.ngayHoc, lh.thoiGianBatDau, lh.thoiGianKetThuc, kh.thoiGianBatDau, kh.thoiGianKetThuc) FROM ChiTietDangKyModel ctdk" +
+                    " JOIN LopHocModel lh ON ctdk.maLop = lh.maLop" +
+                    " JOIN KyHocModel kh ON kh.maKH = lh.maKH";
+//                    " WHERE ctdk.maSV = :maSV";
+
+            TypedQuery<LichHocDTO> query = entityManager.createQuery(jpql, LichHocDTO.class);
+//            query.setParameter("maSV", maSV);
+            List<LichHocDTO> lichHocList = query.getResultList();
+
+            return lichHocList;
         } catch (Exception e1) {
             return null;
         } finally {

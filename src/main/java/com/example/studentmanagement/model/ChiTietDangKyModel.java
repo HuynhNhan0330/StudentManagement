@@ -19,16 +19,20 @@ public class ChiTietDangKyModel {
     @Column(name="MaLop")
     private String maLop;
 
-    @Column(name="KyHoc")
-    private int kyHoc;
+    @Column(name="MaKH")
+    private String kyHoc;
+
+    @Column(name="Dau")
+    private int dau;
 
     public ChiTietDangKyModel() {
     }
 
-    public ChiTietDangKyModel(String maSV, String maLop, int kyHoc) {
+    public ChiTietDangKyModel(String maSV, String maLop, String kyHoc, int dau) {
         this.maSV = maSV;
         this.maLop = maLop;
         this.kyHoc = kyHoc;
+        this.dau = dau;
     }
 
     public String getMaSV() {
@@ -47,11 +51,19 @@ public class ChiTietDangKyModel {
         this.maLop = maLop;
     }
 
-    public int getKyHoc() {
+    public String getKyHoc() {
         return kyHoc;
     }
 
-    public void setKyHoc(int kyHoc) {
+    public void setKyHoc(String kyHoc) {
         this.kyHoc = kyHoc;
+    }
+
+    public int getDau() {
+        return dau;
+    }
+
+    public void setDau(int dau) {
+        this.dau = dau;
     }
 }
