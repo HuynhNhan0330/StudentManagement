@@ -1,7 +1,8 @@
 package com.example.studentmanagement.jpa.impl;
 
+import com.example.studentmanagement.dto.DiemDTO;
+import com.example.studentmanagement.dto.LopHocDTO;
 import com.example.studentmanagement.jpa.IDiemJPA;
-import com.example.studentmanagement.model.DiemModel;
 import com.example.studentmanagement.model.DiemModel;
 
 import javax.persistence.EntityManager;
@@ -21,6 +22,85 @@ public class DiemJPA implements IDiemJPA {
 
             TypedQuery<DiemModel> query = entityManager.createQuery("SELECT di FROM DiemModel di", DiemModel.class);
             List<DiemModel> diemList = query.getResultList();
+
+            return diemList;
+        } catch (Exception e1) {
+            System.out.println(e1.getMessage());
+            return null;
+        } finally {
+            try {
+                if (entityManagerFactory != null) {
+                    entityManagerFactory.close();
+                }
+                if (entityManager != null) {
+                    entityManager.close();
+                }
+            } catch (Exception e2) {
+                return null;
+            }
+        }
+    }
+
+    @Override
+    public List<DiemDTO> findByClass(LopHocDTO lopHocDTO) {
+        EntityManagerFactory entityManagerFactory = null;
+        EntityManager entityManager = null;
+        try {
+            entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
+            entityManager = entityManagerFactory.createEntityManager();
+
+            String jpql = "SELECT new com.example.studentmanagement.dto.DiemDTO(d1.maSV, tk.tenTK, d1.maMH, :tenMH, d1.diem, d2.diem, d3.diem) " +
+                    "FROM DiemModel d1, DiemModel d2, DiemModel d3" +
+                    " JOIN SinhVienModel sv ON sv.maSV = d1.maSV" +
+                    " JOIN TaiKhoanModel tk ON sv.maTK = tk.maTK" +
+                    " WHERE d1.maSV = d2.maSV AND d1.maSV = d3.maSV" +
+                    " AND d1.maMH = :maMH AND d2.maMH = :maMH AND d3.maMH = :maMH" +
+                    " AND d1.maLoaiDiem = 'LD0001' AND d2.maLoaiDiem = 'LD0002' AND d3.maLoaiDiem = 'LD0003'";
+
+            TypedQuery<DiemDTO> query = entityManager.createQuery(jpql, DiemDTO.class);
+            query.setParameter("maMH", lopHocDTO.getMaMH());
+            query.setParameter("tenMH", lopHocDTO.getTenMH());
+            List<DiemDTO> diemList = query.getResultList();
+
+            return diemList;
+        } catch (Exception e1) {
+            System.out.println(e1.getMessage());
+            return null;
+        } finally {
+            try {
+                if (entityManagerFactory != null) {
+                    entityManagerFactory.close();
+                }
+                if (entityManager != null) {
+                    entityManager.close();
+                }
+            } catch (Exception e2) {
+                return null;
+            }
+        }
+    }
+
+    @Override
+    public List<DiemDTO> findByStudent(String maSV) {
+        EntityManagerFactory entityManagerFactory = null;
+        EntityManager entityManager = null;
+        try {
+            entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
+            entityManager = entityManagerFactory.createEntityManager();
+
+            String jpql = "SELECT new com.example.studentmanagement.dto.DiemDTO(d1.maSV, tk.tenTK, d1.maMH, mh.tenMH, d1.diem, d2.diem, d3.diem) " +
+                    "FROM DiemModel d1, DiemModel d2, DiemModel d3" +
+                    " JOIN SinhVienModel sv ON sv.maSV = d1.maSV" +
+                    " JOIN TaiKhoanModel tk ON sv.maTK = tk.maTK" +
+                    " JOIN MonHocModel mh ON mh.maMH = d1.maMH" +
+                    " WHERE d1.maSV = d2.maSV AND d1.maSV = d3.maSV" +
+                    " AND d1.maMH = d2.maMH AND d1.maMH = d3.maMH" +
+                    " AND d1.maLoaiDiem = 'LD0001' AND d2.maLoaiDiem = 'LD0002' AND d3.maLoaiDiem = 'LD0003' " +
+                    " AND sv.maSV = :maSV";
+
+            TypedQuery<DiemDTO> query = entityManager.createQuery(jpql, DiemDTO.class);
+            query.setParameter("maSV", maSV);
+            List<DiemDTO> diemList = query.getResultList();
 
             return diemList;
         } catch (Exception e1) {

@@ -1,7 +1,14 @@
 import { Table, } from 'antd';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
 import './ScoreBoard.scss'
-function ScoreBoard({ data }) {
+function ScoreBoard({ classListData }) {
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        setData(classListData);
+    }, [classListData]);
+
     const columns = [
         {
             title: 'Mã môn học',

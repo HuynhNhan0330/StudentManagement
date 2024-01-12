@@ -26,9 +26,16 @@ public class DiemModel {
     private String maLoaiDiem;
 
     @Column(name="Diem")
-    private int diem;
+    private Float diem;
 
     public DiemModel() {
+    }
+
+    public DiemModel(String maSV, String maMH, String maLoaiDiem, Float diem) {
+        this.maSV = maSV;
+        this.maMH = maMH;
+        this.maLoaiDiem = maLoaiDiem;
+        this.diem = diem;
     }
 
     public String getMaSV() {
@@ -55,11 +62,11 @@ public class DiemModel {
         this.maLoaiDiem = maLoaiDiem;
     }
 
-    public int getDiem() {
+    public Float getDiem() {
         return diem;
     }
 
-    public void setDiem(int diem) {
+    public void setDiem(Float diem) {
         this.diem = diem;
     }
 }

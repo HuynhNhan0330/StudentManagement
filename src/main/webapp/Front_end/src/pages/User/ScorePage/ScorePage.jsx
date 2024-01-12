@@ -5,9 +5,10 @@ import { handleGetScoreByStudent } from '../../../controller/ScoreController';
 function ScorePage(){
     // Table:
     const [data, setData] = useState([]);
-    const [user, setUser] = useState(localStorage.getItem('account'));
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('account')));
 
     const fetchData = () => {
+        setUser(JSON.parse(localStorage.getItem('account')));
         handleGetScoreByStudent(user.maSV).then((results) => {
             if (results == null) {
                 results = [];
@@ -19,13 +20,13 @@ function ScorePage(){
 
     useEffect(() => {
         fetchData();
-    }, [user]);
+    }, []);
 
     // end
 
     return(
         <>
-            <ScoreBoard StudentScoreData={data}></ScoreBoard>
+            <ScoreBoard classListData={data}></ScoreBoard>
         </>
     )
 }

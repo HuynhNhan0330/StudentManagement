@@ -1,12 +1,17 @@
 package com.example.studentmanagement.jpa;
 
-import com.example.studentmanagement.model.ChiTietDangKyModel;
+import com.example.studentmanagement.dto.DiemDTO;
+import com.example.studentmanagement.dto.LopHocDTO;
 import com.example.studentmanagement.model.DiemModel;
 
 import java.util.List;
 
 public interface IDiemJPA {
     List<DiemModel> findAll();
+
+    List<DiemDTO> findByClass(LopHocDTO lopHocDTO);
+
+    List<DiemDTO> findByStudent(String maSV);
 
     DiemModel findOne(String maSV, String maMH, String maLoaiDiem);
 

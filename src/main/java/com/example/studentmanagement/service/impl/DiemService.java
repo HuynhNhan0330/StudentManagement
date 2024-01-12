@@ -1,22 +1,39 @@
 package com.example.studentmanagement.service.impl;
 
+import com.example.studentmanagement.dto.DiemDTO;
+import com.example.studentmanagement.dto.LopHocDTO;
 import com.example.studentmanagement.jpa.IDiemJPA;
 import com.example.studentmanagement.jpa.impl.DiemJPA;
 import com.example.studentmanagement.model.DiemModel;
 import com.example.studentmanagement.service.IDiemService;
+import com.example.studentmanagement.service.ILopHocService;
 
 import java.util.List;
 
 public class DiemService implements IDiemService {
     private IDiemJPA diemJPA;
+    private ILopHocService lopHocService;
 
     public DiemService() {
         diemJPA = new DiemJPA();
+        lopHocService = new LopHocService();
     }
 
     @Override
     public List<DiemModel> findAll() {
         return diemJPA.findAll();
+    }
+
+    @Override
+    public List<DiemDTO> findByClass(String maLop) {
+        LopHocDTO lopHocDTO = lopHocService.findOne(maLop);
+
+        return diemJPA.findByClass(lopHocDTO);
+    }
+
+    @Override
+    public List<DiemDTO> findByStudent(String maSV) {
+        return diemJPA.findByStudent(maSV);
     }
 
     @Override

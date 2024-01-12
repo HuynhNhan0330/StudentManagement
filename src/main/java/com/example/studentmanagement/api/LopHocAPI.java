@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet(urlPatterns = { "/api-admin-lophoc" })
+@WebServlet(urlPatterns = { "/api-admin-lophoc", "/api-admin-lophoc/*" })
 public class LopHocAPI extends HttpServlet {
 
     private ILopHocService lopHocService;
@@ -34,13 +34,23 @@ public class LopHocAPI extends HttpServlet {
         // format content type for client
         resp.setContentType("application/json");
 
-        // get list object
-        List<LopHocDTO> listLopHoc = lopHocService.findAll();
-
-        // convert list model to json for response
         ObjectMapper mapper = new ObjectMapper();
-        resp.setStatus(HttpServletResponse.SC_OK);
-        mapper.writeValue(resp.getOutputStream(), listLopHoc);
+
+        String requestURI = req.getRequestURI();
+        if (requestURI.equals("/api-admin-lophoc")) {
+            // get list object
+            List<LopHocDTO> listLopHoc = lopHocService.findAll();
+
+            resp.setStatus(HttpServletResponse.SC_OK);
+            mapper.writeValue(resp.getOutputStream(), listLopHoc);
+        } else {
+            String maLop = requestURI.substring(requestURI.lastIndexOf("/") + 1);
+            LopHocDTO lopHocDTO = lopHocService.findOne(maLop);
+
+            resp.setStatus(HttpServletResponse.SC_OK);
+            mapper.writeValue(resp.getOutputStream(), lopHocDTO);
+        }
+
         return;
     }
 
