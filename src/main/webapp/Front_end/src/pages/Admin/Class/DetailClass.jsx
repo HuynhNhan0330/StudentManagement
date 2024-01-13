@@ -168,7 +168,7 @@ function DetailClass() {
                 {renderDescriptions()}
             </Card>
             <Divider style={{ color: 'blue', fontSize: '16px' }}>Danh sách học sinh</Divider>
-            <StudentListTable classListData = { data }/>
+            <StudentListTable classListData = { data } classs={selectedSchoolClass}/>
 
         </div>
     );

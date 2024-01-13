@@ -88,6 +88,7 @@ public class ChiTietDangKyJPA implements IChiTietDangKyJPA {
             ctdk.setMaSV(chiTietDangKyModel.getMaSV());
             ctdk.setMaLop(chiTietDangKyModel.getMaLop());
             ctdk.setKyHoc(chiTietDangKyModel.getKyHoc());
+            ctdk.setDau(chiTietDangKyModel.getDau());
 
             entityManager.persist(ctdk);
             entityManager.getTransaction().commit();

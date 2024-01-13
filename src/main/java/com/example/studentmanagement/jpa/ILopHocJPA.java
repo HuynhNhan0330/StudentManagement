@@ -24,4 +24,6 @@ public interface ILopHocJPA {
     Boolean checkRoom(LopHocModel lopHocModel);
 
     Boolean checkTeacher(LopHocModel lopHocModel);
+
+    Boolean checkStudent(String maSV, LopHocDTO lopHocDTO);
 }

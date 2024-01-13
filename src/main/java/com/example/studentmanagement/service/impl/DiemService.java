@@ -37,14 +37,15 @@ public class DiemService implements IDiemService {
     }
 
     @Override
-    public DiemModel findOne(String maSV, String maMH, String maLoaiDiem) {
-        return diemJPA.findOne(maSV, maMH, maLoaiDiem);
+    public DiemDTO findOne(String maSV, String maMH) {
+        return diemJPA.findOne(maSV, maMH);
     }
 
     @Override
     public DiemModel save(DiemModel diemModel) {
         String[] currentMa = diemJPA.save(diemModel);
-        return diemJPA.findOne(currentMa[0], currentMa[1], currentMa[2]);
+//        return diemJPA.findOne(currentMa[0], currentMa[1], currentMa[2]);
+        return null;
     }
 
     @Override

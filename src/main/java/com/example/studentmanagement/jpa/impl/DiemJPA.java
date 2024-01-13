@@ -121,21 +121,31 @@ public class DiemJPA implements IDiemJPA {
     }
 
     @Override
-    public DiemModel findOne(String maSV, String maMH, String maLoaiDiem) {
+    public DiemDTO findOne(String maSV, String maMH) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
         try {
             entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
             entityManager = entityManagerFactory.createEntityManager();
 
-            String jpql = "SELECT d FROM DiemModel d WHERE d.maSV = :maSV AND d.maMH = :maMH AND d.maLoaiDiem = :maLoaiDiem";
-            TypedQuery<DiemModel> query = entityManager.createQuery(jpql, DiemModel.class);
+            String jpql = "SELECT new com.example.studentmanagement.dto.DiemDTO(d1.maSV, tk.tenTK, d1.maMH, mh.tenMH, d1.diem, d2.diem, d3.diem) " +
+                    "FROM DiemModel d1, DiemModel d2, DiemModel d3" +
+                    " JOIN SinhVienModel sv ON sv.maSV = d1.maSV" +
+                    " JOIN TaiKhoanModel tk ON sv.maTK = tk.maTK" +
+                    " JOIN MonHocModel mh ON mh.maMH = d1.maMH" +
+                    " WHERE d1.maSV = d2.maSV AND d1.maSV = d3.maSV" +
+                    " AND d1.maMH = d2.maMH AND d1.maMH = d3.maMH" +
+                    " AND d1.maLoaiDiem = 'LD0001' AND d2.maLoaiDiem = 'LD0002' AND d3.maLoaiDiem = 'LD0003' " +
+                    " AND sv.maSV = :maSV" +
+                    " AND d1.maMH = :maMH ";
+
+            TypedQuery<DiemDTO> query = entityManager.createQuery(jpql, DiemDTO.class);
             query.setParameter("maSV", maSV);
             query.setParameter("maMH", maMH);
-            query.setParameter("maLoaiDiem", maLoaiDiem);
-            DiemModel di = query.getSingleResult();
 
-            return di;
+            DiemDTO diem = query.getSingleResult();
+
+            return diem;
         } catch (Exception e1) {
             System.out.println(e1.getMessage());
             return null;

@@ -323,4 +323,43 @@ public class LopHocJPA implements ILopHocJPA {
             }
         }
     }
+
+    @Override
+    public Boolean checkStudent(String maSV, LopHocDTO lopHocDTO) {
+        EntityManagerFactory entityManagerFactory = null;
+        EntityManager entityManager = null;
+        try {
+            entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
+            entityManager = entityManagerFactory.createEntityManager();
+
+            String jpql = "SELECT lh FROM LopHocModel lh JOIN ChiTietDangKyModel ctdk ON ctdk.maLop = lh.maLop WHERE ctdk.maSV = :maSV AND lh.ngayHoc = :ngayHoc";
+
+            TypedQuery<LopHocModel> query = entityManager.createQuery(jpql, LopHocModel.class);
+            query.setParameter("maSV", maSV);
+            query.setParameter("ngayHoc", lopHocDTO.getNgayHoc());
+
+            List<LopHocModel> lopHocList = query.getResultList();
+
+            for (LopHocModel lh: lopHocList) {
+                if (Helper.checkTimeOverlapping(lopHocDTO.getThoiGianBatDau(), lopHocDTO.getThoiGianKetThuc(), lh.getThoiGianBatDau(), lh.getThoiGianKetThuc())) {
+                    return false;
+                }
+            }
+
+            return true;
+        } catch (Exception e1) {
+            return false;
+        } finally {
+            try {
+                if (entityManagerFactory != null) {
+                    entityManagerFactory.close();
+                }
+                if (entityManager != null) {
+                    entityManager.close();
+                }
+            } catch (Exception e2) {
+                return null;
+            }
+        }
+    }
 }

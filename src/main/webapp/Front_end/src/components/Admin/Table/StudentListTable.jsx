@@ -3,18 +3,15 @@ import { Form, Input, InputNumber, Table, Typography, Button, Select } from 'ant
 import './StudentListTable.scss'
 import { EditOutlined, CheckOutlined, UserDeleteOutlined, CloseOutlined } from '@ant-design/icons'
 import { handleUpdateScoreByStudent } from '../../../controller/ScoreController';
-
-// const classListData = [
-//     { maSV: 1, tenTK: 'Student 1', quaTrinh: 80, giuaKy: 75, cuoiKy: 90 },
-//     { maSV: 2, tenTK: 'Student 2', quaTrinh: 70, giuaKy: 80, cuoiKy: 85 },
-// ];
+import { handleGetStudents } from '../../../controller/StudentController';
+import { handleAddStudentClass } from '../../../controller/ClassController';
 
 const EditableCell = ({ editing, dataIndex, title, inputType, record, index, children, ...restProps }) => {
-    const inputNode = inputType === 'number' ? <InputNumber min = {0} 
-                                                            max = {10}
-                                                            step = {0.1}
-                                                            /> 
-                                                : <Input min = {0} max = {10}/>;
+    const inputNode = inputType === 'number' ? <InputNumber min={0}
+        max={10}
+        step={0.1}
+    />
+        : <Input min={0} max={10} />;
     return (
         <td {...restProps}>
             {editing ? (
@@ -39,7 +36,7 @@ const EditableCell = ({ editing, dataIndex, title, inputType, record, index, chi
     );
 };
 
-const StudentListTable = ({ classListData }) => {
+const StudentListTable = ({ classListData, classs }) => {
     const [formSearch] = Form.useForm();
     const [form] = Form.useForm();
 
@@ -50,9 +47,7 @@ const StudentListTable = ({ classListData }) => {
         setData(classListData);
     }, [classListData]);
 
-    const handleAddStudent = async (option) => {
 
-    }
 
     const handleDeleteStudent = async (studentId) => {
 
@@ -77,17 +72,17 @@ const StudentListTable = ({ classListData }) => {
             const row = await form.validateFields();
             const newData = [...data];
             const index = newData.findIndex((item) => id === item.id);
-            
+
             if (index > -1) {
                 const item = newData[index];
-                
+
                 const newRow = {
                     ...item,
                     ...row,
                 }
-                
+
                 handleUpdateScoreByStudent(newRow).then(() => {
-                    
+
                 });
 
                 newData.splice(index, 1, newRow);
@@ -96,7 +91,7 @@ const StudentListTable = ({ classListData }) => {
                 setEditingKey('');
             } else {
                 // Lưu sinh viên mới
-                
+
                 newData.push({
                     id,
                     ...row,
@@ -151,16 +146,16 @@ const StudentListTable = ({ classListData }) => {
                 const editable = isEditing(record);
                 return editable ? (
                     <>
-                        <CheckOutlined style={{ color: "green"}}
-                                       onClick={() => save(record.id)}  />
+                        <CheckOutlined style={{ color: "green" }}
+                            onClick={() => save(record.id)} />
                         <CloseOutlined style={{ color: "gray", marginLeft: 12 }}
                             onClick={cancel}
                         />
                     </>
                 ) : (
                     <>
-                        <EditOutlined style={{ color: "blue"}}
-                                        onClick={() => { edit(record); }} />
+                        <EditOutlined style={{ color: "blue" }}
+                            onClick={() => { edit(record); }} />
                         <UserDeleteOutlined style={{ color: "red", marginLeft: 12 }}
                             onClick={async () => { await handleDeleteStudent(record?.id) }}
                         />
@@ -179,7 +174,7 @@ const StudentListTable = ({ classListData }) => {
             onCell: (record) => ({
                 record,
                 dataIndex: col.dataIndex,
-                inputType: col.dataIndex !== 'maSV' && col.dataIndex !== 'tenSV'  ? 'number' : 'text',
+                inputType: col.dataIndex !== 'maSV' && col.dataIndex !== 'tenSV' ? 'number' : 'text',
                 title: col.title,
                 editing: isEditing(record),
                 min: col.dataIndex === 'minValue' ? 0 : undefined,
@@ -188,21 +183,65 @@ const StudentListTable = ({ classListData }) => {
         };
     });
 
+    // Add student
+    const [students, setStudents] = useState([]); // Danh sách sinh viên từ API
+    const [selectedStudent, setSelectedStudent] = useState(''); // Sinh viên được chọn
+
+    const fetchStudents = () => {
+        handleGetStudents().then((results) => {
+            if (results == null) {
+                results = [];
+            }
+
+            setStudents(results);
+        });
+
+    };
+
+    useEffect(() => {
+        fetchStudents();
+    }, []);
+
+    const handleAddStudent = () => {
+        if (data.find((student) => student.maSV === selectedStudent)) {
+            console.log("Đã tồn tại sinh viên này")
+        }
+        else {
+            // Thêm sinh viên vào lớp
+            handleAddStudentClass(selectedStudent, classs).then((resp) => {
+                if (resp != null) {
+                    console.log(resp)
+                    setData([...data, resp]);
+                }
+                else {
+                    console.log(resp);
+                }
+            });
+        }
+    };
+
+
+    // end
+
     return (
         <div className='StudentListTableContain'>
             <div style={{ width: '100%', display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
                 <div style={{ width: '100%', display: 'flex' }}>
                     <Form form={formSearch} component={false} layout='inline'   >
                         <Form.Item label="Student" name="student" defaultValue="" style={{ width: '80%' }}>
-                            <Select mode="single" showSearch optionFilterProp="children" allowClear style={{ width: '100%' }}>
-                                {
-
-                                }
+                            <Select mode="single" showSearch optionFilterProp="children" allowClear style={{ width: '100%' }}
+                                value={selectedStudent}
+                                onChange={setSelectedStudent}>
+                                {students.map((student) => (
+                                    <Select.Option key={student.maSV} value={student.maSV}>
+                                        {`${student.maSV} - ${student.tenTK}`}
+                                    </Select.Option>
+                                ))}
                             </Select>
                         </Form.Item>
                     </Form>
-                    <Button onClick={() => { handleAddStudent(1) }} style={{ marginLeft: '20px' }}>
-                        Add Student
+                    <Button onClick={() => { handleAddStudent() }} style={{ marginLeft: '20px' }}>
+                        Thêm sinh viên
                     </Button>
                 </div>
                 <Form form={form} component={false}>

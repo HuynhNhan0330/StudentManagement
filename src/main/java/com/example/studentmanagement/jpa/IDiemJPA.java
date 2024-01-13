@@ -13,7 +13,7 @@ public interface IDiemJPA {
 
     List<DiemDTO> findByStudent(String maSV);
 
-    DiemModel findOne(String maSV, String maMH, String maLoaiDiem);
+    DiemDTO findOne(String maSV, String maMH);
 
     String[] save(DiemModel diemModel);
 
