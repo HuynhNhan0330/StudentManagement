@@ -5,12 +5,12 @@ import './Sidebar.scss';
 import 'boxicons/css/boxicons.min.css';
 import { adminPaths } from '../../../routes/AppRoutes';
 const sidebarNavItems = [
-    {
-        display: 'Trang chủ',
-        icon: <i className='bx bx-home'></i>,
-        to: adminPaths.home,
-        section: 'admin'
-    },
+    // {
+    //     display: 'Trang chủ',
+    //     icon: <i className='bx bx-home'></i>,
+    //     to: adminPaths.home,
+    //     section: 'admin'
+    // },
     {
         display: 'Ngành khoa',
         icon: <FontAwesomeIcon icon="fa-solid fa-school" />,
