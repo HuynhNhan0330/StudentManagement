@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import UserInformation from '../../../components/User/Userinfor/Userinformation'
+import UserInformation from '../../../../components/User/Userinfor/Userinformation'
 
 
 function UserInforPage() {

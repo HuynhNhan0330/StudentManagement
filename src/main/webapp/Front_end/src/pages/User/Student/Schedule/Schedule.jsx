@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import ScheduleBoard from "../../../components/User/ScheduleBoard/ScheduleBoard";
+import ScheduleBoard from "../../../../components/User/ScheduleBoard/ScheduleBoard";
 import './Schedule.scss'
-import { handleGetScheduleByStudent } from '../../../controller/ScheduleController';
-import { DateOfWeek } from '../../../utils/Helper';
+import { handleGetScheduleByStudent } from '../../../../controller/ScheduleController';
+import { DateOfWeek } from '../../../../utils/Helper';
 
 //
 let SemesterSchedule = ["HK2 - 2023/2024"]

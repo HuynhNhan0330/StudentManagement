@@ -7,10 +7,10 @@ import MajorFaculty from '../pages/Admin/MajorFaculty/MajorFaculty';
 import Subject from '../pages/Admin/Subject/Subject';
 import DetailClass from '../pages/Admin/Class/DetailClass';
 
-import Schedule from '../pages/User/Schedule/Schedule';
-import ScorePage from '../pages/User/ScorePage/ScorePage';
-import UserInforPage from '../pages/User/User infor/UserInforPage'
-import LoginUser from '../pages/User/Login/LoginUser'
+import Schedule from '../pages/User/Student/Schedule/Schedule';
+import ScorePage from '../pages/User/Student/ScorePage/ScorePage';
+import UserInforPage from '../pages/User/Student/User infor/UserInforPage'
+
 const adminPaths= {
     home: '/admin',
     student: '/admin_student',

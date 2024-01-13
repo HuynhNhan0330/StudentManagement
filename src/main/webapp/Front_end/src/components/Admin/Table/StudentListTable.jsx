@@ -125,25 +125,25 @@ const StudentListTable = ({ classListData }) => {
         {
             title: 'Quá trình',
             dataIndex: 'quaTrinh',
-            width: '10%',
+            width: '12%',
             editable: true,
         },
         {
             title: 'Giữa kỳ',
             dataIndex: 'giuaKy',
-            width: '10%',
+            width: '12%',
             editable: true,
         },
         {
             title: 'Cuối kỳ',
             dataIndex: 'cuoiKy',
-            width: '10%',
+            width: '12%',
             editable: true,
         },
         {
             title: 'Tổng kết',
-            render: (text, record) => (record.quaTrinh * 0.2 + record.giuaKy * 0.3 + record.cuoiKy * 0.5),
-            width: '10%',
+            render: (text, record) => (record.quaTrinh * 0.2 + record.giuaKy * 0.3 + record.cuoiKy * 0.5).toFixed(2),
+            width: '12%',
         },
         {
             title: 'Thao tác',
