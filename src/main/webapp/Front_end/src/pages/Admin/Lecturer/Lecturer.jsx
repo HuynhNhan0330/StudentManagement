@@ -146,10 +146,9 @@ const Lecturer = () => {
                 </div>
                 <Space style={{ marginBottom: 16 }}>
                     <Search
-                        placeholder="Search..."
+                        placeholder="Tìm kiếm..."
                         onSearch={(value) => console.log(value)}
                         style={{ width: 200 }}
-                        prefix={<SearchOutlined />}
                     />
                     <Button type="primary" onClick={handleCreate}>
                         Thêm mới
