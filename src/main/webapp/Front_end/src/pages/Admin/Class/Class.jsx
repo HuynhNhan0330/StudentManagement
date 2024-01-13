@@ -125,7 +125,7 @@ const Class = () => {
                 }
                 else {
                     // Thông báo tạo thất bại
-                    console.log("Tạo sinh viên thất bại");
+                    console.log("Tạo lớp thất bại");
                 }
             }
             else {

@@ -98,7 +98,7 @@ public class DiemAPI extends HttpServlet {
         resp.setContentType("application/json");
 
         // binding json to string-json, mapping data with model.class
-        DiemModel diemUpdate = HttpUtil.of(req.getReader()).toModel(DiemModel.class);
+        DiemDTO diemUpdate = HttpUtil.of(req.getReader()).toModel(DiemDTO.class);
 
         // update new data point in database
         diemUpdate = diemService.update(diemUpdate);

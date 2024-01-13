@@ -48,9 +48,33 @@ public class DiemService implements IDiemService {
     }
 
     @Override
-    public DiemModel update(DiemModel diemModel) {
-        diemJPA.update(diemModel);
-        return diemJPA.findOne(diemModel.getMaSV(), diemModel.getMaMH(), diemModel.getMaLoaiDiem());
+    public DiemDTO update(DiemDTO diemDTO) {
+        DiemModel quaTrinh = new DiemModel();
+        DiemModel giuaKy = new DiemModel();
+        DiemModel cuoiKy = new DiemModel();
+
+        quaTrinh.setMaSV(diemDTO.getMaSV());
+        giuaKy.setMaSV(diemDTO.getMaSV());
+        cuoiKy.setMaSV(diemDTO.getMaSV());
+
+        quaTrinh.setMaMH(diemDTO.getMaMH());
+        giuaKy.setMaMH(diemDTO.getMaMH());
+        cuoiKy.setMaMH(diemDTO.getMaMH());
+
+        quaTrinh.setMaLoaiDiem("LD0001");
+        giuaKy.setMaLoaiDiem("LD0002");
+        cuoiKy.setMaLoaiDiem("LD0003");
+
+        quaTrinh.setDiem(diemDTO.getQuaTrinh());
+        giuaKy.setDiem(diemDTO.getGiuaKy());
+        cuoiKy.setDiem(diemDTO.getCuoiKy());
+
+        diemJPA.update(quaTrinh);
+        diemJPA.update(giuaKy);
+        diemJPA.update(cuoiKy);
+
+        return null;
+//        return diemJPA.findOne(diemModel.getMaSV(), diemModel.getMaMH(), diemModel.getMaLoaiDiem());
     }
 
     @Override

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Input, InputNumber, Table, Typography, Button, Select } from 'antd';
 import './StudentListTable.scss'
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
+import { EditOutlined, CheckOutlined, UserDeleteOutlined, CloseOutlined } from '@ant-design/icons'
+import { handleUpdateScoreByStudent } from '../../../controller/ScoreController';
 
 // const classListData = [
 //     { maSV: 1, tenTK: 'Student 1', quaTrinh: 80, giuaKy: 75, cuoiKy: 90 },
@@ -9,7 +10,11 @@ import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 // ];
 
 const EditableCell = ({ editing, dataIndex, title, inputType, record, index, children, ...restProps }) => {
-    const inputNode = inputType === 'number' ? <InputNumber /> : <Input />;
+    const inputNode = inputType === 'number' ? <InputNumber min = {0} 
+                                                            max = {10}
+                                                            step = {0.1}
+                                                            /> 
+                                                : <Input min = {0} max = {10}/>;
     return (
         <td {...restProps}>
             {editing ? (
@@ -44,7 +49,7 @@ const StudentListTable = ({ classListData }) => {
     useEffect(() => {
         setData(classListData);
     }, [classListData]);
-    
+
     const handleAddStudent = async (option) => {
 
     }
@@ -72,23 +77,35 @@ const StudentListTable = ({ classListData }) => {
             const row = await form.validateFields();
             const newData = [...data];
             const index = newData.findIndex((item) => id === item.id);
+            
             if (index > -1) {
                 const item = newData[index];
-                newData.splice(index, 1, {
+                
+                const newRow = {
                     ...item,
                     ...row,
+                }
+                
+                handleUpdateScoreByStudent(newRow).then(() => {
+                    
                 });
+
+                newData.splice(index, 1, newRow);
+
                 setData(newData);
                 setEditingKey('');
             } else {
+                // Lưu sinh viên mới
+                
                 newData.push({
                     id,
                     ...row,
                 });
+
                 setData(newData);
                 setEditingKey('');
             }
-            console.log(data)
+
         } catch (errInfo) {
             console.log('Validate Failed:', errInfo);
         }
@@ -133,28 +150,18 @@ const StudentListTable = ({ classListData }) => {
             render: (_, record) => {
                 const editable = isEditing(record);
                 return editable ? (
-                    <span>
-                        <Typography.Link
-                            onClick={() => save(record.id)}
-                            style={{
-                                marginRight: 8,
-                            }}>
-                            <Button type="primary">Save</Button>
-                        </Typography.Link>
-                        <Typography.Link
+                    <>
+                        <CheckOutlined style={{ color: "green"}}
+                                       onClick={() => save(record.id)}  />
+                        <CloseOutlined style={{ color: "gray", marginLeft: 12 }}
                             onClick={cancel}
-                            style={{
-                                marginRight: 8,
-                            }}>
-                            <Button type="primary" danger>
-                                Cancel
-                            </Button>
-                        </Typography.Link>
-                    </span>
+                        />
+                    </>
                 ) : (
                     <>
-                        <EditOutlined onClick={() => { edit(record); }} />
-                        <DeleteOutlined style={{ color: "red", marginLeft: 12 }}
+                        <EditOutlined style={{ color: "blue"}}
+                                        onClick={() => { edit(record); }} />
+                        <UserDeleteOutlined style={{ color: "red", marginLeft: 12 }}
                             onClick={async () => { await handleDeleteStudent(record?.id) }}
                         />
                     </>
@@ -172,8 +179,11 @@ const StudentListTable = ({ classListData }) => {
             onCell: (record) => ({
                 record,
                 dataIndex: col.dataIndex,
+                inputType: col.dataIndex !== 'maSV' && col.dataIndex !== 'tenSV'  ? 'number' : 'text',
                 title: col.title,
                 editing: isEditing(record),
+                min: col.dataIndex === 'minValue' ? 0 : undefined,
+                max: col.dataIndex === 'maxValue' ? 10 : undefined,
             }),
         };
     });

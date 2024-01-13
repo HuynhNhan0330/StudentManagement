@@ -17,7 +17,7 @@ public interface IDiemService {
 
     DiemModel save(DiemModel diemModel);
 
-    DiemModel update(DiemModel diemModel);
+    DiemDTO update(DiemDTO diemDTO);
 
     void delete(String maSV, String maMH, String maLoaiDiem);
 }

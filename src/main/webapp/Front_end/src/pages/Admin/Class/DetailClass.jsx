@@ -63,10 +63,14 @@ function DetailClass() {
 
     useEffect(() => {
         setEditedDescriptions([...items]);
-    }, [items]);
+    }, []);
     
     const handleEdit = () => {
-        setEditing(true);
+        // if (data.length > 0) {
+        //     console.log("Đã có sinh viên không sửa được");
+        // }
+        // else
+            setEditing(true);
     };
 
     const handleSave = () => {

@@ -3,23 +3,6 @@ import UserInformation from '../../../components/User/Userinfor/Userinformation'
 
 
 function UserInforPage() {
-
-  
-  const UserInformationItem =
-  {
-    Avatar: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
-    Full_name: 'Nguyen Van A',
-    Phone_number: '0123456789',
-    DateOfBirth: '01/01/2003',
-    Gender: 'Male',
-    Student_ID: '123456',
-    //Email: 'student@gmail.com',
-    Program: 'CLC',
-    Faculty: 'SE',
-
-  }
-
-
   // Data:
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('account')));
 
