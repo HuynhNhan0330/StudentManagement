@@ -11,18 +11,17 @@ const sidebarNavItems = [
         section: 'student-schedule'
     },
     {
-        display: 'Người dùng',
-        icon: <i className='bx bx-user'></i>,
-        to: studentPaths.user_infor,
-        section: 'student-info'
-    },
-    {
         display: 'Điểm số',
         icon: <i class='bx bx-clipboard'></i>,// <i class='bx bx-math'></i>
         to: studentPaths.score,
         section: 'student-score'
     },
-
+    {
+        display: 'Người dùng',
+        icon: <i className='bx bx-user'></i>,
+        to: studentPaths.user_infor,
+        section: 'student-info'
+    },
 ]
 
 const SidebarUser = () => {

@@ -11,6 +11,9 @@ import Schedule from '../pages/User/Student/Schedule/Schedule';
 import ScorePage from '../pages/User/Student/ScorePage/ScorePage';
 import UserInforPage from '../pages/User/Student/User infor/UserInforPage'
 
+import LecturerSchedule from '../pages/User/Lecturer/Schedule/Schedule';
+import LecturerUserInforPage from '../pages/User/Lecturer/User infor/UserInforPage';
+
 const adminPaths= {
     home: '/admin',
     student: '/admin_student',
@@ -31,6 +34,11 @@ const publicRoutes = [
     {path: adminPaths.detatailclass, component: DetailClass}
 ];
 
+const lecturerPaths={
+    schedule: '/lecturer-schedule',
+    user_infor: '/lecturer-infor',
+    score: '/lecturer-score',
+}
 
 const studentPaths =
 {
@@ -55,4 +63,4 @@ const privateRoutes = [
     // { path: '/register', component: Register, layout: null }
 ];
 
-export { publicRoutes, privateRoutes ,studentRoutes,studentPaths, adminPaths};
+export { publicRoutes, privateRoutes ,studentRoutes,studentPaths, adminPaths,lecturerPaths};
