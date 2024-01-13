@@ -99,6 +99,8 @@ const Lecturer = () => {
                         });
                         // Cập nhật table   
                         setData([...data, lecturer]);
+
+                        setIsCreateModalOpen(true);
                     }
                     else {
                         // Thông báo tạo thất bại
@@ -112,6 +114,10 @@ const Lecturer = () => {
                 else {
                     // Thông báo tạo thất bại
                     console.log(resp.response.data);
+                    message.open({
+                        type: 'error',
+                        content: resp.response.data,
+                    });
                 }
             })
         }
@@ -137,6 +143,11 @@ const Lecturer = () => {
                     if (result) {
                         setData((pre) => {
                             return pre.filter((lecturer) => lecturer.maGV !== record.maGV);
+                        });
+                    } else {
+                        message.open({
+                            type: 'error',
+                            content: 'Xoá thất bại',
                         });
                     }
                 })

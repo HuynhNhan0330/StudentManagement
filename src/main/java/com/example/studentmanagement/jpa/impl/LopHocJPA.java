@@ -53,11 +53,11 @@ public class LopHocJPA implements ILopHocJPA {
 
             String jpql = "SELECT new com.example.studentmanagement.dto.LichHocDTO(lh.tenLop, lh.ngayHoc, lh.thoiGianBatDau, lh.thoiGianKetThuc, kh.thoiGianBatDau, kh.thoiGianKetThuc) FROM ChiTietDangKyModel ctdk" +
                     " JOIN LopHocModel lh ON ctdk.maLop = lh.maLop" +
-                    " JOIN KyHocModel kh ON kh.maKH = lh.maKH";
-//                    " WHERE ctdk.maSV = :maSV";
+                    " JOIN KyHocModel kh ON kh.maKH = lh.maKH" +
+                    " WHERE ctdk.maSV = :maSV";
 
             TypedQuery<LichHocDTO> query = entityManager.createQuery(jpql, LichHocDTO.class);
-//            query.setParameter("maSV", maSV);
+            query.setParameter("maSV", maSV);
             List<LichHocDTO> lichHocList = query.getResultList();
 
             return lichHocList;

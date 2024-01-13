@@ -40,27 +40,44 @@ const handleGetClassById = (id) => {
       console.error('Đã xảy ra lỗi khi gửi dữ liệu:');
       console.error(error);
     });
+}
+
+const handleAddStudentClass = (maSV, classs) => {
+  return axios.post(baseUrlAPI + '/api-admin-chitietdangky/sv/' + maSV, classs)
+    .then((response) => {
+      console.log('Dữ liệu đã được gửi thành công!');
+      console.log(response.data);
+
+      return response.data;
+    })
+    .catch((error) => {
+      console.error('Đã xảy ra lỗi khi gửi dữ liệu:');
+      console.error(error);
+
+      return false;
+    });
   }
 
-    const handleAddStudentClass = (maSV, classs) => {
-      return axios.post(baseUrlAPI + '/api-admin-chitietdangky/sv/' + maSV, classs)
-        .then((response) => {
-          console.log('Dữ liệu đã được gửi thành công!');
-          console.log(response.data);
-    
-          return response.data;
-        })
-        .catch((error) => {
-          console.error('Đã xảy ra lỗi khi gửi dữ liệu:');
-          console.error(error);
+  const handleDeleteStudentClass = (maSV, classs) => {
+    return axios.delete(baseUrlAPI + '/api-admin-chitietdangky/sv/' + maSV, {data: classs})
+      .then((response) => {
+        console.log('Dữ liệu đã được gửi thành công!');
+        console.log(response.data);
 
-          return false;
-        });
-}
+        return response.data;
+      })
+      .catch((error) => {
+        console.error('Đã xảy ra lỗi khi gửi dữ liệu:');
+        console.error(error);
 
-export {
-  handleCreateClass,
-  handleGetClasses,
-  handleGetClassById,
-  handleAddStudentClass
-}
+        return false;
+      });
+  }
+
+  export {
+    handleCreateClass,
+    handleGetClasses,
+    handleGetClassById,
+    handleAddStudentClass,
+    handleDeleteStudentClass
+  }

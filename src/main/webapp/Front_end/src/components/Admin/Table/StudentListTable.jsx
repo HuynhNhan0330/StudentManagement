@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Form, Input, InputNumber, Table, Typography, Button, Select } from 'antd';
+import { Form, Input, InputNumber, Table, Modal, Button, Select, message } from 'antd';
 import './StudentListTable.scss'
 import { EditOutlined, CheckOutlined, UserDeleteOutlined, CloseOutlined } from '@ant-design/icons'
 import { handleUpdateScoreByStudent } from '../../../controller/ScoreController';
 import { handleGetStudents } from '../../../controller/StudentController';
-import { handleAddStudentClass } from '../../../controller/ClassController';
+import { handleAddStudentClass, handleDeleteStudentClass } from '../../../controller/ClassController';
 
 const EditableCell = ({ editing, dataIndex, title, inputType, record, index, children, ...restProps }) => {
     const inputNode = inputType === 'number' ? <InputNumber min={0}
@@ -49,8 +49,20 @@ const StudentListTable = ({ classListData, classs }) => {
 
 
 
-    const handleDeleteStudent = async (studentId) => {
-
+    const handleDeleteStudent = (student) => {
+        Modal.confirm({
+            title: "Xác nhận xoá?",
+            okText: "Có",
+            cancelText: "Huỷ",
+            onOk: () => {
+                // console.log(classs);
+                handleDeleteStudentClass(student.maSV, classs).then((result) => {
+                    setData((pre) => {
+                        return pre.filter((s) => s.maSV !== student.maSV);
+                    });
+                })
+            }
+        })
     }
 
 
@@ -157,7 +169,7 @@ const StudentListTable = ({ classListData, classs }) => {
                         <EditOutlined style={{ color: "blue" }}
                             onClick={() => { edit(record); }} />
                         <UserDeleteOutlined style={{ color: "red", marginLeft: 12 }}
-                            onClick={async () => { await handleDeleteStudent(record?.id) }}
+                            onClick={() => { handleDeleteStudent(record); }}
                         />
                     </>
                 );
@@ -228,7 +240,7 @@ const StudentListTable = ({ classListData, classs }) => {
             <div style={{ width: '100%', display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
                 <div style={{ width: '100%', display: 'flex' }}>
                     <Form form={formSearch} component={false} layout='inline'   >
-                        <Form.Item label="Student" name="student" defaultValue="" style={{ width: '80%' }}>
+                        <Form.Item label="Sinh viên" name="student" defaultValue="" style={{ width: '80%' }}>
                             <Select mode="single" showSearch optionFilterProp="children" allowClear style={{ width: '100%' }}
                                 value={selectedStudent}
                                 onChange={setSelectedStudent}>

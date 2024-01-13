@@ -94,7 +94,13 @@ public class ChiTietDangKyService implements IChiTietDangKyService {
     }
 
     @Override
-    public void delete(String maSV, String maLop) {
-        chiTietDangKyJPA.delete(maSV, maLop);
+    public void delete(String maSV, LopHocDTO lopHocDTO) {
+        // Xoá chi tiết đăng ký
+        chiTietDangKyJPA.delete(maSV, lopHocDTO.getMaLop());
+
+        // Xoá điểm
+        diemJPA.delete(maSV, lopHocDTO.getMaMH(), "LD0001");
+        diemJPA.delete(maSV, lopHocDTO.getMaMH(), "LD0002");
+        diemJPA.delete(maSV, lopHocDTO.getMaMH(), "LD0003");
     }
 }

@@ -125,6 +125,7 @@ const Class = () => {
                     });
                     // Cập nhật table   
                     setData([...data, classs]);
+                    setIsModalOpen(false);
                 }
                 else {
                     // Thông báo tạo thất bại
@@ -138,6 +139,10 @@ const Class = () => {
             else {
                 // Thông báo tạo thất bại
                 console.log(resp.response.data);
+                message.open({
+                    type: 'error',
+                    content: resp.response.data,
+                });
             }
         })
     };

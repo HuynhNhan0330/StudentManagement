@@ -32,6 +32,7 @@ const MajorFaculty = () => {
                     });
                     // Cập nhật table   
                     setDataMajor([...dataMajor, major]);
+                    setIsModalOpenMajor(true);
                 }
                 else {
                     // Thông báo tạo thất bại
@@ -45,6 +46,10 @@ const MajorFaculty = () => {
             else {
                 // Thông báo tạo thất bại
                 console.log(resp.response.data);
+                message.open({
+                    type: 'error',
+                    content: resp.response.data,
+                });
             }
         })
     };
@@ -110,6 +115,11 @@ const MajorFaculty = () => {
                     if (result) {
                         setDataMajor((pre) => {
                             return pre.filter((major) => major.maNganh !== record.maNganh);
+                        });
+                    } else {
+                        message.open({
+                            type: 'error',
+                            content: 'Xoá thất bại',
                         });
                     }
                 })
@@ -192,6 +202,8 @@ const MajorFaculty = () => {
                     });
                     // Cập nhật table   
                     setDataFaculty([...dataFaculty, faculty]);
+                    setIsModalOpenFaculty(true);
+
                 }
                 else {
                     // Thông báo tạo thất bại
@@ -205,6 +217,10 @@ const MajorFaculty = () => {
             else {
                 // Thông báo tạo thất bại
                 console.log(resp.response.data);
+                message.open({
+                    type: 'error',
+                    content: resp.response.data,
+                });
             }
         })
     };
@@ -222,6 +238,11 @@ const MajorFaculty = () => {
                     if (result) {
                         setDataFaculty((pre) => {
                             return pre.filter((faculty) => faculty.maKhoa !== record.maKhoa);
+                        });
+                    } else {
+                        message.open({
+                            type: 'error',
+                            content: 'Xoá thất bại',
                         });
                     }
                 })

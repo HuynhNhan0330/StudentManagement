@@ -123,15 +123,22 @@ public class ChiTietDangKyAPI extends HttpServlet {
         // format content for client
         resp.setContentType("application/json");
 
-        // binding data json to string-json, mapping data with model class
-        ChiTietDangKyModel chiTietDangKyDelete = HttpUtil.of(req.getReader()).toModel(ChiTietDangKyModel.class);
+        ObjectMapper mapper = new ObjectMapper();
+        String requestURI = req.getRequestURI();
 
-        // delete target data point in database
-        chiTietDangKyService.delete(chiTietDangKyDelete.getMaSV(), chiTietDangKyDelete.getMaLop());
+        if (requestURI.startsWith("/api-admin-chitietdangky/sv/")) {
+            String maSV = requestURI.substring(requestURI.lastIndexOf("/") + 1);
+
+            // binding data json to string-json, mapping data with model class
+            LopHocDTO lopHocDelete = HttpUtil.of(req.getReader()).toModel(LopHocDTO.class);
+
+            // delete target data point in database
+            chiTietDangKyService.delete(maSV, lopHocDelete);
+
+            mapper.writeValue(resp.getOutputStream(), "{}");
+        }
 
         // convert model to json for response
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(resp.getOutputStream(), "{}");
         return;
     }
 }

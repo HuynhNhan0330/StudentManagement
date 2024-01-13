@@ -15,5 +15,5 @@ public interface IChiTietDangKyService {
 
     ChiTietDangKyModel update(ChiTietDangKyModel chiTietDangKyModel);
 
-    void delete(String maSV, String maLop);
+    void delete(String maSV, LopHocDTO lopHocDTO);
 }

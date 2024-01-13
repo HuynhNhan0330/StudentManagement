@@ -77,6 +77,8 @@ const Subject = () => {
                     });
                     // Cập nhật table   
                     setData([...data, subject]);
+
+                    setIsCreateModalOpen(true);
                 }
                 else {
                     // Thông báo tạo thất bại
@@ -90,6 +92,10 @@ const Subject = () => {
             else {
                 // Thông báo tạo thất bại
                 console.log(resp.response.data);
+                message.open({
+                    type: 'error',
+                    content: resp.response.data,
+                });
             }
         })
     };
@@ -137,6 +143,11 @@ const Subject = () => {
                     if (result) {
                         setData((pre) => {
                             return pre.filter((subject) => subject.maMH !== record.maMH);
+                        });
+                    } else {
+                        message.open({
+                            type: 'error',
+                            content: 'Xoá thất bại',
                         });
                     }
                 })
