@@ -1,4 +1,4 @@
-.header {
+.header_lecter {
     position: fixed;
     top: 1%;
     left: 1%;
@@ -7,7 +7,7 @@
     background-color: #f7f9fc;
     border-radius: 15px;
 }
-.header_searchBar {
+.header_searchBar_lecter {
     position: absolute;
     height: 5vh;
     width: 55%;
@@ -25,10 +25,10 @@
 * :focus {
     outline: 2px solid #2f88ff;
 }
-input::placeholder {
+input::placeholder_lecter {
     color: #2f88ff;
 }
-.UserandNavigation {
+.UserandNavigation_lecter {
     margin-top: 0.5%;
     width: 80px;
     height: 12vh;
@@ -37,7 +37,7 @@ input::placeholder {
     font-size: 48px;
 }
 
-.logo {
+.logo_lecter {
     margin-top: 0.5%;
     margin-left: 1%;
     width: 80px;
@@ -46,7 +46,12 @@ input::placeholder {
     color: #2f88ff;
     font-size: 50px;
 }
-.uniName {
+.uniName_lecter {
     font-size: 30px;
     font-family: sans-serif;
+    color: #2f88ff;
+    margin-top: 1.4%;
+    margin-left: 0%;
+    font-weight: bold;
+    position: absolute;
 }
