@@ -151,7 +151,7 @@ function DetailClass() {
                     ]}
                 />
                 <Divider style={{ color: 'blue', fontSize: '16px' }}>Chi tiết lớp</Divider>
-                <Space>
+                {/* <Space>
                     {editing ? (
                         <>
                             <Button type="primary" onClick={handleSave}>
@@ -164,7 +164,7 @@ function DetailClass() {
                             Sửa
                         </Button>
                     )}
-                </Space>
+                </Space> */}
                 {renderDescriptions()}
             </Card>
             <Divider style={{ color: 'blue', fontSize: '16px' }}>Danh sách học sinh</Divider>
