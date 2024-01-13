@@ -9,11 +9,13 @@ import Dropdown from 'react-bootstrap/Dropdown';
 function renderEventContent(eventInfo) {
     return (
         <>
-            <b style={{ fontSize: '15px' }}>{eventInfo.timeText}</b>
+            <h style={{ fontSize: '13px' }}>Thời gian học: <br></br><b>{eventInfo.timeText}</b> </h>
             <br></br>
-            <h style={{ fontSize: '18px' }}>{eventInfo.event.extendedProps.classID}</h>
-            <br></br>
-            <i>{eventInfo.event.extendedProps.dateStart} - {eventInfo.event.extendedProps.dateEnd}</i>
+            <h style={{ fontSize: '13px' }}>Môn học:<br></br></h>
+            <b style={{ fontSize: '18px' }}> {eventInfo.event.extendedProps.classID}</b>
+            <br></br><br></br>
+            <i>Ngày bắt đầu: {eventInfo.event.extendedProps.dateStart}</i><br></br>
+            <i>Ngày kết thúc: {eventInfo.event.extendedProps.dateEnd}</i>
         </>
     )
 }
@@ -65,6 +67,8 @@ function ScheduleBoard(props) {
                         allDaySlot={false}
                         height={"auto"}
                         borderColor="black"
+                        themeSystem="bootstrap"
+                        eventColor='#2f88ff'
                     />
                 </div>
             </div>

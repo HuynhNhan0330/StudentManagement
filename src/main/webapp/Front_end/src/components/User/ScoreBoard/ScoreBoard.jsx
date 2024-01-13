@@ -32,7 +32,7 @@ function ScoreBoard({ classListData }) {
         },
         {
             title: 'Tổng kết',
-            render: (text, record) => (record.quaTrinh * 0.2 + record.giuaKy * 0.3 + record.cuoiKy * 0.5),
+            render: (text, record) => (record.quaTrinh * 0.2 + record.giuaKy * 0.3 + record.cuoiKy * 0.5).toFixed(2),
         },
     ];
     

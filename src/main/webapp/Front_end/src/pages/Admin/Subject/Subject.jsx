@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Space, Button, Input, Card, Modal } from 'antd';
+import { Space, Button, Input, Card, Modal, message } from 'antd';
 
 import EditSubjectModal from '../../../components/Admin/Modal/Edit/EditSubjectModal'
 import CreateSubjectModal from '../../../components/Admin/Modal/Create/CreateSubjectModal';
@@ -71,13 +71,20 @@ const Subject = () => {
                 
                 if (subject != null) {
                     // Thông báo tạo thành công
-
+                    message.open({
+                        type: 'success',
+                        content: 'Tạo môn thành công',
+                    });
                     // Cập nhật table   
                     setData([...data, subject]);
                 }
                 else {
                     // Thông báo tạo thất bại
                     console.log("Tạo môn học thất bại");
+                    message.open({
+                        type: 'error',
+                        content: 'Tạo môn thất bại',
+                    });
                 }
             }
             else {

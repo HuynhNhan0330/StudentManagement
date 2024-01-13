@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import UserInformation from '../../../components/User/Userinfor/Userinformation'
+import UserInformation from '../../../../components/User/Userinfor/Userinformation'
 
 
-function UserInforPage() {
+function LecturerUserInforPage() {
   // Data:
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('account')));
 
@@ -33,7 +33,7 @@ function UserInforPage() {
   );
 }
 
-export default UserInforPage;
+export default LecturerUserInforPage;
 
 
 // [

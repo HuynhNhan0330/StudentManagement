@@ -22,16 +22,16 @@
 {
     color: white;
     pointer-events: none;
-}
-.fc .fc-timeGridDay-view .fc-timegrid-event, .fc .fc-timeGridWeek-view .fc-timegrid-event{
-    background-color: #2f88ff;
-    pointer-events: none;
+
 }
 
-
+.fc td, .fc th, .fc table {
+    border-color: black !important;
+  }
+  
 ////////////////
 .monday {
-    width: 200px;
+    width: 180px;
     text-align: center;
 }
 .tuesday {
@@ -39,11 +39,11 @@
     text-align: center;
 }
 .wednesday {
-    width: 180px;
+    width: 200px;
     text-align: center;
 }
 .thursday {
-    width: 170px;
+    width: 190px;
     text-align: center;
 }
 .friday {
@@ -51,9 +51,10 @@
     text-align: center;
 }
 .saturday {
-    width: 180px;
+    width: 270px;
     text-align: center;
 }
+
 ////
 .dropSemester_1 {
     padding-top: 2%;

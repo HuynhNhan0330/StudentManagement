@@ -2,29 +2,29 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './SideBar.scss';
 import 'boxicons/css/boxicons.min.css';
-import { studentPaths } from '../../../routes/AppRoutes';
+import { lecturerPaths } from '../../../routes/AppRoutes';
 const sidebarNavItems = [
     {
         display: 'Lịch',
         icon: <i className='bx bx-calendar'></i>,
-        to: studentPaths.schedule,
-        section: 'student-schedule'
+        to: lecturerPaths.schedule,
+        section: 'lecturer-schedule'
     },
     {
-        display: 'Điểm số',
+        display: 'Nhập điểm',
         icon: <i class='bx bx-clipboard'></i>,// <i class='bx bx-math'></i>
-        to: studentPaths.score,
-        section: 'student-score'
+        to: lecturerPaths.score,
+        section: 'lecturer-score'
     },
     {
         display: 'Người dùng',
         icon: <i className='bx bx-user'></i>,
-        to: studentPaths.user_infor,
-        section: 'student-info'
+        to: lecturerPaths.user_infor,
+        section: 'lecturer-info'
     },
 ]
 
-const SidebarUser = () => {
+const SidebarLecturer = () => {
     const [activeIndex, setActiveIndex] = useState(0);
     const [stepHeight, setStepHeight] = useState(0);
     const sidebarRef = useRef();
@@ -78,4 +78,4 @@ const SidebarUser = () => {
     </nav>;
 };
 
-export default SidebarUser;
+export default SidebarLecturer;

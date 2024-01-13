@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Space, Button, Input, Card, Modal } from 'antd';
+import { Space, Button, Input, Card, Modal, message } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import CreateStudentModal from '../../../components/Admin/Modal/Create/CreateStudentModal';
 import ShowStudentDrawer from '../../../components/Admin/Drawer/ShowStudentDrawer';
@@ -100,13 +100,20 @@ const Student = () => {
 
                     if (lecturer != null) {
                         // Thông báo tạo thành công
-
+                        message.open({
+                            type: 'success',
+                            content: 'Tạo sinh viên thành công',
+                        });
                         // Cập nhật table   
                         setData([...data, lecturer]);
                     }
                     else {
                         // Thông báo tạo thất bại
                         console.log("Tạo sinh viên thất bại");
+                        message.open({
+                            type: 'error',
+                            content: 'Tạo sinh viên thất bại',
+                        });
                     }
                 }
                 else {
@@ -158,10 +165,9 @@ const Student = () => {
                 </div>
                 <Space style={{ marginBottom: 16 }}>
                     <Search
-                        placeholder="Search..."
+                        placeholder="Tìm kiếm..."
                         onSearch={(value) => console.log(value)}
                         style={{ width: 200 }}
-                        prefix={<SearchOutlined />}
                     />
                     <Button type="primary" onClick={handleCreate}>
                         Thêm mới
