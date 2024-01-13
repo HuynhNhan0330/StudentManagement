@@ -1,4 +1,4 @@
-
+import React, { useState, useEffect } from 'react';
 import UserInformation from '../../../components/User/Userinfor/Userinformation'
 
 
@@ -19,19 +19,31 @@ function UserInforPage() {
 
   }
 
+
+  // Data:
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('account')));
+
+  const fetchData = () => {
+    setUser(JSON.parse(localStorage.getItem('account')));
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  // end 
   return (
     <>
       <div className="mainUserInfor">
         <UserInformation
-          Avatar={UserInformationItem.Avatar}
-          Full_name={UserInformationItem.Full_name}
-          Student_ID={UserInformationItem.Student_ID}
-          DateOfBirth={UserInformationItem.DateOfBirth}
-          Gender={UserInformationItem.Gender}
-          Phone_number={UserInformationItem.Phone_number}
-          Program={UserInformationItem.Program}
-          Faculty={UserInformationItem.Faculty}
-          
+          Avatar="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+          maSV={user.maSV}
+          tenTK={user.tenTK}
+          gioiTinh={user.gioiTinh}
+          ngaySinh={user.ngaySinh}
+          phone={user.phone}
+          email={user.email}
+          tenNganh={user.tenNganh}
         />
       </div>
     </>

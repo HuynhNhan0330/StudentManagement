@@ -10,13 +10,13 @@ function UserInformation(props) {
             </div>
             <div className='UserBasicInfor'>
                 <ul class="list-group">
-                    <li class="list-group-item" id='inforItem'><span className='title_infor_item'>Full name: </span> {props.Full_name}</li>
-                    <li class="list-group-item" id='inforItem'><span className='title_infor_item'>Student ID: </span> {props.Student_ID}</li>
-                    <li class="list-group-item" id='inforItem'><span className='title_infor_item'>Date of birth: </span> {props.DateOfBirth}</li>
-                    <li class="list-group-item" id='inforItem'><span className='title_infor_item'>Gender: </span>{props.Gender}</li>
-                    <li class="list-group-item" id='inforItem'><span className='title_infor_item'>Phone number: </span> {props.Phone_number}</li>
-                    <li class="list-group-item" id='inforItem'><span className='title_infor_item'>Program: </span> {props.Program}</li>
-                    <li class="list-group-item" id='inforItem'><span className='title_infor_item'>Faculty: </span>{props.Faculty}</li>
+                    <li class="list-group-item" id='inforItem'><span className='title_infor_item'>Mã số sinh viên: </span> {props.maSV}</li>
+                    <li class="list-group-item" id='inforItem'><span className='title_infor_item'>Họ và tên: </span> {props.tenTK}</li>
+                    <li class="list-group-item" id='inforItem'><span className='title_infor_item'>Giới tính: </span> {props.gioiTinh}</li>
+                    <li class="list-group-item" id='inforItem'><span className='title_infor_item'>Ngày sinh: </span>{props.ngaySinh}</li>
+                    <li class="list-group-item" id='inforItem'><span className='title_infor_item'>Số điện thoại: </span> {props.phone}</li>
+                    <li class="list-group-item" id='inforItem'><span className='title_infor_item'>Email: </span> {props.email}</li>
+                    <li class="list-group-item" id='inforItem'><span className='title_infor_item'>Ngành: </span>{props.tenNganh}</li>
                 </ul>
 
             </div>

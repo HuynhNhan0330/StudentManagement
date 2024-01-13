@@ -27,7 +27,7 @@ const Login = () => {
     
                     case "3":
                         // Chuyển trang sinh viên
-                        navigate('/student-home');
+                        navigate('/student-schedule');
                         break;
                 }
             }
