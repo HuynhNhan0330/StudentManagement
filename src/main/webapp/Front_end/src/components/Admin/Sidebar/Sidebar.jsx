@@ -41,6 +41,12 @@ const sidebarNavItems = [
         to: adminPaths.subject,
         section: 'admin_subject'
     },
+    {
+        display: 'Đăng xuất',
+        icon: <i class='bx bx-exit' style={{color: 'red'}}></i>,
+        to: '/login',
+        section: 'admin_subject'
+    },
     
 ]
 
@@ -69,6 +75,7 @@ const Sidebar = () => {
     return <nav className="navbar navbar-light navbar-vertical navbar-expand-xl">
         <div className='sidebar'>
             <div className="sidebar__logo">
+                <img src='./LogoUni.png' alt='AdminLogo' width="50" height="50" style={{marginLeft: '18%'}}/>
                 Admin
             </div>
             <div ref={sidebarRef} className="sidebar__menu">

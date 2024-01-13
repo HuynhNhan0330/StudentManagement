@@ -22,6 +22,12 @@ const sidebarNavItems = [
         to: studentPaths.user_infor,
         section: 'student-info'
     },
+    {
+        display: 'Đăng xuất',
+        icon: <i class='bx bx-exit' style={{color: 'red'}}></i>,
+        to: '/login',
+        section: 'admin_subject'
+    },
 ]
 
 const SidebarUser = () => {
