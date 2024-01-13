@@ -5,13 +5,12 @@ import 'boxicons/css/boxicons.min.css';
 import { Button } from 'antd';
 function LecturerHeader() {
 
-    return <div className='header'>
-        <div className='logo'>
-            <i class='bx bxs-graduation' style={{ color: '#2f88ff' }}>
-                <span className='uniName'>Lecturer</span>
-            </i>
+    return <div className='header_lecter'>
+        <div className='logo_lecter'>
+        <img src='./LogoUni.png' alt="Student" width="50" height="50"/>
+        <span className='uniName_lecter'>Lecturer</span>
         </div>
-        <div className='UserandNavigation'>
+        <div className='UserandNavigation_lecter'>
             <Link to={lecturerPaths.user_infor} >
                 <i class='bx bxs-user-circle' style={{ color: '#2f88ff' }}  ></i>
             </Link>

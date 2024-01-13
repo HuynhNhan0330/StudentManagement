@@ -19,7 +19,6 @@ function UserInforPage() {
     <>
       <div className="mainUserInfor">
         <UserInformation
-          Avatar="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
           maSV={user.maSV}
           tenTK={user.tenTK}
           gioiTinh={user.gioiTinh}

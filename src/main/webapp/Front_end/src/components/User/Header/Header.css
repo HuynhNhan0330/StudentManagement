@@ -39,14 +39,18 @@ input::placeholder {
 
 .logo {
     margin-top: 0.5%;
-    margin-left: 1%;
     width: 80px;
-    height: 12vh;
+    height: 16vh;
     float: left;
     color: #2f88ff;
     font-size: 50px;
 }
 .uniName {
-    font-size: 30px;
     font-family: sans-serif;
+    color: #2f88ff;
+    font-size: 30px;
+    margin-top: 2%;
+    margin-left: 3%;
+    font-weight: bold;
+    position: absolute;
 }

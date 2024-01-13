@@ -5,9 +5,6 @@ import ScoreBoard from '../ScoreBoard/ScoreBoard';
 function UserInformation(props) {
     return (
         <div className='MainContainEr'>
-            <div className="UserPic">
-                <img className='userPicture' src={props.Avatar} />
-            </div>
             <div className='UserBasicInfor'>
                 <ul class="list-group">
                     <li class="list-group-item" id='inforItem'><span className='title_infor_item'>Mã số sinh viên: </span> {props.maSV}</li>
