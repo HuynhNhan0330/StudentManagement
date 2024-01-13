@@ -2,11 +2,16 @@ import React from 'react';
 import { Table } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 
-function LecturerTable({ data, loading, handleTableChange, handleEdit, handleDelete }) {
+function LecturerTable({ data, loading, handleTableChange, handleEdit, handleDelete, textSearch }) {
     const columns = [
         {
             title: 'Mã giáo viên',
             dataIndex: 'maGV',
+            filteredValue: [textSearch],
+            onFilter: (value, record) => {
+                return (String(record.maGV).includes(value) ||
+                    String(record.tenTK).includes(value));
+            }
         },
         {
             title: 'Tên giáo viên',

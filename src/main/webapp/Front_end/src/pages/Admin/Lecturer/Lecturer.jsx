@@ -156,6 +156,9 @@ const Lecturer = () => {
     };
     // end
 
+    const [textSearch, setTextSearch] = useState("");
+
+
     return (
         <div>
             <Card>
@@ -165,7 +168,7 @@ const Lecturer = () => {
                 <Space style={{ marginBottom: 16 }}>
                     <Search
                         placeholder="Tìm kiếm..."
-                        onSearch={(value) => console.log(value)}
+                        onSearch={(value) => setTextSearch(value) }
                         style={{ width: 200 }}
                     />
                     <Button type="primary" onClick={handleCreate}>
@@ -176,6 +179,7 @@ const Lecturer = () => {
                     loading={loading}
                     onChange={handleTableChange}
                     handleDelete={handleDelete}
+                    textSearch={textSearch}
                 />
             </Card>
             <CreateLecturerModal

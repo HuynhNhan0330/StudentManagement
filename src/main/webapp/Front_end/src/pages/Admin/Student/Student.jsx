@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Space, Button, Input, Card, Modal, message } from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
 import CreateStudentModal from '../../../components/Admin/Modal/Create/CreateStudentModal';
 import ShowStudentDrawer from '../../../components/Admin/Drawer/ShowStudentDrawer';
 import StudentTable from '../../../components/Admin/Table/StudentTable';
@@ -168,6 +167,9 @@ const Student = () => {
         setIsDetailDrawerOpen(false);
     };
 
+    // search
+    const [textSearch, setTextSearch] = useState("");
+
     return (
         <div>
             <Card>
@@ -177,7 +179,9 @@ const Student = () => {
                 <Space style={{ marginBottom: 16 }}>
                     <Search
                         placeholder="Tìm kiếm..."
-                        onSearch={(value) => console.log(value)}
+                        onSearch={(value) => {
+                            setTextSearch(value)
+                        }}
                         style={{ width: 200 }}
                     />
                     <Button type="primary" onClick={handleCreate}>
@@ -189,6 +193,7 @@ const Student = () => {
                     loading={loading}
                     onChange={handleTableChange}
                     handleDelete={handleDelete}
+                    textSearch={textSearch}
                 />
             </Card>
             <CreateStudentModal

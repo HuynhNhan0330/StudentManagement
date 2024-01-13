@@ -155,6 +155,8 @@ const Subject = () => {
         })
     };
 
+    const [textSearch, setTextSearch] = useState("");
+
     return (
         <div>
             <Card>
@@ -164,7 +166,7 @@ const Subject = () => {
                 <Space className='search_subject'>
                     <Search
                         placeholder="Tìm kiếm..."
-                        onSearch={(value) => console.log(value)}
+                        onSearch={(value) => setTextSearch(value)}
                         style={{ width: 200 }}
                     />
 
@@ -177,6 +179,7 @@ const Subject = () => {
                               onChange ={ handleTableChange }
                               handleDelete= { handleDelete }
                               handleEdit= { handleEdit }
+                              textSearch={textSearch}
                 />
             </Card>
 

@@ -2,11 +2,16 @@ import React from 'react';
 import { Table } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 
-function StudentTable({ data, loading, handleTableChange, handleEdit, handleDelete, handleDetail }) {
+function StudentTable({ data, loading, handleTableChange, handleEdit, handleDelete, handleDetail, textSearch }) {
     const columns = [
         {
             title: 'Mã sinh viên',
             dataIndex: 'maSV',
+            filteredValue: [textSearch],
+            onFilter: (value, record) => {
+                return (String(record.maSV).includes(value) ||
+                    String(record.tenTK).includes(value));
+            }
         },
         {
             title: 'Tên sinh viên',
@@ -49,7 +54,7 @@ function StudentTable({ data, loading, handleTableChange, handleEdit, handleDele
             )
         }
     ]
-    
+
     return (
         <Table
             columns={ columns }
