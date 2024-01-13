@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Space, Button, Input, Card } from 'antd';
+import { Space, Button, Input, Card, message } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import ClassTable from '../../../components/Admin/Table/ClassTable';
 import CreateClassModal from '../../../components/Admin/Modal/Create/CreateClassModal';
@@ -119,13 +119,20 @@ const Class = () => {
 
                 if (classs != null) {
                     // Thông báo tạo thành công
-
+                    message.open({
+                        type: 'success',
+                        content: 'Tạo lớp thành công',
+                    });
                     // Cập nhật table   
                     setData([...data, classs]);
                 }
                 else {
                     // Thông báo tạo thất bại
                     console.log("Tạo lớp thất bại");
+                    message.open({
+                        type: 'error',
+                        content: 'Tạo lớp thất bại',
+                    });
                 }
             }
             else {

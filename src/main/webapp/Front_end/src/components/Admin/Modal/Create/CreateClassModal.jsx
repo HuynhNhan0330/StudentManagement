@@ -37,7 +37,7 @@ function CreateClassModal({ open, onOk, onCancel, rooms, lecturers, subjects }) 
         <Form onFinish={onFinish}>
             <Form.Item label="Tên lớp học"
                 name="tenLop"
-                rules={[{ required: true, message: 'Nhập tên giảng viên' }]}
+                rules={[{ required: true, message: 'Nhập tên lớp' }]}
             >
                 <Input />
             </Form.Item>
@@ -83,6 +83,8 @@ function CreateClassModal({ open, onOk, onCancel, rooms, lecturers, subjects }) 
             <Form.Item label="Thời gian học" name="thoiGian">
                 <TimePicker.RangePicker format="HH:mm" 
                                         disabledTime={disabledTime}
+                                        minuteStep={15}
+                                        hideDisabledOptions={true}
                 />
             </Form.Item>
 

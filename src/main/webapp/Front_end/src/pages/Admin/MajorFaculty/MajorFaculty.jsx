@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Button, Modal } from 'antd';
+import { Card, Button, Modal, message } from 'antd';
 import MajorTable from '../../../components/Admin/Table/MajorTable';
 import FacultyTable from '../../../components/Admin/Table/FacultyTable';
 import CreateMajorModal from '../../../components/Admin/Modal/Create/CreateMajorModal';
@@ -26,13 +26,20 @@ const MajorFaculty = () => {
                 
                 if (major != null) {
                     // Thông báo tạo thành công
-
+                    message.open({
+                        type: 'success',
+                        content: 'Tạo ngành thành công',
+                    });
                     // Cập nhật table   
                     setDataMajor([...dataMajor, major]);
                 }
                 else {
                     // Thông báo tạo thất bại
                     console.log("Tạo ngành thất bại");
+                    message.open({
+                        type: 'error',
+                        content: 'Tạo ngành thất bại',
+                    });
                 }
             }
             else {
@@ -179,13 +186,20 @@ const MajorFaculty = () => {
                 
                 if (faculty != null) {
                     // Thông báo tạo thành công
-
+                    message.open({
+                        type: 'success',
+                        content: 'Tạo khoa thành công',
+                    });
                     // Cập nhật table   
                     setDataFaculty([...dataFaculty, faculty]);
                 }
                 else {
                     // Thông báo tạo thất bại
-                    console.log("Tạo môn học thất bại");
+                    console.log("Tạo khoa thất bại");
+                    message.open({
+                        type: 'error',
+                        content: 'Tạo khoa thất bại',
+                    });
                 }
             }
             else {
