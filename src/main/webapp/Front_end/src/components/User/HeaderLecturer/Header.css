@@ -1,0 +1,52 @@
+.header {
+    position: fixed;
+    top: 1%;
+    left: 1%;
+    height: 12vh;
+    width: 98%;
+    background-color: #f7f9fc;
+    border-radius: 15px;
+}
+.header_searchBar {
+    position: absolute;
+    height: 5vh;
+    width: 55%;
+    background-color: #fff;
+    top: 28%;
+    left: 22%;
+    border-radius: 10px;
+    border: 2px solid #2f88ff;
+    border-color: #2f88ff;
+    color: #2f88ff;
+    text-size-adjust: 15px;
+    padding-left: 1%;
+    font-size: large;
+}
+* :focus {
+    outline: 2px solid #2f88ff;
+}
+input::placeholder {
+    color: #2f88ff;
+}
+.UserandNavigation {
+    margin-top: 0.5%;
+    width: 80px;
+    height: 12vh;
+    float: right;
+    color: #2f88ff;
+    font-size: 48px;
+}
+
+.logo {
+    margin-top: 0.5%;
+    margin-left: 1%;
+    width: 80px;
+    height: 12vh;
+    float: left;
+    color: #2f88ff;
+    font-size: 50px;
+}
+.uniName {
+    font-size: 30px;
+    font-family: sans-serif;
+}

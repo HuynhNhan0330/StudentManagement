@@ -36,10 +36,17 @@ const publicRoutes = [
 
 const lecturerPaths={
     schedule: '/lecturer-schedule',
-    user_infor: '/lecturer-infor',
+    user_infor: '/lecturer-info',
     score: '/lecturer-score',
 }
 
+const lecturerRoutes = [
+    { path: lecturerPaths.home, component: Home },
+    { path: lecturerPaths.schedule, component: LecturerSchedule },
+    { path: lecturerPaths.score, component: ScorePage },
+    {path: lecturerPaths.user_infor, component: LecturerUserInforPage },
+    
+];
 const studentPaths =
 {
     
@@ -63,4 +70,4 @@ const privateRoutes = [
     // { path: '/register', component: Register, layout: null }
 ];
 
-export { publicRoutes, privateRoutes ,studentRoutes,studentPaths, adminPaths,lecturerPaths};
+export { publicRoutes, privateRoutes ,studentRoutes,studentPaths, adminPaths,lecturerPaths,lecturerRoutes};
