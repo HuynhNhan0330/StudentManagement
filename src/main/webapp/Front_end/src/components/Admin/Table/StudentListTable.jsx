@@ -81,7 +81,8 @@ const StudentListTable = ({ classListData, classs }) => {
         try {
             const row = await form.validateFields();
             const newData = [...data];
-            const index = newData.findIndex((item) => id === item.id);
+            console.log(newData);
+            const index = newData.findIndex((item) => id === item.maSV);
 
             if (index > -1) {
                 const item = newData[index];
@@ -90,6 +91,7 @@ const StudentListTable = ({ classListData, classs }) => {
                     ...item,
                     ...row,
                 }
+
 
                 handleUpdateScoreByStudent(newRow).then(() => {
 
@@ -157,7 +159,7 @@ const StudentListTable = ({ classListData, classs }) => {
                 return editable ? (
                     <>
                         <CheckOutlined style={{ color: "green" }}
-                            onClick={() => save(record.id)} />
+                            onClick={() => save(record.maSV)} />
                         <CloseOutlined style={{ color: "gray", marginLeft: 12 }}
                             onClick={cancel}
                         />
