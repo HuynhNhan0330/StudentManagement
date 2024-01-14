@@ -15,6 +15,19 @@ const handleCreateMajor = (major) => {
     });
 };
 
+const handleUpdateMajor = (major) => {
+  return axios.put(baseUrlAPI + '/api-admin-nganh', major)
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      console.error('Đã xảy ra lỗi khi gửi dữ liệu:');
+      console.error(error);
+
+      return error;
+    });
+};
+
 const handleGetMajors = () => {
   return axios.get(baseUrlAPI + '/api-admin-nganh')
   .then((response) => {
@@ -45,5 +58,6 @@ const handleDeleteMajor = (major) => {
 export  {
     handleCreateMajor,
     handleGetMajors,
-    handleDeleteMajor
+    handleDeleteMajor,
+    handleUpdateMajor
 }

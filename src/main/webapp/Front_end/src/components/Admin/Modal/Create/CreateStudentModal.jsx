@@ -65,7 +65,7 @@ function CreateStudentModal({ open, onOk, onCancel, majors }) {
                 name="phone"
                 rules={[{ required: true, message: 'Nhập số điện thoại' }]}
             >
-                <Input style={{
+                <Input pattern="[0-9]*" style={{
                     width: 340,
                     float: 'right'
                 }}/>

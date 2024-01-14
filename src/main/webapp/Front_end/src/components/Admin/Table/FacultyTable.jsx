@@ -17,8 +17,8 @@ function FacultyTable({ data, loading, handleTableChange, handleEdit, handleDele
             key: 'action',
             render: (record) => (
                 <>
-                    <EditOutlined onClick={() => {handleEdit(record); }}/>
-                    <DeleteOutlined style = {{ color: "red", marginLeft: 12 }}
+                    {/* <EditOutlined onClick={() => {handleEdit(record); }}/> */}
+                    <DeleteOutlined style = {{ color: "red" }}
                                     onClick = {() => { handleDelete(record); }}
                     />
                 </>
