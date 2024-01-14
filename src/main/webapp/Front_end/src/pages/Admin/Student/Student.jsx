@@ -176,7 +176,7 @@ const Student = () => {
                 <div>
                     <h5>Quản lý sinh viên</h5>
                 </div>
-                <Space style={{ marginBottom: 16 }}>
+                <Space style={{ marginBottom: 16 }} className='search_box_in_page'>
                     <Search
                         placeholder="Tìm kiếm..."
                         onSearch={(value) => {

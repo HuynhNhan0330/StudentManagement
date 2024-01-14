@@ -163,7 +163,7 @@ const Subject = () => {
                 <div>
                     <h5>Quản lý môn học</h5>
                 </div>
-                <Space className='search_subject'>
+                <Space className='search_box_in_page'>
                     <Search
                         placeholder="Tìm kiếm..."
                         onSearch={(value) => setTextSearch(value)}
@@ -171,7 +171,7 @@ const Subject = () => {
                     />
 
                     <Button type="primary" onClick={handleCreate}>
-                        Thêm môn học
+                        Thêm mới
                     </Button>
                 </Space>
                 <SubjectTable data = { data }

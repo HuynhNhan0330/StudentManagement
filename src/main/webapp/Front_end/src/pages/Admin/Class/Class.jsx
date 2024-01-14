@@ -164,7 +164,7 @@ const Class = () => {
                 <div>
                     <h5>Quản lý lớp học</h5>
                 </div>
-                <Space style={{ marginBottom: 16 }}>
+                <Space style={{ marginBottom: 16 }} className='search_box_in_page'>
                     <Search
                         placeholder="Tìm kiếm..."
                         onSearch={(value) => console.log(value)}
