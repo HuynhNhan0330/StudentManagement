@@ -13,6 +13,8 @@ function Navheader() {
             <Nav.Link href={studentPaths.schedule}>Lịch học</Nav.Link>
             <Nav.Link href={studentPaths.score}>Điểm số</Nav.Link>
             <Nav.Link href={studentPaths.user_infor}>Người dùng</Nav.Link>
+            <Nav.Link href='./'>Đăng xuất</Nav.Link>
+
           </Nav>
         </Navbar.Collapse>
       </Container>
