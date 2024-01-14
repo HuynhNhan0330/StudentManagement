@@ -7,8 +7,7 @@ function LecturerHeader() {
 
     return <div className='header_lecter'>
         <div className='logo_lecter'>
-        <img src='./LogoUni.png' alt="Student" width="50" height="50"/>
-        <span className='uniName_lecter'>Lecturer</span>
+            <img src='./LogoUni.png' alt="Lecturer" width="50" height="50"/>
         </div>
         <div className='UserandNavigation_lecter'>
             <Link to={lecturerPaths.user_infor} >

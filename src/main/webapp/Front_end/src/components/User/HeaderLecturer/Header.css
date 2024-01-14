@@ -39,19 +39,11 @@ input::placeholder_lecter {
 
 .logo_lecter {
     margin-top: 0.5%;
-    margin-left: 1%;
+    margin-left: 6%;
     width: 80px;
     height: 12vh;
     float: left;
     color: #2f88ff;
     font-size: 50px;
 }
-.uniName_lecter {
-    font-size: 30px;
-    font-family: sans-serif;
-    color: #2f88ff;
-    margin-top: 1.4%;
-    margin-left: 0%;
-    font-weight: bold;
-    position: absolute;
-}
+

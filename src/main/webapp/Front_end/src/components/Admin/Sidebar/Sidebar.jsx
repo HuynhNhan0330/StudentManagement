@@ -75,8 +75,8 @@ const Sidebar = () => {
     return <nav className="navbar navbar-light navbar-vertical navbar-expand-xl">
         <div className='sidebar'>
             <div className="sidebar__logo">
-                <img src='./LogoUni.png' alt='AdminLogo' width="50" height="50" style={{marginLeft: '18%'}}/>
-                Admin
+                <img src='./LogoUni.png' alt='AdminLogo' width="50" height="50"/>
+            
             </div>
             <div ref={sidebarRef} className="sidebar__menu">
                 <div

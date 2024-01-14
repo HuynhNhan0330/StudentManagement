@@ -10,7 +10,7 @@ function Header() {
             <img src='./LogoUni.png' alt="Student" width="50" height="50"/>
             
         </div>
-        <div className='uniName'>Student</div>
+       
         <div className='UserandNavigation'>
             <Link to={studentPaths.user_infor} >
                 <i class='bx bxs-user-circle' style={{ color: '#2f88ff' }}  ></i>
