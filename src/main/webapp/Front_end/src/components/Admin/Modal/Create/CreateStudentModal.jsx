@@ -1,6 +1,8 @@
 import React from 'react';
 import { Modal, Form, Input, DatePicker, Select, Button } from 'antd';
 import moment from 'moment';
+import './CreateStyle.css'
+
 
 const { Option } = Select;
 
@@ -16,7 +18,10 @@ function CreateStudentModal({ open, onOk, onCancel, majors }) {
                 name="tenTK"
                 rules={[{ required: true, message: 'Nhập tên sinh viên' }]}
             >
-                <Input />
+                <Input style={{
+                    width: 340,
+                    float: 'right'
+                }}/>
             </Form.Item>
             <Form.Item label="Ngày sinh"
                 name="ngaySinh"
@@ -24,7 +29,8 @@ function CreateStudentModal({ open, onOk, onCancel, majors }) {
             >
                 <DatePicker format="DD/MM/YYYY"
                     style={{
-                        width: 390,
+                        width: 340,
+                        float: 'right'
                     }}
                 />
             </Form.Item>
@@ -33,7 +39,8 @@ function CreateStudentModal({ open, onOk, onCancel, majors }) {
                        rules={[{ required: true, message: 'Nhập giới tính' }]}>
                 <Select
                     style={{
-                        width: 400,
+                        width: 340,
+                        float: 'right'
                     }}
                     options={[
                         {
@@ -49,20 +56,26 @@ function CreateStudentModal({ open, onOk, onCancel, majors }) {
                 name="email"
                 rules={[{ required: true, message: 'Nhập email' }]}
             >
-                <Input />
+                <Input style={{
+                    width: 340,
+                    float: 'right'
+                }}/>
             </Form.Item>
             <Form.Item label="Số điện thoại"
                 name="phone"
                 rules={[{ required: true, message: 'Nhập số điện thoại' }]}
             >
-                <Input />
+                <Input style={{
+                    width: 340,
+                    float: 'right'
+                }}/>
             </Form.Item>
             <Form.Item
                 label="Ngành"
                 name="maNganh"
                 rules={[{ required: true, message: 'Chọn ngành' }]}
             >
-                <Select>
+                <Select style={{width: 340, float: 'right'}}>
                     {majors.map((major) => (
                         <Option key={major.maNganh} value={major.maNganh}>
                             {major.tenNganh}
@@ -74,7 +87,10 @@ function CreateStudentModal({ open, onOk, onCancel, majors }) {
             <Form.Item label="Năm nhập học"
                        name="namNhapHoc"
                        rules={[{ required: true, message: 'Nhập năm nhập học' }]}>
-                <Input />
+                <Input style={{
+                    width: 340,
+                    float: 'right'
+                }}/>
             </Form.Item>
 
             <Form.Item style={{ display: 'flex', justifyContent: 'flex-end' }}>

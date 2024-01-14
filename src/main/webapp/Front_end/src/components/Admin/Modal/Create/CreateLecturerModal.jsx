@@ -16,7 +16,11 @@ function CreateLecturerModal({ open, onOk, onCancel, faculties }) {
                 name="tenTK"
                 rules={[{ required: true, message: 'Nhập tên giáo viên' }]}
             >
-                <Input />
+                <Input style={ {
+                    width: '330px',
+                    float: 'right'
+                    }}
+                />
             </Form.Item>
             <Form.Item label="Ngày sinh"
                 name="ngaySinh"
@@ -24,7 +28,8 @@ function CreateLecturerModal({ open, onOk, onCancel, faculties }) {
             >
                 <DatePicker format="DD/MM/YYYY"
                     style={{
-                        width: 390,
+                        width: '330px',
+                        float: 'right'
                     }}
                 />
             </Form.Item>
@@ -32,20 +37,26 @@ function CreateLecturerModal({ open, onOk, onCancel, faculties }) {
                 name="email"
                 rules={[{ required: true, message: 'Nhập email' }]}
             >
-                <Input />
+                <Input style={{
+                    width: '330px',
+                    float: 'right'
+                }}/>
             </Form.Item>
             <Form.Item label="Số điện thoại"
                 name="phone"
                 rules={[{ required: true, message: 'Nhập số điện thoại' }]}
             >
-                <Input />
+                <Input style={{
+                    width: '330px',
+                    float: 'right'
+                }}/>
             </Form.Item>
             <Form.Item
                 label="Khoa"
                 name="maKhoa"
                 rules={[{ required: true, message: 'Chọn khoa' }]}
             >
-                <Select>
+                <Select style={{width:'330px', float:'right'}}>
                     {faculties.map((faculty) => (
                         <Option key={faculty.maKhoa} value={faculty.maKhoa}>
                             {faculty.tenKhoa}

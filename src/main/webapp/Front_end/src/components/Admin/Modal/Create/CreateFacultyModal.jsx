@@ -1,5 +1,7 @@
 import React from 'react';
 import { Modal, Form, Input, Button } from 'antd';
+import './CreateStyle.css'
+
 
 function CreateFacultyModal({ open, onOk, onCancel }) {
     const onFinish = (values) => {
@@ -12,7 +14,7 @@ function CreateFacultyModal({ open, onOk, onCancel }) {
                        name="tenKhoa"
                        rules={[{ required: true, message: 'Nhập tên khoa' }]}
                        >
-                <Input />
+                <Input style={{width: 350, float:'right'}}/>
             </Form.Item>
             
             <Form.Item style={{ display: 'flex', justifyContent: 'flex-end' }}>

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Modal, Form, Input, Button, TimePicker, Select } from 'antd';
 import { DateOfWeek } from '../../../../utils/Helper';
+import './CreateStyle.css'
+
 
 const { Option } = Select;
 
@@ -39,7 +41,7 @@ function CreateClassModal({ open, onOk, onCancel, rooms, lecturers, subjects }) 
                 name="tenLop"
                 rules={[{ required: true, message: 'Nhập tên lớp' }]}
             >
-                <Input />
+                <Input style={{width: 350, float: 'right'}}/>
             </Form.Item>
 
             <Form.Item
@@ -47,7 +49,7 @@ function CreateClassModal({ open, onOk, onCancel, rooms, lecturers, subjects }) 
                 name="maGV"
                 rules={[{ required: true, message: 'Chọn giáo viên' }]}
             >
-                <Select>
+                <Select style={{width: 350, float: 'right'}}>
                     {lecturers.map((lecturer) => (
                         <Option key={lecturer.maGV} value={lecturer.maGV}>
                             {lecturer.tenTK}
@@ -61,7 +63,7 @@ function CreateClassModal({ open, onOk, onCancel, rooms, lecturers, subjects }) 
                 name="maMH"
                 rules={[{ required: true, message: 'Chọn môn học' }]}
             >
-                <Select>
+                <Select style={{width: 350, float: 'right'}}>
                     {subjects.map((subject) => (
                         <Option key={subject.maMH} value={subject.maMH}>
                             {subject.tenMH}
@@ -71,7 +73,7 @@ function CreateClassModal({ open, onOk, onCancel, rooms, lecturers, subjects }) 
             </Form.Item>
 
             <Form.Item label="Ngày học" name="ngayHoc">
-                <Select allowClear>
+                <Select allowClear  style={{width: 350, float: 'right'}}>
                     {Array.from({ length: 7 }, (_, i) => (
                         <Option key={i} value={DateOfWeek.GetDateOfWeek(i)}>
                             {DateOfWeek.GetDateOfWeek(i)}
@@ -85,6 +87,7 @@ function CreateClassModal({ open, onOk, onCancel, rooms, lecturers, subjects }) 
                                         disabledTime={disabledTime}
                                         minuteStep={15}
                                         hideDisabledOptions={true}
+                                        style={{width: 350, float: 'right'}}
                 />
             </Form.Item>
 
@@ -93,7 +96,7 @@ function CreateClassModal({ open, onOk, onCancel, rooms, lecturers, subjects }) 
                 name="maPH"
                 rules={[{ required: true, message: 'Chọn phòng học' }]}
             >
-                <Select>
+                <Select style={{width: 350, float: 'right'}}>
                     {rooms.map((room) => (
                         <Option key={room.maPH} value={room.maPH}>
                             {room.tenPH}
