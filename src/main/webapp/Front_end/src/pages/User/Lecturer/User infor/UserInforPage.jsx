@@ -12,8 +12,9 @@ function LecturerUserInforPage() {
 
   useEffect(() => {
     fetchData();
+    
   }, []);
-
+  console.log(user);
   // end 
   return (
     <>
