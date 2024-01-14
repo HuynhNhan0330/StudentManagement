@@ -79,9 +79,27 @@ public class SinhVienService implements ISinhVienService {
     }
 
     @Override
-    public SinhVienDTO update(SinhVienDTO sinhVienDTO) {
+    public Map<String, Object> update(SinhVienDTO sinhVienDTO) {
+
+
+        // Lưu tài khoản
+        TaiKhoanModel taiKhoanModel = new TaiKhoanModel();
+        taiKhoanModel.setMaTK(sinhVienDTO.getMaTK());
+        taiKhoanModel.setTenTK(sinhVienDTO.getTenTK());
+        taiKhoanModel.setNgaySinh(sinhVienDTO.getNgaySinh());
+        taiKhoanModel.setEmail(sinhVienDTO.getEmail());
+        taiKhoanModel.setPhone(sinhVienDTO.getPhone());
+        taiKhoanModel.setRole(sinhVienDTO.getRole());
+        taiKhoanModel.setPassword("1");
+        taiKhoanJPA.update(taiKhoanModel);
+
+        // Lưu sinh viên
         sinhVienJPA.update(sinhVienDTO);
-        return sinhVienJPA.findOne(sinhVienDTO.getMaSV());
+
+        return new HashMap<>(){{
+            put("sinhVien", sinhVienJPA.findOne(sinhVienDTO.getMaSV()));
+            put("thongBao", "Tạo sinh viên thành công");
+        }};
     }
 
     @Override
