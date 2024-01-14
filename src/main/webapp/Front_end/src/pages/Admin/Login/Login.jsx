@@ -39,7 +39,7 @@ const Login = () => {
                     description:
                         'Tài khoản hoặc mật khẩu không chính xác',
                     duration: 0,
-                    placement:'topLeft',
+                    placement:'top',
                 });
             }
         });
