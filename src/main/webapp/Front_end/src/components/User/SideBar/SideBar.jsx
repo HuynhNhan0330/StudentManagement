@@ -54,7 +54,7 @@ const SidebarUser = () => {
 
     return <nav className="navbar navbar-light navbar-vertical navbar-expand-xl">
         <div className='sidebar_user'>
-            <div className="sidebar_user__logo">
+            <div className="sidebar_user__logo_student">
 
             </div>
             <div ref={sidebarRef} className="sidebar_user__menu">

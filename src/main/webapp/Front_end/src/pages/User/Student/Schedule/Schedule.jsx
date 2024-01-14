@@ -51,7 +51,7 @@ function Schedule() {
 
   return (
     <>
-      <div className="MainScreenSchedule">
+      <div className="MainScreenScheduleStudent">
         <ScheduleBoard Semester={SemesterSchedule} ScheduleEvents={data}></ScheduleBoard>
       </div>
     </>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import UserInformation from '../../../../components/User/Userinfor/Userinformation'
 
-
+import './UserInforPage.css'
 function UserInforPage() {
   // Data:
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('account')));
