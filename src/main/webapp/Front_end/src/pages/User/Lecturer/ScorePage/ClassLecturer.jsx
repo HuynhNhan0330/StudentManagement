@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Space, Button, Input, Card, message } from 'antd';
 import ClassTable from '../../../../components/Admin/Table/ClassTable';
 import { handleGetClassesByLecturer } from '../../../../controller/ClassController';
-
+import './ClassLecturer.scss'
 const { Search } = Input;
 
 const ClassLecturer = () => {
@@ -61,10 +61,10 @@ const ClassLecturer = () => {
 
 
     return (
-        <div>
+        <div className='DanhSachLopHocContainer'>
             <Card>
                 <div>
-                    <h5>Quản lý lớp học</h5>
+                    <h5>Danh sách lớp học</h5>
                 </div>
                 <Space style={{ marginBottom: 16 }} className='search_box_in_page'>
                     <Search
