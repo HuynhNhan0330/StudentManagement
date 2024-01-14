@@ -1,5 +1,51 @@
-.MainScreenSchedule {
-    margin-top: 10%;
-    margin-left: 0%;
+
+
+@media only screen and (max-width: 600px) {
+    .MainScreenSchedule {
+        margin-top: 10%;
+        margin-left: 0%;
+        background-color: white;
+    }
+}
+@media only screen and (min-width: 600px) {
+    .MainScreenSchedule {
+        margin-top: 10%;
+        margin-left: 5%;
+        background-color: white;
+    }
+}
+@media only screen and (min-width: 768px){
+    .MainScreenSchedule {
+        margin-top: 10%;
+        margin-left: 5%;
+        background-color: white;
+    }
+}
+@media only screen and (min-width: 992px) {
+    .MainScreenSchedule {
+        margin-top: 10%;
+        margin-left: 5%;
+        background-color: white;
+    }
+}
+@media only screen and (min-width: 1200px) {
+    .MainScreenSchedule {
+    margin-top: 8%;
+    margin-left: 20%;
     background-color: white;
+}
+}
+@media only screen and (min-width: 1300px) {
+    .MainScreenSchedule {
+    margin-top: 8%;
+    margin-left: 18%;
+    background-color: white;
+}
+}
+@media only screen and (min-width: 1400px) {
+    .MainScreenSchedule {
+    margin-top: 8%;
+    margin-left: 16%;
+    background-color: white;
+}
 }
