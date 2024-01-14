@@ -66,7 +66,7 @@ const studentRoutes = [
 ];
 
 const privateRoutes = [
-    { path: '/login', component: Login, layout: null },
+    { path: '/', component: Login, layout: null },
     // { path: '/register', component: Register, layout: null }
 ];
 

@@ -23,9 +23,9 @@ const sidebarNavItems = [
         section: 'lecturer-info'
     },
     {
-        display: 'Đăng xuất',
+        display:  <div style={{color: 'red'}}>Đăng xuất</div>,
         icon: <i class='bx bx-exit' style={{color: 'red'}}></i>,
-        to: '/login',
+        to: '/',
         section: 'admin_subject'
     },
 ]

@@ -42,9 +42,9 @@ const sidebarNavItems = [
         section: 'admin_subject'
     },
     {
-        display: 'Đăng xuất',
+        display: <div style={{color: 'red'}}>Đăng xuất</div>,
         icon: <i class='bx bx-exit' style={{color: 'red'}}></i>,
-        to: '/login',
+        to: '/',
         section: 'admin_subject'
     },
     
@@ -60,7 +60,7 @@ const Sidebar = () => {
     useEffect(() => {
         setTimeout(() => {
             const sidebarItem = sidebarRef.current.querySelector('.sidebar__menu__item');
-            indicatorRef.current.style.height = `${sidebarItem.clientHeight}px`;
+            indicatorRef.current.style.height = `70px`; //${sidebarItem.clientHeight}px
             setStepHeight(sidebarItem.clientHeight);
         }, 50);
     }, []);
