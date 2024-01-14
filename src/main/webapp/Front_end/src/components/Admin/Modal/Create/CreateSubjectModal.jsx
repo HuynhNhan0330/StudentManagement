@@ -1,4 +1,5 @@
 import { Modal, Form, Input, Button } from 'antd';
+import './CreateStyle.css';
 
 const CreateSubjectModal = ({ open, onCancel, onOk }) => {
     const onFinish = (values) => {
@@ -11,14 +12,14 @@ const CreateSubjectModal = ({ open, onCancel, onOk }) => {
                        name="tenMH"
                        rules={[{ required: true, message: 'Nhập tên môn học' }]}
                        >
-                <Input />
+                <Input style={{width: 350, float: 'right'}}/>
             </Form.Item>
 
             <Form.Item label="Số tín chỉ"
                        name="soTinChi"
-                       rules={[{ required: true, message: 'Nhập số tín chỉ môn học' }]}
+                       rules={[{ required: true, message: 'Nhập số tín chỉ môn học'}]}
                        >
-                <Input />
+                <Input style={{width: 350, float: 'right'}}/>
             </Form.Item>
             <Form.Item style={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <Button onClick={onCancel} style={{ marginRight: 8 }}>Huỷ</Button>

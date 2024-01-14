@@ -3,8 +3,9 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
+    background: url("../../../assets/img_back.jpeg") no-repeat;
+    background-size: 60% 100%;
 }
-
 .background-image {
     position: absolute;
     top: 0;
@@ -18,22 +19,70 @@
 
 .login-card {
     position: relative;
-    width: 500px;
+    width: 95%;
     float: right;
-    margin-top: 25%;
-    margin-right: 5%;
+    margin-right: 3%;
+    margin-top: 40%;
     align-items: center;
     background-color: #4949490e;
 }
+
+.InputLogin {
+    height: 45px;
+    width: 60%;
+}
+
 .loginRightPlacement{
     position: relative;
-    background-color: #ffffff;
-    width: 570px;
+    background-color: #f4ffff;
+    width: 40%;
     height: 100vh;
     float: right;
 }
 .LoginButtonMain{
-    width: 450px;
+    width: 60%;
     height: 45px;
     background-color: #00439A;
+}
+
+//mobile and tablet
+@media (max-width: 1023px) {
+    .InputLogin {
+        width: 60%;
+    }
+
+    .login-container {
+        background: #f4ffff;
+    }
+
+    .loginRightPlacement {
+        width: 100%;
+    }
+
+
+    .login-card {
+        margin-top: 30%;
+    }
+
+    .LoginButtonMain {
+        width: 60%;
+    }
+}
+
+@media (max-width: 750px) {
+    .InputLogin {
+        width: 100%;
+    }
+
+    .login-container {
+        background: #f4ffff;
+    }
+
+    .loginRightPlacement {
+        width: 100%;
+    }
+
+    .LoginButtonMain {
+        width: 100%;
+    }
 }

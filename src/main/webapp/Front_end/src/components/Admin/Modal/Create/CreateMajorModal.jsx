@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal, Form, Input, Button, Select } from 'antd';
+import './CreateStyle.css'
 
 const { Option } = Select;
 
@@ -14,7 +15,7 @@ function CreateMajorModal({ open, onOk, onCancel, faculties }) {
                 name="tenNganh"
                 rules={[{ required: true, message: 'Nhập tên ngành' }]}
             >
-                <Input />
+                <Input style={{width: 350, float:'right'}}/>
             </Form.Item>
 
             <Form.Item
@@ -22,7 +23,7 @@ function CreateMajorModal({ open, onOk, onCancel, faculties }) {
                 name="maKhoa"
                 rules={[{ required: true, message: 'Chọn khoa' }]}
             >
-                <Select>
+                <Select style={{width: 350, float:'right'}}>
                     {faculties.map((faculty) => (
                         <Option key={faculty.maKhoa} value={faculty.maKhoa}>
                             {faculty.tenKhoa}

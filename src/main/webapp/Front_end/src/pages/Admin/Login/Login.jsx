@@ -1,6 +1,8 @@
 import React from 'react';
-import { Form, Input, Button, Card, notification } from 'antd';
+import { Form, Input, Button, Card, notification, Flex } from 'antd';
 import { useNavigate  } from 'react-router-dom';
+import logo from '../../../assets/logo.png';
+import backGround from '../../../assets/img_back.jpeg';
 
 import './Login.scss';
 import { handleLogin } from '../../../controller/LoginController';
@@ -45,31 +47,42 @@ const Login = () => {
         });
     }
 
-    const backgroundImage =
-        'url("https://png.pngtree.com/thumb_back/fh260/background/20200809/pngtree-doodles-on-green-chalkboard-background-back-to-school-background-image_389839.jpg")';
+    const backgroundImage = 'url(' + backGround + ')';
 
     return (
-        <div className="login-container" style={{ backgroundImage }}>
+        <div className="login-container">
             <div className='loginRightPlacement'>
                 <Card  className="login-card">
-                    <span style={{color: 'black', fontWeight:'bold', fontSize:'35px'}}>Đăng nhập</span>
+                    <div style={{display: 'flex', alignItems: 'center', textAlign: 'right', justifyContent:'center'}}>
+                        <img src={logo} alt='logo' style={{width:'50px', height:'50px'}}/>
+                        <span style={{color: '#334050', fontWeight:'bold', fontSize:'30px', margin:'0 0 0 5px'}}>Trường Đại học Công Nghệ Thông Tin</span>
+                    </div>
+                    <span style={{color: 'black', fontWeight:'bold', fontSize:'35px', display:'flex', justifyContent:'center'}}>Đăng nhập</span>
                     <hr style={{color: '#00C2FF'}}></hr>
                     <Form name="login-form"
+                        style={{textAlign: 'center'}}
                         onFinish={onFinish}
                     >
-                        <label>Tài khoản:</label>
+                        {/* <label>Tài khoản:</label> */}
+                        
                         <Form.Item
                             name="username"
                             rules={[{ required: true, message: 'Vui lòng nhập tài khoản của bạn!' }]}
                         >
-                        <Input style={{height: '45px'}}/>
+                        <Input 
+                            className='InputLogin'
+                            placeholder='Tài khoản'
+                        />
                         </Form.Item>
-                        <label>Mật khẩu:</label>
+                        {/* <label>Mật khẩu:</label> */}
                         <Form.Item
                             name="password"
                             rules={[{ required: true, message: 'Vui lòng nhập mật khẩu của bạn' }]}
                         >
-                        <Input.Password style={{height: '45px'}}    />
+                        <Input.Password 
+                            className='InputLogin'
+                            placeholder='Mật khẩu'
+                        />
                         </Form.Item>
 
                         <Form.Item >
