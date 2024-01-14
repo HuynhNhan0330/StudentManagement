@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Input, Button, Card, notification } from 'antd';
 import { useNavigate  } from 'react-router-dom';
-
+import { adminPaths, studentPaths } from '../../../routes/AppRoutes';
 import './Login.scss';
 import { handleLogin } from '../../../controller/LoginController';
 
@@ -18,7 +18,7 @@ const Login = () => {
                 switch (account.role) {
                     case "1":
                         // Chuyển trang admin
-                        navigate('/admin');
+                        navigate(adminPaths.major_faculty);
                         break;
     
                     case "2":
@@ -27,7 +27,7 @@ const Login = () => {
     
                     case "3":
                         // Chuyển trang sinh viên
-                        navigate('/student-schedule');
+                        navigate(studentPaths.schedule);
                         break;
                 }
             }
@@ -45,11 +45,9 @@ const Login = () => {
         });
     }
 
-    const backgroundImage =
-        'url("https://png.pngtree.com/thumb_back/fh260/background/20200809/pngtree-doodles-on-green-chalkboard-background-back-to-school-background-image_389839.jpg")';
 
     return (
-        <div className="login-container" style={{ backgroundImage }}>
+        <div className="login-container">
             <div className='loginRightPlacement'>
                 <Card  className="login-card">
                     <span style={{color: 'black', fontWeight:'bold', fontSize:'35px'}}>Đăng nhập</span>
