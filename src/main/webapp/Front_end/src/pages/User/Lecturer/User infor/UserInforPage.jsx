@@ -19,13 +19,12 @@ function LecturerUserInforPage() {
     <>
       <div className="mainUserInfor">
         <UserInformation
-          maSV={user.maSV}
+          maGV={user.maGV}
           tenTK={user.tenTK}
-          gioiTinh={user.gioiTinh}
           ngaySinh={user.ngaySinh}
           phone={user.phone}
           email={user.email}
-          tenNganh={user.tenNganh}
+          tenKhoa={user.tenKhoa}
         />
       </div>
     </>

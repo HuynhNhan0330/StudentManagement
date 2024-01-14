@@ -15,10 +15,7 @@ function UserInformation(props) {
                     <li class="list-group-item" id='inforItem'><span className='title_infor_item'>Email:<span style={{color: 'transparent'}}>llllllllllllllll</span> </span> {props.email}</li>
                     <li class="list-group-item" id='inforItem'><span className='title_infor_item'>Ngành:<span style={{color: 'transparent'}}>lllllllllllllll</span> </span>{props.tenNganh}</li>
                 </ul>
-
             </div>
-
-            
         </div>
     )
 }

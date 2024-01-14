@@ -25,7 +25,15 @@ public class LopHocService implements ILopHocService {
     }
 
     @Override
+    public List<LopHocDTO> findByLecturer(String maGV) {
+        return lopHocJPA.findByLecturer(maGV);
+    }
+
+    @Override
     public List<LichHocDTO> findScheduleOfStudent(String maSV) { return lopHocJPA.findScheduleOfStudent(maSV); }
+
+    @Override
+    public List<LichHocDTO> findScheduleOfLecturer(String maGV) { return lopHocJPA.findScheduleOfLecturer(maGV); }
 
     @Override
     public LopHocDTO findOne(String maLop) {

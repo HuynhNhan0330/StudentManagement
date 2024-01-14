@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet(urlPatterns = { "/api-admin-lophoc", "/api-admin-lophoc/*" })
+@WebServlet(urlPatterns = { "/api-admin-lophoc", "/api-admin-lophoc/*", "/api-admin-lophoc/gv/*" })
 public class LopHocAPI extends HttpServlet {
 
     private ILopHocService lopHocService;
@@ -40,6 +40,13 @@ public class LopHocAPI extends HttpServlet {
         if (requestURI.equals("/api-admin-lophoc")) {
             // get list object
             List<LopHocDTO> listLopHoc = lopHocService.findAll();
+
+            resp.setStatus(HttpServletResponse.SC_OK);
+            mapper.writeValue(resp.getOutputStream(), listLopHoc);
+        } else if (requestURI.startsWith("/api-admin-lophoc/gv/")){
+            String maGV = requestURI.substring(requestURI.lastIndexOf("/") + 1);
+
+            List<LopHocDTO> listLopHoc = lopHocService.findByLecturer(maGV);
 
             resp.setStatus(HttpServletResponse.SC_OK);
             mapper.writeValue(resp.getOutputStream(), listLopHoc);

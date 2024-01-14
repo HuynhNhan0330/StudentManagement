@@ -17,4 +17,6 @@ public interface IGiaoVienJPA {
     void update(GiaoVienDTO giaoVienDTO);
 
     Boolean delete(String maGV);
+
+    GiaoVienDTO findAccount(String maTK);
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Input, Button, Card, notification } from 'antd';
 import { useNavigate  } from 'react-router-dom';
-import { adminPaths, studentPaths } from '../../../routes/AppRoutes';
+import { adminPaths, studentPaths, lecturerPaths } from '../../../routes/AppRoutes';
 import './Login.scss';
 import { handleLogin } from '../../../controller/LoginController';
 
@@ -14,7 +14,7 @@ const Login = () => {
 
             if (account != null) {
                 localStorage.setItem('account', JSON.stringify(account));
-
+                console.log(account);
                 switch (account.role) {
                     case "1":
                         // Chuyển trang admin
@@ -23,6 +23,7 @@ const Login = () => {
     
                     case "2":
                         // Chuyển trang giáo viên
+                        navigate(lecturerPaths.schedule);
                         break;
     
                     case "3":

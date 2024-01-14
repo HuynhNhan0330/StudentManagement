@@ -13,6 +13,7 @@ import UserInforPage from '../pages/User/Student/User infor/UserInforPage'
 
 import LecturerSchedule from '../pages/User/Lecturer/Schedule/Schedule';
 import LecturerUserInforPage from '../pages/User/Lecturer/User infor/UserInforPage';
+import ClassLecturer from '../pages/User/Lecturer/ScorePage/ClassLecturer';
 
 const adminPaths= {
     home: '/admin',
@@ -38,23 +39,22 @@ const lecturerPaths={
     schedule: '/lecturer-schedule',
     user_infor: '/lecturer-info',
     score: '/lecturer-score',
+    detatailclass: '/lecturer-score/detail-class/:id'
 }
 
 const lecturerRoutes = [
     { path: lecturerPaths.home, component: Home },
     { path: lecturerPaths.schedule, component: LecturerSchedule },
-    { path: lecturerPaths.score, component: ScorePage },
+    { path: lecturerPaths.score, component: ClassLecturer },
     {path: lecturerPaths.user_infor, component: LecturerUserInforPage },
-    
+    {path: lecturerPaths.detatailclass, component: DetailClass}
 ];
 const studentPaths =
 {
-    
     home: '/student-home',
     score: '/student-score',
     user_infor: '/student-info',
     schedule: '/student-schedule',
-    
 }
 
 const studentRoutes = [

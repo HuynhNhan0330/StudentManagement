@@ -1,11 +1,13 @@
 package com.example.studentmanagement.api;
 
+import com.example.studentmanagement.dto.GiaoVienDTO;
 import com.example.studentmanagement.dto.SinhVienDTO;
 import com.example.studentmanagement.dto.TaiKhoanDTO;
 import com.example.studentmanagement.model.LoaiDiemModel;
 import com.example.studentmanagement.model.TaiKhoanModel;
 import com.example.studentmanagement.service.ISinhVienService;
 import com.example.studentmanagement.service.ITaiKhoanService;
+import com.example.studentmanagement.service.impl.GiaoVienService;
 import com.example.studentmanagement.service.impl.SinhVienService;
 import com.example.studentmanagement.service.impl.TaiKhoanService;
 import com.example.studentmanagement.utils.HttpUtil;
@@ -23,10 +25,12 @@ import java.io.IOException;
 public class LoginAPI extends HttpServlet {
     private ITaiKhoanService taiKhoanService;
     private ISinhVienService sinhVienService;
+    private GiaoVienService giaoVienService;
 
     public LoginAPI() {
         taiKhoanService = new TaiKhoanService();
         sinhVienService = new SinhVienService();
+        giaoVienService = new GiaoVienService();
     }
 
     @Override
@@ -54,6 +58,8 @@ public class LoginAPI extends HttpServlet {
 
                 case "2":
                     // Giáo viên
+                    GiaoVienDTO gv = giaoVienService.findAccount(tk.getMaTK());
+                    mapper.writeValue(resp.getOutputStream(), gv);
                     break;
 
                 case "3":

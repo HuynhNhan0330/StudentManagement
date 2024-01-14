@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Space, Button, Input, Card, message } from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
 import ClassTable from '../../../components/Admin/Table/ClassTable';
 import CreateClassModal from '../../../components/Admin/Modal/Create/CreateClassModal';
 import ShowClassDrawer from '../../../components/Admin/Drawer/ShowClassDrawer';
@@ -158,6 +157,8 @@ const Class = () => {
         setIsDrawerOpen(false);
     };
 
+    const [textSearch, setTextSearch] = useState("");
+
     return (
         <div>
             <Card>
@@ -167,7 +168,7 @@ const Class = () => {
                 <Space style={{ marginBottom: 16 }} className='search_box_in_page'>
                     <Search
                         placeholder="Tìm kiếm..."
-                        onSearch={(value) => console.log(value)}
+                        onSearch={(value) => setTextSearch(value)}
                         style={{ width: 200 }}
                     />
 
@@ -179,7 +180,10 @@ const Class = () => {
                             data={data}
                             loading={loading}
                             onChange={handleTableChange}
+                            isAdmin={true}
                             // handleDelete={handleDelete}
+                            textSearch={textSearch}
+
                 />
             </Card>
             <CreateClassModal open={isModalOpen} onOk={handleOk} onCancel={handleCancel} rooms={dataRoom} subjects={dataSubject} lecturers={dataLecturer} />

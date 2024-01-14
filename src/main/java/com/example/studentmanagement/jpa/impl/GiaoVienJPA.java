@@ -1,7 +1,6 @@
 package com.example.studentmanagement.jpa.impl;
 
 import com.example.studentmanagement.dto.GiaoVienDTO;
-import com.example.studentmanagement.dto.NganhDTO;
 import com.example.studentmanagement.jpa.IGiaoVienJPA;
 import com.example.studentmanagement.model.GiaoVienModel;
 
@@ -198,6 +197,41 @@ public class GiaoVienJPA implements IGiaoVienJPA {
                 }
             } catch (Exception e2) {
                 System.out.println(e2.getMessage());
+            }
+        }
+    }
+
+    @Override
+    public GiaoVienDTO findAccount(String maTK) {
+        EntityManagerFactory entityManagerFactory = null;
+        EntityManager entityManager = null;
+        try {
+            entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
+            entityManager = entityManagerFactory.createEntityManager();
+
+            String jpql = "SELECT new com.example.studentmanagement.dto.GiaoVienDTO(gv.maGV, gv.maKhoa, kh.tenKhoa, tk.maTK, tk.tenTK, tk.ngaySinh, tk.email, tk.phone, tk.role)" +
+                    " FROM GiaoVienModel gv JOIN TaiKhoanModel tk ON gv.maTK = tk.maTK" +
+                    " JOIN KhoaModel kh ON gv.maKhoa = kh.maKhoa WHERE gv.maTK = :maTK";
+            TypedQuery<GiaoVienDTO> query = entityManager.createQuery(jpql, GiaoVienDTO.class);
+            query.setParameter("maTK", maTK);
+
+            GiaoVienDTO gv = query.getSingleResult();
+
+            return gv;
+        } catch (Exception e1) {
+            System.out.println(e1.getMessage());
+            return null;
+        } finally {
+            try {
+                if (entityManagerFactory != null) {
+                    entityManagerFactory.close();
+                }
+                if (entityManager != null) {
+                    entityManager.close();
+                }
+            } catch (Exception e2) {
+                System.out.println(e2.getMessage());
+                return null;
             }
         }
     }

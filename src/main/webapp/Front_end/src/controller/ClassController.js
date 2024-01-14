@@ -28,6 +28,20 @@ const handleGetClasses = () => {
     });
 }
 
+const handleGetClassesByLecturer = (lecturerId) => {
+  return axios.get(baseUrlAPI + '/api-admin-lophoc/gv/' + lecturerId)
+    .then((response) => {
+      console.log('Dữ liệu đã được gửi thành công!');
+      console.log(response.data);
+
+      return response.data;
+    })
+    .catch((error) => {
+      console.error('Đã xảy ra lỗi khi gửi dữ liệu:');
+      console.error(error);
+    });
+}
+
 const handleGetClassById = (id) => {
   return axios.get(baseUrlAPI + '/api-admin-lophoc/' + id)
     .then((response) => {
@@ -79,5 +93,6 @@ const handleAddStudentClass = (maSV, classs) => {
     handleGetClasses,
     handleGetClassById,
     handleAddStudentClass,
-    handleDeleteStudentClass
+    handleDeleteStudentClass,
+    handleGetClassesByLecturer
   }
