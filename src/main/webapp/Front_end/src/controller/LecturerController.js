@@ -14,6 +14,19 @@ const handleCreateLecturer = (lecturer) => {
     });
 };
 
+const handleUpdateLecturer = (lecturer) => {
+  return axios.put(baseUrlAPI + '/api-admin-giaovien', lecturer)
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      console.error('Đã xảy ra lỗi khi gửi dữ liệu:');
+      // console.error(error);
+
+      return error;
+    });
+};
+
 const handleGetLecturers = () => {
   return axios.get(baseUrlAPI + '/api-admin-giaovien')
   .then((response) => {
@@ -44,5 +57,6 @@ const handleDeleteLecturer = (lecturer) => {
 export  {
     handleCreateLecturer,
     handleGetLecturers,
-    handleDeleteLecturer
+    handleDeleteLecturer,
+    handleUpdateLecturer
 }
