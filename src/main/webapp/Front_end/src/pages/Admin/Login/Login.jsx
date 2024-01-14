@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Input, Button, Card, notification } from 'antd';
 import { useNavigate  } from 'react-router-dom';
 import { adminPaths, studentPaths, lecturerPaths } from '../../../routes/AppRoutes';
-import logo from '../../../assets/logo.png';
+import logo from '../../../assets/LogoUni.png';
 import backGround from '../../../assets/img_back.jpeg';
 import './Login.scss';
 import { handleLogin } from '../../../controller/LoginController';
@@ -54,7 +54,7 @@ const Login = () => {
         <div className="login-container">
             <div className='loginRightPlacement'>
                 <Card  className="login-card">
-                    <div style={{display: 'flex', alignItems: 'center', textAlign: 'right', justifyContent:'center'}}>
+                    <div style={{display: 'flex', alignItems: 'center', textAlign: 'center', justifyContent:'center'}}>
                         <img src={logo} alt='logo' style={{width:'50px', height:'50px'}}/>
                         <span style={{color: '#334050', fontWeight:'bold', fontSize:'26px', margin:'0 0 0 5px'}}>Trường Đại học Công Nghệ Thông Tin</span>
                     </div>
