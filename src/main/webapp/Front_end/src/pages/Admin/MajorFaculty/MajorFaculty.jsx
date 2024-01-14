@@ -8,6 +8,7 @@ import { handleCreateFaculty, handleGetFaculties, handleDeleteFaculty } from '..
 import { handleGetMajors, handleCreateMajor, handleDeleteMajor, handleUpdateMajor } from '../../../controller/MajorController';
 import EditMajorModal from '../../../components/Admin/Modal/Edit/EditMajorModal';
 import EditFacultyModal from '../../../components/Admin/Modal/Edit/EditFacultyModal';
+import '../Responsive.scss'
 const MajorFaculty = () => {
 
     // create major
@@ -339,57 +340,59 @@ const MajorFaculty = () => {
     // end
 
     return (
-        <div style={{ display: 'flex', gap: '16px' }}>
-            <Card title="Ngành" style={{ flex: 1, width: '50%' }}>
-                <div style={{ display: 'flex', gap: '8px' }}>
-                    <div>
-                        <Button type="primary" onClick={showModalMajor}>
+        <div className='adminTableContainer' style={{backgroundColor: 'white'}}>
+            <div style={{ display: 'flex', gap: '16px' ,backgroundColor: 'white' }}>
+                <Card title="Ngành" style={{ flex: 1, width: '50%' }}>
+                    <div style={{ display: 'flex', gap: '8px' }}>
+                        <div>
+                            <Button type="primary" onClick={showModalMajor}>
+                                Thêm mới
+                            </Button>
+                        </div>
+                    </div>
+                    <MajorTable data={dataMajor}
+                        loading={loadingMajor}
+                        onChange={handleTableMajorChange}
+                        handleDelete={handleDeleteMajorModal}
+                        handleEdit={handleMajorEdit}
+                    />
+                </Card>
+                <CreateMajorModal open={isModalOpenMajor}
+                    onOk={handleOkMajor}
+                    onCancel={handleCancelMajor}
+                    faculties={dataFaculty} />
+
+                <Card title="Khoa" style={{ flex: 1, width: '50%' }}>
+                    <div style={{ marginTop: '8px' }}>
+                        <Button type="primary" onClick={showModalFaculty}>
                             Thêm mới
                         </Button>
                     </div>
-                </div>
-                <MajorTable data={dataMajor}
-                    loading={loadingMajor}
-                    onChange={handleTableMajorChange}
-                    handleDelete={handleDeleteMajorModal}
-                    handleEdit={handleMajorEdit}
+                    <FacultyTable data={dataFaculty}
+                        loading={loadingFaculty}
+                        onChange={handleTableFacultyChange}
+                        handleDelete={handleDeleteFacultyModal}
+                        handleEdit={handleFacultyEdit}
+                    />
+                </Card>
+                <CreateFacultyModal open={isModalOpenFaculty}
+                    onOk={handleOkFaculty}
+                    onCancel={handleCancelFaculty} />
+
+                <EditMajorModal open={isEditMajorModalOpen}
+                    onCancel={handleEditMajorModalCancel}
+                    onOk={handleEditModalOk}
+                    selectedMajor={selectedMajor}
+                    faculties={dataFaculty}
                 />
-            </Card>
-            <CreateMajorModal open={isModalOpenMajor}
-                onOk={handleOkMajor}
-                onCancel={handleCancelMajor}
-                faculties={dataFaculty} />
 
-            <Card title="Khoa" style={{ flex: 1, width: '50%' }}>
-                <div style={{ marginTop: '8px' }}>
-                    <Button type="primary" onClick={showModalFaculty}>
-                        Thêm mới
-                    </Button>
-                </div>
-                <FacultyTable data={dataFaculty}
-                    loading={loadingFaculty}
-                    onChange={handleTableFacultyChange}
-                    handleDelete={handleDeleteFacultyModal}
-                    handleEdit={handleFacultyEdit}
+                <EditFacultyModal open={isEditFacultyModalOpen}
+                    onCancel={handleEditFacultyModalCancel}
+                    onOk={handleEditFacultyModalOk}
+                    selectedFaculty={selectedFaculty}
                 />
-            </Card>
-            <CreateFacultyModal open={isModalOpenFaculty}
-                onOk={handleOkFaculty}
-                onCancel={handleCancelFaculty} />
 
-            <EditMajorModal open={isEditMajorModalOpen}
-                onCancel={handleEditMajorModalCancel}
-                onOk={handleEditModalOk}
-                selectedMajor={selectedMajor}
-                faculties={dataFaculty}
-            />
-
-            <EditFacultyModal open={isEditFacultyModalOpen}
-                onCancel={handleEditFacultyModalCancel}
-                onOk={handleEditFacultyModalOk}
-                selectedFaculty={selectedFaculty}
-            />
-
+            </div>
         </div>
     );
 };

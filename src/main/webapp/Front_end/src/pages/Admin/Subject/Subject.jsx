@@ -180,7 +180,7 @@ const Subject = () => {
     const [textSearch, setTextSearch] = useState("");
 
     return (
-        <div>
+        <div className='adminTableContainer'>
             <Card>
                 <div>
                     <h5>Quản lý môn học</h5>

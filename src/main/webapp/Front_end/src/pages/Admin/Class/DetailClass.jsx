@@ -134,7 +134,7 @@ function DetailClass() {
     // end
 
     return (
-        <div>
+        <div className='adminTableContainer'>
             <Card>
                 <Breadcrumb
                     items={[

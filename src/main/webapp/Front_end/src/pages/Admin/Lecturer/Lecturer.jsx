@@ -160,7 +160,7 @@ const Lecturer = () => {
 
 
     return (
-        <div>
+        <div className='adminTableContainer'>
             <Card>
                 <div>
                     <h5>Quản lý giảng viên</h5>

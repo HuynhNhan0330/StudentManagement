@@ -257,7 +257,7 @@ const Student = () => {
     // end edit
 
     return (
-        <div>
+        <div className='adminTableContainer'>
             <Card>
                 <div>
                     <h5>Quản lý sinh viên</h5>

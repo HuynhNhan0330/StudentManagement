@@ -56,7 +56,7 @@ const Login = () => {
                 <Card  className="login-card">
                     <div style={{display: 'flex', alignItems: 'center', textAlign: 'right', justifyContent:'center'}}>
                         <img src={logo} alt='logo' style={{width:'50px', height:'50px'}}/>
-                        <span style={{color: '#334050', fontWeight:'bold', fontSize:'30px', margin:'0 0 0 5px'}}>Trường Đại học Công Nghệ Thông Tin</span>
+                        <span style={{color: '#334050', fontWeight:'bold', fontSize:'26px', margin:'0 0 0 5px'}}>Trường Đại học Công Nghệ Thông Tin</span>
                     </div>
                     <span style={{color: 'black', fontWeight:'bold', fontSize:'35px', display:'flex', justifyContent:'center'}}>Đăng nhập</span>
                     <hr style={{color: '#00C2FF'}}></hr>
@@ -64,8 +64,6 @@ const Login = () => {
                         style={{textAlign: 'center'}}
                         onFinish={onFinish}
                     >
-                        {/* <label>Tài khoản:</label> */}
-
                         <Form.Item
                             name="username"
                             rules={[{ required: true, message: 'Vui lòng nhập tài khoản của bạn!' }]}
