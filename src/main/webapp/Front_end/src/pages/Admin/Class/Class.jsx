@@ -160,7 +160,7 @@ const Class = () => {
     const [textSearch, setTextSearch] = useState("");
 
     return (
-        <div>
+        <div className='adminTableContainer'>
             <Card>
                 <div>
                     <h5>Quản lý lớp học</h5>

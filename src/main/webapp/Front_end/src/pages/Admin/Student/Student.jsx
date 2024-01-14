@@ -171,7 +171,7 @@ const Student = () => {
     const [textSearch, setTextSearch] = useState("");
 
     return (
-        <div>
+        <div className='adminTableContainer'>
             <Card>
                 <div>
                     <h5>Quản lý sinh viên</h5>
