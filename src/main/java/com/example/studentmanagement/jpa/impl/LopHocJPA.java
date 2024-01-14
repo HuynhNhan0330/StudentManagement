@@ -44,6 +44,36 @@ public class LopHocJPA implements ILopHocJPA {
     }
 
     @Override
+    public List<LopHocDTO> findByLecturer(String maGV) {
+        EntityManagerFactory entityManagerFactory = null;
+        EntityManager entityManager = null;
+        try {
+            entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
+            entityManager = entityManagerFactory.createEntityManager();
+
+            String jpql = "SELECT new com.example.studentmanagement.dto.LopHocDTO(lh.maLop, lh.tenLop, lh.maGV, tk.tenTK, lh.maMH, mh.tenMH, lh.ngayHoc, lh.thoiGianBatDau, lh.thoiGianKetThuc, lh.maKH, kh.tenKH, lh.maPH, ph.tenPH, kh.thoiGianBatDau, kh.thoiGianKetThuc) FROM LopHocModel lh JOIN PhongHocModel ph ON lh.maPH = ph.maPH JOIN KyHocModel kh ON lh.maKH = kh.maKH JOIN GiaoVienModel gv ON lh.maGV = gv.maGV JOIN MonHocModel mh ON lh.maMH = mh.maMH JOIN TaiKhoanModel tk ON gv.maTK = tk.maTK WHERE lh.maGV = :maGV";
+            TypedQuery<LopHocDTO> query = entityManager.createQuery(jpql, LopHocDTO.class);
+            query.setParameter("maGV", maGV);
+            List<LopHocDTO> lopHocList = query.getResultList();
+
+            return lopHocList;
+        } catch (Exception e1) {
+            return null;
+        } finally {
+            try {
+                if (entityManagerFactory != null) {
+                    entityManagerFactory.close();
+                }
+                if (entityManager != null) {
+                    entityManager.close();
+                }
+            } catch (Exception e2) {
+                return null;
+            }
+        }
+    }
+
+    @Override
     public List<LichHocDTO> findScheduleOfStudent(String maSV) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;

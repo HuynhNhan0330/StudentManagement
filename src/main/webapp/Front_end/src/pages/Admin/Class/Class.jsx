@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Space, Button, Input, Card, message } from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
 import ClassTable from '../../../components/Admin/Table/ClassTable';
 import CreateClassModal from '../../../components/Admin/Modal/Create/CreateClassModal';
 import ShowClassDrawer from '../../../components/Admin/Drawer/ShowClassDrawer';
@@ -179,6 +178,7 @@ const Class = () => {
                             data={data}
                             loading={loading}
                             onChange={handleTableChange}
+                            isAdmin={true}
                             // handleDelete={handleDelete}
                 />
             </Card>

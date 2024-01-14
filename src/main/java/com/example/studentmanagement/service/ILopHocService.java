@@ -10,6 +10,8 @@ import java.util.Map;
 public interface ILopHocService {
     List<LopHocDTO> findAll();
 
+    List<LopHocDTO> findByLecturer(String maGV);
+
     List<LichHocDTO> findScheduleOfStudent(String maSV);
 
     List<LichHocDTO> findScheduleOfLecturer(String maGV);

@@ -2,9 +2,9 @@ import React from 'react';
 import { Table } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { EditOutlined, DeleteOutlined, EyeOutlined } from '@ant-design/icons'
-import { adminPaths } from '../../../routes/AppRoutes';
+import { adminPaths, lecturerPaths } from '../../../routes/AppRoutes';
 
-function ClassTable({ data, loading, handleTableChange, handleEdit, handleDelete, showDrawer }) {
+function ClassTable({ data, loading, handleTableChange, handleEdit, handleDelete, showDrawer, isAdmin }) {
     const columns = [
         {
             title: 'Mã lớp',
@@ -38,7 +38,7 @@ function ClassTable({ data, loading, handleTableChange, handleEdit, handleDelete
                     {/* <DeleteOutlined style = {{ color: "red" }}
                                     onClick = {() => { handleDelete(record); }} /> */}
 
-                    <NavLink to = { adminPaths.detatailclass.replace(":id", record.maLop) }>
+                    <NavLink to = { isAdmin ? adminPaths.detatailclass.replace(":id", record.maLop) : lecturerPaths.detatailclass.replace(":id", record.maLop) }>
                         <EyeOutlined style = {{ color: "blue" }} />
                     </NavLink>
                     

@@ -9,6 +9,8 @@ import java.util.List;
 public interface ILopHocJPA {
     List<LopHocDTO> findAll();
 
+    List<LopHocDTO> findByLecturer(String maGV);
+
     List<LichHocDTO> findScheduleOfStudent(String maSV);
 
     List<LichHocDTO> findScheduleOfLecturer(String maGV);
