@@ -78,6 +78,40 @@ public class LopHocJPA implements ILopHocJPA {
     }
 
     @Override
+    public List<LichHocDTO> findScheduleOfLecturer(String maGV) {
+        EntityManagerFactory entityManagerFactory = null;
+        EntityManager entityManager = null;
+        try {
+            entityManagerFactory = Persistence.createEntityManagerFactory("StudentManagementX");
+            entityManager = entityManagerFactory.createEntityManager();
+
+            String jpql = "SELECT new com.example.studentmanagement.dto.LichHocDTO(lh.tenLop, lh.ngayHoc, lh.thoiGianBatDau, lh.thoiGianKetThuc, kh.thoiGianBatDau, kh.thoiGianKetThuc)" +
+                    " FROM LopHocModel lh" +
+                    " JOIN KyHocModel kh ON kh.maKH = lh.maKH" +
+                    " WHERE lh.maGV = :maGV";
+
+            TypedQuery<LichHocDTO> query = entityManager.createQuery(jpql, LichHocDTO.class);
+            query.setParameter("maGV", maGV);
+            List<LichHocDTO> lichHocList = query.getResultList();
+
+            return lichHocList;
+        } catch (Exception e1) {
+            return null;
+        } finally {
+            try {
+                if (entityManagerFactory != null) {
+                    entityManagerFactory.close();
+                }
+                if (entityManager != null) {
+                    entityManager.close();
+                }
+            } catch (Exception e2) {
+                return null;
+            }
+        }
+    }
+
+    @Override
     public String findMaxMaLopHoc() {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;

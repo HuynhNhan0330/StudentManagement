@@ -17,4 +17,6 @@ public interface IGiaoVienService {
     GiaoVienDTO update(GiaoVienDTO giaoVienDTO);
 
     Boolean delete(GiaoVienDTO giaoVienDTO);
+
+    GiaoVienDTO findAccount(String maTK);
 }

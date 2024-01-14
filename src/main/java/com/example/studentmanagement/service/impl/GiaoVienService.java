@@ -5,7 +5,6 @@ import com.example.studentmanagement.jpa.IGiaoVienJPA;
 import com.example.studentmanagement.jpa.ITaiKhoanJPA;
 import com.example.studentmanagement.jpa.impl.GiaoVienJPA;
 import com.example.studentmanagement.jpa.impl.TaiKhoanJPA;
-import com.example.studentmanagement.model.GiaoVienModel;
 import com.example.studentmanagement.model.TaiKhoanModel;
 import com.example.studentmanagement.service.IGiaoVienService;
 import com.example.studentmanagement.utils.Helper;
@@ -92,4 +91,7 @@ public class GiaoVienService implements IGiaoVienService {
         // Xoá tài khoản
         return giaoVienJPA.delete(giaoVienDTO.getMaGV()) && taiKhoanJPA.delete(giaoVienDTO.getMaTK());
     }
+
+    @Override
+    public GiaoVienDTO findAccount(String maTK) { return giaoVienJPA.findAccount(maTK); }
 }

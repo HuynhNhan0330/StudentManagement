@@ -12,6 +12,8 @@ public interface ILopHocService {
 
     List<LichHocDTO> findScheduleOfStudent(String maSV);
 
+    List<LichHocDTO> findScheduleOfLecturer(String maGV);
+
     LopHocDTO findOne(String maLop);
 
     Map<String, Object> save(LopHocModel lopHocModel);

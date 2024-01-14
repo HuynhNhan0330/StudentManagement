@@ -4,7 +4,7 @@ function ScheduleHeader() {
     return (
         <thead>
             <tr>
-                <th>Thời gian</th>
+                <th></th>
                 <th className='monday'>Thứ 2</th>
                 <th className='tuesday'>Thứ 3</th>
                 <th className='wednesday'>Thứ 4</th>

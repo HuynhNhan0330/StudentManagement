@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ScheduleBoard from "../../../../components/User/ScheduleBoard/ScheduleBoard";
 import './Schedule.scss'
-import { handleGetScheduleByStudent } from '../../../../controller/ScheduleController';
+import { handleGetScheduleByLecturer } from '../../../../controller/ScheduleController';
 import { DateOfWeek } from '../../../../utils/Helper';
 
 //
@@ -14,7 +14,7 @@ function LecturerSchedule() {
 
   const fetchData = () => {
     setUser(JSON.parse(localStorage.getItem('account')));
-    handleGetScheduleByStudent(user.maSV).then((results) => {
+    handleGetScheduleByLecturer(user.maGV).then((results) => {
       if (results == null) {
         results = [];
 

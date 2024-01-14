@@ -11,6 +11,8 @@ public interface ILopHocJPA {
 
     List<LichHocDTO> findScheduleOfStudent(String maSV);
 
+    List<LichHocDTO> findScheduleOfLecturer(String maGV);
+
     String findMaxMaLopHoc();
 
     LopHocDTO findOne(String maLop);

@@ -48,7 +48,12 @@ public class LichHocAPI extends HttpServlet {
         }
         else if (requestURI.startsWith("/api-admin-lichhoc/gv/"))
         {
+            String maGV = requestURI.substring(requestURI.lastIndexOf("/") + 1);
 
+            List<LichHocDTO> listLichHoc = lopHocService.findScheduleOfLecturer(maGV);
+
+            resp.setStatus(HttpServletResponse.SC_OK);
+            mapper.writeValue(resp.getOutputStream(), listLichHoc);
         }
 
         return;
