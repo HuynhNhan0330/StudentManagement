@@ -4,11 +4,18 @@ import { NavLink } from 'react-router-dom';
 import { EditOutlined, DeleteOutlined, EyeOutlined } from '@ant-design/icons'
 import { adminPaths, lecturerPaths } from '../../../routes/AppRoutes';
 
-function ClassTable({ data, loading, handleTableChange, handleEdit, handleDelete, showDrawer, isAdmin }) {
+function ClassTable({ data, loading, handleTableChange, handleEdit, handleDelete, showDrawer, isAdmin, textSearch }) {
     const columns = [
         {
             title: 'Mã lớp',
             dataIndex: 'maLop',
+            filteredValue: [textSearch],
+            onFilter: (value, record) => {
+                return (String(record.maLop).includes(value) ||
+                    String(record.tenLop).includes(value) ||
+                    String(record.tenGV).includes(value) ||
+                    String(record.tenMH).includes(value))
+            }
         },
         {
             title: 'Tên lớp',

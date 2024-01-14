@@ -157,6 +157,8 @@ const Class = () => {
         setIsDrawerOpen(false);
     };
 
+    const [textSearch, setTextSearch] = useState("");
+
     return (
         <div>
             <Card>
@@ -166,7 +168,7 @@ const Class = () => {
                 <Space style={{ marginBottom: 16 }} className='search_box_in_page'>
                     <Search
                         placeholder="Tìm kiếm..."
-                        onSearch={(value) => console.log(value)}
+                        onSearch={(value) => setTextSearch(value)}
                         style={{ width: 200 }}
                     />
 
@@ -180,6 +182,8 @@ const Class = () => {
                             onChange={handleTableChange}
                             isAdmin={true}
                             // handleDelete={handleDelete}
+                            textSearch={textSearch}
+
                 />
             </Card>
             <CreateClassModal open={isModalOpen} onOk={handleOk} onCancel={handleCancel} rooms={dataRoom} subjects={dataSubject} lecturers={dataLecturer} />

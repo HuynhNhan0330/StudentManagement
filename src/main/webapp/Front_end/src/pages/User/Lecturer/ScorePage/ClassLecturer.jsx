@@ -57,6 +57,9 @@ const ClassLecturer = () => {
     };
     // end
 
+    const [textSearch, setTextSearch] = useState("");
+
+
     return (
         <div>
             <Card>
@@ -66,7 +69,7 @@ const ClassLecturer = () => {
                 <Space style={{ marginBottom: 16 }} className='search_box_in_page'>
                     <Search
                         placeholder="Tìm kiếm..."
-                        onSearch={(value) => console.log(value)}
+                        onSearch={(value) => setTextSearch(value)}
                         style={{ width: 200 }}
                     />
                     
@@ -76,6 +79,7 @@ const ClassLecturer = () => {
                             loading={loading}
                             onChange={handleTableChange}
                             isAdmin = {false}
+                            textSearch={textSearch}
                             // handleDelete={handleDelete}
                 />
             </Card>
