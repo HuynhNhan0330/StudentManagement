@@ -52,7 +52,7 @@ function ScheduleBoard(props) {
             </div>
             <div className='ScheduleBoardM'>
                 <div>
-                    <ScheduleHeader></ScheduleHeader>
+                    {/*<ScheduleHeader></ScheduleHeader>*/}
                     <FullCalendar
                         plugins={[timeGridPlugin]}
                         initialView='timeGridWeek'
@@ -60,10 +60,10 @@ function ScheduleBoard(props) {
                         events={events}
                         eventContent={renderEventContent}
                         slotMinTime="6:00:00"
-                        slotMaxTime="16:00:00"
+                        slotMaxTime="17:00:00"
                         hiddenDays={[0]}
                         headerToolbar={false}
-                        dayHeaders={false}
+                        //dayHeaders={false}
                         allDaySlot={false}
                         height={"auto"}
                         borderColor="black"

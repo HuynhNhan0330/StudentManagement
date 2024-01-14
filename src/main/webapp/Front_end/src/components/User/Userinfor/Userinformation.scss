@@ -3,16 +3,9 @@
     gap: 10px;
     flex-wrap: wrap;
     position: fixed;
-    margin-left: 5%;
-    margin-top: 7%;
     overflow-y: scroll;
-    width: 77%;
-    height: 87vh;
-}
-.Score {
-    margin-top: 1%;
-    margin-bottom: 2%;
     width: 100%;
+    height: 87vh;
 }
 
 .UserBasicInfor {
@@ -26,21 +19,7 @@
     align-items: center;
 }
 
-.UserPic {
-    background-color: rgb(255, 255, 255);
-    height: 44vh;
-    width: 50vh;
-    border-radius: 15px;
-    border: 1px solid #2f88ff;
-}
-.userPicture {
-    border-radius: 50%;
-    width: 245px;
-    height: 245px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
+
 .title_infor_item {
     font-weight: bold;
     padding-right: 20%;

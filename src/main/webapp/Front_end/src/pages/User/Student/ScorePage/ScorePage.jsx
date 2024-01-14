@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ScoreBoard from '../../../../components/User/ScoreBoard/ScoreBoard'
 import { handleGetScoreByStudent } from '../../../../controller/ScoreController';
-
+import './ScorePage.scss'
 function ScorePage(){
     // Table:
     const [data, setData] = useState([]);
@@ -26,7 +26,10 @@ function ScorePage(){
 
     return(
         <>
+        <div className='ScoreBoardContainerStudent'>
             <ScoreBoard classListData={data}></ScoreBoard>
+        </div>
+            
         </>
     )
 }
