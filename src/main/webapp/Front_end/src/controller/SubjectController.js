@@ -14,6 +14,19 @@ const handleCreateSubject = (subject) => {
     });
 };
 
+const handleUpdateSubject = (subject) => {
+  return axios.put(baseUrlAPI + '/api-admin-monhoc', subject)
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      console.error('Đã xảy ra lỗi khi gửi dữ liệu:');
+      // console.error(error);
+
+      return error;
+    });
+};
+
 const handleGetSubjects = () => {
   return axios.get(baseUrlAPI + '/api-admin-monhoc')
   .then((response) => {
@@ -44,5 +57,6 @@ const handleDeleteSubjects = (subject) => {
 export  {
     handleCreateSubject,
     handleGetSubjects,
-    handleDeleteSubjects
+    handleDeleteSubjects,
+    handleUpdateSubject
 }

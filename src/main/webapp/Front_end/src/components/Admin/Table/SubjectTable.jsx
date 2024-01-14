@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import { Table } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 
@@ -34,6 +35,8 @@ const SubjectTable = ({ data, loading, handleTableChange, handleEdit, handleDele
             )
         }
     ]
+
+    // const [dataSource, setDatasource] = useState([]);
 
     return (
         <Table

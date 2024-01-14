@@ -4,7 +4,7 @@ import { Space, Button, Input, Card, Modal, message } from 'antd';
 import EditSubjectModal from '../../../components/Admin/Modal/Edit/EditSubjectModal'
 import CreateSubjectModal from '../../../components/Admin/Modal/Create/CreateSubjectModal';
 import SubjectTable from '../../../components/Admin/Table/SubjectTable';
-import { handleCreateSubject, handleGetSubjects, handleDeleteSubjects } from '../../../controller/SubjectController';
+import { handleCreateSubject, handleGetSubjects, handleDeleteSubjects, handleUpdateSubject } from '../../../controller/SubjectController';
 import './Subject.scss'
 const { Search } = Input;
 
@@ -123,12 +123,28 @@ const Subject = () => {
         setIsEditModalOpen(false);
     };
 
-    const handleEditModalOk = () => {
-        setIsEditModalOpen(false);
+    const handleEditModalOk = (subject) => {
+        handleUpdateSubject(subject).then(() => {
+            message.open({
+                type: 'success',
+                content: 'Cập nhật môn thành công',
+            });
+
+            setData(pre => {
+                return pre.map(s => {
+                    if (s.maMH === subject.maMH) {
+                        return subject;
+                    } else {
+                        return s;
+                    }
+                })
+            })
+
+            setIsEditModalOpen(false);
+        })
     };
 
     const handleEdit = (record) => {
-        console.log(record);
         showEditModal({...record});
     };
     // end edit
@@ -144,6 +160,12 @@ const Subject = () => {
                         setData((pre) => {
                             return pre.filter((subject) => subject.maMH !== record.maMH);
                         });
+
+                        message.open({
+                            type: 'success',
+                            content: 'Xoá môn thành công',
+                        });
+                        
                     } else {
                         message.open({
                             type: 'error',

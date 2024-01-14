@@ -47,8 +47,6 @@ const StudentListTable = ({ classListData, classs }) => {
         setData(classListData);
     }, [classListData]);
 
-
-
     const handleDeleteStudent = (student) => {
         Modal.confirm({
             title: "Xác nhận xoá?",
@@ -65,14 +63,14 @@ const StudentListTable = ({ classListData, classs }) => {
         })
     }
 
-
-    const isEditing = (record) => record.id === editingKey;
+    const isEditing = (record) => record.maSV === editingKey;
 
     const edit = (record) => {
         form.setFieldsValue({
             ...record,
         });
-        setEditingKey(record.id);
+
+        setEditingKey(record.maSV);
     };
 
     const cancel = () => {
@@ -216,17 +214,28 @@ const StudentListTable = ({ classListData, classs }) => {
 
     const handleAddStudent = () => {
         if (data.find((student) => student.maSV === selectedStudent)) {
-            console.log("Đã tồn tại sinh viên này")
+            console.log()
+            message.open({
+                type: 'error',
+                content: "Đã tồn tại sinh viên này",
+            });
         }
         else {
             // Thêm sinh viên vào lớp
             handleAddStudentClass(selectedStudent, classs).then((resp) => {
                 if (resp != null) {
-                    console.log(resp)
+                    // Thông báo tạo thành công
+                    message.open({
+                        type: 'success',
+                        content: 'Thêm sinh viên thành công',
+                    });
                     setData([...data, resp]);
                 }
                 else {
-                    console.log(resp);
+                    message.open({
+                        type: 'error',
+                        content: resp.response.data,
+                    });
                 }
             });
         }
