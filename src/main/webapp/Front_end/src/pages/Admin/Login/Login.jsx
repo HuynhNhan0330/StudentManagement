@@ -4,7 +4,6 @@ import { useNavigate  } from 'react-router-dom';
 import { adminPaths, studentPaths, lecturerPaths } from '../../../routes/AppRoutes';
 import logo from '../../../assets/logo.png';
 import backGround from '../../../assets/img_back.jpeg';
-
 import './Login.scss';
 import { handleLogin } from '../../../controller/LoginController';
 

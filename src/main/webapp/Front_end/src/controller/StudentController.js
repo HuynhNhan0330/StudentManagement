@@ -14,6 +14,19 @@ const handleCreateStudent = (student) => {
     });
 };
 
+const handleUpdateStudent = (student) => {
+  return axios.put(baseUrlAPI + '/api-admin-sinhvien', student)
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      console.error('Đã xảy ra lỗi khi gửi dữ liệu:');
+      // console.error(error);
+
+      return error;
+    });
+};
+
 const handleGetStudents = () => {
   return axios.get(baseUrlAPI + '/api-admin-sinhvien')
   .then((response) => {
@@ -44,5 +57,6 @@ const handleDeleteStudent = (student) => {
 export  {
     handleCreateStudent,
     handleGetStudents,
-    handleDeleteStudent
+    handleDeleteStudent,
+    handleUpdateStudent
 }

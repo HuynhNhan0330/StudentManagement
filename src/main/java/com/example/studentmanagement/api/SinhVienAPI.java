@@ -89,11 +89,21 @@ public class SinhVienAPI extends HttpServlet {
         SinhVienDTO sinhVienModelUpdate = HttpUtil.of(req.getReader()).toModel(SinhVienDTO.class);
 
         // update new data point in database
-        sinhVienModelUpdate = sinhVienService.update(sinhVienModelUpdate);
+        Map<String, Object> results = sinhVienService.update(sinhVienModelUpdate);
+
+        sinhVienModelUpdate = (SinhVienDTO) results.get("sinhVien");
 
         // convert model to json for response
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(resp.getOutputStream(), sinhVienModelUpdate);
+
+        if (sinhVienModelUpdate == null) {
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            mapper.writeValue(resp.getOutputStream(), results.get("thongBao"));
+        }
+        else {
+            resp.setStatus(HttpServletResponse.SC_OK);
+            mapper.writeValue(resp.getOutputStream(), sinhVienModelUpdate);
+        }
         return;
     }
 
