@@ -1,5 +1,6 @@
 import SidebarUser from "../SideBar/SideBar";
 import Header from "../Header/Header";
+import Navheader from "../Student/Navheader/Navheader";
 import './AppLayout.scss'
 import { useState , useEffect} from "react";
 function AppLayout({ children }) {
@@ -47,7 +48,7 @@ function AppLayout({ children }) {
                     <SidebarUser />
                 </div>
                 <div className="content">
-                    <Header />
+                    <Navheader />
                     <div >
                         <div className="background_">
     
