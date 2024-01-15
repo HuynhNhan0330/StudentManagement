@@ -19,6 +19,7 @@ function UserInforPage() {
     <>
       <div className="mainUserInfor">
         <UserInformation
+          isStudent={true}
           maSV={user.maSV}
           tenTK={user.tenTK}
           gioiTinh={user.gioiTinh}
