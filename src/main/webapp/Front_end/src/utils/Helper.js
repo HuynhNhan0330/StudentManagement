@@ -9,7 +9,7 @@ const isValidPhoneNumber = (phoneNumber) => {
     return phoneRegex.test(phoneNumber);
 };
 
-const baseUrlAPI = "http://localhost:8080"
+const baseUrlAPI = "https://3c9c1099dcb4b689ac3e7bda7c8c9473.serveo.net"
 
 const DateOfWeek = {
     "Thứ 2": '1',

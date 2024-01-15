@@ -15,7 +15,6 @@ function Header() {
             <Link to={studentPaths.user_infor} >
                 <i class='bx bxs-user-circle' style={{ color: '#2f88ff' }}  ></i>
             </Link>
-
         </div>
 
 
