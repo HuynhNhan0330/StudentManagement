@@ -80,9 +80,23 @@ public class GiaoVienService implements IGiaoVienService {
     }
 
     @Override
-    public GiaoVienDTO update(GiaoVienDTO giaoVienDTO) {
+    public Map<String, Object> update(GiaoVienDTO giaoVienDTO) {
+        TaiKhoanModel taiKhoanModel = new TaiKhoanModel();
+        taiKhoanModel.setMaTK(giaoVienDTO.getMaTK());
+        taiKhoanModel.setTenTK(giaoVienDTO.getTenTK());
+        taiKhoanModel.setNgaySinh(giaoVienDTO.getNgaySinh());
+        taiKhoanModel.setEmail(giaoVienDTO.getEmail());
+        taiKhoanModel.setPhone(giaoVienDTO.getPhone());
+        taiKhoanModel.setRole(giaoVienDTO.getRole());
+        taiKhoanModel.setPassword("1");
+        taiKhoanJPA.update(taiKhoanModel);
+
         giaoVienJPA.update(giaoVienDTO);
-        return giaoVienJPA.findOne(giaoVienDTO.getMaGV());
+
+        return new HashMap<>(){{
+            put("giaoVien", giaoVienJPA.findOne(giaoVienDTO.getMaGV()));
+            put("thongBao", "Tạo giáo viên thành công");
+        }};
     }
 
     @Override

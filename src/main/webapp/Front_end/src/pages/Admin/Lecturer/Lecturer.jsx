@@ -3,9 +3,10 @@ import { Space, Button, Input, Card, Modal, message } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import CreateLecturerModal from '../../../components/Admin/Modal/Create/CreateLecturerModal';
 import LecturerTable from '../../../components/Admin/Table/LecturerTable';
-import { handleCreateLecturer, handleDeleteLecturer, handleGetLecturers } from '../../../controller/LecturerController';
+import { handleCreateLecturer, handleDeleteLecturer, handleGetLecturers, handleUpdateLecturer } from '../../../controller/LecturerController';
 import { handleGetFaculties } from '../../../controller/FacultyController';
 import { isValidEmail, isValidPhoneNumber } from '../../../utils/Helper';
+import EditLecturerModal from '../../../components/Admin/Modal/Edit/EditLecturerModal';
 
 const { Search } = Input;
 
@@ -84,8 +85,16 @@ const Lecturer = () => {
     const handleCreateModalOk = (values) => {
         if (!isValidEmail(values.email)) {
             console.log("Email không hợp lệ");
+            message.open({
+                type: 'error',
+                content: 'Email không hợp lệ',
+            });
         } else if (!isValidPhoneNumber(values.phone)) {
             console.log("Số điện thoại không hợp lệ");
+            message.open({
+                type: 'error',
+                content: 'Số điện thoại không hợp lệ',
+            });
         } else {
             handleCreateLecturer(values).then((resp) => {
                 if (resp.status === 200) {
@@ -159,6 +168,84 @@ const Lecturer = () => {
     const [textSearch, setTextSearch] = useState("");
 
 
+    // Edit
+    const [selectedLecturer, setSelectedLecturer] = useState(null);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+    const showEditModal = (record) => {
+        setSelectedLecturer(record);
+        setIsEditModalOpen(true);
+    };
+
+    const handleEditModalCancel = () => {
+        setIsEditModalOpen(false);
+    };
+
+    const handleEditModalOk = (lecturer) => {
+        console.log(lecturer);
+
+        if (!isValidEmail(lecturer.email)) {
+            console.log("Email không hợp lệ");
+            message.open({
+                type: 'error',
+                content: 'Email không hợp lệ',
+            });
+        } else if (!isValidPhoneNumber(lecturer.phone)) {
+            console.log("Số điện thoại không hợp lệ");
+            message.open({
+                type: 'error',
+                content: 'Số điện thoại không hợp lệ',
+            });
+        } else {
+            handleUpdateLecturer(lecturer).then((resp) => {
+                if (resp.status === 200) {
+                    const sv = resp.data;
+                    console.log(sv);
+
+                    if (sv != null) {
+                        message.open({
+                            type: 'success',
+                            content: 'Cập nhật sinh viên thành công',
+                        });
+            
+                        setData(pre => {
+                            return pre.map(s => {
+                                if (s.maGV === sv.maGV) {
+                                    return sv;
+                                } else {
+                                    return s;
+                                }
+                            })
+                        })
+            
+                        setIsEditModalOpen(false);
+                    }
+                    else {
+                        // Thông báo tạo thất bại
+                        console.log("Tạo sinh viên thất bại");
+                        message.open({
+                            type: 'error',
+                            content: 'Cập nhật sinh viên thất bại',
+                        });
+                    }
+                }
+                else {
+                    // Thông báo tạo thất bại
+                    console.log(resp.response.data);
+                    message.open({
+                        type: 'error',
+                        content: resp.response.data,
+                    });
+                }
+            })
+        }
+    };
+
+    const handleEdit = (record) => {
+        showEditModal({...record});
+    };
+    // end edit
+
     return (
         <div className='adminTableContainer'>
             <Card>
@@ -180,6 +267,7 @@ const Lecturer = () => {
                     onChange={handleTableChange}
                     handleDelete={handleDelete}
                     textSearch={textSearch}
+                    handleEdit={handleEdit}
                 />
             </Card>
             <CreateLecturerModal
@@ -187,6 +275,14 @@ const Lecturer = () => {
                 onOk={handleCreateModalOk}
                 onCancel={handleCreateModalCancel}
                 faculties={dataFaculty}
+            />
+
+<EditLecturerModal
+                    open={isEditModalOpen}
+                    onCancel={handleEditModalCancel}
+                    onOk={handleEditModalOk}
+                    faculties={dataFaculty}
+                    selectedLecturer={selectedLecturer}
             />
         </div>
     );

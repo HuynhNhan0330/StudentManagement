@@ -89,11 +89,21 @@ public class GiaoVienAPI extends HttpServlet {
         GiaoVienDTO giaoVienUpdate = HttpUtil.of(req.getReader()).toModel(GiaoVienDTO.class);
 
         // update new data point in database
-        giaoVienUpdate = giaoVienService.update(giaoVienUpdate);
+        Map<String, Object> results = giaoVienService.update(giaoVienUpdate);
+
+        giaoVienUpdate = (GiaoVienDTO) results.get("giaoVien");
 
         // convert model to json for response
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(resp.getOutputStream(), giaoVienUpdate);
+
+        if (giaoVienUpdate == null) {
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            mapper.writeValue(resp.getOutputStream(), results.get("thongBao"));
+        }
+        else {
+            resp.setStatus(HttpServletResponse.SC_OK);
+            mapper.writeValue(resp.getOutputStream(), giaoVienUpdate);
+        }
         return;
     }
 
