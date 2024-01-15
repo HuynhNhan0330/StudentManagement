@@ -47,6 +47,16 @@ const sidebarNavItems = [
         to: '/',
         section: 'admin_subject'
     },
+    {
+        display: <div style={{color: 'red'}} hidden>Đăng xuất</div>,
+        section: 'admin_subject'
+    },
+    {
+        display: <div style={{color: 'green'}}>Đổi layout</div>,
+        icon: <i class='bx bx-horizontal-right' style={{color: 'green'}}></i>,
+        to: 'http://localhost:3001/admin_major_faculty',
+        section: 'admin_subject'
+    },
     
 ]
 
