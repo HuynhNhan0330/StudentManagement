@@ -39,7 +39,7 @@
 ## II. Mô tả
 
 <!-- Ý TƯỞNG -->
-<div id="Ytuong"></div>
+<div id="Ytuong">Đồ án J2EE </div>
 
 ### 1. Ý tưởng
 ##### Đang cập nhật...
@@ -98,7 +98,7 @@
 <div id="Nguoihuongdan"></div>
 
 ## IV. Người hướng dẫn
-* Giảng viên: Huỳnh Tuấn Anh
+
 * Giảng viên: Trần Thị Hồng Yến
 
 <!-- TỔNG KẾT -->
